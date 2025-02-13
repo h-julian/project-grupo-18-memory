@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listing</title>
+</head>
+<body>
+
+    <header>
+        <h1>Oferta de Trabajo</h1>
+    </header>
+
+    <section id="jobListing">
+        <!-- Job title -->
+        <h2 id="jobTitle">Título del trabajo</h2>
+
+        <!-- Job image -->
+        <img id="jobImage" src="" alt="Imagen relacionada con el trabajo" width="300">
+
+        <!-- Job description -->
+        <p id="jobDescription">Descripción del trabajo</p>
+
+        <!-- Buttons -->
+        <div>
+            <button id="applyButton">Solicitar</button>
+            <button id="declineButton">Declinar</button>
+        </div>
+    </section>
+
+    <script>
+        // Object to store job data
+        const job = {
+            title: "", // Title of the job
+            imageUrl: "", // Image URL related to the job
+            description: "", // Description of the job
+        };
+
+        // Assign values to HTML elements
+        document.getElementById("jobTitle").textContent = job.title;
+        document.getElementById("jobImage").src = job.imageUrl;
+        document.getElementById("jobDescription").textContent = job.description;

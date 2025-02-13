@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listing with Applications</title>
+</head>
+<body>
+
+    <header>
+        <h1>Oferta de Trabajo</h1>
+    </header>
+
+    <section id="jobListing">
+        <!-- Job title -->
+        <h2 id="jobTitle">Título del trabajo</h2>
+        <button id="editJobTitle">Editar Título</button>
+
+        <!-- Job image -->
+        <img id="jobImage" src="" alt="Imagen relacionada con el trabajo" width="300">
+        <button id="editJobImage">Editar Imagen</button>
+
+        <!-- Job description -->
+        <p id="jobDescription">Descripción del trabajo</p>
+        <button id="editJobDescription">Editar Descripción</button>
+
+        <!-- Applications List -->
+        <h3>Personas que han aplicado:</h3>
+        <ul id="applicationsList">
+            <!-- List of applicants will be dynamically added here from the backend -->
+        </ul>
+    </section>
+
+    <script>
+        // Object to store job data
+        const job = {
+            title: "", // Title of the job
+            imageUrl: "", // Image URL related to the job
+            description: "", // Description of the job
+        };
+
+        // Example of applicants list, to be dynamically added from backend
+        const applicants = []; // This will be populated with the list of applicants from the backend
+
+        // Assign values to HTML elements
+        document.getElementById("jobTitle").textContent = job.title;
+        document.getElementById("jobImage").src = job.imageUrl;
+        document.getElementById("jobDescription").textContent = job.description;
+
+        // Update applicants list dynamically
+        const applicationsListElement = document.getElementById("applicationsList");
+        applicants.forEach(applicant => {
+            const listItem = document.createElement("li");
+            listItem.textContent = applicant; // Each applicant name will be dynamically added
+            applicationsListElement.appendChild(listItem);
+        });
+
+        // Event listeners for edit buttons (example)
+        document.getElementById("editJobTitle").addEventListener("click", function() {
+            // Logic for editing job title
+            const newTitle = prompt("Ingresa el nuevo título del trabajo:");
+            if (newTitle) {
+                job.title = newTitle;
+                document.getElementById("jobTitle").textContent = newTitle;
+            }
+        });
+
+        document.getElementById("editJobImage").addEventListener("click", function() {
+            // Logic for editing job image URL
+            const newImageUrl = prompt("Ingresa la nueva URL de la imagen del trabajo:");
+            if (newImageUrl) {
+                job.imageUrl = newImageUrl;
+                document.getElementById("jobImage").src = newImageUrl;
+            }
+        });
+
+        document.getElementById("editJobDescription").addEventListener("click", function() {
+            // Logic for editing job description
+            const newDescription = prompt("Ingresa la nueva descripción del trabajo:");
+            if (newDescription) {
+                job.description = newDescription;
+                document.getElementById("jobDescription").textContent = newDescription;
+            }
+        });
+    </script>
+
+</body>
+</html>
