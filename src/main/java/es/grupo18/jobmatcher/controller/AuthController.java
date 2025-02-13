@@ -1,3 +1,4 @@
+package src.main.java.es.grupo18.jobmatcher.controller;
 @Controller
 public class AuthController {
     @GetMapping("/login")
