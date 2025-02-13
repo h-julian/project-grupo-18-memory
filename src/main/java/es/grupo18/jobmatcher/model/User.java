@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,10 +55,10 @@ public class Usuario {
     @Column(columnDefinition = "TEXT")
     private String questionnaireResponses;
 
-    public Usuario() {}
+    public User() {}
 
     // Constructor completo
-    public Usuario(String nombre, String email, String password, String accountType, String profilePhoto) {
+    public User(String nombre, String email, String password, String accountType, String profilePhoto) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;

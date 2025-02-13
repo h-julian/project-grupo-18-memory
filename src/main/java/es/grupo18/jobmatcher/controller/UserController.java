@@ -19,8 +19,8 @@ public class UserController {
 
     // Registro de usuario; se podría adaptar para empresas con otra clase o comprobación
     @PostMapping("/register")
-    public Usuario register(@RequestBody Usuario user, HttpSession session){
-         Usuario registeredUser = userService.registerUser(user);
+    public User register(@RequestBody User user, HttpSession session){
+          User registeredUser = userService.registerUser(user);
          // Se guarda en la sesión, de modo que luego se pueda acceder al perfil
          session.setAttribute("user", registeredUser);
          return registeredUser;
@@ -28,8 +28,8 @@ public class UserController {
 
     // Inicio de sesión
     @PostMapping("/login")
-    public Usuario login(@RequestBody Usuario loginUser, HttpSession session){
-         Usuario user = userService.getUserByEmail(loginUser.getEmail());
+    public User login(@RequestBody User loginUser, HttpSession session){
+         User user = userService.getUserByEmail(loginUser.getEmail());
          // En un entorno real se agregará validación y encriptación de password
          if(user != null && user.getPassword().equals(loginUser.getPassword())){
              session.setAttribute("user", user);
@@ -40,8 +40,8 @@ public class UserController {
 
     // Obtener datos del perfil desde la sesión
     @GetMapping("/profile")
-    public Usuario profile(HttpSession session){
-         Usuario user = (Usuario) session.getAttribute("user");
+    public User profile(HttpSession session){
+         User user = (User) session.getAttribute("user");
          if(user == null) {
              throw new RuntimeException("No hay usuario logueado");
          }
