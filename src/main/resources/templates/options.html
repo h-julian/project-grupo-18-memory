@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones</title>
+    <link rel="stylesheet" href="/static/css/optionsStyles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Opciones</h1>
+        <a href="main.html" class="button">Volver al Inicio 🏠</a>
+    </header>
+
+    <main class="container">
+        <section class="option">
+            <label class="switch">
+                <input type="checkbox" id="notificationsSwitch">
+                <span class="slider round"></span>
+            </label>
+            <span>Activar/Desactivar Notificaciones</span>
+        </section>
+        <section class="option">
+            <label class="switch">
+                <input type="checkbox" id="darkModeSwitch">
+                <span class="slider round"></span>
+            </label>
+            <span>Activar/Desactivar Modo Oscuro</span>
+        </section>
+    </main>
+
+    <script>
+        // JavaScript to handle the switches
+        document.getElementById('notificationsSwitch').addEventListener('change', function() {
+            if (this.checked) {
+                // Code to enable notifications
+                console.log('Notificaciones activadas');
+            } else {
+                // Code to disable notifications
+                console.log('Notificaciones desactivadas');
+            }
+        });
+
+        document.getElementById('darkModeSwitch').addEventListener('change', function() {
+            if (this.checked) {
+                // Code to enable dark mode
+                document.body.classList.add('dark-mode');
+                console.log('Modo oscuro activado');
+            } else {
+                // Code to disable dark mode
+                document.body.classList.remove('dark-mode');
+                console.log('Modo oscuro desactivado');
+            }
+        });
+    </script>
+
+</body>
+</html>
