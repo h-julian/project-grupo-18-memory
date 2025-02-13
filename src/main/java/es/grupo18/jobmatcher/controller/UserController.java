@@ -50,8 +50,7 @@ public class UserController {
 
     // Cerrar sesión
     @PostMapping("/logout")
-    public String logout(HttpSession session){
+    public ResponseEntity<?> logout(HttpSession session) {
          session.invalidate();
-         return "Sesión cerrada";
-    }
+         return ResponseEntity.ok().build();
 }
