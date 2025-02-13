@@ -6,6 +6,7 @@
     <title>Perfil</title>
     <link rel="stylesheet" href="/src/main/resources/static/css/profileStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -34,27 +35,47 @@
         </section>
     </div>
 
-    <script>
-        // Función para obtener datos del perfil (reemplazar con la lógica real de obtención de datos)
-        function fetchProfileData() {
-            return {
-                // Si se tiene una foto nueva se actualizará; de lo contrario se muestra la foto por defecto
-                photo: "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
-                email: "juan.perez@example.com",
-                phone: "123-456-7890",
-                location: "Madrid, España",
-                about: "Desarrollador web con 5 años de experiencia en HTML, CSS, JavaScript y React."
-            };
-        }
+    <!-- Botón para cerrar sesión -->
+    <div class="logout-container">
+        <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+    </div>
 
-        const profile = fetchProfileData();
-        if (profile.photo && profile.photo !== "") {
-            document.getElementById("profilePhoto").src = profile.photo;
+    <script>
+        // Obtener perfil desde el back-end
+        fetch('/api/users/profile')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al obtener los datos del perfil");
+                }
+                return response.json();
+            })
+            .then(profile => {
+                if (profile.photo && profile.photo !== "") {
+                    document.getElementById("profilePhoto").src = profile.photo;
+                }
+                document.getElementById("email").textContent = profile.email;
+                document.getElementById("phone").textContent = profile.phone || "";
+                document.getElementById("location").textContent = profile.location || "";
+                document.getElementById("about").textContent = profile.about || "";
+            })
+            .catch(error => {
+                console.error("Error fetching profile data:", error);
+            });
+
+        // Función para cerrar sesión y redirigir a index.html
+        function logout() {
+            fetch('/api/users/logout', { method: 'POST' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al cerrar sesión');
+                    }
+                    // Redirige a index.html tras cerrar sesión
+                    window.location.href = 'index.html';
+                })
+                .catch(error => {
+                    console.error("Error al cerrar sesión:", error);
+                });
         }
-        document.getElementById("email").textContent = profile.email;
-        document.getElementById("phone").textContent = profile.phone;
-        document.getElementById("location").textContent = profile.location;
-        document.getElementById("about").textContent = profile.about;
     </script>
 
 </body>
