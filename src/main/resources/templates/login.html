@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="\src\main\resources\static\css\loginStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form action="/login" method="post">
-        <div>
-            <label for="email">Email:</label>
-        </div>
-        <div>
-            <input type="email" id="email" name="email" required>
-        </div>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form action="/login" method="post">
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-        <div>
-            <label for="password">Contraseña:</label>
-        </div>
-        <div>
-            <input type="password" id="password" name="password" required>
-        </div>
+            <div class="input-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-        <div>
-            <button type="submit">Ingresar</button>
-        </div>
-    </form>
+            <div class="button-group">
+                <button type="submit" class="btn">Ingresar</button>
+            </div>
+        </form>
 
-    <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+        <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+    </div>
 </body>
 </html>
