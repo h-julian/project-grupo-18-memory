@@ -7,10 +7,26 @@
     <link rel="stylesheet" href="\src\main\resources\static\css\registerStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
+<header class="header">
+    <div class="option-box">
+        <a href="options.html" class="button">⚙️ Opciones</a>
+    </div>
+    <div class="logo">CATALEX JobMatcher</div>
+    <div class="icons">
+        <div class="icon">
+            <a href="notification.html" class="button">🔔 Notificaciones</a>
+        </div>
+        <div class="icon">
+            <a href="profile.html" class="button">👤 Perfil</a>
+        </div>
+    </div>
+</header>
+
 <body>
     <div class="register-container">
         <h2>Crear Cuenta</h2>
-        <form action="/register" method="post" onsubmit="return validarContraseña()">
+        <form action="/register" method="post" onsubmit="return onRegister(event)">
             <div class="input-group">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" required autofocus>
@@ -52,6 +68,21 @@
                 return false;
             }
             return true;
+        }
+
+        function onRegister(e) {
+            // Prevenir envío para manejarlo vía JS
+            e.preventDefault();
+            if (!validarContraseña()) {
+                return false;
+            }
+            // Aquí se podría incluir lógica adicional para registrar la cuenta en backend.
+            // Si el registro es correcto, redirige al cuestionario:
+            const name = document.getElementById("name").value;
+            const accountType = document.getElementById("account_type").value;
+            // Redirección con parámetros en la URL:
+            window.location.href = `questionnaire.html?name=${encodeURIComponent(name)}&account_type=${encodeURIComponent(accountType)}`;
+            return false;
         }
     </script>
 </body>
