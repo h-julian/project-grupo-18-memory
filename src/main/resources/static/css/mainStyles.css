@@ -55,21 +55,32 @@ body {
 
 /* Main content */
 .container {
-    width: 100%;        
-    max-width: 1000px;     
-    margin: 10px auto;    
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 /* Left section */
 .left-section {
-    width: 30%;
+    flex: 1 1 40%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* Espacio adicional entre los botones */
+    justify-content: flex-start;
+    margin-right: 20px; /* Margen a la derecha entre los botones y la imagen */
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .btn {
@@ -92,7 +103,7 @@ body {
 
 /* Right section */
 .right-section {
-    width: 70%;
+    flex: 1 1 55%;
 }
 
 .image-box {
@@ -106,6 +117,7 @@ body {
     color: #0077b6;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .responsive-image {
