@@ -1,52 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
+    <link rel="stylesheet" href="/src/main/resources/static/css/profileStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>Perfil</h1>
+    <header class="header">
+        <button class="back-btn" onclick="location.href='main.html'">⬅️ Atrás</button>
+        <div class="logo">Catalex JobMatcher</div>
     </header>
 
-    <section>
-        <h2>Tipo de cuenta: <span id="accountType"></span></h2>
-        <h3>Nombre: <span id="profileName"></span></h3>
-    </section>
-
-    <section>
-        <h2>Informacion</h2>
-        <ul>
-            <li>Email: <span id="email"></span></li>
-            <li>Teléfono: <span id="phone"></span></li>
-            <li>Ubicación: <span id="location"></span></li>
-            <li>Experiencia: <span id="experience"></span></li>
-            <li>Habilidades: <span id="skills"></span></li>
-        </ul>
-    </section>
+    <div class="profile-container">
+        <div class="profile-photo">
+            <h2>Foto de Perfil</h2>
+            <img src="https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="Foto de perfil" id="profilePhoto">
+            <button class="btn" onclick="location.href='changePhoto.html'">Cambiar Foto</button>
+        </div>
+        <section class="profile-info">
+            <h2>Información del Perfil</h2>
+            <ul>
+                <li><strong>Email:</strong> <span id="email"></span></li>
+                <li><strong>Teléfono:</strong> <span id="phone"></span></li>
+                <li><strong>Ubicación:</strong> <span id="location"></span></li>
+                <li><strong>Acerca de mí:</strong> <span id="about"></span></li>
+            </ul>
+            <div class="button-group">
+                <button class="btn" onclick="location.href='editProfile.html'">Editar Perfil</button>
+            </div>
+        </section>
+    </div>
 
     <script>
-        // Object to store profile data
-        const profile = {
-            accountType: "", // "User", "Admin", or "Company"
-            name: "",
-            email: "",
-            phone: "",
-            location: "",
-            experience: "",
-            skills: ""
-        };
+        // Función para obtener datos del perfil (reemplazar con la lógica real de obtención de datos)
+        function fetchProfileData() {
+            return {
+                // Si se tiene una foto nueva se actualizará; de lo contrario se muestra la foto por defecto
+                photo: "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
+                email: "juan.perez@example.com",
+                phone: "123-456-7890",
+                location: "Madrid, España",
+                about: "Desarrollador web con 5 años de experiencia en HTML, CSS, JavaScript y React."
+            };
+        }
 
-        // Assign values to HTML elements
-        document.getElementById("accountType").textContent = profile.accountType;
-        document.getElementById("profileName").textContent = profile.name;
+        const profile = fetchProfileData();
+        if (profile.photo && profile.photo !== "") {
+            document.getElementById("profilePhoto").src = profile.photo;
+        }
         document.getElementById("email").textContent = profile.email;
         document.getElementById("phone").textContent = profile.phone;
         document.getElementById("location").textContent = profile.location;
-        document.getElementById("experience").textContent = profile.experience;
-        document.getElementById("skills").textContent = profile.skills;
+        document.getElementById("about").textContent = profile.about;
     </script>
 
 </body>
