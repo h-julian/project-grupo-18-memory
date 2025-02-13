@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobMatcher - Blog</title>
+    <title id="page-title">JobMatcher - Detalle de Noticia</title>
     <link rel="stylesheet" href="/src/main/resources/static/css/newsStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
-        <button class="back-btn" onclick="location.href='main.html'">⬅️ Atrás</button>
+        <button class="back-btn" onclick="location.href='blog.html'">⬅️ Volver</button>
         <div class="option-box">
             <a href="options.html" class="button">⚙️ Opciones</a>
         </div>
@@ -24,17 +24,41 @@
         </div>
     </header>
     <main class="container">
-        <news class="news-article">
-            <h1 class="news-title">Nuevo Informe de Empleabilidad en el Sector Tecnológico</h1>
-            <p class="news-date">13 de febrero de 2025</p>
-            <img src="\src\main\resources\img\working.png" alt="Imagen de informe" class="news-image">
-            <p class="news-content">
-                El sector tecnológico continúa siendo uno de los más demandados en el mercado laboral. Según un reciente informe, se espera un aumento en la contratación de profesionales especializados en ciberseguridad y desarrollo de software. 
-                Las empresas están buscando cada vez más talento en áreas como la inteligencia artificial, la blockchain y el análisis de datos. 
-                Además, la tendencia hacia el trabajo remoto sigue ganando terreno, lo que abre nuevas oportunidades para profesionales a nivel global. 
-                Si estás buscando una nueva oportunidad, asegúrate de actualizar tu perfil en plataformas como JobMatcher para estar al tanto de las últimas ofertas de trabajo.
-            </p>
-        </news>
+        <article class="news-article">
+            <h1 id="news-title">Cargando título...</h1>
+            <p id="news-date">Cargando fecha...</p>
+            <h3 id="news-desc">Cargando descripción...</h3>
+            <img src="/src/main/resources/img/working.png" alt="Imagen de informe" class="news-image">
+            <p id="news-content">Cargando contenido...</p>
+        </article>
     </main>
+    <script>
+        // Se asume que el parámetro id en la URL coincide con la posición de la noticia en el JSON o en memoria
+        const urlParams = new URLSearchParams(window.location.search);
+        const noticiaId = urlParams.get('id') || 0; // En este ejemplo usamos 0 como predeterminado
+
+        // Llama al endpoint de la API (o en el caso de simulación, a localStorage)
+        fetch(`/api/news/${noticiaId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al obtener la noticia');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('news-title').textContent = data.titulo;
+                document.getElementById('news-date').textContent = data.fecha;
+                document.getElementById('news-desc').textContent = data.descripcion;
+                document.getElementById('news-content').textContent = data.cuerpo;
+                document.getElementById('page-title').textContent = data.titulo;
+            })
+            .catch(error => {
+                console.error('Error fetching news:', error);
+                document.getElementById('news-title').textContent = 'Noticia no encontrada';
+                document.getElementById('news-date').textContent = '';
+                document.getElementById('news-desc').textContent = '';
+                document.getElementById('news-content').textContent = '';
+            });
+    </script>
 </body>
 </html>

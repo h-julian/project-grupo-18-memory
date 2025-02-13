@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobMatcher - Nueva Noticia</title>
+    <link rel="stylesheet" href="/src/main/resources/static/css/newArticleStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <button class="back-btn" onclick="location.href='blog.html'">⬅️ Volver</button>
+        <div class="logo">JobMatcher</div>
+        <div class="option-box">
+            <a href="options.html" class="button">⚙️ Opciones</a>
+        </div>
+    </header>
+    <main class="container">
+        <h1>Nueva Noticia</h1>
+        <form id="newArticleForm">
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="cuerpo">Cuerpo:</label>
+                <textarea id="cuerpo" name="cuerpo" rows="6" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn submit-btn">Guardar Noticia</button>
+            </div>
+        </form>
+    </main>
+    <script>
+        // Simulación de guardado en memoria usando localStorage
+        document.getElementById('newArticleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const noticia = {
+                titulo: document.getElementById('titulo').value,
+                fecha: document.getElementById('fecha').value,
+                descripcion: document.getElementById('descripcion').value,
+                cuerpo: document.getElementById('cuerpo').value
+            };
+            // Recupera las noticias almacenadas, o crea un array vacío
+            const noticiasGuardadas = JSON.parse(localStorage.getItem('noticias')) || [];
+            noticiasGuardadas.push(noticia);
+            localStorage.setItem('noticias', JSON.stringify(noticiasGuardadas));
+            alert("Noticia guardada (simulación en memoria)");
+            location.href = 'blog.html';
+        });
+    </script>
+</body>
+</html>
