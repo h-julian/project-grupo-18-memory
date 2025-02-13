@@ -10,7 +10,7 @@
 <body>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form action="/login" method="post">
+        <form id="loginForm" onsubmit="return validarLogin(event)">
             <div class="input-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -28,5 +28,27 @@
 
         <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
     </div>
+
+    <script>//CAMBIAR, NO HACE VALIDACION
+        function validarLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email.trim() === "" || password.trim() === "") {
+                alert("Por favor, completa todos los campos.");
+                return false;
+            }
+            
+            if (email.indexOf('@') === -1) {
+                alert("Por favor, ingresa un email válido.");
+                return false;
+            }
+            
+            // De momento, se permite el acceso a cualquier usuario y se redirige a main.html
+            window.location.href = 'main.html';
+            return false;
+        }
+    </script>
 </body>
 </html>
