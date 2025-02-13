@@ -3,7 +3,7 @@ package es.grupo18.jobmatcher.repository;
 import es.grupo18.jobmatcher.model.Noticia;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;

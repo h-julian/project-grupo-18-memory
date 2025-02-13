@@ -9,14 +9,14 @@ import org.springframework.stereotype.Repository;
 public class InMemoryUserRepository {
 
     // Usamos el email como clave
-    private ConcurrentHashMap<String, Usuario> userMap = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, User> userMap = new ConcurrentHashMap<>();
 
-    public Usuario save(Usuario user) {
+    public User save(User user) {
         userMap.put(user.getEmail(), user);
         return user;
     }
 
-    public Optional<Usuario> findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return Optional.ofNullable(userMap.get(email));
     }
 

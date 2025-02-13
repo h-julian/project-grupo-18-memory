@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.service.UserService;
+import org.springframework.http.ResponseEntity;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -53,4 +55,5 @@ public class UserController {
     public ResponseEntity<?> logout(HttpSession session) {
          session.invalidate();
          return ResponseEntity.ok().build();
+     }
 }

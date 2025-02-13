@@ -15,14 +15,14 @@ public class UserService {
          this.userRepository = userRepository;
     }
 
-    public Usuario registerUser(Usuario user) {
+    public User registerUser(User user) {
          if(userRepository.existsByEmail(user.getEmail())){
               throw new RuntimeException("El usuario ya existe");
          }
          return userRepository.save(user);
     }
 
-    public Usuario getUserByEmail(String email){
+    public User getUserByEmail(String email){
          return userRepository.findByEmail(email).orElse(null);
     }
 }

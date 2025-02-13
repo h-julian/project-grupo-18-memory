@@ -1,6 +1,6 @@
 package es.grupo18.jobmatcher.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
