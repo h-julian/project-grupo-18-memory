@@ -9,6 +9,8 @@
 
     <header>
         <h1>Oferta de Trabajo</h1>
+        <a href="main.html" class="button">Volver al Inicio 🏠</a>
+        <a href="jobEditor.html" class="button">Editar Oferta ✏️</a>
     </header>
 
     <section id="jobListing">
@@ -21,11 +23,11 @@
         <!-- Job description -->
         <p id="jobDescription">Descripción del trabajo</p>
 
-        <!-- Buttons -->
-        <div>
-            <button id="applyButton">Solicitar</button>
-            <button id="declineButton">Declinar</button>
-        </div>
+        <!-- Applications List -->
+        <h3>Personas que han aplicado:</h3>
+        <ul id="applicationsList">
+            <!-- List of applicants will be dynamically added here from the backend -->
+        </ul>
     </section>
 
     <script>
@@ -36,7 +38,22 @@
             description: "", // Description of the job
         };
 
+        // Example of applicants list, to be dynamically added from backend
+        const applicants = []; // This will be populated with the list of applicants from the backend
+
         // Assign values to HTML elements
         document.getElementById("jobTitle").textContent = job.title;
         document.getElementById("jobImage").src = job.imageUrl;
         document.getElementById("jobDescription").textContent = job.description;
+
+        // Update applicants list dynamically
+        const applicationsListElement = document.getElementById("applicationsList");
+        applicants.forEach(applicant => {
+            const listItem = document.createElement("li");
+            listItem.textContent = applicant; // Each applicant name will be dynamically added
+            applicationsListElement.appendChild(listItem);
+        });
+    </script>
+
+</body>
+</html>
