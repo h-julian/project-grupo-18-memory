@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 
 
 @RestController
@@ -47,7 +48,7 @@ public class UserController {
          if(user == null) {
              throw new RuntimeException("No hay usuario logueado");
          }
-         return user;
+         return "profile";
     }
 
     // Cerrar sesión
