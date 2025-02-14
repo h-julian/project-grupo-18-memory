@@ -1,8 +1,8 @@
 [ "java.util.ArrayList", [ [ "es.grupo18.jobmatcher.model.User", {
   "id" : null,
-  "name" : "Dani",
-  "email" : "dani@gmail.com",
-  "password" : "Asdfg__1",
+  "name" : "Adolfo",
+  "email" : "adolfo@gmail.com",
+  "password" : "Adolfo1234",
   "nombre" : null,
   "profilePhoto" : "",
   "skills" : [ "java.util.ArrayList", [ ] ],
