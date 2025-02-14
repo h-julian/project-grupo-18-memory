@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "question": "¿Cuál es la misión principal de su empresa?",
+        "type": "multiple_choice",
+        "options": [
+            "Innovación y tecnología",
+            "Servicio al cliente",
+            "Sostenibilidad y medio ambiente",
+            "Crecimiento y expansión"
+        ]
+    },
+    {
+        "id": 2,
+        "question": "¿Qué valores son más importantes para su empresa?",
+        "type": "multiple_choice",
+        "options": [
+            "Integridad y ética",
+            "Trabajo en equipo",
+            "Excelencia y calidad",
+            "Responsabilidad social"
+        ]
+    },
+    {
+        "id": 3,
+        "question": "¿Cómo describiría la cultura de trabajo en su empresa?",
+        "type": "multiple_choice",
+        "options": [
+            "Colaborativa y abierta",
+            "Competitiva y orientada a resultados",
+            "Flexible y adaptable",
+            "Estructurada y formal"
+        ]
+    },
+    {
+        "id": 4,
+        "question": "¿Qué habilidades y cualidades busca en un empleado?",
+        "type": "multiple_choice",
+        "options": [
+            "Creatividad e innovación",
+            "Habilidades técnicas",
+            "Liderazgo y gestión",
+            "Comunicación y trabajo en equipo"
+        ]
+    },
+    {
+        "id": 5,
+        "question": "¿Qué tipo de proyectos o tareas son comunes en su empresa?",
+        "type": "multiple_choice",
+        "options": [
+            "Desarrollo de productos",
+            "Atención al cliente",
+            "Investigación y desarrollo",
+            "Marketing y ventas"
+        ]
+    },
+    {
+        "id": 6,
+        "question": "¿Cómo maneja su empresa el equilibrio entre la vida laboral y personal?",
+        "type": "multiple_choice",
+        "options": [
+            "Horarios flexibles",
+            "Trabajo remoto",
+            "Beneficios de bienestar",
+            "Políticas estrictas de horario"
+        ]
+    },
+    {
+        "id": 7,
+        "question": "¿Qué oportunidades de crecimiento y desarrollo ofrece su empresa?",
+        "type": "multiple_choice",
+        "options": [
+            "Capacitación y desarrollo profesional",
+            "Promociones internas",
+            "Mentoría y coaching",
+            "Programas de liderazgo"
+        ]
+    },
+    {
+        "id": 8,
+        "question": "¿Cómo es el proceso de evaluación del desempeño en su empresa?",
+        "type": "multiple_choice",
+        "options": [
+            "Evaluaciones anuales",
+            "Retroalimentación continua",
+            "Autoevaluaciones",
+            "Evaluaciones 360 grados"
+        ]
+    },
+    {
+        "id": 9,
+        "question": "¿Qué beneficios adicionales ofrece su empresa a los empleados?",
+        "type": "multiple_choice",
+        "options": [
+            "Seguro de salud",
+            "Bonos y recompensas",
+            "Vacaciones pagadas",
+            "Planes de retiro"
+        ]
+    },
+    {
+        "id": 10,
+        "question": "¿Cómo fomenta su empresa la innovación y la creatividad?",
+        "type": "multiple_choice",
+        "options": [
+            "Hackathons y concursos",
+            "Espacios de trabajo colaborativos",
+            "Inversiones en I+D",
+            "Programas de incentivos"
+        ]
+    }
+]
