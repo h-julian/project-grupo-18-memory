@@ -9,7 +9,7 @@
 <body>
 
     <header class="header">
-        <button class="back-btn" onclick="location.href='profile.html'">⬅️ Atrás</button>
+        <button class="back-btn" onclick="location.href='/profile'">⬅️ Atrás</button>
         <h1>Editar Perfil</h1>
     </header>
 
@@ -24,18 +24,39 @@
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="bio">Biografía:</label>
-                <textarea id="bio" name="bio" rows="4" required></textarea>
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" name="phone">
             </div>
             <div class="form-group">
-                <label for="profilePicture">Foto de Perfil:</label>
-                <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+                <label for="location">Ubicación:</label>
+                <input type="text" id="location" name="location">
+            </div>
+            <div class="form-group">
+                <label for="bio">Biografía:</label>
+                <textarea id="bio" name="bio" rows="4" required></textarea>
             </div>
             <div class="form-group">
                 <button type="submit" class="button">Guardar Cambios</button>
             </div>
         </form>
     </main>
+
+    <script>
+        // Escuchar el envío del formulario y guardar la información del perfil en localStorage
+        document.getElementById("profileEditorForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const profile = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                location: document.getElementById("location").value,
+                about: document.getElementById("bio").value
+            };
+            localStorage.setItem("profile", JSON.stringify(profile));
+            alert("Perfil actualizado correctamente.");
+            window.location.href = "/profile";
+        });
+    </script>
 
 </body>
 </html>

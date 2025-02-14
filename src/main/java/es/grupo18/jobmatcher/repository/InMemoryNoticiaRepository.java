@@ -18,7 +18,7 @@ public class InMemoryNoticiaRepository {
     public void init() {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            InputStream is = getClass().getResourceAsStream("/noticias.json");
+            InputStream is = getClass().getResourceAsStream("/static/data/noticias.json");
             Noticia[] noticiasArray = mapper.readValue(is, Noticia[].class);
             for (Noticia noticia : noticiasArray) {
                 noticia.setId(idCounter.getAndIncrement());

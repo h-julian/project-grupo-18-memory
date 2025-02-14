@@ -19,7 +19,9 @@
         <div class="profile-photo">
             <h2>Foto de Perfil</h2>
             <img src="https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="Foto de perfil" id="profilePhoto">
-            <button class="btn" onclick="location.href='/changePhoto'">Cambiar Foto</button>
+            <!-- Botón para cambiar foto -->
+            <button class="btn" onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
+            <input type="file" id="photoInput" accept="image/*" style="display:none;">
         </div>
         <section class="profile-info">
             <h2>Información del Perfil</h2>
@@ -30,7 +32,7 @@
                 <li><strong>Acerca de mí:</strong> <span id="about"></span></li>
             </ul>
             <div class="button-group">
-                <button class="btn" onclick="location.href='/profileEditor'">Editar Perfil</button>
+                <button class="btn" onclick="location.href='/profile/edit'">Editar Perfil</button>
             </div>
         </section>
     </div>
@@ -41,40 +43,47 @@
     </div>
 
     <script>
-        // Obtener perfil desde el back-end
-        fetch('/api/users/profile')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error al obtener los datos del perfil");
-                }
-                return response.json();
-            })
-            .then(profile => {
-                if (profile.photo && profile.photo !== "") {
-                    document.getElementById("profilePhoto").src = profile.photo;
-                }
-                document.getElementById("email").textContent = profile.email;
-                document.getElementById("phone").textContent = profile.phone || "";
-                document.getElementById("location").textContent = profile.location || "";
-                document.getElementById("about").textContent = profile.about || "";
-            })
-            .catch(error => {
-                console.error("Error fetching profile data:", error);
-            });
+        // Función para actualizar la imagen de perfil y guardarla en localStorage
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const imgData = evt.target.result;
+                    document.getElementById('profilePhoto').src = imgData;
+                    // Actualiza el perfil en localStorage con la foto
+                    const storedProfile = localStorage.getItem("profile");
+                    let profile = storedProfile ? JSON.parse(storedProfile) : {};
+                    profile.photo = imgData;
+                    localStorage.setItem("profile", JSON.stringify(profile));
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Obtener perfil desde localStorage y actualizar la vista
+        const storedProfile = localStorage.getItem("profile");
+        if (storedProfile) {
+            const profile = JSON.parse(storedProfile);
+            document.getElementById("email").textContent = profile.email || "usuario@ejemplo.com";
+            document.getElementById("phone").textContent = profile.phone || "";
+            document.getElementById("location").textContent = profile.location || "";
+            document.getElementById("about").textContent = profile.about || "";
+            if(profile.photo) {
+                document.getElementById("profilePhoto").src = profile.photo;
+            }
+        } else {
+            // Valores por defecto
+            document.getElementById("email").textContent = "usuario@ejemplo.com";
+            document.getElementById("phone").textContent = "";
+            document.getElementById("location").textContent = "";
+            document.getElementById("about").textContent = "";
+        }
 
         // Función para cerrar sesión y redirigir a index.html
         function logout() {
-            fetch('/api/users/logout', { method: 'POST' })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al cerrar sesión');
-                    }
-                    // Redirige a index.html tras cerrar sesión
-                    window.location.href = '/index';
-                })
-                .catch(error => {
-                    console.error("Error al cerrar sesión:", error);
-                });
+            localStorage.removeItem("profile");
+            window.location.href = '/index.html';
         }
     </script>
 

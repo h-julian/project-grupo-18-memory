@@ -1,0 +1,20 @@
+[
+  {
+    "titulo": "La era del teletrabajo ha llegado",
+    "descripcion": "El teletrabajo revoluciona la forma de trabajar en la industria.",
+    "cuerpo": "Cada vez son más las empresas que adoptan el teletrabajo, permitiendo a sus empleados combinar la vida personal y profesional de manera más flexible. Este cambio impulsa la productividad y ofrece nuevas oportunidades en la contratación de talento global.",
+    "fecha": "2025-03-01"
+  },
+  {
+    "titulo": "Capacitación en habilidades digitales",
+    "descripcion": "La digitalización impulsa la demanda de nuevas competencias en el mercado laboral.",
+    "cuerpo": "Ante la transformación digital, trabajadores y empresas invierten en cursos de programación, análisis de datos y marketing digital. La capacitación en habilidades digitales se posiciona como un pilar fundamental para adaptarse a los cambios del entorno laboral.",
+    "fecha": "2025-03-02"
+  },
+  {
+    "titulo": "Tendencias en reclutamiento y selección 2025",
+    "descripcion": "Nuevas técnicas y tecnologías transforman el proceso de selección de personal.",
+    "cuerpo": "El uso de inteligencia artificial y análisis de datos en el reclutamiento permite identificar talento de manera más eficiente. Las empresas optimizan los procesos de selección, reducen tiempos y mejoran la calidad de la contratación.",
+    "fecha": "2025-03-03"
+  }
+]
