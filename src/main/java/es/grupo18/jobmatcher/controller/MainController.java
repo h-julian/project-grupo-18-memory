@@ -13,6 +13,5 @@ public class MainController {
         model.addAttribute("message", "Bienvenido a la página principal");
         return "main"; 
     }
-
 }
 
