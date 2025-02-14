@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class MainController {
+public class MatchController {
 
-    @GetMapping("/main")
-    public String showMainPage(Model model) {
-        model.addAttribute("message", "Bienvenido a la página principal");
-        return "main"; 
+    @GetMapping("/currentMatch")
+    public String showMatchPage(Model model) {
+        model.addAttribute("message", "Aquí tienes tus matches");
+        return "currentMatch"; 
     }
-
 }
-
