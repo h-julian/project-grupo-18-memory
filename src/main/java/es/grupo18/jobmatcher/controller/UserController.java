@@ -56,4 +56,5 @@ public class UserController {
          session.invalidate();
          return ResponseEntity.ok().build();
      }
+
 }

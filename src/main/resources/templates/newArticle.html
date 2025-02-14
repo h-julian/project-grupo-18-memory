@@ -9,10 +9,10 @@
 </head>
 <body>
     <header class="header">
-        <button class="back-btn" onclick="location.href='blog.html'">⬅️ Volver</button>
+        <button class="back-btn" onclick="location.href='/blog'">⬅️ Volver</button>
         <div class="logo">JobMatcher</div>
         <div class="option-box">
-            <a href="options.html" class="button">⚙️ Opciones</a>
+            <a href="/options" class="button">⚙️ Opciones</a>
         </div>
     </header>
     <main class="container">
@@ -54,7 +54,7 @@
             noticiasGuardadas.push(noticia);
             localStorage.setItem('noticias', JSON.stringify(noticiasGuardadas));
             alert("Noticia guardada (simulación en memoria)");
-            location.href = 'blog.html';
+            location.href = '/blog';
         });
     </script>
 </body>

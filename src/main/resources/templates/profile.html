@@ -11,7 +11,7 @@
 <body>
 
     <header class="header">
-        <button class="back-btn" onclick="location.href='main.html'">⬅️ Atrás</button>
+        <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
         <div class="logo">Catalex JobMatcher</div>
     </header>
 
@@ -19,7 +19,7 @@
         <div class="profile-photo">
             <h2>Foto de Perfil</h2>
             <img src="https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="Foto de perfil" id="profilePhoto">
-            <button class="btn" onclick="location.href='changePhoto.html'">Cambiar Foto</button>
+            <button class="btn" onclick="location.href='/changePhoto'">Cambiar Foto</button>
         </div>
         <section class="profile-info">
             <h2>Información del Perfil</h2>
@@ -30,7 +30,7 @@
                 <li><strong>Acerca de mí:</strong> <span id="about"></span></li>
             </ul>
             <div class="button-group">
-                <button class="btn" onclick="location.href='profileEditor.html'">Editar Perfil</button>
+                <button class="btn" onclick="location.href='/profileEditor'">Editar Perfil</button>
             </div>
         </section>
     </div>
@@ -70,7 +70,7 @@
                         throw new Error('Error al cerrar sesión');
                     }
                     // Redirige a index.html tras cerrar sesión
-                    window.location.href = 'index.html';
+                    window.location.href = '/index';
                 })
                 .catch(error => {
                     console.error("Error al cerrar sesión:", error);
