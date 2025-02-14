@@ -14,8 +14,8 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "usuarios")
-public class User {
+@Table(name = "users")
+public class User extends Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,6 @@ public class User {
     @Column(nullable = false)
     private String password;
     
-    // Tipo de cuenta: "usuario" o "empresa"
-    @Column(name = "account_type", nullable = false)
-    private String accountType;
-    
     // URL de la foto de perfil
     private String profilePhoto;
     
@@ -42,13 +38,13 @@ public class User {
     @ElementCollection
     @CollectionTable(name = "usuario_habilidades", joinColumns = @JoinColumn(name = "usuario_id"))
     @Column(name = "habilidad")
-    private List<String> habilidades = new ArrayList<>();
+    private List<String> skills = new ArrayList<>();
     
     // Se almacena la lista de preferencias (por ejemplo, áreas de interés)
     @ElementCollection
     @CollectionTable(name = "usuario_preferencias", joinColumns = @JoinColumn(name = "usuario_id"))
     @Column(name = "preferencia")
-    private List<String> preferencias = new ArrayList<>();
+    private List<String> preferences = new ArrayList<>();
     
     // Respuestas del cuestionario almacenadas en formato JSON (opcional)
     @Lob
@@ -58,11 +54,10 @@ public class User {
     public User() {}
 
     // Constructor completo
-    public User(String nombre, String email, String password, String accountType, String profilePhoto) {
-        this.nombre = nombre;
-        this.email = email;
-        this.password = password;
-        this.accountType = accountType;
+    public User(String name, String email, String password, String profilePhoto) {
+        this.setName(name);
+        this.setEmail(email);
+        this.setPassword(password);
         this.profilePhoto = profilePhoto;
     }
 
@@ -98,14 +93,6 @@ public class User {
         this.password = password;
     }
     
-    public String getAccountType() {
-        return accountType;
-    }
-    
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-    
     public String getProfilePhoto() {
         return profilePhoto;
     }
@@ -114,20 +101,20 @@ public class User {
         this.profilePhoto = profilePhoto;
     }
     
-    public List<String> getHabilidades() {
-        return habilidades;
+    public List<String> getSkills() {
+        return skills;
     }
     
-    public void setHabilidades(List<String> habilidades) {
-        this.habilidades = habilidades;
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
     }
     
-    public List<String> getPreferencias() {
-        return preferencias;
+    public List<String> getPreferences() {
+        return preferences;
     }
     
-    public void setPreferencias(List<String> preferencias) {
-        this.preferencias = preferencias;
+    public void setPreferences(List<String> preferences) {
+        this.preferences = preferences;
     }
     
     public String getQuestionnaireResponses() {

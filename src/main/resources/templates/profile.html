@@ -65,19 +65,20 @@
         const storedProfile = localStorage.getItem("profile");
         if (storedProfile) {
             const profile = JSON.parse(storedProfile);
-            document.getElementById("email").textContent = profile.email || "usuario@ejemplo.com";
-            document.getElementById("phone").textContent = profile.phone || "";
+            document.getElementById("email").textContent    = profile.email    || "usuario@ejemplo.com";
+            document.getElementById("phone").textContent    = profile.phone    || "";
             document.getElementById("location").textContent = profile.location || "";
-            document.getElementById("about").textContent = profile.about || "";
-            if(profile.photo) {
+            document.getElementById("about").textContent    = profile.about    || "";
+            // Si se tiene foto, se asigna al elemento de imagen
+            if (profile.photo) {
                 document.getElementById("profilePhoto").src = profile.photo;
             }
         } else {
-            // Valores por defecto
-            document.getElementById("email").textContent = "usuario@ejemplo.com";
-            document.getElementById("phone").textContent = "";
+            // Valores por defecto en caso de que no haya usuario logueado
+            document.getElementById("email").textContent    = "usuario@ejemplo.com";
+            document.getElementById("phone").textContent    = "";
             document.getElementById("location").textContent = "";
-            document.getElementById("about").textContent = "";
+            document.getElementById("about").textContent    = "";
         }
 
         // Función para cerrar sesión y redirigir a index.html
