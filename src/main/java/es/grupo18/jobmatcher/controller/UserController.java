@@ -48,7 +48,7 @@ public class UserController {
          if(user == null) {
              throw new RuntimeException("No hay usuario logueado");
          }
-         return "profile";
+         return user;
     }
 
     // Cerrar sesión
