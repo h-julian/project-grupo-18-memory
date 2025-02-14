@@ -1,12 +1,10 @@
 package es.grupo18.jobmatcher.controller;
 
 import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 
 
 @RestController
@@ -15,7 +13,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Autowired
+    
     public UserController(UserService userService){
          this.userService = userService;
     }

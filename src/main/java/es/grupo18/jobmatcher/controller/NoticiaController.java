@@ -2,7 +2,6 @@ package es.grupo18.jobmatcher.controller;
 
 import es.grupo18.jobmatcher.model.Noticia;
 import es.grupo18.jobmatcher.repository.InMemoryNoticiaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,6 @@ public class NoticiaController {
 
     private final InMemoryNoticiaRepository noticiaRepository;
 
-    @Autowired
     public NoticiaController(InMemoryNoticiaRepository noticiaRepository) {
         this.noticiaRepository = noticiaRepository;
     }

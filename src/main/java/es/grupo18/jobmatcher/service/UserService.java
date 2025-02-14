@@ -1,6 +1,5 @@
 package es.grupo18.jobmatcher.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.repository.InMemoryUserRepository;
@@ -10,7 +9,6 @@ public class UserService {
 
     private final InMemoryUserRepository userRepository;
 
-    @Autowired
     public UserService(InMemoryUserRepository userRepository){
          this.userRepository = userRepository;
     }
