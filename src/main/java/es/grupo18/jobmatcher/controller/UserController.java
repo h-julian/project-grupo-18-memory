@@ -51,11 +51,11 @@ public class UserController {
          return user;
     }
 
-    // Cerrar sesión
+    // Cerrar sesión: remueve el atributo "user" sin invalidar la sesión completa
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpSession session) {
-         session.invalidate();
-         return ResponseEntity.ok().build();
-     }
+        session.removeAttribute("user");
+        return ResponseEntity.ok().build();
+    }
 
 }
