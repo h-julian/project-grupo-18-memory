@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobMatcher - Noticia</title>
+    <link rel="stylesheet" href="/css/newsStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <button class="back-btn" onclick="location.href='/blog'">⬅️ Atrás</button>
+        <a href="/main" class="logo">
+          <div>JobMatcher</div>
+        </a>
+    </header>
+    
+    <main class="container">
+        <article id="news-content" class="news-entry">
+            <!-- Contenido de la noticia se cargará aquí -->
+        </article>
+    </main>
+    
+    <script>
+      // Función para obtener el parámetro de la URL
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      // Obtener el ID de la noticia desde la URL
+      const newsId = getQueryParam('id');
+
+      // Obtener las noticias desde localStorage
+      const noticias = JSON.parse(localStorage.getItem('noticias'));
+
+      if (noticias && noticias[newsId]) {
+        const noticia = noticias[newsId];
+        const newsContent = document.getElementById('news-content');
+        newsContent.innerHTML = `
+          <img src="${noticia.imagen}" alt="Imagen de la noticia" class="entry-image">
+          <div class="entry-content">
+            <h2>${noticia.titulo}</h2>
+            <p>${noticia.contenido}</p>
+          </div>
+        `;
+      } else {
+        alert('Noticia no encontrada');
+        window.location.href = '/blog';
+      }
+    </script>
+</body>
+</html>
