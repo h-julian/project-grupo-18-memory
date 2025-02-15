@@ -148,12 +148,12 @@ body.dark-mode .btn:hover {
     font-size: 20px;
     color: #0077b6;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: none; 
     margin-bottom: 20px;
 }
 
 .responsive-image {
-    max-width: 50%; /* Se reduce el tamaño de la imagen */
+    max-width: 50%; 
     height: auto;
     display: block;
     margin: 0 auto;
