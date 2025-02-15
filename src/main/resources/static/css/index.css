@@ -9,12 +9,6 @@
     max-width: 400px;
 }
 
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
 /* Estilo la imagen del logo */
 .logo img{
     display: block;
@@ -24,3 +18,9 @@
     margin: 0 auto;
 }
 
+
+.button-group {
+    display: flex;
+    justify-content:center;
+    gap: 40px;
+}

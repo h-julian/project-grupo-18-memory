@@ -1,111 +1,17 @@
-/* Ajusta el body para centrar el contenido */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+/* Login Styles */
 
-/* Cabecera con estilos existentes y texto centrado */
-.header {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center;
-    padding: 15px 20px;
-    background: #0077b6;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Si decides que el título de la página pertenezca a la cabecera, por ejemplo: */
-.header h2 {
-    margin: 0;
-    font-size: 24px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Opcionales: estilos para elementos internos de la cabecera */
-.option-box, .logo, .icons {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Resto de estilos permanece igual */
-.icons {
-    gap: 15px;
-}
-
-.icon .button, .option-box .button {
-    background: #00b4d8;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.3s;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.icon .button:hover, .option-box .button:hover {
-    background: #0096c7;
-    transform: scale(1.05);
-}
-
-/* Contenedor principal que ocupa el espacio restante y centra el contenido */
-.content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* Contenedor del formulario de login */
-.login-container {
+.login-box {
     background: #ffffff;
-    padding: 30px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
     text-align: center;
-    margin: auto; /* Ayuda al centrado */
+    max-width: 400px;
 }
 
-/* Estilo del contenedor del formulario */
-.register-container {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-    margin: 0 auto; 
-}
-
-/* Si el h2 del formulario (por ejemplo, "Crear Cuenta") se muestra fuera de la cabecera ya no es necesario que tenga color azul; 
-   puedes ajustar o eliminar este selector si decides que el título principal quede dentro de la cabecera:
-*/
-h2 {
-    margin-bottom: 20px;
-    color: #0077b6;
+.button-group {
+    display: flex;
+    justify-content:center;
 }
 
 .input-group {
@@ -116,7 +22,7 @@ h2 {
 label {
     display: block;
     margin-bottom: 5px;
-    color: #333333;
+    color: black;
 }
 
 input, select {
@@ -125,39 +31,4 @@ input, select {
     border: 1px solid #cccccc;
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-.button-group {
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    background: #00b4d8;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.btn:hover {
-    background: #0096c7;
-    transform: scale(1.05);
-}
-
-p {
-    margin-top: 20px;
-    color: #333333;
-}
-
-a {
-    color: #0077b6;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }

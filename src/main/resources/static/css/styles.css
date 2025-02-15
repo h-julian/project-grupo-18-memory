@@ -12,12 +12,40 @@ body {
     flex-direction: column;
 }
 
+.header {
+    display: flex;
+    justify-content: center; 
+    padding: 15px 20px;
+    background: #0077b6;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100vw; 
+    position: fixed; 
+    top: 0;
+    z-index: 1000; 
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background: #0077b6;
+    color: white;
+    font-size: 14px;
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    text-align: center;
+}
+
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
 }
 
 h1 {
@@ -25,27 +53,44 @@ h1 {
     color: #0077b6;
 }
 
-/* No se utiliza */
+/* No se utiliza h2 en ninguna página*/
 h2 {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     color: #0077b6;
 }
 
 p {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     color: black;
     font-size: 1.2rem;
+    text-decoration: none;
 }
 
-.button {
-    padding: 10px 20px;
-    border: none;
+a {
+    color: #0077b6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
     background: #00b4d8;
+    border: none;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
+    padding: 10px 20px;
     border-radius: 5px;
-    text-align: center;
     transition: background 0.3s, transform 0.3s;
-    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+
+}
+
+button:hover {
+    background: #0096c7;
+    transform: scale(1.05);
 }
