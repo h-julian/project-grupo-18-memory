@@ -30,32 +30,26 @@ public class RegistrationController {
         String password = payload.get("password");
         String accountType = payload.get("account_type");
 
-        // Validar que no exista ya una cuenta con ese email
+        // Validate email not already registered
         if (accountRepository.findByEmail(email) != null) {
-            return ResponseEntity.badRequest().body("El email ya está registrado.");
+            return ResponseEntity.badRequest().body(Map.of("error", "El email ya está registrado."));
         }
 
-        Account account = null;
+        // Create temporary account object and store in session
+        Account tempAccount;
         if ("usuario".equalsIgnoreCase(accountType)) {
-            User user = new User(name, email, password, "");
-            user.setPhone(payload.get("phone"));
-            user.setLocation(payload.get("location"));
-            user.setDescription(payload.get("description"));
-            user.setQuestionnaireResult(payload.get("questionnaireResult"));
-            account = user;
+            tempAccount = new User(name, email, password, "");
         } else if ("empresa".equalsIgnoreCase(accountType)) {
-            account = new Company(name, email, password, ""); // Se puede asignar un logo por defecto
+            tempAccount = new Company(name, email, password, "");
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "Tipo de cuenta no válido."));
         }
 
-        accountRepository.save(account);
-        // Guardar la cuenta en sesión (opcional)
-        session.setAttribute("user", account);
+        // Store temporary account in session instead of saving to repository
+        session.setAttribute("tempAccount", tempAccount);
         
-        // Return JSON response with account info
         return ResponseEntity.ok(Map.of(
-            "message", "Registrado satisfactoriamente",
+            "message", "Datos validados correctamente",
             "account_type", accountType,
             "name", name,
             "email", email

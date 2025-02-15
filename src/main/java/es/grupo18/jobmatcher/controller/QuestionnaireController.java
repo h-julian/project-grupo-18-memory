@@ -1,6 +1,7 @@
 package es.grupo18.jobmatcher.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.repository.FileUserRepository;
 import es.grupo18.jobmatcher.repository.FileCompanyRepository;
+import es.grupo18.jobmatcher.service.ScoreCalculator;
 
 @Controller
 public class QuestionnaireController {
@@ -23,17 +25,51 @@ public class QuestionnaireController {
     @Autowired
     private FileCompanyRepository companyRepository;
 
-    @PostMapping("/api/saveQuestionnaireResult")
-    public ResponseEntity<?> saveResult(@RequestBody Map<String, Object> result, HttpSession session) {
-        Account account = (Account) session.getAttribute("user");
-        if (account instanceof User) {
-            User user = (User) account;
-            // Guardar el resultado como propiedad del usuario
-            user.setQuestionnaireScore(Integer.parseInt(result.get("score").toString()));
-            userRepository.save(user);
-            return ResponseEntity.ok(result);
+    @Autowired
+    private ScoreCalculator scoreCalculator;
+
+    @PostMapping("/api/{type}-questionnaire")
+    @ResponseBody
+    public ResponseEntity<?> saveQuestionnaireResults(
+            @PathVariable String type,
+            @RequestBody Map<String, Integer> answers,
+            HttpSession session) {
+        
+        // Get temporary account from session
+        Account tempAccount = (Account) session.getAttribute("tempAccount");
+        if (tempAccount == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                               .body(Map.of("error", "Sesión no válida"));
         }
-        return ResponseEntity.badRequest().body("Usuario no encontrado");
+
+        // Calculate score
+        boolean isCompany = "empresa".equals(type);
+        int score = scoreCalculator.calculateScore(answers, isCompany);
+
+        // Save account with score
+        if (isCompany && tempAccount instanceof Company) {
+            Company company = (Company) tempAccount;
+            company.setQuestionnaireScore(score);
+            companyRepository.save(company);
+        } else if (!isCompany && tempAccount instanceof User) {
+            User user = (User) tempAccount;
+            user.setQuestionnaireScore(score);
+            userRepository.save(user);
+        } else {
+            return ResponseEntity.badRequest()
+                               .body(Map.of("error", "Tipo de cuenta no coincide"));
+        }
+
+        // Clear temporary account from session
+        session.removeAttribute("tempAccount");
+        // Set the actual account in session
+        session.setAttribute("user", tempAccount);
+
+        return ResponseEntity.ok(Map.of(
+            "score", score,
+            "message", "Registro completado exitosamente"
+            "redirect", "/main"
+        ));
     }
 
     @GetMapping("/company-questionnaire")
@@ -41,44 +77,30 @@ public class QuestionnaireController {
         return "company-questionnaire";
     }
 
-    @PostMapping("/api/company-questionnaire")
-    @ResponseBody
-    public ResponseEntity<?> saveCompanyAnswers(@RequestBody Map<String, Integer> answers, 
-                                              HttpSession session) {
-        Account account = (Account) session.getAttribute("user");
-        if (account instanceof Company) {
-            Company company = (Company) account;
-            // Calcular puntuación basada en las respuestas
-            int score = calculateScore(answers);
-            company.setQuestionnaireScore(score);
-            // Guardar resultados
-            companyRepository.save(company);
-            return ResponseEntity.ok().body(Map.of("score", score));
-        }
-        return ResponseEntity.badRequest().body("Usuario no válido");
-    }
-
-    private int calculateScore(Map<String, Integer> answers) {
-        // Implementar lógica de puntuación según tus necesidades
-        return answers.values().stream().mapToInt(Integer::intValue).sum();
-    }
-
     @GetMapping("/questionnaire")
     public String showQuestionnaire(Model model, HttpSession session) {
-        Account account = (Account) session.getAttribute("user");
-        if (account != null) {
-            // Determine account type and add attributes
-            String accountType = (account instanceof Company) ? "empresa" : "usuario";
-            model.addAttribute("accountType", accountType);
-            model.addAttribute("userName", account.getName());
-            
-            // Debug information
-            System.out.println("Account type: " + accountType);
-            System.out.println("User name: " + account.getName());
-            
-            return "form";
+        // Check for tempAccount instead of user during registration flow
+        Account account = (Account) session.getAttribute("tempAccount");
+        if (account == null) {
+            // Also check for regular user session as fallback
+            account = (Account) session.getAttribute("user");
+            if (account == null) {
+                return "redirect:/login";
+            }
         }
-        return "redirect:/login";
+        
+        // Determine account type and add attributes
+        String accountType = (account instanceof Company) ? "empresa" : "usuario";
+        model.addAttribute("accountType", accountType);
+        model.addAttribute("userName", account.getName());
+        
+        // Debug information
+        System.out.println("Account type: " + accountType);
+        System.out.println("User name: " + account.getName());
+        System.out.println("Session attribute used: " + 
+            (session.getAttribute("tempAccount") != null ? "tempAccount" : "user"));
+        
+        return "form";
     }
 }
 
