@@ -34,6 +34,17 @@ public class User extends Account {
     // URL de la foto de perfil
     private String profilePhoto;
     
+    private String phone;
+    
+    private String location;
+    
+    @Column(columnDefinition = "TEXT")
+    private String description;
+    
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String questionnaireResult;
+    
     // Se almacena la lista de habilidades (por ejemplo, obtenidas en el cuestionario)
     @ElementCollection
     @CollectionTable(name = "usuario_habilidades", joinColumns = @JoinColumn(name = "usuario_id"))
@@ -53,12 +64,25 @@ public class User extends Account {
 
     public User() {}
 
-    // Constructor completo
+    // Constructor básico
     public User(String name, String email, String password, String profilePhoto) {
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);
         this.profilePhoto = profilePhoto;
+    }
+    
+    // Constructor completo
+    public User(String name, String email, String password, String profilePhoto,
+               String phone, String location, String description, String questionnaireResult) {
+        this.setName(name);
+        this.setEmail(email);
+        this.setPassword(password);
+        this.profilePhoto = profilePhoto;
+        this.phone = phone;
+        this.location = location;
+        this.description = description;
+        this.questionnaireResult = questionnaireResult;
     }
 
     // Getters y setters
@@ -67,7 +91,9 @@ public class User extends Account {
         return id;
     }
 
-    // No se incluye setter para id ya que se genera automáticamente
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -101,6 +127,30 @@ public class User extends Account {
         this.profilePhoto = profilePhoto;
     }
     
+    public String getPhone() {
+        return phone;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    public String getLocation() {
+        return location;
+    }
+    
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public List<String> getSkills() {
         return skills;
     }
@@ -123,5 +173,13 @@ public class User extends Account {
     
     public void setQuestionnaireResponses(String questionnaireResponses) {
         this.questionnaireResponses = questionnaireResponses;
+    }
+    
+    public String getQuestionnaireResult() {
+        return questionnaireResult;
+    }
+    
+    public void setQuestionnaireResult(String questionnaireResult) {
+        this.questionnaireResult = questionnaireResult;
     }
 }

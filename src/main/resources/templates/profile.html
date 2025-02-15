@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="/css/profileStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
@@ -17,21 +16,39 @@
         </a>
     </header>
 
-    <div class="profile-container">
+    <div id="profile-content" class="profile-container">
         <div class="profile-photo">
             <h2>Foto de Perfil</h2>
-            <img src="https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" alt="Foto de perfil" id="profilePhoto">
-            <!-- Botón para cambiar foto -->
+            <!-- Se usa la foto del perfil asignada en account.profilePhoto, o se muestra una foto por defecto -->
+            <img th:src="${account.profilePhoto} ?: 'https://www.bing.com/images/search?view=detailV2&ccid=Lps0Q%2biv&id=0A74B4800462F14CA885ACE09D5150AC93FE6066&thid=OIP.Lps0Q-ivqNODwTLHs3RdRwHaHa&mediaurl=https%3a%2f%2fstatic.vecteezy.com%2fsystem%2fresources%2fpreviews%2f036%2f280%2f651%2fnon_2x%2fdefault-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.2e9b3443e8afa8d383c132c7b3745d47%3frik%3dZmD%252bk6xQUZ3grA%26pid%3dImgRaw%26r%3d0&exph=980&expw=980&q=foto+de+perfil+por+defecto&simid=608005690394959665&FORM=IRPRST&ck=4D1FF16E73CEC76D3C34F4DF020FB5E9&selectedIndex=2&itb=0'" 
+                 alt="Foto de perfil" id="profilePhoto">
+            <!-- Botón para cambiar foto (implementa la actualización en el backend si es necesario) -->
             <button class="btn" onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
             <input type="file" id="photoInput" accept="image/*" style="display:none;">
         </div>
         <section class="profile-info">
             <h2>Información del Perfil</h2>
             <ul>
-                <li><strong>Email:</strong> <span id="email"></span></li>
-                <li><strong>Teléfono:</strong> <span id="phone"></span></li>
-                <li><strong>Ubicación:</strong> <span id="location"></span></li>
-                <li><strong>Acerca de mí:</strong> <span id="about"></span></li>
+                <li>
+                    <strong>Nombre:</strong> 
+                    <span id="name" th:text="${account.name}"></span>
+                </li>
+                <li>
+                    <strong>Email:</strong> 
+                    <span id="email" th:text="${account.email}"></span>
+                </li>
+                <li>
+                    <strong>Teléfono:</strong> 
+                    <span id="phone" th:text="${account.phone}"></span>
+                </li>
+                <li>
+                    <strong>Ubicación:</strong> 
+                    <span id="location" th:text="${account.location}"></span>
+                </li>
+                <li>
+                    <strong>Acerca de mí:</strong> 
+                    <span id="about" th:text="${account.about}"></span>
+                </li>
             </ul>
             <div class="button-group">
                 <button class="btn" onclick="location.href='/profile/edit'">Editar Perfil</button>
@@ -45,49 +62,21 @@
     </div>
 
     <script>
-        // Función para actualizar la imagen de perfil y guardarla en localStorage
-        document.getElementById('photoInput').addEventListener('change', function(e) {
+        document.getElementById('photoInput').addEventListener('change', function (e) {
             const file = e.target.files[0];
-            if(file) {
+            if (file) {
                 const reader = new FileReader();
-                reader.onload = function(evt) {
+                reader.onload = function (evt) {
                     const imgData = evt.target.result;
                     document.getElementById('profilePhoto').src = imgData;
-                    // Actualiza el perfil en localStorage con la foto
-                    const storedProfile = localStorage.getItem("profile");
-                    let profile = storedProfile ? JSON.parse(storedProfile) : {};
-                    profile.photo = imgData;
-                    localStorage.setItem("profile", JSON.stringify(profile));
+                    // Aquí podrías enviar una petición al backend para actualizar la foto
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        // Obtener perfil desde localStorage y actualizar la vista
-        const storedProfile = localStorage.getItem("profile");
-        if (storedProfile) {
-            const profile = JSON.parse(storedProfile);
-            document.getElementById("email").textContent    = profile.email    || "usuario@ejemplo.com";
-            document.getElementById("phone").textContent    = profile.phone    || "";
-            document.getElementById("location").textContent = profile.location || "";
-            document.getElementById("about").textContent    = profile.about    || "";
-            // Si se tiene foto, se asigna al elemento de imagen
-            if (profile.photo) {
-                document.getElementById("profilePhoto").src = profile.photo;
-            }
-        } else {
-            // Valores por defecto en caso de que no haya usuario logueado
-            document.getElementById("email").textContent    = "usuario@ejemplo.com";
-            document.getElementById("phone").textContent    = "";
-            document.getElementById("location").textContent = "";
-            document.getElementById("about").textContent    = "";
-        }
-
-        // Función para cerrar sesión y redirigir a index.html
         function logout() {
-            localStorage.removeItem("profile");
-            alert("Página cerrada correctamente");
-            window.location.href = '/';
+            window.location.href = '/logout';
         }
     </script>
 

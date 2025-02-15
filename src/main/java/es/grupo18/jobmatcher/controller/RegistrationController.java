@@ -33,7 +33,14 @@ public class RegistrationController {
 
         Account account = null;
         if ("usuario".equalsIgnoreCase(accountType)) {
-            account = new User(name, email, password, ""); // Se puede asignar una foto por defecto
+            // Modificar esta línea para incluir los campos adicionales
+            User user = new User(name, email, password, "");
+            // Establecer los campos adicionales
+            user.setPhone(payload.get("phone"));
+            user.setLocation(payload.get("location"));
+            user.setDescription(payload.get("description"));
+            user.setQuestionnaireResult(payload.get("questionnaireResult"));
+            account = user;
         } else if ("empresa".equalsIgnoreCase(accountType)) {
             account = new Company(name, email, password, ""); // Se puede asignar un logo por defecto
         } else {
