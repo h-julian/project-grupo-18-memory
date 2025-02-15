@@ -37,9 +37,7 @@ public class RegistrationController {
 
         Account account = null;
         if ("usuario".equalsIgnoreCase(accountType)) {
-            // Modificar esta línea para incluir los campos adicionales
             User user = new User(name, email, password, "");
-            // Establecer los campos adicionales
             user.setPhone(payload.get("phone"));
             user.setLocation(payload.get("location"));
             user.setDescription(payload.get("description"));
@@ -48,13 +46,20 @@ public class RegistrationController {
         } else if ("empresa".equalsIgnoreCase(accountType)) {
             account = new Company(name, email, password, ""); // Se puede asignar un logo por defecto
         } else {
-            return ResponseEntity.badRequest().body("Tipo de cuenta no válido.");
+            return ResponseEntity.badRequest().body(Map.of("error", "Tipo de cuenta no válido."));
         }
 
         accountRepository.save(account);
         // Guardar la cuenta en sesión (opcional)
         session.setAttribute("user", account);
-        return ResponseEntity.ok("Registrado satisfactoriamente.");
+        
+        // Return JSON response with account info
+        return ResponseEntity.ok(Map.of(
+            "message", "Registrado satisfactoriamente",
+            "account_type", accountType,
+            "name", name,
+            "email", email
+        ));
     }
 
     // Inicio de sesión: verifica email y password

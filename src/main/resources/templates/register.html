@@ -79,20 +79,21 @@
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.text().then(text => { throw new Error(text); });
-                    }
-                    return response.text();
-                })
-                .then(text => {
-                    alert(text);
-                    localStorage.setItem('isRegistered', 'true'); // Update the registration status
-                    window.location.href = '/form';
-                })
-                .catch(error => {
-                    alert("Error: " + error.message);
-                });
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Store account type and name for questionnaire
+                sessionStorage.setItem('accountType', data.account_type);
+                sessionStorage.setItem('userName', data.name);
+                window.location.href = '/questionnaire';
+            })
+            .catch(error => {
+                alert("Error: " + error.message);
+            });
             return false;
         }
 
