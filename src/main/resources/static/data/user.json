@@ -1,8 +1,8 @@
 [ "java.util.ArrayList", [ [ "es.grupo18.jobmatcher.model.User", {
   "id" : null,
-  "name" : "Prueba Uno",
-  "email" : "prueba2@prueba.com",
-  "password" : "Pruebauno1",
+  "name" : "Álvaro Mota",
+  "email" : "a.mota.2023@alumnos.urjc.es",
+  "password" : "holA1213",
   "nombre" : null,
   "profilePhoto" : "",
   "skills" : [ "java.util.ArrayList", [ ] ],

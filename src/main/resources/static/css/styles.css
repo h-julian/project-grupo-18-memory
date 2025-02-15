@@ -109,3 +109,32 @@ button:hover {
 .link:hover {
     text-decoration: underline;
 }
+
+/* Estilo para el título de bienvenida */
+.welcome-title {
+    font-size: 2.5rem;
+    color: #0077b6;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo img {
+    display: block;
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* Estilo para la descripción minimalista y llamativa */
+.description {
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px auto;
+    max-width: 500px;
+}
