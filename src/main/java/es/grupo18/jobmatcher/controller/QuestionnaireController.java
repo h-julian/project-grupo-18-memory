@@ -67,8 +67,8 @@ public class QuestionnaireController {
 
         return ResponseEntity.ok(Map.of(
             "score", score,
-            "message", "Registro completado exitosamente"
-            "redirect", "/main"
+            "message", "Registro completado exitosamente",
+            "redirect", "/main"  // Add redirect URL
         ));
     }
 
