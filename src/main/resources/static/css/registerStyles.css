@@ -8,7 +8,7 @@ body {
     flex-direction: column;
 }
 
-/* Añade un contenedor para centrar el formulario */
+/* Add a container to center the form */
 .content {
     flex: 1;
     display: flex;
@@ -17,10 +17,10 @@ body {
     padding: 20px;
 }
 
-/* Actualiza la cabecera para que esté en la parte superior, centrada y con una línea azul abajo */
+/* Update the header to be at the top, centered, with a blue line below */
 .header {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
+    justify-content: center; /* Center horizontally */
     align-items: center;
     padding: 15px 20px;
     background: #0077b6;
@@ -28,10 +28,9 @@ body {
     font-size: 18px;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 
-/* Si decides que el título de la página pertenezca a la cabecera, por ejemplo: */
+/* If you decide that the page title belongs to the header, for example: */
 .header h2 {
     margin: 0;
     font-size: 24px;
@@ -39,7 +38,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* Opcionales: estilos para elementos internos de la cabecera */
+/* Optional: styles for internal elements of the header */
 .option-box, .logo, .icons {
     display: flex;
     align-items: center;
@@ -54,7 +53,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* Resto de estilos permanece igual */
+/* Rest of the styles remain the same */
 .icons {
     gap: 15px;
 }
@@ -77,7 +76,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Actualiza el contenedor del formulario */
+/* Update the form container */
 .register-container {
     background: #ffffff;
     padding: 30px;
@@ -88,8 +87,8 @@ body {
     margin: 0 auto; 
 }
 
-/* Si el h2 del formulario (por ejemplo, "Crear Cuenta") se muestra fuera de la cabecera ya no es necesario que tenga color azul; 
-   puedes ajustar o eliminar este selector si decides que el título principal quede dentro de la cabecera:
+/* If the h2 of the form (e.g., "Create Account") is displayed outside the header, it no longer needs to be blue;
+   you can adjust or remove this selector if you decide that the main title is within the header:
 */
 h2 {
     margin-bottom: 20px;
@@ -117,6 +116,9 @@ input, select {
 
 .button-group {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Add space between buttons */
 }
 
 .btn {

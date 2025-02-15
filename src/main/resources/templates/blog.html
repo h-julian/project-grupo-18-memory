@@ -29,30 +29,7 @@
     <!-- Contenedor para todas las noticias -->
     <main class="container">
         <div id="news-list">
-            <!-- Noticias estáticas -->
-            <article class="blog-entry">
-                <img src="/src/main/resources/img/working.png" alt="Entry 1 image" class="entry-image">
-                <div class="entry-content">
-                    <h2><a href="news1.html?id=1">Título de la Noticia 1</a></h2>
-                    <p>Este es un breve extracto de la primera noticia. Continúa leyendo para conocer más detalles...</p>
-                </div>
-            </article>
-            
-            <article class="blog-entry">
-                <img src="/src/main/resources/img/working.png" alt="Entry 2 image" class="entry-image">
-                <div class="entry-content">
-                    <h2><a href="entry2.html">Título de la Noticia 2</a></h2>
-                    <p>Resumen breve de la segunda noticia, destacando información clave para captar la atención del lector.</p>
-                </div>
-            </article>
-            
-            <article class="blog-entry">
-                <img src="/src/main/resources/img/working.png" alt="Entry 3 image" class="entry-image">
-                <div class="entry-content">
-                    <h2><a href="entry3.html">Título de la Noticia 3</a></h2>
-                    <p>Descripción inicial de la tercera noticia con un adelanto del contenido completo disponible en el enlace.</p>
-                </div>
-            </article>
+            <!-- Noticias dinámicas se cargarán aquí -->
         </div>
         <!-- Botón para subir una nueva noticia, siempre debajo de las noticias -->
         <div class="admin-actions">
@@ -66,13 +43,14 @@
       // Función para renderizar las noticias en la página
       function renderNoticias(noticias) {
         const newsList = document.getElementById('news-list');
+        newsList.innerHTML = ''; // Clear existing content
         noticias.forEach((noticia, index) => {
           const article = document.createElement('article');
           article.className = 'blog-entry';
           article.innerHTML = `
-            <img src="/src/main/resources/img/working.png" alt="Imagen de la noticia" class="entry-image">
+            <img src="${noticia.imagen}" alt="Imagen de la noticia" class="entry-image">
             <div class="entry-content">
-              <h2><a href="news1.html?id=${index}">${noticia.titulo}</a></h2>
+              <h2><a href="news.html?id=${index}">${noticia.titulo}</a></h2>
               <p>${noticia.descripcion}</p>
             </div>
           `;
@@ -85,7 +63,7 @@
 
       if (!noticiasGuardadas || !noticiasGuardadas.length) {
         // Si no hay noticias en localStorage, se cargan las predeterminadas desde el JSON
-        fetch('/data/noticias.json')
+        fetch('/static/data/noticias.json')
           .then(response => response.json())
           .then(data => {
             noticiasGuardadas = data;
