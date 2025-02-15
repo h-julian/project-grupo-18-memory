@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
 }
 
 .container {
@@ -20,6 +21,31 @@ body {
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #0077b6;
+}
+
+/* No se utiliza */
+h2 {
+    margin-bottom: 30px;
+    color: #0077b6;
+}
+
+p {
+    margin-bottom: 30px;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    background: #00b4d8;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: background 0.3s, transform 0.3s;
+    width: 100%;
 }

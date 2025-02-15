@@ -9,100 +9,14 @@
     max-width: 400px;
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #0077b6;
-}
-
-p {
-    margin-bottom: 30px;
-    color: #333333;
-}
-
 .button-group {
     display: flex;
     justify-content: space-between;
     gap: 10px;
 }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    background: #00b4d8;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    transition: background 0.3s, transform 0.3s;
-    width: 100%;
-}
-
-.btn:hover {
-    background: #0096c7;
-    transform: scale(1.05);
-}
-
-h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-label {
-    margin: 10px 0 5px;
-    color: #555;
-}
-
-input, select {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 300px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.link {
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.link:hover {
-    text-decoration: underline;
-}
-
-/* Estilo para el título de bienvenida */
-#welcome-title {
-    font-size: 2.5rem;
-    color: #0077b6;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.logo img {
+/* Estilo la imagen del logo */
+.logo img{
     display: block;
     max-width: 150px;
     width: 100%;
@@ -110,13 +24,3 @@ button:hover {
     margin: 0 auto;
 }
 
-/* Estilo para la descripción minimalista y llamativa */
-.description {
-    color: #000;
-    font-size: 1.2rem;
-    font-weight: 300;
-    text-align: center;
-    line-height: 1.5;
-    margin: 20px auto;
-    max-width: 500px;
-}
