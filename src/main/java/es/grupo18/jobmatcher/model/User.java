@@ -62,6 +62,8 @@ public class User extends Account {
     @Column(columnDefinition = "TEXT")
     private String questionnaireResponses;
 
+    private Integer questionnaireScore;
+
     public User() {}
 
     // Constructor básico
@@ -181,5 +183,13 @@ public class User extends Account {
     
     public void setQuestionnaireResult(String questionnaireResult) {
         this.questionnaireResult = questionnaireResult;
+    }
+
+    public Integer getQuestionnaireScore() {
+        return questionnaireScore;
+    }
+
+    public void setQuestionnaireScore(Integer score) {
+        this.questionnaireScore = score;
     }
 }

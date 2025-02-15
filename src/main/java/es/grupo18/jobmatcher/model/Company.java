@@ -11,6 +11,8 @@ public class Company extends Account {
     @Lob
     @Column(columnDefinition = "TEXT")
     private String questionnaireResponses;
+
+    private Integer questionnaireScore;
     
     public Company() {}
     
@@ -37,5 +39,13 @@ public class Company extends Account {
   
     public void setQuestionnaireResponses(String questionnaireResponses) {
         this.questionnaireResponses = questionnaireResponses;
+    }
+
+    public Integer getQuestionnaireScore() {
+        return questionnaireScore;
+    }
+
+    public void setQuestionnaireScore(Integer score) {
+        this.questionnaireScore = score;
     }
 }

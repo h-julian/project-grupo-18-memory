@@ -1,79 +1,108 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuestionario</title>
-    <link rel="stylesheet" href="css/questionnaireStyles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title th:text="${accountType == 'empresa'} ? 'Cuestionario Empresa' : 'Cuestionario Usuario'">Cuestionario</title>
+    <link rel="stylesheet" href="/css/questionnaireStyles.css">
 </head>
 <body>
     <header class="header">
-        <a href="/main" class="logo">
-            <div>JobMatcher</div>
-        </a>
+        <div class="header-title">CATALEX JobMatcher</div>
     </header>
 
     <div class="questionnaire-container">
-        <h2 id="welcomeMsg"></h2>
+        <h1 id="welcomeMsg" th:text="${accountType == 'empresa'} ? 
+            'Bienvenido/a ' + ${userName} + '. Ayúdenos a conocer mejor su empresa:' : 
+            'Bienvenido/a ' + ${userName} + '. Vamos a encontrar el trabajo perfecto para ti:'">
+        </h1>
+        
+        <div class="questionnaire-description" th:text="${accountType == 'empresa'} ?
+            'Sus respuestas nos ayudarán a encontrar los candidatos más adecuados para su empresa.' :
+            'Tus respuestas nos ayudarán a encontrar las ofertas de trabajo que mejor se ajusten a tu perfil.'">
+        </div>
+        
         <form id="questionnaireForm">
-            <div id="questionsContainer"></div>
-            <div class="button-group">
-                <button type="submit" class="btn">Enviar Respuestas</button>
+            <div id="questions-container">
+                <!-- Las preguntas se cargarán aquí mediante JavaScript -->
             </div>
+            <button type="submit" class="submit-btn">Enviar Respuestas</button>
         </form>
     </div>
 
-    <script>
-        // Se extraen parámetros de la URL (ejemplo: ?name=Juan&account_type=usuario)
-        const params = new URLSearchParams(window.location.search);
-        const userName = params.get('name') || 'Usuario';
-        const accountType = params.get('account_type') || 'usuario';
+    <script th:inline="javascript">
+        const accountType = /*[[${accountType}]]*/ 'usuario';
+        const userName = /*[[${userName}]]*/ 'Usuario';
+        const questionsFile = accountType === 'empresa' ? 
+            '/data/company_questions.json' : 
+            '/data/user_questions.json';
 
-        // Define el mensaje de bienvenida en base al tipo de cuenta
-        const welcomeMsg = document.getElementById('welcomeMsg');
-        if (accountType === 'empresa') {
-            welcomeMsg.textContent = `Bienvenido, ${userName}`;
-        } else {
-            welcomeMsg.textContent = `Bienvenido/a, ${userName}. Realiza este cuestionario sobre ti`;
-        }
-
-        // Determina el archivo de preguntas en función del tipo de cuenta
-        const questionsFile = accountType === 'empresa' ?
-                              '/src/main/resources/static/data/company_questions.json' :
-                              '/src/main/resources/static/data/user_questions.json';
-
-        let respuestas = {}; // Variable en memoria para almacenar las respuestas
-
-        // Cargar preguntas desde el JSON
+        // Cargar las preguntas correspondientes
         fetch(questionsFile)
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('questionsContainer');
-                data.questions.forEach(q => {
-                    const div = document.createElement('div');
-                    div.className = 'question-group';
-                    // Se muestra cada pregunta en vertical
-                    div.innerHTML = `
-                        <label for="q${q.id}">${q.question}</label>
-                        <input type="text" id="q${q.id}" name="q${q.id}" required>
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al cargar las preguntas');
+                }
+                return response.json();
+            })
+            .then(questions => {
+                const container = document.getElementById('questions-container');
+                questions.forEach(question => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'question-box';
+                    questionDiv.innerHTML = `
+                        <h3>${question.question}</h3>
+                        <div class="options-container">
+                            ${question.options.map((option, index) => `
+                                <div class="option">
+                                    <input type="radio" 
+                                           id="q${question.id}_${index}" 
+                                           name="question_${question.id}" 
+                                           value="${index}"
+                                           required>
+                                    <label for="q${question.id}_${index}">${option}</label>
+                                </div>
+                            `).join('')}
+                        </div>
                     `;
-                    container.appendChild(div);
+                    container.appendChild(questionDiv);
                 });
             })
-            .catch(error => console.error('Error al cargar preguntas:', error));
-
-        // Manejar envío del formulario, guardar las respuestas en memoria y redirigir al main
-        document.getElementById('questionnaireForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            respuestas = {};
-            document.querySelectorAll('.question-group input').forEach(input => {
-                respuestas[input.id] = input.value;
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('questions-container').innerHTML = 
+                    `<p class="error-message">Error cargando las preguntas: ${error.message}</p>`;
             });
-            console.log('Respuestas almacenadas en memoria:', respuestas);
-            alert('Respuestas enviadas correctamente');
-            // Después de enviar, redirige al main
-            window.location.href = '/main';
+
+        document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const answers = {};
+            document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+                answers[input.name] = parseInt(input.value);
+            });
+
+            const endpoint = accountType === 'empresa' ? 
+                '/api/company-questionnaire' : 
+                '/api/saveQuestionnaireResult';
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(answers)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(accountType === 'empresa' ? 
+                    'Gracias por completar el cuestionario. Esto nos ayudará a encontrar los mejores candidatos.' :
+                    'Gracias por completar el cuestionario. Ahora podremos encontrar las mejores ofertas para ti.');
+                window.location.href = '/profile';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al enviar el cuestionario');
+            });
         });
     </script>
 </body>
