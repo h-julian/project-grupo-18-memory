@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobMatcher - Matches</title>
-    <link rel="stylesheet" href="\css\matchStyles.css"> 
+    <link rel="stylesheet" href="/css/matchStyles.css"> 
 </head>
 
 <body>
@@ -27,7 +27,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main id="match-content" class="container">
         <div class="header-match">
             <h2>¡Enhorabuena! Has hecho match con los siguientes usuarios:</h2>
         </div>
@@ -64,8 +64,15 @@
         </div>
     </main>
     
+    <script>
+        // Check if the user is registered
+        if (localStorage.getItem('isRegistered') === 'false') {
+            document.getElementById('match-content').classList.add('hidden');
+            alert('Debes registrarte para acceder a esta sección.');
+            window.location.href = '/register';
+        }
+    </script>
     
-
 </body>
 
 </html>

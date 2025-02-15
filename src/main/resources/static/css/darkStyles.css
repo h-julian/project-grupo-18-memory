@@ -1,0 +1,64 @@
+/* Estilos globales para el modo oscuro */
+.dark-mode body,
+.dark-mode html {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Encabezado */
+.dark-mode header.header {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+
+/* Botón de retroceso */
+.dark-mode button.back-btn {
+    background-color: #333;
+    color: #f0f0f0;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+.dark-mode button.back-btn:hover {
+    background-color: #444;
+}
+
+/* Estilos para enlaces */
+.dark-mode a {
+    color: #bb86fc;
+}
+
+/* Lista de notificaciones */
+.dark-mode #notificationList {
+    list-style: none;
+    padding: 0;
+}
+
+/* Notificaciones */
+.dark-mode .notification {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    margin: 0.5em 0;
+    padding: 0.8em;
+    border-radius: 4px;
+}
+
+/* Notificación no leída */
+.dark-mode .notification.unread {
+    background-color: #272727;
+}
+
+/* Título de notificación */
+.dark-mode .notification-title {
+    display: block;
+    font-weight: bold;
+}
+
+/* Tiempo de notificación */
+.dark-mode .notification-time {
+    display: block;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
