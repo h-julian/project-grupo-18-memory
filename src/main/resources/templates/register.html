@@ -44,7 +44,7 @@
             </div>
             <div class="button-group">
                 <button type="submit" class="btn">Registrarse</button>
-                <button type="button" class="btn" onclick="location.href='/main'">Acceder sin registrarse</button>
+                <button type="button" class="btn" onclick="accederSinRegistrarse()">Acceder sin registrarse</button>
             </div>
         </form>
         <p>¿Ya tienes cuenta? <a href="login">Inicia sesión</a></p>
@@ -87,12 +87,18 @@
                 })
                 .then(text => {
                     alert(text);
+                    localStorage.setItem('isRegistered', 'true'); // Update the registration status
                     window.location.href = '/form';
                 })
                 .catch(error => {
                     alert("Error: " + error.message);
                 });
             return false;
+        }
+
+        function accederSinRegistrarse() {
+            localStorage.setItem('isRegistered', 'false');
+            window.location.href = '/main';
         }
     </script>
 </body>

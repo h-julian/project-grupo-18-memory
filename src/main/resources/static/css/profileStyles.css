@@ -28,6 +28,10 @@ body {
     left: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 .back-btn {
     background: none;
     border: none;
@@ -155,3 +159,5 @@ body {
         .logout-btn:hover {
             opacity: 0.8;
         }
+
+        
