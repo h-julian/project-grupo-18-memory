@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opciones</title>
     <link rel="stylesheet" href="/css/optionsStyles.css">
+    <script src="/js/darkMode.js" defer></script>
 </head>
 <body>
 
@@ -46,13 +47,21 @@
             if (this.checked) {
                 // Code to enable dark mode
                 document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
                 console.log('Modo oscuro activado');
             } else {
                 // Code to disable dark mode
                 document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
                 console.log('Modo oscuro desactivado');
             }
         });
+
+        // Check the dark mode status on page load
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('darkModeSwitch').checked = true;
+        }
     </script>
 
 </body>
