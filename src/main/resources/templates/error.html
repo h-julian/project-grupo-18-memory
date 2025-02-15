@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error {{status}}</title>
+    <title>JobMatcher - Error {{status}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/errorStyles.css">
 </head>
 <body>
-    <h1>¡UwU! Algo salió mal</h1>
-    <p>Ha ocurrido un error inesperado.</p>
-    <p>Error {{status}}</p>
-    <p><a href="/main">Volver al inicio</a></p>
+    <header class="header">
+        <a href="/main" class="logo"><div>JOBMATCHER</div></a>
+    </header>
+    <div class="error-container">
+        <h1>¡UwU! Algo salió mal</h1>
+        <p>Ha ocurrido un error inesperado.</p>
+        <p>Error {{status}}</p>
+        <p><a href="/main" class="back-button">Volver al inicio</a></p>
+    </div>
 </body>
 </html>
