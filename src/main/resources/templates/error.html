@@ -8,14 +8,21 @@
     <link rel="stylesheet" href="/css/errorStyles.css">
 </head>
 <body>
-    <header class="header">
+    <header class="title">
         <a href="/main" class="logo"><div>JOBMATCHER</div></a>
     </header>
-    <div class="error-container">
-        <h1>¡UwU! Algo salió mal</h1>
-        <p>Ha ocurrido un error inesperado.</p>
-        <p>Error {{status}}</p>
-        <p><a href="/main" class="back-button">Volver al inicio</a></p>
+    
+    <div class="container">
+        <div class="box">
+            <h1  style="color: #d9534f;">¡UwU! Algo salió mal</h1>
+            <p>Ha ocurrido un error inesperado.</p>
+            <p>Error {{status}}</p>
+            <button onclick="location.href='/main'" >Volver al inicio</button>
+        </div>
     </div>
+
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>    
+    </footer>
 </body>
 </html>

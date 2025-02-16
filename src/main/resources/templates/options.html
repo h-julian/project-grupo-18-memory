@@ -16,7 +16,7 @@
 
     <header>
         <div class="header-left">
-        <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
+        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
         </div>
         <div class="title">
             <a href="/main">JOBMATCHER</a>
@@ -78,6 +78,16 @@
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
+
+    <script>
+        function goBack() {
+            if (document.referrer) {
+                window.history.back(); // Vuelve a la página anterior si hay historial
+            } else {
+                window.location.href = "/main"; // Si no hay historial, redirige a la página principal
+            }
+        }
+    </script>
     
 </body>
 
