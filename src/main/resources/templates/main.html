@@ -18,13 +18,13 @@
 
 <header>
     <div class="header-left">
-        <button href="/options" class="button">⚙️ Opciones</button>
+        <button id="options-btn" href="options">⚙️ Opciones</button>
     </div>
     <div class="title">
         <a href="/main">JOBMATCHER</a>
     </div>
     <div class="header-right">
-        <button href="/profile" class="button">👤 Perfil</button>
+        <button id="profile-btn" href="/profile">👤 Perfil</button>
     </div>
 </header>
 
@@ -50,5 +50,18 @@
 <footer>
     <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("options-btn").addEventListener("click", function () {
+            window.location.href = "/options";
+        });
+
+        document.getElementById("profile-btn").addEventListener("click", function () {
+            window.location.href = "/profile";
+        });
+    });
+</script>
+
 
 </html>
