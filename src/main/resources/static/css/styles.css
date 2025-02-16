@@ -123,8 +123,9 @@ button {
     height: auto;
 }
 
-
-
+header button {
+    padding: 8px 15px;
+}
 
 
 button:hover {
