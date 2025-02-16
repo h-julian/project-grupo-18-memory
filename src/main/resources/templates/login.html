@@ -4,76 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="/css/loginStyles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<header class="header">
-    <div class="logo">CATALEX JobMatcher</div>
-</header>
+
 
 <body>
-  
-    <div class="login-container">
-        <h2>Iniciar Sesión</h2>
-        <form id="loginForm" onsubmit="return onLogin(event)">
-            <div class="input-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Iniciar Sesión</button>
-        </form>
 
-        <p>¿No tienes cuenta? <a href="/register">Regístrate</a></p>
+    <header>
+        <div class="title">JOBMATCHER</div>
+    </header>
+
+    <div class="container">
+        <div class="box">
+            <h1>Iniciar Sesión</h1>
+            <form id="loginForm" onsubmit="return validarLogin(event)">
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="button-group">
+                    <button id="submit">Ingresar</button>
+                </div>
+            </form>
+
+            <p>¿No tienes cuenta? <a href="register">Regístrate</a></p>
+        </div>
     </div>
 
     <script>
-        function onLogin(e) {
-            e.preventDefault();
+        function validarLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
 
-            const formData = {
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value
-            };
+            if (email === "" || password === "") {
+                alert("Por favor, completa todos los campos.");
+                return false;
+            }
 
-            console.log('Attempting login for:', formData.email); // Debug log
+            if (email.indexOf('@') === -1) {
+                alert("Por favor, ingresa un email válido.");
+                return false;
+            }
 
-            fetch('/api/login', {
-                method: 'POST',
+            const data = { email, password };
+
+            fetch("/api/login", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(data)
             })
             .then(response => {
                 if (!response.ok) {
-                    return response.json().then(err => { 
-                        throw new Error(err.error || 'Error en el inicio de sesión'); 
-                    });
+                    return response.text().then(text => { throw new Error(text) });
                 }
                 return response.json();
             })
-            .then(data => {
-                console.log('Login successful:', data); // Debug log
-                if (data.accountType) {
-                    sessionStorage.setItem('accountType', data.accountType);
-                }
-                if (data.name) {
-                    sessionStorage.setItem('userName', data.name);
-                }
-                window.location.href = data.redirect || '/main';
+            .then(user => {
+                // Si el inicio de sesión es exitoso, redirige a la página principal
+                window.location.href = '/main';
             })
             .catch(error => {
-                console.error('Login error:', error);
-                alert(error.message);
+                alert("Error: " + error.message);
             });
-
             return false;
         }
     </script>
+
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+    </footer>
+
 </body>
+
+
 </html>
