@@ -1,144 +1,80 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuestionario</title>
-    <link rel="stylesheet" href="/css/questionnaireStyles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/questionnaireStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
-        <div class="header-title">CATALEX JobMatcher</div>
+        <a href="/main" class="logo">
+            <div>JobMatcher</div>
+        </a>
     </header>
 
     <div class="questionnaire-container">
-        <div class="progress-bar">
-            <div id="progress" class="progress"></div>
-        </div>
-
-        <div id="welcomeSection"></div>
-        <div id="instructionsSection"></div>
-        
+        <h2 id="welcomeMsg"></h2>
         <form id="questionnaireForm">
-            <div id="questions-container"></div>
-            <button type="submit" class="submit-btn">Enviar Respuestas</button>
+            <div id="questionsContainer"></div>
+            <div class="button-group">
+                <button type="submit" class="btn">Enviar Respuestas</button>
+            </div>
         </form>
     </div>
 
     <script>
-        // Get data from sessionStorage
-        const accountType = sessionStorage.getItem('accountType');
-        const userName = sessionStorage.getItem('userName');
+        // Se extraen parámetros de la URL (ejemplo: ?name=Juan&account_type=usuario)
+        const params = new URLSearchParams(window.location.search);
+        const userName = params.get('name') || 'Usuario';
+        const accountType = params.get('account_type') || 'usuario';
 
-        // Set welcome message and instructions based on account type
-        const welcomeSection = document.getElementById('welcomeSection');
-        const instructionsSection = document.getElementById('instructionsSection');
-
+        // Define el mensaje de bienvenida en base al tipo de cuenta
+        const welcomeMsg = document.getElementById('welcomeMsg');
         if (accountType === 'empresa') {
-            welcomeSection.innerHTML = `
-                <h1 id="welcomeMsg">Bienvenida ${userName}</h1>
-                <div class="questionnaire-instructions">
-                    <p>Para ayudarnos a encontrar los mejores candidatos para tu compañía, por favor responda todas las preguntas.</p>
-                    <p>Sus respuestas nos permitirán realizar mejores coincidencias.</p>
-                </div>
-            `;
+            welcomeMsg.textContent = `Bienvenido, ${userName}`;
         } else {
-            welcomeSection.innerHTML = `
-                <h1 id="welcomeMsg">Bienvenido/a ${userName}</h1>
-                <div class="questionnaire-instructions">
-                    <p>Para encontrar las mejores ofertas de trabajo para ti, necesitamos conocer tus preferencias.</p>
-                    <p>Responde todas las preguntas con sinceridad.</p>
-                </div>
-            `;
+            welcomeMsg.textContent = `Bienvenido/a, ${userName}. Realiza este cuestionario sobre ti`;
         }
 
-        // Load appropriate questions
-        const questionsFile = accountType === 'empresa' ? 
-            '/data/company_questions.json' : 
-            '/data/user_questions.json';
+        // Determina el archivo de preguntas en función del tipo de cuenta
+        const questionsFile = accountType === 'empresa' ?
+                              '/src/main/resources/static/data/company_questions.json' :
+                              '/src/main/resources/static/data/user_questions.json';
 
-        let currentQuestionIndex = 0;
-        let totalQuestions = 0;
+        let respuestas = {}; // Variable en memoria para almacenar las respuestas
 
-        function updateProgress() {
-            const progress = document.getElementById('progress');
-            const percentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
-            progress.style.width = `${percentage}%`;
-        }
-
+        // Cargar preguntas desde el JSON
         fetch(questionsFile)
             .then(response => response.json())
-            .then(questions => {
-                totalQuestions = questions.length;
-                const container = document.getElementById('questions-container');
-                
-                questions.forEach((question, index) => {
-                    const questionDiv = document.createElement('div');
-                    questionDiv.className = 'question-box';
-                    questionDiv.innerHTML = `
-                        <h3>${question.question}</h3>
-                        <div class="options-container">
-                            ${question.options.map((option, optIndex) => `
-                                <div class="option">
-                                    <input type="radio" 
-                                           id="q${index}_${optIndex}" 
-                                           name="question_${index}" 
-                                           value="${optIndex}"
-                                           required>
-                                    <label for="q${index}_${optIndex}">${option}</label>
-                                </div>
-                            `).join('')}
-                        </div>
-                    `;
-                    container.appendChild(questionDiv);
-                });
-                updateProgress();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('questions-container').innerHTML = 
-                    `<p class="error-message">Error cargando las preguntas: ${error.message}</p>`;
-            });
-
-        // Handle form submission
-        document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate all questions are answered
-            const unanswered = document.querySelectorAll('.question-box').length - 
-                              document.querySelectorAll('input[type="radio"]:checked').length;
-            if (unanswered > 0) {
-                alert(`Por favor, responde todas las preguntas (faltan ${unanswered})`);
-                return;
-            }
-
-            const answers = {};
-            document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
-                answers[input.name] = parseInt(input.value);
-            });
-
-            fetch(`/api/${accountType}-questionnaire`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(answers)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al procesar el cuestionario');
-                }
-                return response.json();
-            })
             .then(data => {
-                alert(`Registro completado exitosamente. Tu puntuación es: ${data.score}`);
-                sessionStorage.clear();
-                window.location.href = '/main';
+                const container = document.getElementById('questionsContainer');
+                data.questions.forEach(q => {
+                    const div = document.createElement('div');
+                    div.className = 'question-group';
+                    // Se muestra cada pregunta en vertical
+                    div.innerHTML = `
+                        <label for="q${q.id}">${q.question}</label>
+                        <input type="text" id="q${q.id}" name="q${q.id}" required>
+                    `;
+                    container.appendChild(div);
+                });
             })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al enviar el cuestionario: ' + error.message);
+            .catch(error => console.error('Error al cargar preguntas:', error));
+
+        // Manejar envío del formulario, guardar las respuestas en memoria y redirigir al main
+        document.getElementById('questionnaireForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            respuestas = {};
+            document.querySelectorAll('.question-group input').forEach(input => {
+                respuestas[input.id] = input.value;
             });
+            console.log('Respuestas almacenadas en memoria:', respuestas);
+            alert('Respuestas enviadas correctamente');
+            // Después de enviar, redirige al main
+            window.location.href = '/main';
         });
     </script>
 </body>
