@@ -1,14 +1,3 @@
-/* Index Styles */
-
-.welcome-box {
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 400px;
-}
-
 /* Estilo la imagen del logo */
 .logo img{
     display: block;
@@ -20,7 +9,5 @@
 
 
 .button-group {
-    display: flex;
-    justify-content:center;
     gap: 40px;
 }

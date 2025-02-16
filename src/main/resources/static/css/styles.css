@@ -71,6 +71,15 @@ footer {
     height: 100%;
 }
 
+.box{
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+}
+
 h1 {
     margin-bottom: 30px;
     color: #0077b6;
@@ -136,4 +145,42 @@ header button {
 button:hover {
     background: #0096c7;
     transform: scale(1.05);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none; /* Evita que el usuario cambie el tamaño manualmente */
+    /*overflow-y: hidden;  Evita el scroll vertical */
+}
+
+.button-group {
+    display: flex;
+    justify-content:center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
