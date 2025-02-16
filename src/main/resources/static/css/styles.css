@@ -12,7 +12,7 @@ body {
     flex-direction: column;
 }
 
-.header {
+header {
     display: flex;
     justify-content: center; 
     padding: 15px 20px;
@@ -21,12 +21,35 @@ body {
     font-size: 20px;
     font-weight: bold;
     width: 100vw; 
+    height: 25px;
     position: fixed; 
     top: 0;
     z-index: 1000; 
 }
 
-.footer {
+header a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.header-left, .header-right {
+    flex: 1; /* Ambos ocupan el mismo espacio */
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    justify-content: flex-start;
+    margin-left: 15px;
+}
+
+.header-right {
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+
+footer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,7 +96,17 @@ a {
 
 a:hover {
     text-decoration: underline;
+    transform: scale(1.1);
 }
+
+.title a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
 
 button {
     background: #00b4d8;
@@ -87,8 +120,12 @@ button {
     transition: background 0.3s, transform 0.3s;
     text-decoration: none;
     display: inline-block;
-
+    height: auto;
 }
+
+
+
+
 
 button:hover {
     background: #0096c7;
