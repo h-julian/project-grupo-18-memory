@@ -39,12 +39,12 @@ public class ScoreCalculator {
     }
 
     private double adjustCompanyScore(double score) {
-        // Add company-specific adjustments
+        // Add company-specific adjustments here if needed
         return score;
     }
 
     private double adjustUserScore(double score) {
-        // Add user-specific adjustments
+        // Add user-specific adjustments here if needed
         return score;
     }
 }

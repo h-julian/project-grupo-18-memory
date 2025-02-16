@@ -21,10 +21,10 @@ public class QuestionnaireController {
 
     @Autowired
     private FileUserRepository userRepository;
-
+    
     @Autowired
     private FileCompanyRepository companyRepository;
-
+    
     @Autowired
     private ScoreCalculator scoreCalculator;
 
@@ -35,40 +35,34 @@ public class QuestionnaireController {
             @RequestBody Map<String, Integer> answers,
             HttpSession session) {
         
-        // Get temporary account from session
-        Account tempAccount = (Account) session.getAttribute("tempAccount");
-        if (tempAccount == null) {
+        Account account = (Account) session.getAttribute("tempAccount");
+        if (account == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                               .body(Map.of("error", "Sesión no válida"));
+                               .body(Map.of("error", "No hay registro pendiente"));
         }
 
-        // Calculate score
-        boolean isCompany = "empresa".equals(type);
-        int score = scoreCalculator.calculateScore(answers, isCompany);
-
-        // Save account with score
-        if (isCompany && tempAccount instanceof Company) {
-            Company company = (Company) tempAccount;
+        // Calculate score using scoreCalculator service
+        int score = scoreCalculator.calculateScore(answers, account instanceof Company);
+        
+        // Set score and save account
+        if (account instanceof Company) {
+            Company company = (Company) account;
             company.setQuestionnaireScore(score);
             companyRepository.save(company);
-        } else if (!isCompany && tempAccount instanceof User) {
-            User user = (User) tempAccount;
+        } else {
+            User user = (User) account;
             user.setQuestionnaireScore(score);
             userRepository.save(user);
-        } else {
-            return ResponseEntity.badRequest()
-                               .body(Map.of("error", "Tipo de cuenta no coincide"));
         }
-
-        // Clear temporary account from session
+        
+        // Update session with saved account
         session.removeAttribute("tempAccount");
-        // Set the actual account in session
-        session.setAttribute("user", tempAccount);
+        session.setAttribute("user", account);
 
         return ResponseEntity.ok(Map.of(
+            "message", "Registro completado",
             "score", score,
-            "message", "Registro completado exitosamente",
-            "redirect", "/main"  // Add redirect URL
+            "redirect", "/profile"
         ));
     }
 

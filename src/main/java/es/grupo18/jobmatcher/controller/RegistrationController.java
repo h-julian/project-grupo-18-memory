@@ -22,52 +22,47 @@ public class RegistrationController {
     @Autowired
     private FileAccountRepository accountRepository;
 
-    // Registro: recibe los datos del formulario (nombre, email, password, account_type)
-    @PostMapping("/register")
+    @PostMapping("/register")  // This should match the fetch URL in the form
     public ResponseEntity<?> register(@RequestBody Map<String, String> payload, HttpSession session) {
-        String name = payload.get("name");
         String email = payload.get("email");
-        String password = payload.get("password");
-        String accountType = payload.get("account_type");
-
+        
         // Validate email not already registered
         if (accountRepository.findByEmail(email) != null) {
             return ResponseEntity.badRequest().body(Map.of("error", "El email ya está registrado."));
         }
 
-        // Create temporary account object and store in session
+        // Create temporary account
         Account tempAccount;
-        if ("usuario".equalsIgnoreCase(accountType)) {
-            tempAccount = new User(name, email, password, "");
-        } else if ("empresa".equalsIgnoreCase(accountType)) {
-            tempAccount = new Company(name, email, password, "");
+        if ("usuario".equalsIgnoreCase(payload.get("account_type"))) {
+            User user = new User(
+                payload.get("name"),
+                email,
+                payload.get("password"),
+                payload.get("description")
+            );
+            user.setProfilePhoto(payload.get("profile_photo"));
+            tempAccount = user;
+        } else if ("empresa".equalsIgnoreCase(payload.get("account_type"))) {
+            Company company = new Company(
+                payload.get("name"),
+                email,
+                payload.get("password"),
+                payload.get("description")
+            );
+            company.setProfilePhoto(payload.get("profile_photo"));
+            tempAccount = company;
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "Tipo de cuenta no válido."));
         }
 
-        // Store temporary account in session instead of saving to repository
+        // Only store in session, don't save to repository yet
         session.setAttribute("tempAccount", tempAccount);
-        
+
         return ResponseEntity.ok(Map.of(
-            "message", "Datos validados correctamente",
-            "account_type", accountType,
-            "name", name,
-            "email", email
+            "message", "Registro iniciado",
+            "accountType", payload.get("account_type"),
+            "name", payload.get("name"),
+            "redirect", "/questionnaire"
         ));
-    }
-
-    // Inicio de sesión: verifica email y password
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> payload, HttpSession session) {
-        String email = payload.get("email");
-        String password = payload.get("password");
-
-        Account account = accountRepository.findByEmail(email);
-        if (account == null || !account.getPassword().equals(password)) {
-            return ResponseEntity.badRequest().body("Credenciales incorrectas.");
-        }
-
-        session.setAttribute("user", account);
-        return ResponseEntity.ok(account);
     }
 }

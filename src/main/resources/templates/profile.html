@@ -20,15 +20,16 @@
         <div class="profile-photo">
             <h2>Foto de Perfil</h2>
             <!-- Se usa la foto del perfil asignada en account.profilePhoto, o se muestra una foto por defecto -->
-            <img th:src="${account.profilePhoto} ?: 'https://www.bing.com/images/search?view=detailV2&ccid=Lps0Q%2biv&id=0A74B4800462F14CA885ACE09D5150AC93FE6066&thid=OIP.Lps0Q-ivqNODwTLHs3RdRwHaHa&mediaurl=https%3a%2f%2fstatic.vecteezy.com%2fsystem%2fresources%2fpreviews%2f036%2f280%2f651%2fnon_2x%2fdefault-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.2e9b3443e8afa8d383c132c7b3745d47%3frik%3dZmD%252bk6xQUZ3grA%26pid%3dImgRaw%26r%3d0&exph=980&expw=980&q=foto+de+perfil+por+defecto&simid=608005690394959665&FORM=IRPRST&ck=4D1FF16E73CEC76D3C34F4DF020FB5E9&selectedIndex=2&itb=0'" 
+            <img th:src="${account.profilePhoto} ?: 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'" 
                  alt="Foto de perfil" id="profilePhoto">
             <!-- Botón para cambiar foto (implementa la actualización en el backend si es necesario) -->
             <button class="btn" onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
             <input type="file" id="photoInput" accept="image/*" style="display:none;">
         </div>
         <section class="profile-info">
-            <h2>Información del Perfil</h2>
+            <h2 th:text="${accountType == 'empresa'} ? 'Perfil de Empresa' : 'Perfil de Usuario'">Información del Perfil</h2>
             <ul>
+                <!-- Common fields -->
                 <li>
                     <strong>Nombre:</strong> 
                     <span id="name" th:text="${account.name}"></span>
@@ -38,17 +39,19 @@
                     <span id="email" th:text="${account.email}"></span>
                 </li>
                 <li>
-                    <strong>Teléfono:</strong> 
-                    <span id="phone" th:text="${account.phone}"></span>
+                    <strong>Descripción:</strong> 
+                    <span id="description" th:text="${account.description}"></span>
                 </li>
-                <li>
-                    <strong>Ubicación:</strong> 
-                    <span id="location" th:text="${account.location}"></span>
-                </li>
-                <li>
-                    <strong>Acerca de mí:</strong> 
-                    <span id="about" th:text="${account.about}"></span>
-                </li>
+                
+                <!-- Company-specific fields -->
+                <th:block th:if="${isCompany}">
+
+                </th:block>
+                
+                <!-- User-specific fields -->
+                <th:block th:unless="${isCompany}">
+
+                </th:block>
             </ul>
             <div class="button-group">
                 <button class="btn" onclick="location.href='/profile/edit'">Editar Perfil</button>
@@ -78,6 +81,16 @@
         function logout() {
             window.location.href = '/logout';
         }
+    </script>
+
+    <script th:inline="javascript">
+        // Debug information
+        console.log('Account data:', {
+            name: /*[[${account.name}]]*/ '',
+            email: /*[[${account.email}]]*/ '',
+            description: /*[[${account.description}]]*/ '',
+            accountType: /*[[${accountType}]]*/ ''
+        });
     </script>
 
 </body>

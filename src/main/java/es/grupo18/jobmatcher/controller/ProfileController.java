@@ -1,6 +1,8 @@
 package es.grupo18.jobmatcher.controller;
 
 import es.grupo18.jobmatcher.model.Account;
+import es.grupo18.jobmatcher.model.Company;
+import es.grupo18.jobmatcher.model.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +12,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ProfileController {
 
     @GetMapping("/profile")
-    public String showOptionsPage(HttpSession session, Model model) {
+    public String showProfile(Model model, HttpSession session) {
         Account account = (Account) session.getAttribute("user");
-        if (account != null) {
-            model.addAttribute("account", account);
+        
+        // Debug logs
+        System.out.println("Session ID in Profile: " + session.getId());
+        System.out.println("User in session: " + (account != null));
+        
+        if (account == null) {
+            System.out.println("No user found in session");
+            return "redirect:/login";
         }
+        
+        System.out.println("Showing profile for: " + account.getName());
+        System.out.println("Email: " + account.getEmail());
+        
+        model.addAttribute("account", account);
+        model.addAttribute("accountType", account instanceof Company ? "empresa" : "usuario");
+        
         return "profile";
     }
     
@@ -24,6 +39,6 @@ public class ProfileController {
         if (account != null) {
             model.addAttribute("account", account);
         }
-        return "profileEditor"; // Se asume que existe un template profileEditor.html
+        return "profileEditor"; 
     }
 }

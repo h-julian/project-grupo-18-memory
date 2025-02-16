@@ -32,6 +32,10 @@ public abstract class Account {
     @Column(nullable = false)
     private String password;
 
+    private String description;
+
+    private String profilePhoto;
+
     // Getters y setters
 
     public Long getId() {
@@ -64,5 +68,20 @@ public abstract class Account {
   
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
     }
 }

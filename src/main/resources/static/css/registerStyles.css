@@ -114,6 +114,22 @@ input, select {
     box-sizing: border-box;
 }
 
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #0077b6;
+    box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
+}
+
 .button-group {
     margin-top: 20px;
     display: flex;
@@ -150,4 +166,36 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Add to /static/css/registerStyles.css */
+.profile-photo-group {
+    margin-bottom: 20px;
+}
+
+.profile-photo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #0077b6;
+}
+
+#profile_photo {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#profile_photo:focus {
+    outline: none;
+    border-color: #0077b6;
+    box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
 }

@@ -16,7 +16,7 @@
 <body>
     <div class="register-container">
         <h2>Crear Cuenta</h2>
-        <form action="/register" method="post" onsubmit="return onRegister(event)">
+        <form id="registerForm" action="/register" method="post" onsubmit="return onRegister(event)">
             <div class="input-group">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" required autofocus>
@@ -36,12 +36,29 @@
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
             <div class="input-group">
+                <label for="description">Descripción (opcional):</label>
+                <textarea id="description" name="description" 
+                          placeholder="Cuéntanos un poco sobre ti o tu empresa..." 
+                          rows="4"></textarea>
+            </div>
+            <div class="input-group profile-photo-group">
+                <label for="profile_photo">Foto de perfil (URL):</label>
+                <div class="profile-photo-container">
+                    <img id="profile_preview" src="https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg" 
+                         alt="Vista previa" class="profile-preview">
+                    <input type="url" id="profile_photo" name="profile_photo" 
+                           placeholder="Introduce la URL de tu imagen..." 
+                           onchange="updateProfilePreview(this.value)">
+                </div>
+            </div>
+            <div class="input-group">
                 <label for="account_type">Tipo de cuenta:</label>
                 <select id="account_type" name="account_type" required>
                     <option value="usuario">Usuario</option>
                     <option value="empresa">Empresa</option>
                 </select>
             </div>
+            
             <div class="button-group">
                 <button type="submit" class="btn">Registrarse</button>
                 <button type="button" class="btn" onclick="accederSinRegistrarse()">Acceder sin registrarse</button>
@@ -61,20 +78,47 @@
             return true;
         }
 
+        function updateProfilePreview(url) {
+            const preview = document.getElementById('profile_preview');
+            const defaultUrl = "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg";
+            
+            if (url) {
+                // Check if URL is valid
+                try {
+                    new URL(url);
+                    preview.src = url;
+                } catch (e) {
+                    alert('URL no válida');
+                    preview.src = defaultUrl;
+                    document.getElementById('profile_photo').value = '';
+                }
+            } else {
+                preview.src = defaultUrl;
+            }
+        }
+
         function onRegister(e) {
             e.preventDefault();
-            
+            if (!validarContraseña()) {
+                return false;
+            }
+
             const formData = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value,
-                account_type: document.getElementById("account_type").value
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                account_type: document.getElementById('account_type').value,
+                description: document.getElementById('description').value,
+                profile_photo: document.getElementById('profile_photo').value || 
+                    "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg"
             };
 
-            fetch("/api/register", {
-                method: "POST",
+            console.log('Enviando datos de registro:', formData);
+
+            fetch('/api/register', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
@@ -87,16 +131,17 @@
                 return response.json();
             })
             .then(data => {
-                console.log('Registration successful:', data); // Debug log
-                // Store data for questionnaire
-                sessionStorage.setItem('accountType', data.account_type);
-                sessionStorage.setItem('userName', data.name);
-                
-                // Redirect to questionnaire
-                window.location.href = '/questionnaire';
+                console.log('Registro exitoso:', data);
+                // Store account info in sessionStorage
+                sessionStorage.setItem('user', JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    accountType: data.accountType
+                }));
+                window.location.href = data.redirect;
             })
             .catch(error => {
-                console.error('Registration error:', error); // Debug log
+                console.error('Error:', error);
                 alert(error.message);
             });
 
