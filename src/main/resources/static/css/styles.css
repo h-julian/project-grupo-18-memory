@@ -123,6 +123,11 @@ button {
     height: auto;
 }
 
+.hidden-button {
+    visibility: hidden; /* No se muestra, pero ocupa espacio */
+    width: 50px;
+}
+
 header button {
     padding: 8px 15px;
 }

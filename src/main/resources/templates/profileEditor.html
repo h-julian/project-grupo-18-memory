@@ -7,40 +7,52 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/profileEditorStyles.css">
 </head>
+
+<header>
+    <div class="header-left">
+    <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
+    </div>
+    <div class="title">
+        <a href="/main">JOBMATCHER</a>
+    </div>
+    <div class="header-right">
+        <button class="hidden-button"></button> <!-- Sin función -->
+    </div>
+</header>
+
 <body>
 
-    <header class="header">
-        <button class="back-btn" onclick="location.href='/profile'">⬅️ Atrás</button>
-        <h1>Editar Perfil</h1>
-    </header>
 
-    <main class="container">
-        <form id="profileEditorForm">
-            <div class="form-group">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Teléfono:</label>
-                <input type="text" id="phone" name="phone">
-            </div>
-            <div class="form-group">
-                <label for="location">Ubicación:</label>
-                <input type="text" id="location" name="location">
-            </div>
-            <div class="form-group">
-                <label for="bio">Biografía:</label>
-                <textarea id="bio" name="bio" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="button">Guardar Cambios</button>
-            </div>
-        </form>
-    </main>
+    <div class="container">
+        <div class="profileEditor-box">
+            <h1>Editar perfil</h1>
+            <form id="profileEditorForm">
+                <div class="input-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Teléfono:</label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+                <div class="input-group">
+                    <label for="location">Ubicación:</label>
+                    <input type="text" id="location" name="location">
+                </div>
+                <div class="input-group">
+                    <label for="bio">Biografía:</label>
+                    <textarea id="bio" name="bio" rows="4" required></textarea>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="button">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script>
         // Escuchar el envío del formulario y guardar la información del perfil en localStorage
@@ -60,4 +72,9 @@
     </script>
 
 </body>
+
+<footer>
+    <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+</footer>
+
 </html>

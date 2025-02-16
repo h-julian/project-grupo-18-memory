@@ -1,33 +1,20 @@
-
-
-
-
-
 .hidden {
     display: none;
 }
 
-
-
-
-
-
-
-.profile-container {
-    width: 90%;
-    max-width: 800px;
-    margin-top: 80px; /* Espacio para el header fijado */
-    display: flex;
-    gap: 20px;
-    align-items: stretch;
-    justify-content: center;
+.info-box, .foto-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
 }
 
-.profile-photo,
-.profile-info {
+.foto-box,
+.info-box {
     flex: 1;
     background: #ffffff;
-    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -36,41 +23,40 @@
     justify-content: center;
 }
 
-.profile-photo h2,
-.profile-info h2 {
-    margin-bottom: 20px;
-    color: #0077b6;
-    font-size: 20px;
-    text-align: center;
-}
 
-.profile-photo img {
+
+.foto-box img {
     width: 150px;
-    height: 150px;
+    height: 165px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
 }
 
-.profile-info {
+.info-box {
     align-items: flex-start;
 }
 
-.profile-info ul {
+.info-box h2 {
+    white-space: nowrap; 
+}
+
+.info-box ul {
     list-style: none;
     padding: 0;
     width: 100%;
 }
 
-.profile-info li {
+.info-box li {
     margin-bottom: 10px;
     color: #333333;
     font-size: 16px;
 }
 
-.profile-info li strong {
+.info-box li strong {
     color: #0077b6;
 }
+
 
 .button-group {
     margin-top: 20px;
@@ -79,27 +65,21 @@
     justify-content: center;
 }
 
+/* Estilo para el botón de logout rojo */
+
+.logout-box {
+    display: flex;
+    justify-content: center; /* Centra el botón de logout */
+    margin-top: -250px; /* Reduce el espacio entre los cuadros y el botón */
+
+}
+
+.logout-btn {
+    background-color: #d32f2f;
+}
+
+.logout-btn:hover {
+    background: #942121;
+}
 
 
-
-
-        /* Estilo para el botón de logout rojo */
-        .logout-container {
-            text-align: center;
-            margin: 20px auto;
-        }
-        .logout-btn {
-            background-color: #d32f2f;
-            color: #fff;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-        .logout-btn:hover {
-            opacity: 0.8;
-        }
-
-        
