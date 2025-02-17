@@ -5,25 +5,15 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "admins")
 public class Admin extends Account {
-
-    private String roleDetail; // Por ejemplo: "SUPER_ADMIN", "MODERATOR", etc.
+    
+    private String roleDetail;
     
     public Admin() {}
     
     public Admin(String name, String email, String password, String roleDetail) {
-        this.setName(name);
-        this.setEmail(email);
-        this.setPassword(password);
+        super(name, email, password);
         this.roleDetail = roleDetail;
     }
     
-    // Getters y setters
-
-    public String getRoleDetail() {
-        return roleDetail;
-    }
-  
-    public void setRoleDetail(String roleDetail) {
-        this.roleDetail = roleDetail;
-    }
+    public String getRoleDetail() { return roleDetail; }
 }
