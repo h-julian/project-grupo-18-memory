@@ -45,14 +45,16 @@
       function renderNoticias(noticias) {
         const newsList = document.getElementById('news-list');
         newsList.innerHTML = ''; // Clear existing content
-        noticias.forEach((noticia, index) => {
+        noticias.forEach((noticia) => {
           const article = document.createElement('article');
           article.className = 'blog-entry';
           article.innerHTML = `
             <img src="${noticia.imagen}" alt="Imagen de la noticia" class="entry-image">
             <div class="entry-content">
-              <h2><a href="news.html?id=${index}">${noticia.titulo}</a></h2>
-              <p>${noticia.descripcion}</p>
+              <h2><a href="news.html?id=${noticia.id}">${noticia.title}</a></h2>
+              <p>${noticia.content}</p>
+              <p><strong>Autor:</strong> ${noticia.author}</p>
+              <p><strong>Fecha:</strong> ${noticia.date}</p>
             </div>
           `;
           newsList.appendChild(article);
@@ -65,7 +67,12 @@
       if (!noticiasGuardadas || !noticiasGuardadas.length) {
         // Si no hay noticias en localStorage, se cargan las predeterminadas desde el JSON
         fetch('/static/data/noticias.json')
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
           .then(data => {
             noticiasGuardadas = data;
             // Guardamos en localStorage para futuras cargas
