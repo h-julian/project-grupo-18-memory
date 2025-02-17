@@ -22,46 +22,40 @@ public class RegistrationController {
     @Autowired
     private FileAccountRepository accountRepository;
 
-    @PostMapping("/register")  // This should match the fetch URL in the form
+    @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> payload, HttpSession session) {
         String email = payload.get("email");
-        
-        // Validate email not already registered
+        String name = payload.get("name");
+        String password = payload.get("password");
+        String accountType = payload.get("account_type");
+
+        // Validar que los campos requeridos no sean nulos
+        if (email == null || name == null || password == null || accountType == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Faltan datos obligatorios."));
+        }
+
+        // Verificar si el email ya está registrado
         if (accountRepository.findByEmail(email) != null) {
             return ResponseEntity.badRequest().body(Map.of("error", "El email ya está registrado."));
         }
 
-        // Create temporary account
+        // Crear la cuenta según el tipo de usuario
         Account tempAccount;
-        if ("usuario".equalsIgnoreCase(payload.get("account_type"))) {
-            User user = new User(
-                payload.get("name"),
-                email,
-                payload.get("password"),
-                payload.get("description")
-            );
-            user.setProfilePhoto(payload.get("profile_photo"));
-            tempAccount = user;
-        } else if ("empresa".equalsIgnoreCase(payload.get("account_type"))) {
-            Company company = new Company(
-                payload.get("name"),
-                email,
-                payload.get("password"),
-                payload.get("description")
-            );
-            company.setProfilePhoto(payload.get("profile_photo"));
-            tempAccount = company;
+        if ("usuario".equalsIgnoreCase(accountType)) {
+            tempAccount = new User(name, email, password);
+        } else if ("empresa".equalsIgnoreCase(accountType)) {
+            tempAccount = new Company(name, email, password);
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "Tipo de cuenta no válido."));
         }
 
-        // Only store in session, don't save to repository yet
+        // Guardar en la sesión temporalmente antes de ser almacenado en la base de datos
         session.setAttribute("tempAccount", tempAccount);
 
         return ResponseEntity.ok(Map.of(
             "message", "Registro iniciado",
-            "accountType", payload.get("account_type"),
-            "name", payload.get("name"),
+            "accountType", accountType,
+            "name", name,
             "redirect", "/questionnaire"
         ));
     }
