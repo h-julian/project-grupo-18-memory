@@ -16,7 +16,12 @@ public class CustomErrorController implements ErrorController {
     public String handleError(HttpServletRequest request, Model model) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-        int statusCode = (status != null) ? Integer.parseInt(status.toString()) : 500;
+        int statusCode = 500; // Código de error por defecto
+
+        if (status != null) {
+            statusCode = Integer.parseInt(status.toString()); // Convertimos status a número
+        }
+
         model.addAttribute("status", statusCode);
 
         if (statusCode == HttpStatus.NOT_FOUND.value()) {
