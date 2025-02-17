@@ -1,19 +1,16 @@
 package es.grupo18.jobmatcher.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "admins")
 public class Admin extends Account {
     
-    private String roleDetail;
+    private String role;
     
-    public Admin() {}
-    
-    public Admin(String name, String email, String password, String roleDetail) {
+    public Admin(String name, String email, String password, String role) {
         super(name, email, password);
-        this.roleDetail = roleDetail;
+        this.role = role;
     }
     
-    public String getRoleDetail() { return roleDetail; }
+    public String getRole() { return role; }
+    
+    public void setRole(String role) { this.role = role; }
+
 }
