@@ -2,15 +2,21 @@ package es.grupo18.jobmatcher.model;
 
 public class Admin extends Account {
     
-    private String role;
+    private Role role;
     
-    public Admin(String name, String email, String password, String role) {
-        super(name, email, password);
+    public Admin(Long accountId, String name, String email, String password, Role role) {
+        super(accountId, name, email, password);
         this.role = role;
     }
+
+    public enum Role {
+        SUPER_ADMIN, MODERATOR, SUPPORT
+    }
     
-    public String getRole() { return role; }
+    // Getters
+    public Role getRole() { return role; }
     
-    public void setRole(String role) { this.role = role; }
+    // Setters
+    public void setRole(Role role) { this.role = role; }
 
 }

@@ -1,5 +1,7 @@
 package es.grupo18.jobmatcher.model;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class User extends Account {
@@ -8,18 +10,20 @@ public class User extends Account {
     private String location;
     private String bio;
     private Integer experience;
-    private Map<String, String> degreesMap;
-    private Map<String, String> skillsMap;
+    private List<String> degreesList;
+    private List<String> skillsList;
+    private Map<String, JobOffer> favoriteJobOffersMap;
     private String imagePath;
     
-    public User(String name, String email, String password, String phone, String location, String bio, Integer experience, Map<String, String> degreesMap, Map<String, String> skillsMap, String imagePath) {
-        super(name, email, password);
+    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+        super(accountId, name, email, password);
         this.phone = phone;
         this.location = location;
         this.bio = bio;
         this.experience = experience;
-        this.degreesMap = degreesMap;
-        this.skillsMap = skillsMap;
+        this.degreesList = degreesList;
+        this.skillsList = skillsList;
+        this.favoriteJobOffersMap = new HashMap<>();
         this.imagePath = imagePath;
     }
     
@@ -28,8 +32,9 @@ public class User extends Account {
     public String getLocation() { return location; }
     public String getBio() { return bio; }
     public Integer getExperience() { return experience; }
-    public Map<String, String> getDegrees() { return degreesMap; }
-    public Map<String, String> getSkills() { return skillsMap; }
+    public List<String> getDegrees() { return degreesList; }
+    public List<String> getSkills() { return skillsList; }
+    public Map<String, JobOffer> getFavoriteJobOffers() { return favoriteJobOffersMap; }
     public String getImagePath() { return imagePath; }
 
     // Setters
@@ -37,8 +42,9 @@ public class User extends Account {
     public void setLocation(String location) { this.location = location; }
     public void setBio(String bio) { this.bio = bio; }
     public void setExperience(Integer experience) { this.experience = experience; }
-    public void setDegrees(Map<String, String> degreesMap) { this.degreesMap = degreesMap; }
-    public void setSkills(Map<String, String> skillsMap) { this.skillsMap = skillsMap; }
+    public void setDegrees(List<String> degreesList) { this.degreesList = degreesList; }
+    public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
+    public void setFavoriteJobOffers(Map<String, JobOffer> favoriteJobOffersMap) { this.favoriteJobOffersMap = favoriteJobOffersMap; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
 }
