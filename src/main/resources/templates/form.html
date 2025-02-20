@@ -26,12 +26,12 @@
     </div>
 
     <script>
-        // Se extraen parámetros de la URL (ejemplo: ?name=Juan&account_type=usuario)
+        // Extract parameters from the URL (example: ?name=Juan&account_type=usuario)
         const params = new URLSearchParams(window.location.search);
         const userName = params.get('name') || 'Usuario';
         const accountType = params.get('account_type') || 'usuario';
 
-        // Define el mensaje de bienvenida en base al tipo de cuenta
+        // Define the welcome message based on the account type
         const welcomeMsg = document.getElementById('welcomeMsg');
         if (accountType === 'empresa') {
             welcomeMsg.textContent = `Bienvenido, ${userName}`;
@@ -39,14 +39,14 @@
             welcomeMsg.textContent = `Bienvenido/a, ${userName}. Realiza este cuestionario sobre ti`;
         }
 
-        // Determina el archivo de preguntas en función del tipo de cuenta
+        // Determine the questions file based on the account type
         const questionsFile = accountType === 'empresa' ?
                               '/src/main/resources/static/data/company_questions.json' :
                               '/src/main/resources/static/data/user_questions.json';
 
-        let respuestas = {}; // Variable en memoria para almacenar las respuestas
+        let respuestas = {}; // In-memory variable to store the answers
 
-        // Cargar preguntas desde el JSON
+        // Load questions from the JSON
         fetch(questionsFile)
             .then(response => response.json())
             .then(data => {
@@ -54,7 +54,7 @@
                 data.questions.forEach(q => {
                     const div = document.createElement('div');
                     div.className = 'question-group';
-                    // Se muestra cada pregunta en vertical
+                    // Display each question vertically
                     div.innerHTML = `
                         <label for="q${q.id}">${q.question}</label>
                         <input type="text" id="q${q.id}" name="q${q.id}" required>
@@ -62,18 +62,18 @@
                     container.appendChild(div);
                 });
             })
-            .catch(error => console.error('Error al cargar preguntas:', error));
+            .catch(error => console.error('Error loading questions:', error));
 
-        // Manejar envío del formulario, guardar las respuestas en memoria y redirigir al main
+        // Handle form submission, save answers in memory and redirect to main
         document.getElementById('questionnaireForm').addEventListener('submit', function(e){
             e.preventDefault();
             respuestas = {};
             document.querySelectorAll('.question-group input').forEach(input => {
                 respuestas[input.id] = input.value;
             });
-            console.log('Respuestas almacenadas en memoria:', respuestas);
-            alert('Respuestas enviadas correctamente');
-            // Después de enviar, redirige al main
+            console.log('Answers stored in memory:', respuestas);
+            alert('Answers submitted successfully');
+            // After submission, redirect to main
             window.location.href = '/main';
         });
     </script>

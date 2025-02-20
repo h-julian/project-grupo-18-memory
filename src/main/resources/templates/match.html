@@ -17,7 +17,7 @@
         <a href="/main">JOBMATCHER</a>
     </div>
     <div class="header-right">
-        <button class="hidden-button"></button> <!-- Sin función -->
+        <button class="hidden-button"></button> <!-- Not to show Profile Button -->
     </div>
 </header>
 
@@ -80,7 +80,7 @@
     
         function toggleLike(companyId, button) {
             if (likedCompanies.has(companyId)) {
-                return; // Ya está liked
+                return; // Already liked
             }
     
             console.log('Enviando like para compañía:', companyId);
@@ -130,9 +130,9 @@
 <script>
     function goBack() {
         if (document.referrer) {
-            window.history.back(); // Vuelve a la página anterior si hay historial
+            window.history.back(); // Goes back to the previous page
         } else {
-            window.location.href = "/main"; // Si no hay historial, redirige a la página principal
+            window.location.href = "/main"; // If there isn't a previous page, goes to the main page
         }
     }
 </script>
