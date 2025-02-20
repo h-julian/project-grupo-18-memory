@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,31 +73,49 @@ public class MatchController {
     }
 
     @PostMapping("/api/match/like/{companyId}")
-    @ResponseBody
-    public ResponseEntity<?> likeCompany(@PathVariable String companyId, HttpSession session) {
-        try {
-            User user = (User) session.getAttribute("user");
-            if (user == null) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of("success", false, "error", "Usuario no autenticado"));
-            }
-
-            // Create and save match
-            Match match = new Match(user.getId(), Long.parseLong(companyId));
-            matchRepository.save(match);
-
-            return ResponseEntity.ok(Map.of(
-                "success", true,
-                "message", "Match guardado correctamente",
-                "matchId", match.getId()
-            ));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("success", false, "error", e.getMessage()));
+@ResponseBody
+public ResponseEntity<?> likeCompany(@PathVariable String companyId, HttpSession session) {
+    try {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of("success", false, "error", "Usuario no autenticado"));
         }
+
+        // Create and save match
+        Match match = new Match(user.getId(), Long.parseLong(companyId));
+        
+        // Read existing matches
+        ObjectMapper mapper = new ObjectMapper();
+        List<Match> matches = new ArrayList<>();
+        try {
+            matches = mapper.readValue(Files.readAllBytes(Paths.get("src/main/resources/static/data/matches.json")), new TypeReference<List<Match>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Add new match and save
+        matches.add(match);
+        try (FileWriter writer = new FileWriter("src/main/resources/static/data/matches.json")) {
+            mapper.writeValue(writer, matches);
+        }
+
+        // Update user's matchId list and save user
+        user.getMatchId().add(match.getCompanyId().intValue());
+        User.saveUser(user);
+
+        return ResponseEntity.ok(Map.of(
+            "success", true,
+            "message", "Match guardado correctamente",
+            "matchId", match.getId()
+        ));
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(Map.of("success", false, "error", e.getMessage()));
     }
+}
 
     // Debug endpoint to check raw data
     @GetMapping("/api/companies/debug")

@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
 
 public class User extends Account {
@@ -18,9 +16,9 @@ public class User extends Account {
     private Integer experience;
     private List<String> degreesList;
     private List<String> skillsList;
-    private Map<String, JobOffer> favoriteJobOffersMap;
     private String imagePath;
     private Integer questionnaireScore;
+    private List<Integer> matchId;
 
     private static final String FILE_PATH = "src/main/resources/static/data/users.json";
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -37,15 +35,14 @@ public class User extends Account {
         this.experience = experience;
         this.degreesList = degreesList;
         this.skillsList = skillsList;
-        this.favoriteJobOffersMap = (favoriteJobOffersMap != null) ? favoriteJobOffersMap : new HashMap<>();
         this.imagePath = imagePath;
+        this.matchId = new ArrayList<>();
     }
 
     public User(Long id, String name, String email, String password, String bio, String imagePath) {
         super(id, name, email, password);
         this.bio = bio;
         this.imagePath = imagePath;
-        this.favoriteJobOffersMap = new HashMap<>();
         this.skillsList = new ArrayList<>();
         this.degreesList = new ArrayList<>();
         this.questionnaireScore = 0;
@@ -59,9 +56,9 @@ public class User extends Account {
     public Integer getExperience() { return experience; }
     public List<String> getDegrees() { return degreesList; }
     public List<String> getSkills() { return skillsList; }
-    public Map<String, JobOffer> getFavoriteJobOffers() { return favoriteJobOffersMap; }
     public String getImagePath() { return imagePath; }
     public Integer getQuestionnaireScore() { return questionnaireScore; }
+    public List<Integer> getMatchId() { return matchId; }
 
     // Setters
     public void setPhone(String phone) { this.phone = phone; }
@@ -70,7 +67,6 @@ public class User extends Account {
     public void setExperience(Integer experience) { this.experience = experience; }
     public void setDegrees(List<String> degreesList) { this.degreesList = degreesList; }
     public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
-    public void setFavoriteJobOffers(Map<String, JobOffer> favoriteJobOffersMap) { this.favoriteJobOffersMap = favoriteJobOffersMap; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setQuestionnaireScore(Integer questionnaireScore) { this.questionnaireScore = questionnaireScore; }
 
@@ -105,6 +101,7 @@ public class User extends Account {
     }  
 
     // Add and remove methods
+
     public void addImage(String imagePath) {
         this.imagePath = imagePath;
     }
@@ -113,7 +110,12 @@ public class User extends Account {
         this.imagePath = null;
     }
 
+    public void loadId() {
+        
+    }
+
     // Static methods to load and save user data from/to JSON file
+
     public static User loadUser() {
         try {
             List<User> users = mapper.readValue(new File(FILE_PATH), new TypeReference<List<User>>() {});
@@ -135,12 +137,5 @@ public class User extends Account {
             e.printStackTrace();
         }
     }
-
-    public boolean hasLikedCompany(String companyId) {
-        return favoriteJobOffersMap.containsKey(companyId);
-    }
-
-    public void addFavoriteCompany(String companyId, JobOffer jobOffer) {
-        favoriteJobOffersMap.put(companyId, jobOffer);
-    }
+    
 }
