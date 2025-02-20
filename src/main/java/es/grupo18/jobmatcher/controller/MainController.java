@@ -15,4 +15,9 @@ public class MainController {
     public String showOptionsPage() {
         return "options";
     }
+
+    @GetMapping("/userquestions")
+    public String showUserQuestions(){
+        return "user_questions";
+    }
 }
