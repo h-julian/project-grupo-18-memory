@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import es.grupo18.jobmatcher.repository.FileAccountRepository;
 import es.grupo18.jobmatcher.model.Account;
 import es.grupo18.jobmatcher.model.Company;
+import es.grupo18.jobmatcher.model.User;
 
 import java.util.Map;
 
@@ -78,4 +79,31 @@ public class AuthController {
     public String form() {
         return "form";
     }
+
+    @PostMapping("/api/register")
+    @ResponseBody
+    public ResponseEntity<?> registerUser(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String password = payload.get("password");
+        String name = payload.get("name");
+
+        if (accountRepository.findByEmail(email) != null) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Email already in use"
+            ));
+        }
+
+        Account newAccount = new User();
+        newAccount.setEmail(email);
+        newAccount.setPassword(password);
+        newAccount.setName(name);
+
+        accountRepository.save(newAccount);
+
+        return ResponseEntity.ok(Map.of(
+            "message", "Registration successful",
+            "redirect", "/login"
+        ));
+    }
+
 }

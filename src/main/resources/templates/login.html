@@ -8,12 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-
-
 <body>
 
     <header>
-        <div class="title">JOBMATCHER</div>
+        <div class="title">
+            <a href="/main">JOBMATCHER</a>
+        </div>
     </header>
 
     <div class="container">
@@ -71,7 +71,6 @@
                 return response.json();
             })
             .then(user => {
-                // Si el inicio de sesión es exitoso, redirige a la página principal
                 window.location.href = '/main';
             })
             .catch(error => {

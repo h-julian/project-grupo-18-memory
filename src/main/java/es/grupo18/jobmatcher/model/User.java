@@ -3,6 +3,7 @@ package es.grupo18.jobmatcher.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class User extends Account {
     
@@ -14,6 +15,7 @@ public class User extends Account {
     private List<String> skillsList;
     private Map<String, JobOffer> favoriteJobOffersMap;
     private String imagePath;
+    private Integer questionnaireScore;
 
     public User() {
         
@@ -30,6 +32,17 @@ public class User extends Account {
         this.favoriteJobOffersMap = (favoriteJobOffersMap != null) ? favoriteJobOffersMap : new HashMap<>();
         this.imagePath = imagePath;
     }
+
+    public User(Long id, String name, String email, String password, String bio, String imagePath) {
+        super(id, name, email, password);
+        this.bio = bio;
+        this.imagePath = imagePath;
+        this.favoriteJobOffersMap = new HashMap<>();
+        this.skillsList = new ArrayList<>();
+        this.degreesList = new ArrayList<>();
+        this.questionnaireScore = 0;
+        this.experience = 0;
+    }
     
     // Getters
     public String getPhone() { return phone; }
@@ -40,6 +53,7 @@ public class User extends Account {
     public List<String> getSkills() { return skillsList; }
     public Map<String, JobOffer> getFavoriteJobOffers() { return favoriteJobOffersMap; }
     public String getImagePath() { return imagePath; }
+    public Integer getQuestionnaireScore() { return questionnaireScore; }
 
     // Setters
     public void setPhone(String phone) { this.phone = phone; }
@@ -50,6 +64,7 @@ public class User extends Account {
     public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
     public void setFavoriteJobOffers(Map<String, JobOffer> favoriteJobOffersMap) { this.favoriteJobOffersMap = favoriteJobOffersMap; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    public void setQuestionnaireScore(Integer questionnaireScore) { this.questionnaireScore = questionnaireScore; }
 
     // Update methods
 

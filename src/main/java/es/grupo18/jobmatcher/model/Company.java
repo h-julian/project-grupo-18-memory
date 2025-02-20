@@ -28,6 +28,16 @@ public class Company extends Account {
         this.jobOffersMap = (jobOffersMap != null) ? jobOffersMap : new HashMap<>();
         this.favoriteUsersMap = (favoriteUsersMap != null) ? favoriteUsersMap : new HashMap<>();
     }
+
+    public Company(Long id, String name, String email, String password, String bio, String imagePath) {
+        super(id, name, email, password);
+        this.bio = bio;
+        this.imagePath = imagePath;
+        this.jobOffersMap = new HashMap<>();
+        this.favoriteUsersMap = new HashMap<>();
+        this.questionnaireScore = 0;
+        this.location = "";
+    }
     
     // Getters
     public Long getId() { return id; }
