@@ -1,7 +1,18 @@
-[ {
-  "id" : 0,
-  "bio" : "Esto es una prueba",
-  "location" : "Bogotá",
-  "imagePath" : "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
-  "questionnaireScore" : 43
-} ]
+[
+  {
+    "id": 0,
+    "name": "Empresa 1",
+    "bio": "Esto es una prueba",
+    "location": "Bogotá",
+    "imagePath": "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
+    "questionnaireScore": 43
+  },
+  {
+    "id": 1,
+    "name": "Empresa 2",
+    "bio": "Soluciones innovadoras",
+    "location": "Medellín",
+    "imagePath": "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
+    "questionnaireScore": 68
+  }
+]

@@ -1,5 +1,10 @@
 package es.grupo18.jobmatcher.model;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +21,9 @@ public class User extends Account {
     private Map<String, JobOffer> favoriteJobOffersMap;
     private String imagePath;
     private Integer questionnaireScore;
+
+    private static final String FILE_PATH = "src/main/resources/static/data/users.json";
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public User() {
         
@@ -105,4 +113,26 @@ public class User extends Account {
         this.imagePath = null;
     }
 
+    // Static methods to load and save user data from/to JSON file
+    public static User loadUser() {
+        try {
+            List<User> users = mapper.readValue(new File(FILE_PATH), new TypeReference<List<User>>() {});
+            if (!users.isEmpty()) {
+                return users.get(0); // Return the first user
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void saveUser(User user) {
+        try {
+            List<User> users = new ArrayList<>();
+            users.add(user);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), users);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

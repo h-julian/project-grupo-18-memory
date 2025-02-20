@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class MatchController {
+public class match {
 
     @GetMapping("/match/companies")
     public List<Map<String, Object>> getCompanies() throws IOException {

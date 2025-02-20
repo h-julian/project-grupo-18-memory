@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProfileController {
 
+    
+
     @GetMapping("/profile")
     public String showProfile(Model model, HttpSession session) {
         Account account = (Account) session.getAttribute("user");
@@ -18,10 +20,12 @@ public class ProfileController {
         System.out.println("Session ID in Profile: " + session.getId());
         System.out.println("User in session: " + (account != null));
         
+        /*
         if (account == null) {
             System.out.println("No user found in session");
             return "redirect:/login";
         }
+        */
         
         System.out.println("Showing profile for: " + account.getName());
         System.out.println("Email: " + account.getEmail());

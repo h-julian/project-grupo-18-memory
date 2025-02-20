@@ -19,24 +19,18 @@
             <a href="/main">JOBMATCHER</a>
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button> <!-- Sin función -->
+            <button class="hidden-button"></button>
         </div>
     </header>
-
 
     <div class="container">
         <div class="foto-box">
             <h2>Foto de Perfil</h2>
-            <!-- Se usa la foto del perfil asignada en account.profilePhoto, o se muestra una foto por defecto -->
-            <img th:src="${account.profilePhoto} ?: 'https://www.bing.com/images/search?view=detailV2&ccid=Lps0Q%2biv&id=0A74B4800462F14CA885ACE09D5150AC93FE6066&thid=OIP.Lps0Q-ivqNODwTLHs3RdRwHaHa&mediaurl=https%3a%2f%2fstatic.vecteezy.com%2fsystem%2fresources%2fpreviews%2f036%2f280%2f651%2fnon_2x%2fdefault-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.2e9b3443e8afa8d383c132c7b3745d47%3frik%3dZmD%252bk6xQUZ3grA%26pid%3dImgRaw%26r%3d0&exph=980&expw=980&q=foto+de+perfil+por+defecto&simid=608005690394959665&FORM=IRPRST&ck=4D1FF16E73CEC76D3C34F4DF020FB5E9&selectedIndex=2&itb=0'" 
-                 alt="Foto de perfil" id="profilePhoto">
-            <!-- Botón para cambiar foto (implementa la actualización en el backend si es necesario) -->
+            <img th:src="@{/img/custom.jpg}" alt="Foto de perfil" id="profilePhoto">
             <div class="button-group">
-                <button onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
+            <button onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
             </div>
             <input type="file" id="photoInput" accept="image/*" style="display:none;">
-
-            
         </div>
         <div class="info-box">
             <h2>Información del Perfil</h2>
@@ -68,13 +62,13 @@
         </div>
     </div>
 
-    <!-- Botón para cerrar sesión -->
+    <!-- Close session button 
     <div class="logout-box">
         <button class="logout-btn" onclick="logout()" onMouseUp="location.href='/'">Cerrar Sesión</button>
     </div>
+    -->
 
-    
-    <!-- Foto por defecto (rarete)-->
+    <!-- Default photo -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const defaultPhoto = "/profile/profile.jpg";
@@ -101,24 +95,23 @@
         });
     </script>
 
-    <!-- Solución al problema de la barra de desplazamiento -->
+    <!-- To center all the content (scrolls all the way down)-->
     <script> 
         document.addEventListener("DOMContentLoaded", function () {
-            window.scrollTo(0, document.body.scrollHeight); // Baja hasta el final de la página
+            window.scrollTo(0, document.body.scrollHeight);
         });
     </script>
 
-    <!-- Función para volver atrás -->
+    <!-- Back button -->
     <script>
         function goBack() {
             if (document.referrer) {
-                window.history.back(); // Vuelve a la página anterior si hay historial
+                window.history.back(); // Comes back if theres history
             } else {
-                window.location.href = "/main"; // Si no hay historial, redirige a la página principal
+                window.location.href = "/main"; // If don't, goes to main page
             }
         }
     </script>
-
 
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
