@@ -6,6 +6,15 @@ public abstract class Account {
     private String email;
     private String password;
 
+    // Constructors
+
+    public Account() {
+        this.id = generateNewId();
+        this.name = "";
+        this.email = "";
+        this.password = "";
+    }
+
     public Account(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;

@@ -8,11 +8,11 @@ public class BlogController {
 
     @GetMapping("/blog")
     public String mostrarBlog() {
-        return "blog"; // Se asume que blog.html se encuentra en el directorio templates
+        return "blog";
     }
     
     @GetMapping("/newArticle")
     public String mostrarNewArticle() {
-        return "newArticle"; // Retorna newArticle.html ubicado en templates
+        return "newArticle";
     }
 }

@@ -6,7 +6,7 @@ import es.grupo18.jobmatcher.repository.PostRepository;
 import es.grupo18.jobmatcher.model.Post;
 
 @RestController
-@RequestMapping("/api/news")
+@RequestMapping("/api/post")
 public class PostController {
 
     private final PostRepository postRepository;

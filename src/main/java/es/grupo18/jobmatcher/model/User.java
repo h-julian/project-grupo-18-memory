@@ -14,6 +14,10 @@ public class User extends Account {
     private List<String> skillsList;
     private Map<String, JobOffer> favoriteJobOffersMap;
     private String imagePath;
+
+    public User() {
+        
+    }
     
     public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
         super(id, name, email, password);

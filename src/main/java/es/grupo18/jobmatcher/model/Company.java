@@ -14,6 +14,12 @@ public class Company extends Account {
     private Map<String, User> favoriteUsersMap;
     private int questionnaireScore;
 
+    // Constructors
+
+    public Company(){
+
+    }
+
     public Company(Long accountId, String name, String email, String password, String location, String bio, String imagePath, Map<String, JobOffer> jobOffersMap, Map<String, User> favoriteUsersMap) {
         super(accountId, name, email, password);
         this.location = location;
