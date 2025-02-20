@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobMatcher - Matches Realizados</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/matchConsultantStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<header>
+    <div class="header-left">
+        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+    </div>
+    <div class="title">
+        <a href="/main">JOBMATCHER</a>
+    </div>
+    <div class="header-right">
+        <button class="hidden-button"></button> <!-- Not to show Profile Button -->
+    </div>
+</header>
+
+<body>
+
+    <div class="matches-grid" id="matches-container">
+        <!-- Matches will be loaded here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Loading matches...');
+            fetch('/api/match/consultant')
+                .then(response => response.json())
+                .then(matches => {
+                    const container = document.getElementById('matches-container');
+                    matches.forEach(match => {
+                        const card = createMatchCard(match);
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading matches:', error);
+                    const container = document.getElementById('matches-container');
+                    container.innerHTML = '<p class="error-message">Error al cargar los matches</p>';
+                });
+        });
+
+        function createMatchCard(match) {
+            console.log('Match data:', match);
+            const defaultImage = '/img/default-company.png';
+            const card = document.createElement('div');
+            card.className = 'match-card';
+
+            card.innerHTML = `
+                <div class="match-header">
+                    <img src="${match.imagePath || defaultImage}" 
+                         alt="${match.name}"
+                         class="match-image"
+                         onerror="this.src='${defaultImage}'">
+                    <h2 class="match-name">${match.name || 'Sin nombre'}</h2>
+                </div>
+                <div class="match-info">
+                    <p class="match-description">${match.bio || 'Sin descripción'}</p>
+                    <p class="match-location">📍 ${match.location || 'Ubicación no especificada'}</p>
+                </div>
+            `;
+            return card;
+        }
+    </script>
+
+</body>
+
+<script>
+    function goBack() {
+        if (document.referrer) {
+            window.history.back(); // Goes back to the previous page
+        } else {
+            window.location.href = "/main"; // If there isn't a previous page, goes to the main page
+        }
+    }
+</script>
+
+</html>

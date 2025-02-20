@@ -1,7 +1,7 @@
 package es.grupo18.jobmatcher.model;
 
 public abstract class Account {
-    private Long id;
+    private long accountId;
     private String name;
     private String email;
     private String password;
@@ -9,27 +9,27 @@ public abstract class Account {
     // Constructors
 
     public Account() {
-        this.id = generateNewId();
+        this.accountId = generateNewAccountId();
         this.name = "";
         this.email = "";
         this.password = "";
     }
 
-    public Account(Long id, String name, String email, String password) {
-        this.id = id;
+    public Account(long accountId, String name, String email, String password) {
+        this.accountId = accountId;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
     // Getters
-    public Long getId() { return id; }
+    public long getAccountId() { return accountId; }
     public String getName() { return name; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
 
     // Setters
-    public void setId(Long id) { this.id = id; }
+    public void setAccountId(long accountId) { this.accountId = accountId; }
     public void setName(String name) { this.name = name; }
     public void setEmail(String email) { this.email = email; }
     public void setPassword(String password) { this.password = password; }
@@ -47,7 +47,18 @@ public abstract class Account {
         this.password = newPassword;
     }
 
-    public static Long generateNewId(){
+    public static long generateNewAccountId(){
         return (long) (Math.random() * 1000);
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", name='" + name + 
+                ", email='" + email + 
+                ", password='" + password + 
+                '}';
     }
 }

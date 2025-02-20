@@ -1,11 +1,15 @@
 [ {
   "id" : 0,
-  "name" : "aergaer",
-  "email" : "wergwe@efg.rd",
+  "name" : "Daniel",
+  "email" : "asdf@gmail.com",
   "password" : "ergaAERG4354",
+  "phone" : "666666666",
+  "location" : "Madrid",
+  "bio" : "Hola",
+  "experience" : 5,
   "imagePath" : "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
   "questionnaireScore" : 17,
-  "location" : "Bogotá",
-  "phone" : "1234567890",
-  "experience" : "5"
+  "favoriteJobOffers" : null,
+  "skills" : null,
+  "degrees" : null
 } ]

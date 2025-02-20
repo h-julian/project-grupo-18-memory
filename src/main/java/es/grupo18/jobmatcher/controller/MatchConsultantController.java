@@ -4,11 +4,11 @@ import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.model.Match;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,38 +18,28 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/api/match")
-public class MatchController {
+public class MatchConsultantController {
 
     private static final String MATCHES_FILE_PATH = "src/main/resources/static/data/matches.json";
     private static final String COMPANIES_FILE_PATH = "src/main/resources/static/data/companies.json";
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    @GetMapping("/companies")
+    @GetMapping("/consultant")
     @ResponseBody
     public List<Company> getMatchedCompanies() {
-        return loadCompanies();
-    }
-
-    @PostMapping("/like/{companyId}")
-    public ResponseEntity<?> likeCompany(@PathVariable Long companyId) {
         List<Match> matches = loadMatches();
-        boolean matchExists = matches.removeIf(match -> match.getCompanyId().equals(companyId));
+        List<Long> matchedCompanyIds = matches.stream()
+                .map(Match::getCompanyId)
+                .collect(Collectors.toList());
 
-        if (!matchExists) {
-            Match match = new Match(null, companyId); // No user ID, only company ID
-            matches.add(match);
-        }
-
-        saveMatches(matches);
-
-        return ResponseEntity.ok().body("{\"success\": true, \"liked\": " + !matchExists + "}");
+        return loadCompanies().stream()
+                .filter(company -> matchedCompanyIds.contains(company.getAccountId()))
+                .collect(Collectors.toList());
     }
 
-    @GetMapping("/match")
-    public String showMatchPage(Model model) {
-        List<Company> companies = loadCompanies();
-        model.addAttribute("companies", companies);
-        return "match";
+    @GetMapping("/consultantPage")
+    public String showMatchConsultantPage(Model model) {
+        return "matchConsultant";
     }
 
     private List<Match> loadMatches() {
@@ -67,14 +57,6 @@ public class MatchController {
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
-        }
-    }
-
-    private void saveMatches(List<Match> matches) {
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(MATCHES_FILE_PATH), matches);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

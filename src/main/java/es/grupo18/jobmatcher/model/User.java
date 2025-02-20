@@ -5,106 +5,144 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.ArrayList;
 
 public class User extends Account {
-    
+
     private String phone;
     private String location;
     private String bio;
     private Integer experience;
     private List<String> degreesList;
     private List<String> skillsList;
-    private Map<String, JobOffer> favoriteJobOffersMap;
     private String imagePath;
-    private Integer questionnaireScore;
+<<<<<<< Updated upstream
+    private List<Integer> matchId;
+=======
+>>>>>>> Stashed changes
 
     private static final String FILE_PATH = "src/main/resources/static/data/users.json";
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public User() {
-        
+
     }
-    
-    public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
-        super(id, name, email, password);
-        this.bio = bio;
+
+    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+        super(accountId, name, email, password);
         this.phone = phone;
+        this.bio = bio;
         this.location = location;
         this.experience = experience;
         this.degreesList = degreesList;
         this.skillsList = skillsList;
-        this.favoriteJobOffersMap = (favoriteJobOffersMap != null) ? favoriteJobOffersMap : new HashMap<>();
         this.imagePath = imagePath;
+        this.matchId = new ArrayList<>();
     }
 
-    public User(Long id, String name, String email, String password, String bio, String imagePath) {
-        super(id, name, email, password);
+    public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
+        super(accountId, name, email, password);
         this.bio = bio;
         this.imagePath = imagePath;
-        this.favoriteJobOffersMap = new HashMap<>();
         this.skillsList = new ArrayList<>();
         this.degreesList = new ArrayList<>();
-        this.questionnaireScore = 0;
         this.experience = 0;
     }
-    
+
     // Getters
-    public String getPhone() { return phone; }
-    public String getLocation() { return location; }
-    public String getBio() { return bio; }
-    public Integer getExperience() { return experience; }
-    public List<String> getDegrees() { return degreesList; }
-    public List<String> getSkills() { return skillsList; }
-    public Map<String, JobOffer> getFavoriteJobOffers() { return favoriteJobOffersMap; }
-    public String getImagePath() { return imagePath; }
-    public Integer getQuestionnaireScore() { return questionnaireScore; }
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public List<String> getDegrees() {
+        return degreesList;
+    }
+
+    public List<String> getSkills() {
+        return skillsList;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
 
     // Setters
-    public void setPhone(String phone) { this.phone = phone; }
-    public void setLocation(String location) { this.location = location; }
-    public void setBio(String bio) { this.bio = bio; }
-    public void setExperience(Integer experience) { this.experience = experience; }
-    public void setDegrees(List<String> degreesList) { this.degreesList = degreesList; }
-    public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
-    public void setFavoriteJobOffers(Map<String, JobOffer> favoriteJobOffersMap) { this.favoriteJobOffersMap = favoriteJobOffersMap; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
-    public void setQuestionnaireScore(Integer questionnaireScore) { this.questionnaireScore = questionnaireScore; }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public void setDegrees(List<String> degreesList) {
+        this.degreesList = degreesList;
+    }
+
+    public void setSkills(List<String> skillsList) {
+        this.skillsList = skillsList;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     // Update methods
 
-    public void updatePhone(String newPhone){
+    public void updatePhone(String newPhone) {
         this.phone = newPhone;
     }
 
-    public void updateLocation(String newLocation){
+    public void updateLocation(String newLocation) {
         this.location = newLocation;
     }
 
-    public void updateBio(String newBio){
+    public void updateBio(String newBio) {
         this.bio = newBio;
     }
 
-    public void updateExperience(Integer newExperience){
+    public void updateExperience(Integer newExperience) {
         this.experience = newExperience;
     }
 
-    public void updateDegrees(List<String> newDegrees){
+    public void updateDegrees(List<String> newDegrees) {
         this.degreesList = newDegrees;
     }
 
-    public void updateSkills(List<String> newSkills){
+    public void updateSkills(List<String> newSkills) {
         this.skillsList = newSkills;
     }
 
-    public void updateImagePath(String newImagePath){
+    public void updateImagePath(String newImagePath) {
         this.imagePath = newImagePath;
-    }  
+    }
 
     // Add and remove methods
+
     public void addImage(String imagePath) {
         this.imagePath = imagePath;
     }
@@ -114,9 +152,11 @@ public class User extends Account {
     }
 
     // Static methods to load and save user data from/to JSON file
+
     public static User loadUser() {
         try {
-            List<User> users = mapper.readValue(new File(FILE_PATH), new TypeReference<List<User>>() {});
+            List<User> users = mapper.readValue(new File(FILE_PATH), new TypeReference<List<User>>() {
+            });
             if (!users.isEmpty()) {
                 return users.get(0); // Return the first user
             }
@@ -136,11 +176,20 @@ public class User extends Account {
         }
     }
 
-    public boolean hasLikedCompany(String companyId) {
-        return favoriteJobOffersMap.containsKey(companyId);
+    private void loadId() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            List<Map<String, Object>> matches = objectMapper.readValue(
+                    Paths.get("src/main/resources/matches.json").toFile(),
+                    new TypeReference<List<Map<String, Object>>>() {
+                    });
+            this.matchId = matches.stream()
+                    .map(match -> (Integer) match.get("id"))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+            this.matchId = List.of();
+        }
     }
 
-    public void addFavoriteCompany(String companyId, JobOffer jobOffer) {
-        favoriteJobOffersMap.put(companyId, jobOffer);
-    }
 }

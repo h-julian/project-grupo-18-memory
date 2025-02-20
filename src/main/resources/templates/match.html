@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +11,13 @@
 
 <header>
     <div class="header-left">
-        <button id="options-btn" onclick="location.href='/options'">⚙️ Opciones</button>
+        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
     </div>
     <div class="title">
         <a href="/main">JOBMATCHER</a>
     </div>
     <div class="header-right">
-        <button id="profile-btn" onclick="location.href='/profile'">👤 Perfil</button>
+        <button class="hidden-button"></button> <!-- Not to show Profile Button -->
     </div>
 </header>
 
@@ -27,7 +27,6 @@
         <!-- Companies will be loaded here -->
     </div>
 
-
     <script>
         // Track liked companies in session storage
         const likedCompanies = new Set(JSON.parse(sessionStorage.getItem('likedCompanies') || '[]'));
@@ -35,22 +34,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Loading companies...');
             fetch('/api/match/companies')
-                .then(response => {
-                    console.log('Response status:', response.status);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(companies => {
-                    console.log('Companies loaded:', companies);
                     const container = document.getElementById('companies-container');
-                    if (companies.length === 0) {
-                        container.innerHTML = '<p class="no-companies">No hay empresas disponibles</p>';
-                        return;
-                    }
                     companies.forEach(company => {
-                        console.log('Creating card for:', company.name);
                         const card = createCompanyCard(company);
                         container.appendChild(card);
                     });
@@ -67,23 +54,23 @@
             const defaultImage = '/img/default-company.png';
             const card = document.createElement('div');
             card.className = 'company-card';
-            const isLiked = likedCompanies.has(company.id);
+            const isLiked = likedCompanies.has(company.accountId);
 
             card.innerHTML = `
                 <div class="company-header">
-                    <img src="${company.profilePhoto || defaultImage}" 
+                    <img src="${company.imagePath || defaultImage}" 
                          alt="${company.name}"
                          class="company-image"
                          onerror="this.src='${defaultImage}'">
                     <h2 class="company-name">${company.name || 'Sin nombre'}</h2>
                 </div>
                 <div class="company-info">
-                    <p class="company-description">${company.description || 'Sin descripción'}</p>
+                    <p class="company-description">${company.bio || 'Sin descripción'}</p>
                     <p class="company-location">📍 ${company.location || 'Ubicación no especificada'}</p>
                 </div>
                 <div class="action-buttons">
                     <button class="like-btn ${isLiked ? 'liked' : ''}" 
-                            onclick="toggleLike(${company.id}, this)">
+                            onclick="toggleLike(${company.accountId}, this)">
                         ${isLiked ? '✓ Interesado' : '❤️ Me interesa'}
                     </button>
                 </div>
@@ -92,10 +79,6 @@
         }
 
         function toggleLike(companyId, button) {
-            if (likedCompanies.has(companyId)) {
-                return; // Ya está liked
-            }
-
             console.log('Enviando like para compañía:', companyId);
 
             fetch(`/api/match/like/${companyId}`, {
@@ -108,20 +91,26 @@
             })
             .then(response => {
                 console.log('Response status:', response.status);
-                return response.json().then(data => {
-                    if (!response.ok) {
+                if (!response.ok) {
+                    return response.json().then(data => {
                         throw new Error(data.error || 'Error al guardar el match');
-                    }
-                    return data;
-                });
+                    });
+                }
+                return response.json();
             })
             .then(data => {
                 if (data.success) {
                     console.log('Match guardado:', data);
-                    likedCompanies.add(companyId);
+                    if (data.liked) {
+                        likedCompanies.add(companyId);
+                        button.classList.add('liked');
+                        button.textContent = '✓ Interesado';
+                    } else {
+                        likedCompanies.delete(companyId);
+                        button.classList.remove('liked');
+                        button.textContent = '❤️ Me interesa';
+                    }
                     sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
-                    button.classList.add('liked');
-                    button.textContent = '✓ Interesado';
                 } else {
                     throw new Error(data.error || 'Error desconocido');
                 }
@@ -132,5 +121,17 @@
             });
         }
     </script>
+
 </body>
+
+<script>
+    function goBack() {
+        if (document.referrer) {
+            window.history.back(); // Goes back to the previous page
+        } else {
+            window.location.href = "/main"; // If there isn't a previous page, goes to the main page
+        }
+    }
+</script>
+
 </html>
