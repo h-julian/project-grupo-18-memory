@@ -20,8 +20,8 @@ public class NewsRepository {
             InputStream is = getClass().getResourceAsStream("/static/data/posts.json");
             Post[] postsArray = mapper.readValue(is, Post[].class);
             for (Post post : postsArray) {
-                post.setId(idCounter.getAndIncrement());
-                posts.put(post.getId(), post);
+                post.setPostId(idCounter.getAndIncrement());
+                posts.put(post.getPostId(), post);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,10 +33,10 @@ public class NewsRepository {
     }
 
     public Post save(Post post) {
-        if (post.getId() == null) {
-            post.setId(idCounter.getAndIncrement());
+        if (post.getPostId() == null) {
+            post.setPostId(idCounter.getAndIncrement());
         }
-        posts.put(post.getId(), post);
+        posts.put(post.getPostId(), post);
         return post;
     }
 
