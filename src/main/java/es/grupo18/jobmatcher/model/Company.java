@@ -6,7 +6,7 @@ import java.util.Map;
 
 
 public class Company extends Account {
-    private Long id;
+    private Long id;   
     private String bio;
     private String location;
     private String imagePath;
