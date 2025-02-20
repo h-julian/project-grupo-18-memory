@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 package es.grupo18.jobmatcher.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -111,5 +112,7 @@ public class MatchController {
         return mapper.readValue(reader, new TypeReference<List<Map<String, Object>>>() {});
     }
 }
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
