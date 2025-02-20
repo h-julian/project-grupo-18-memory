@@ -1,37 +1,47 @@
 [
   {
-      "title": "Primer Post",
-      "content": "Este es el contenido del primer post.",
-      "timestamp": "2025-02-20",
-      "imagePath": "/images/post1.jpg",
-      "ownerId": "01"
+    "postId": 1,
+    "title": "Nuevas Amenazas de Ransomware en 2025",
+    "content": "En 2025, las amenazas de ransomware han evolucionado, afectando a empresas de todos los tamaños. Es crucial mantenerse actualizado con las últimas medidas de seguridad.",
+    "timestamp": "20/02/2025",
+    "imagePath": "/img/ransomware.jpg",
+    "ownerId": 1,
+    "ownerType": "admin"
   },
   {
-      "title": "Segundo Post",
-      "content": "Este es el contenido del segundo post. Más detalles sobre el tema.",
-      "timestamp": "2025-02-19",
-      "imagePath": "/images/post2.jpg",
-      "ownerId": "02"
+    "postId": 2,
+    "title": "Cómo Proteger tus Datos Personales en Línea",
+    "content": "La protección de datos personales es más importante que nunca. Aquí te mostramos las mejores prácticas para mantener tu información segura en línea.",
+    "timestamp": "19/02/2025",
+    "imagePath": "/img/data_protection.jpg",
+    "ownerId": 2,
+    "ownerType": "admin"
   },
   {
-      "title": "Tercer Post",
-      "content": "Contenido del tercer post con información adicional.",
-      "timestamp": "2025-02-18",
-      "imagePath": "/images/post3.jpg",
-      "ownerId": "14"
+    "postId": 3,
+    "title": "El Futuro de la Ciberseguridad: IA y Machine Learning",
+    "content": "La inteligencia artificial y el machine learning están revolucionando la ciberseguridad. Descubre cómo estas tecnologías están ayudando a detectar y prevenir amenazas.",
+    "timestamp": "18/02/2025",
+    "imagePath": "/img/ai_cybersecurity.jpg",
+    "ownerId": 3,
+    "ownerType": "admin"
   },
   {
-      "title": "Cuarto Post",
-      "content": "Información relevante en el cuarto post.",
-      "timestamp": "2025-02-17",
-      "imagePath": "/images/post4.jpg",
-      "ownerId": "24"
+    "postId": 4,
+    "title": "Ciberseguridad en el Trabajo Remoto",
+    "content": "El trabajo remoto ha aumentado significativamente, y con ello, los riesgos de seguridad. Aprende cómo proteger tu entorno de trabajo remoto.",
+    "timestamp": "17/02/2025",
+    "imagePath": "/img/remote_work_security.jpg",
+    "ownerId": 4,
+    "ownerType": "admin"
   },
   {
-      "title": "Quinto Post",
-      "content": "Detalles interesantes en el quinto post.",
-      "timestamp": "2025-02-16",
-      "imagePath": "/images/post5.jpg",
-      "ownerId": "34"
+    "postId": 5,
+    "title": "Las Mejores Herramientas de Ciberseguridad para 2025",
+    "content": "Mantente protegido con las mejores herramientas de ciberseguridad disponibles en 2025. Aquí te presentamos una lista de las más efectivas.",
+    "timestamp": "16/02/2025",
+    "imagePath": "/img/cybersecurity_tools.jpg",
+    "ownerId": 5,
+    "ownerType": "admin"
   }
 ]
