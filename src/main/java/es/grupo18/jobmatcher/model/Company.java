@@ -46,6 +46,7 @@ public class Company extends Account {
     public Map<String, JobOffer> getJobOffers() { return jobOffersMap; }
     public Map<String, User> getFavoriteUsers() { return favoriteUsersMap; }
     public int getQuestionnaireScore() { return this.questionnaireScore; }
+    public String getLocation() { return location; }
 
     // Setters
     public void setId(Long id) { this.id = id; }
