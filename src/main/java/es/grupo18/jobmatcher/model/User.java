@@ -29,8 +29,7 @@ public class User extends Account {
 
     }
 
-    public User(Long accountId, String name, String email, String password, String phone, String location, String bio,
-            Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
         super(accountId, name, email, password);
         this.bio = bio;
         this.phone = phone;
