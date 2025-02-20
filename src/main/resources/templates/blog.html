@@ -10,15 +10,15 @@
 </head>
 <body>
     <header>
-        <div class="header-left">
-            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
-        </div>
-        <div class="title">
-            <a href="/main">JOBMATCHER</a>
-        </div>
-        <div class="header-right">
-            <button id="post-btn" onclick="location.href='/newpost'">Postear</button>
-        </div>
+      <div class="header-left">
+          <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+      </div>
+      <div class="title">
+          <a href="/main">JOBMATCHER</a>
+      </div>
+      <div class="header-right">
+        <button id="post-btn" onclick="location.href='/newpost'">Postear</button>
+      </div>
     </header>
 
     <main class="container">
@@ -62,7 +62,7 @@
                 const postElement = document.createElement("div");
                 postElement.classList.add("box");
                 postElement.innerHTML = `
-                    <h2>${post.title}</h2>
+                    <h1>${post.title}</h1>
                     <p>${post.content}</p>
                     <p><strong>Fecha:</strong> ${post.timestamp}</p>
                     <p><strong>Autor:</strong> ${post.ownerType}</p>
