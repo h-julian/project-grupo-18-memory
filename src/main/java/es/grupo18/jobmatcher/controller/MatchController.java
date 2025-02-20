@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -14,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/match")
 public class MatchController {
 
@@ -22,23 +24,25 @@ public class MatchController {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     @GetMapping("/companies")
-    public List<Company> getMatchedCompanies() {
+    public String getMatchedCompanies(Model model) {
         User user = User.loadUser();
         if (user == null) {
-            return new ArrayList<>();
+            model.addAttribute("companies", new ArrayList<>());
+            return "companies";
         }
 
         List<Match> matches = loadMatches();
         List<Company> matchedCompanies = new ArrayList<>();
         for (Match match : matches) {
-            if (match.getId()==user.getAccountId()) {
+            if (match.getId() == user.getAccountId()) {
                 Company company = Company.loadCompanyById(match.getCompanyId());
                 if (company != null) {
                     matchedCompanies.add(company);
                 }
             }
         }
-        return matchedCompanies;
+        model.addAttribute("companies", matchedCompanies);
+        return "companies";
     }
 
     @PostMapping("/like/{companyId}")
@@ -54,6 +58,11 @@ public class MatchController {
         saveMatches(matches);
 
         return ResponseEntity.ok().body("{\"success\": true}");
+    }
+
+    @GetMapping("/match")
+    public String showMatchPage() {
+        return "match";
     }
 
     private List<Match> loadMatches() {
