@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Post {
     
-    private Long postId; 
+    private long postId; 
     private String title;
     private String content;
     private Date timestamp; 
@@ -15,11 +15,11 @@ public class Post {
     // Constructor
     public Post() {}
 
-    public Post(long id, String title, String content, Date timestamp, String imagePath, long ownerId, String ownerType) {
+    public Post(long postId, String title, String content, Date timestamp, String imagePath, long ownerId, String ownerType) {
         this.postId = postId;
         this.title = title;
         this.content = content;
-        this.timestamp = timestamp;
+        this.timestamp = (timestamp != null) ? timestamp : new Date();
         this.imagePath = imagePath;
         this.ownerId = ownerId;
         this.ownerType = ownerType;
@@ -41,6 +41,7 @@ public class Post {
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setOwnerId(long ownerId) { this.ownerId = ownerId; }
-    public void setOwnerType(String ownerType) { this.ownerType = ownerType; }    
+    public void setOwnerType(String ownerType) { this.ownerType = ownerType; }
+
 }
 

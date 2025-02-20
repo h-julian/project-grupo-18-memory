@@ -51,7 +51,6 @@ public class QuestionnaireController {
             companyRepository.save(company);
         } else {
             User user = (User) account;
-            user.setQuestionnaireScore(score);
             userRepository.save(user);
         }
         

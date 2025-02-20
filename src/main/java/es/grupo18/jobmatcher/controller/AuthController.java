@@ -37,8 +37,8 @@ public class AuthController {
             session.setAttribute("user", account);
             
             return ResponseEntity.ok(Map.of(
-                "message", "Login exitoso",
-                "accountType", account instanceof Company ? "empresa" : "usuario",
+                "message", "Login successful",
+                "accountType", account instanceof Company ? "company" : "user",
                 "name", account.getName(),
                 "email", account.getEmail(),
                 "redirect", "/main"
@@ -46,7 +46,7 @@ public class AuthController {
         }
 
         return ResponseEntity.badRequest().body(Map.of(
-            "error", "Credenciales inválidas"
+            "error", "Invalid credentials"
         ));
     }
 
@@ -55,7 +55,7 @@ public class AuthController {
     public ResponseEntity<?> logout(HttpSession session) {
         session.invalidate();
         return ResponseEntity.ok(Map.of(
-            "message", "Sesión cerrada exitosamente",
+            "message", "Session successfully closed",
             "redirect", "/login"
         ));
     }
@@ -67,7 +67,7 @@ public class AuthController {
         if (account != null) {
             return ResponseEntity.ok(Map.of(
                 "loggedIn", true,
-                "accountType", account instanceof Company ? "empresa" : "usuario",
+                "accountType", account instanceof Company ? "company" : "user",
                 "name", account.getName()
             ));
         }
@@ -77,10 +77,5 @@ public class AuthController {
     @GetMapping("/form")
     public String form() {
         return "form";
-    }
-
-    @GetMapping("/register")
-    public String showRegisterPage() {
-        return "register";
     }
 }

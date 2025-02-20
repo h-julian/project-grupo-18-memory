@@ -15,16 +15,16 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
-    /*
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getpost(@PathVariable Long id) {
-        return postRepository.findById(id).map(post -> ResponseEntity.ok().body(post)).orElse(ResponseEntity.notFound().build());
-    } 
-    */
-    
+    public ResponseEntity<Post> getPost(@PathVariable Long id) {
+        return postRepository.findById(id)
+                .map(post -> ResponseEntity.ok().body(post))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("/")
-    public ResponseEntity<Post> createpost(@RequestBody Post post) {
-        Post savedpost = postRepository.save(post);
-        return ResponseEntity.ok(savedpost);
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+        Post savedPost = postRepository.save(post);
+        return ResponseEntity.ok(savedPost);
     }
 }

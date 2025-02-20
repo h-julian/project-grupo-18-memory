@@ -69,6 +69,15 @@ public class Company extends Account {
         this.favoriteUsersMap.remove(String.valueOf(user.getId()));
     }
 
+    public void addImage(String imagePath) {
+    this.imagePath = imagePath;
+}
+
+    public void removeImage() {
+        this.imagePath = null;
+    }
+
+
     // toString
     @Override
     public String toString() {
