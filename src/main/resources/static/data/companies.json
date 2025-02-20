@@ -38,6 +38,29 @@
     "location": "Texas",
     "imagePath": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg",
     "questionnaireScore": 47
+  },
+  {
+    "id": 5,
+    "name": "Meta",
+    "bio": "Impulsamos el futuro de la comunicación y el metaverso, buscamos ingenieros en realidad aumentada y VR.",
+    "location": "California",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
+    "questionnaireScore": 46
+  },
+  {
+    "id": 6,
+    "name": "Netflix",
+    "bio": "Transformamos la industria del entretenimiento digital, buscamos desarrolladores expertos en streaming y big data.",
+    "location": "California",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg",
+    "questionnaireScore": 44
+  },
+  {
+    "id": 7,
+    "name": "IBM",
+    "bio": "Somos pioneros en computación cuántica e inteligencia artificial, buscamos investigadores y programadores avanzados.",
+    "location": "Nueva York",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    "questionnaireScore": 42
   }
 ]
-
