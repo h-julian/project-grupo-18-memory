@@ -2,7 +2,6 @@ package es.grupo18.jobmatcher.controller;
 
 import es.grupo18.jobmatcher.model.Account;
 import es.grupo18.jobmatcher.model.Company;
-import es.grupo18.jobmatcher.model.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

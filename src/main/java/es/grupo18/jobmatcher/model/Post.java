@@ -4,19 +4,21 @@ import java.util.Date;
 
 public class Post {
     
-    private long postId; 
+    private Long id; 
     private String title;
-    private String description;
+    private String content;
     private Date timestamp; 
     private String imagePath;
     private long ownerId;
     private String ownerType;
 
+    // Constructor
+    public Post() {}
 
-    public Post(long postId, String title, String description, Date timestamp, String imagePath, long ownerId, String ownerType) {
-        this.postId = postId;
+    public Post(long id, String title, String content, Date timestamp, String imagePath, long ownerId, String ownerType) {
+        this.id = id;
         this.title = title;
-        this.description = description;
+        this.content = content;
         this.timestamp = timestamp;
         this.imagePath = imagePath;
         this.ownerId = ownerId;
@@ -24,18 +26,18 @@ public class Post {
     }
 
     // Getters
-    public long getId() { return postId; }
+    public Long getId() { return id; }
     public String getTitle() { return title; }
-    public String getDescription() { return description; }
+    public String getContent() { return content; }
     public Date getTimestamp() { return timestamp; }
     public String getImagePath() { return imagePath; }
     public long getOwnerId() { return ownerId; }
     public String getOwnerType() { return ownerType; }
 
     // Setters
-    public void setId(long postId) { this.postId = postId; }
+    public void setId(Long id) { this.id = id; }
     public void setTitle(String title) { this.title = title; }
-    public void setDescription(String description) { this.description = description; }
+    public void setContent(String content) { this.content = content; }
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setOwnerId(long ownerId) { this.ownerId = ownerId; }

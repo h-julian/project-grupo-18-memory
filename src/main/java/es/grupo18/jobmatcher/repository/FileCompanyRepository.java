@@ -42,14 +42,13 @@ public class FileCompanyRepository {
     private void saveCompanies() {
         try {
             file.getParentFile().mkdirs();
-            List<Company> currentCompanies = new ArrayList<>(companies); // Crear una copia de la lista actual
+            List<Company> currentCompanies = new ArrayList<>(companies); 
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, currentCompanies);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // Genera un id secuencial, comenzando en 0
     private Long generateNewId() {
         if (companies.isEmpty()) {
             return 0L;
@@ -63,7 +62,7 @@ public class FileCompanyRepository {
     }
 
     public Company save(Company company) {
-        loadCompanies(); // Recargar empresas existentes
+        loadCompanies(); 
         if (company.getId() == null) {
             Long newId = companies.stream()
                 .mapToLong(c -> c.getId() != null ? c.getId() : 0L)
@@ -71,8 +70,8 @@ public class FileCompanyRepository {
                 .orElse(-1L) + 1;
             company.setId(newId);
         }
-        companies.add(company); // Añadir la nueva empresa
-        saveCompanies(); // Guardar toda la lista
+        companies.add(company);
+        saveCompanies();
         return company;
     }
 
@@ -84,7 +83,6 @@ public class FileCompanyRepository {
     }
 
     public List<Company> findAll() {
-        // Puedes recargar desde disco si lo necesitas, pero en este caso se asume que la lista en memoria es la actual
         return companies;
     }
 }

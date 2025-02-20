@@ -14,15 +14,11 @@ public class User extends Account {
     private List<String> skillsList;
     private Map<String, JobOffer> favoriteJobOffersMap;
     private String imagePath;
+    private int questionnaireScore;  // Add this field
     
-    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
-        super(accountId, name, email, password);
-        this.phone = phone;
-        this.location = location;
+    public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+        super(id, name, email, password);
         this.bio = bio;
-        this.experience = experience;
-        this.degreesList = degreesList;
-        this.skillsList = skillsList;
         this.favoriteJobOffersMap = new HashMap<>();
         this.imagePath = imagePath;
     }
@@ -36,6 +32,7 @@ public class User extends Account {
     public List<String> getSkills() { return skillsList; }
     public Map<String, JobOffer> getFavoriteJobOffers() { return favoriteJobOffersMap; }
     public String getImagePath() { return imagePath; }
+    public int getQuestionnaireScore() { return this.questionnaireScore; }  // Add this getter
 
     // Setters
     public void setPhone(String phone) { this.phone = phone; }
@@ -46,6 +43,7 @@ public class User extends Account {
     public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
     public void setFavoriteJobOffers(Map<String, JobOffer> favoriteJobOffersMap) { this.favoriteJobOffersMap = favoriteJobOffersMap; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    public void setQuestionnaireScore(int score) { this.questionnaireScore = score; }  // Add this setter
 
     // Update methods
 
