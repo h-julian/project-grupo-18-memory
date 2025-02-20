@@ -26,4 +26,16 @@ public abstract class Account {
     public void setEmail(String email) { this.email = email; }
     public void setPassword(String password) { this.password = password; }
 
+    // Update methods
+    public void updateName(String newName){
+        this.name = newName;
+    }
+
+    public void updateEmail(String newEmail){
+        this.email = newEmail;
+    }
+
+    public void updatePassword(String newPassword){
+        this.password = newPassword;
+    }
 }

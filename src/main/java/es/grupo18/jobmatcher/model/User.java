@@ -47,4 +47,38 @@ public class User extends Account {
     public void setFavoriteJobOffers(Map<String, JobOffer> favoriteJobOffersMap) { this.favoriteJobOffersMap = favoriteJobOffersMap; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
+    // Update methods
+
+    public void updatePhone(String newPhone){
+        this.phone = newPhone;
+    }
+
+    public void updateLocation(String newLocation){
+        this.location = newLocation;
+    }
+
+    public void updateBio(String newBio){
+        this.bio = newBio;
+    }
+
+    public void updateExperience(Integer newExperience){
+        this.experience = newExperience;
+    }
+
+    public void updateDegrees(List<String> newDegrees){
+        this.degreesList = newDegrees;
+    }
+
+    public void updateSkills(List<String> newSkills){
+        this.skillsList = newSkills;
+    }
+
+    public void updateImagePath(String newImagePath){
+        this.imagePath = newImagePath;
+    }
+
+    
+
+
+    
 }
