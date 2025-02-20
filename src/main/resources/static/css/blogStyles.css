@@ -1,8 +1,6 @@
 body {
     padding-top: 65px;
-    padding-bottom: 50px;
     height: auto;
-    display: block;
 }
 
 .container {
@@ -15,16 +13,8 @@ body {
     margin: 0 auto;
 }
 
-.blog-posts {
-    width: 100%;
-    display: block;
-}
-
 .box {
-    background: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
     width: 100%;
     max-width: none;
@@ -32,59 +22,13 @@ body {
     overflow: visible;
 }
 
-.box h2 {
-    margin-top: 0;
-    color: #0077b6;
-    margin-bottom: 15px;
-}
 
-.box p {
-    margin: 10px 0;
-    color: #666;
-    font-size: 1.1rem;
-}
 
-.new-post {
-    text-align: center;
-    margin-top: 20px;
-}
 
-.admin-btn {
-    background: #00b4d8;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.3s;
-}
 
-.admin-btn:hover {
-    background: #0096c7;
-    transform: scale(1.05);
-}
 
-.back-btn, #post-btn {
-    background: #00b4d8;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.3s;
-}
 
-.back-btn:hover, #post-btn:hover {
-    background: #0096c7;
-    transform: scale(1.05);
-}
 
-footer {
-    padding: 10px 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
+
+
+
