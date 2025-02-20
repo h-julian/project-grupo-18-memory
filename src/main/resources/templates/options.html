@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opciones</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/optionsStyles.css">
     <script src="/js/darkMode.js" defer></script>
 </head>
+
+
+
+
 <body>
 
-    <header class="header">
-        <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
-        <h1>Opciones</h1>
+    <header>
+        <div class="header-left">
+        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+        </div>
+        <div class="title">
+            <a href="/main">JOBMATCHER</a>
+        </div>
+        <div class="header-right">
+            <button class="hidden-button"></button> <!-- Sin función -->
+        </div>
     </header>
 
     <main class="container">
@@ -63,6 +75,23 @@
             document.getElementById('darkModeSwitch').checked = true;
         }
     </script>
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+    </footer>
 
+    <script>
+        function goBack() {
+            if (document.referrer) {
+                window.history.back(); // Vuelve a la página anterior si hay historial
+            } else {
+                window.location.href = "/main"; // Si no hay historial, redirige a la página principal
+            }
+        }
+    </script>
+    
 </body>
+
+
+
+
 </html>

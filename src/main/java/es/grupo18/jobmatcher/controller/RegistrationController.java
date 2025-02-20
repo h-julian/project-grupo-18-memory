@@ -57,7 +57,7 @@ public class RegistrationController {
         if ("usuario".equalsIgnoreCase(accountType)) {
             tempAccount = new User(id, name, email, password, phone, location, bio, experience, degreesList, skillsList, imagePath);
         } else if ("empresa".equalsIgnoreCase(accountType)) {
-            tempAccount = new Company(id, name, email, password, location, bio, imagePath, null, null);
+            tempAccount = new Company(1,name,email,password);
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "Tipo de cuenta no válido."));
         }

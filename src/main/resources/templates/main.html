@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobMatcher - Inicio</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/mainStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script>
@@ -15,43 +16,54 @@
     </script>
 </head>
 
+<header>
+    <div class="header-left">
+        <button id="options-btn" onclick="location.href='/options'">⚙️ Opciones</button>
+    </div>
+    <div class="title">
+        <a href="/main">JOBMATCHER</a>
+    </div>
+    <div class="header-right">
+        <button id="profile-btn" onclick="location.href='/profile'">👤 Perfil</button>
+    </div>
+
+</header>
+
 <body>
     
-    <header class="header">
-        <div class="option-box">
-            <a href="/options" class="button">⚙️ Opciones</a>
-        </div>
-        <a href="/main" class="logo">
-            <div>Catalex JobMatcher</div>
-        </a>
-        <div class="icons">
-            <div class="icon">
-                <a href="/notification" class="button">🔔 Notificaciones</a>
-            </div>
-            <div class="icon">
-                <a href="/profile" class="button">👤 Perfil</a>
-            </div>
-        </div>
-    </header>
 
     <main class="container">
         <section class="left-section">
-            <a href="" class="btn">Encuentra tu match 🔍</a>
-            <a href="/currentMatch" class="btn">Consulta tus match 🤝</a>
-            <a href="/blog" class="btn">Visita nuestro blog 📰</a>
+            <button onclick="location.href=''">🔍 Encuentra tu match</button>
+            <button onclick="location.href=''">🤝 Consulta tus match</button>
+            <button onclick="location.href='/blog'">📰 Visita nuestro blog</button>
         </section>
         <section class="right-section">
-            <div class="image-box">
-                <img src="https://www.telescope-enfant.fr/wp-content/uploads/2017/02/cropped-telescope.png"
-                    alt="Imagen" class="responsive-image">
-            </div>
+            <img src="img/cropped-telescope.png" alt="Logo">
         </section>
     </main>
+    
 
-    <footer class="footer">
-        <p>&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</p>
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
     
 </body>
+
+
+
+
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("options-btn").addEventListener("click", function () {
+            window.location.href = "/options";
+        });
+
+        document.getElementById("profile-btn").addEventListener("click", function () {
+            window.location.href = "/profile";
+        });
+    });
+</script>
+-->
 
 </html>

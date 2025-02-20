@@ -3,6 +3,7 @@ package es.grupo18.jobmatcher.controller;
 import es.grupo18.jobmatcher.repository.NewsRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import es.grupo18.jobmatcher.model.Post;
 
 @RestController
 @RequestMapping("/api/news")

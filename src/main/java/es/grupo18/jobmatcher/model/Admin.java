@@ -1,33 +1,27 @@
 package es.grupo18.jobmatcher.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "admins")
 public class Admin extends Account {
+    
+    private Role role;
+    
+    public Admin(Long accountId, String name, String email, String password, Role role) {
+        super(accountId, name, email, password);
+        this.role = role;
+    }
 
-    private String roleDetail; // Por ejemplo: "SUPER_ADMIN", "MODERATOR", etc.
-    
-    public Admin() {}
-    
-    public Admin(String name, String email, String password, String roleDetail) {
-        this.setName(name);
-        this.setEmail(email);
-        this.setPassword(password);
-        this.roleDetail = roleDetail;
+    public enum Role {
+        SUPER_ADMIN, MODERATOR, SUPPORT
     }
     
-    // Getters y setters
+    // Getters
+    public Role getRole() { return role; }
+    
+    // Setters
+    public void setRole(Role role) { this.role = role; }
 
-<<<<<<< HEAD
-    public String getRoleDetail() {
-        return roleDetail;
+    // Update methods
+    public void updateRole(Role newRole){
+        this.role = newRole;
     }
-  
-    public void setRoleDetail(String roleDetail) {
-        this.roleDetail = roleDetail;
-    }
+
 }
-=======
-}
->>>>>>> parent of 6f75eab (Merge branch 'main' of https://github.com/DWS-2025/project-grupo-18)
