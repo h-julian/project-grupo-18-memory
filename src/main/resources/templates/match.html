@@ -3,103 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Match - Empresas</title>
+    <title>JobMatcher - Match</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/matchStyles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
+<header>
+    <div class="header-left">
+        <button id="options-btn" onclick="location.href='/options'">⚙️ Opciones</button>
+    </div>
+    <div class="title">
+        <a href="/main">JOBMATCHER</a>
+    </div>
+    <div class="header-right">
+        <button id="profile-btn" onclick="location.href='/profile'">👤 Perfil</button>
+    </div>
+</header>
+
 <body>
-    <header>
-        <div class="header-left">
-            <button class="back-btn" onclick="window.location.href='/main'">⬅️ Atrás</button>
-        </div>
-        <div class="title">
-            <h1>Match con Empresas</h1>
-        </div>
-        <div class="header-right"></div>
-    </header>
 
     <div class="companies-grid" id="companies-container">
         <!-- Companies will be loaded here -->
     </div>
 
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('/api/companies')
-                .then(response => response.json())
+            console.log('Loading companies...');
+            fetch('/api/match/companies')
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(companies => {
+                    console.log('Companies loaded:', companies);
                     const container = document.getElementById('companies-container');
+                    if (companies.length === 0) {
+                        container.innerHTML = '<p class="no-companies">No hay empresas disponibles</p>';
+                        return;
+                    }
                     companies.forEach(company => {
+                        console.log('Creating card for:', company.name);
                         const card = createCompanyCard(company);
                         container.appendChild(card);
                     });
                 })
-                .catch(error => console.error('Error loading companies:', error));
+                .catch(error => {
+                    console.error('Error loading companies:', error);
+                    const container = document.getElementById('companies-container');
+                    container.innerHTML = '<p class="error-message">Error al cargar las empresas</p>';
+                });
         });
 
         function createCompanyCard(company) {
+            console.log('Company data:', company);
+            const defaultImage = '/img/default-company.png';
             const card = document.createElement('div');
             card.className = 'company-card';
             card.innerHTML = `
                 <div class="company-header">
-                    <img src="${company.profilePhoto || '/images/default-company.png'}" 
-                         alt="${company.name}" 
-                         class="company-image">
-                    <h2 class="company-name">${company.name}</h2>
+                    <img src="${company.profilePhoto || defaultImage}" 
+                         alt="${company.name}"
+                         class="company-image"
+                         onerror="this.src='${defaultImage}'">
+                    <h2 class="company-name">${company.name || 'Sin nombre'}</h2>
                 </div>
                 <div class="company-info">
                     <p class="company-description">${company.description || 'Sin descripción'}</p>
-                    <div class="company-details">
-                        <p><i class="location-icon">📍</i> ${company.location || 'No especificada'}</p>
-                        <p><i class="score-icon">🎯</i> Match: ${company.questionnaireScore || 0}%</p>
-                    </div>
+                    <p class="company-location">📍 ${company.location || 'Ubicación no especificada'}</p>
                 </div>
                 <div class="action-buttons">
                     <button class="like-btn" onclick="likeCompany(${company.id})">
-                        <span class="button-icon">❤️</span> Me interesa
+                        ❤️ Me interesa
                     </button>
                     <button class="discard-btn" onclick="discardCompany(${company.id})">
-                        <span class="button-icon">✖️</span> Descartar
+                        ✖️ Descartar
                     </button>
                 </div>
             `;
             return card;
-        }
-
-        function likeCompany(id) {
-            fetch(`/api/match/like/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNotification('¡Match realizado con éxito!', 'success');
-                }
-            })
-            .catch(error => showNotification('Error al realizar match', 'error'));
-        }
-
-        function discardCompany(id) {
-            fetch(`/api/match/discard/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNotification('Empresa descartada', 'info');
-                }
-            })
-            .catch(error => showNotification('Error al descartar', 'error'));
-        }
-
-        function showNotification(message, type) {
-            // Implementation of notification system
-            alert(message);
         }
     </script>
 </body>
