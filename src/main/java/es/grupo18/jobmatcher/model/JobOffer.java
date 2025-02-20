@@ -14,7 +14,6 @@ public class JobOffer {
     private Integer salary;
     private long ownerId;
     private Map<String, User> favoriteByUsersMap;
-    
 
 
     public JobOffer(long offerId, String title, String description, Integer requiredExperience, List<String> requiredDegreeList, List<String> requiredSkillsList, Integer salary, long ownerId, Map<String, User> favoriteByUsersMap) {
@@ -26,14 +25,11 @@ public class JobOffer {
         this.requiredSkillsList = requiredSkillsList;
         this.salary = salary;
         this.ownerId = ownerId;
-        this.favoriteByUsersMap = (favoriteByUsersMap != null) ? favoriteByUsersMap : new HashMap<>();
-
-
-
+        this.favoriteByUsersMap = new HashMap<>();
     }
 
     // Getters
-    public long getOfferId() { return offerId; }
+    public long getId() { return offerId; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public Integer getRequiredExperience() { return requiredExperience; }
@@ -44,7 +40,7 @@ public class JobOffer {
     public Map<String, User> getFavoriteByUsers() { return favoriteByUsersMap; }
 
     // Setters
-    public void setOfferId(long offerId) { this.offerId = offerId; }
+    public void setId(long offerId) { this.offerId = offerId; }
     public void setTitle(String title) { this.title = title; }
     public void setDescription(String description) { this.description = description; }
     public void setRequiredExperience(Integer requiredExperience) { this.requiredExperience = requiredExperience; }
@@ -53,37 +49,4 @@ public class JobOffer {
     public void setSalary(Integer salary) { this.salary = salary; }
     public void setOwnerId(long ownerId) { this.ownerId = ownerId; }
     public void setFavoriteByUsers(Map<String, User> favoriteByUsersMap) { this.favoriteByUsersMap = favoriteByUsersMap; }
-
-    // Update methods
-    public void updateTitle(String newTitle){
-        this.title = newTitle;
-    }
-
-    public void updateDescription(String newDescription){
-        this.description = newDescription;
-    }
-
-    public void updateRequiredExperience(Integer newRequiredExperience){
-        this.requiredExperience = newRequiredExperience;
-    }
-
-    public void updateSalary(Integer newSalary){
-        this.salary = newSalary;
-    }
-
-    //Add & Remove methods
-    public void addFavoriteUser(User user){
-        this.favoriteByUsersMap.put(String.valueOf(user.getAccountId()), user);
-    }
-
-    public void removeFavoriteUser(User user){
-        this.favoriteByUsersMap.remove(String.valueOf(user.getAccountId()));
-    }
-
-    // toString
-    @Override
-    public String toString() {
-        return "JobOffer{id=" + offerId + ", title=" + title + ", description=" + description + "}";
-    }
-
 }
