@@ -37,23 +37,23 @@
             <ul>
                 <li>
                     <strong>Nombre:</strong> 
-                    <span id="name" th:text="${account.name}"></span>
+                    <span id="name" th:text="${user.name}"></span>
                 </li>
                 <li>
                     <strong>Email:</strong> 
-                    <span id="email" th:text="${account.email}"></span>
+                    <span id="email" th:text="${user.email}"></span>
                 </li>
                 <li>
                     <strong>Teléfono:</strong> 
-                    <span id="phone" th:text="${account.phone}"></span>
+                    <span id="phone" th:text="${user.phone}"></span>
                 </li>
                 <li>
                     <strong>Ubicación:</strong> 
-                    <span id="location" th:text="${account.location}"></span>
+                    <span id="location" th:text="${user.location}"></span>
                 </li>
                 <li>
                     <strong>Acerca de mí:</strong> 
-                    <span id="about" th:text="${account.about}"></span>
+                    <span id="about" th:text="${user.bio}"></span>
                 </li>
             </ul>
             <div class="button-group">
@@ -62,23 +62,14 @@
         </div>
     </div>
 
-    <!-- Close session button 
-    <div class="logout-box">
-        <button class="logout-btn" onclick="logout()" onMouseUp="location.href='/'">Cerrar Sesión</button>
-    </div>
-    -->
-
-    <!-- Default photo -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const defaultPhoto = "/profile/profile.jpg";
             const storedProfile = localStorage.getItem("profile");
             let profile = storedProfile ? JSON.parse(storedProfile) : {};
     
-            // Si el usuario tiene foto guardada en localStorage, úsala. Si no, usa la foto por defecto.
             document.getElementById("profilePhoto").src = profile.photo || defaultPhoto;
     
-            // Si se cambia la imagen, se actualiza en localStorage
             document.getElementById('photoInput').addEventListener('change', function (e) {
                 const file = e.target.files[0];
                 if (file) {
@@ -86,7 +77,7 @@
                     reader.onload = function (evt) {
                         const imgData = evt.target.result;
                         document.getElementById("profilePhoto").src = imgData;
-                        profile.photo = imgData; // Guarda la nueva imagen en localStorage
+                        profile.photo = imgData;
                         localStorage.setItem("profile", JSON.stringify(profile));
                     };
                     reader.readAsDataURL(file);
@@ -95,20 +86,18 @@
         });
     </script>
 
-    <!-- To center all the content (scrolls all the way down)-->
     <script> 
         document.addEventListener("DOMContentLoaded", function () {
             window.scrollTo(0, document.body.scrollHeight);
         });
     </script>
 
-    <!-- Back button -->
     <script>
         function goBack() {
             if (document.referrer) {
-                window.history.back(); // Comes back if theres history
+                window.history.back();
             } else {
-                window.location.href = "/main"; // If don't, goes to main page
+                window.location.href = "/main";
             }
         }
     </script>

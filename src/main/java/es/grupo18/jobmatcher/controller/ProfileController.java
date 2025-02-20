@@ -1,47 +1,41 @@
 package es.grupo18.jobmatcher.controller;
 
-import es.grupo18.jobmatcher.model.Account;
-import es.grupo18.jobmatcher.model.Company;
-import jakarta.servlet.http.HttpSession;
+import es.grupo18.jobmatcher.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ProfileController {
 
-    
-
     @GetMapping("/profile")
     public String showProfile(Model model, HttpSession session) {
-        Account account = (Account) session.getAttribute("user");
-        
-        // Debug logs
-        System.out.println("Session ID in Profile: " + session.getId());
-        System.out.println("User in session: " + (account != null));
-        
-        /*
-        if (account == null) {
-            System.out.println("No user found in session");
-            return "redirect:/login";
-        }
-        */
-        
-        System.out.println("Showing profile for: " + account.getName());
-        System.out.println("Email: " + account.getEmail());
-        
-        model.addAttribute("account", account);
-        model.addAttribute("accountType", account instanceof Company ? "empresa" : "usuario");
-        
+        User user = User.loadUser(); // Cargar el único usuario
+        model.addAttribute("user", user);
         return "profile";
     }
-    
+
     @GetMapping("/profile/edit")
-    public String editProfile(HttpSession session, Model model) {
-        Account account = (Account) session.getAttribute("user");
-        if (account != null) {
-            model.addAttribute("account", account);
-        }
-        return "profileEditor"; 
+    public String editProfile(Model model) {
+        User user = User.loadUser(); // Cargar el único usuario
+        model.addAttribute("user", user);
+        return "profileEditor";
+    }
+
+    @PostMapping("/profile/edit")
+    public String saveProfile(@RequestParam String name, @RequestParam String email, @RequestParam String phone,
+                              @RequestParam String location, @RequestParam String about) {
+        User user = User.loadUser(); // Cargar el único usuario
+        user.setName(name);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setLocation(location);
+        user.setBio(about);
+        User.saveUser(user); // Guardar los cambios en el archivo JSON
+        return "redirect:/profile";
     }
 }
