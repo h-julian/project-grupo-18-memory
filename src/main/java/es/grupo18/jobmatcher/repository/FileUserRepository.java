@@ -39,7 +39,7 @@ public class FileUserRepository {
         }
     }
 
-    private void saveUsers() {
+    private synchronized void saveUsers() {
         try {
             file.getParentFile().mkdirs();
             List<User> currentUsers = new ArrayList<>(users); // Crear una copia de la lista actual
@@ -49,44 +49,40 @@ public class FileUserRepository {
         }
     }
 
-    // Genera un id secuencial, comenzando en 0
-    private Long Id() {
-        if (users.isEmpty()) {
-            return 0L;
-        } else {
-            return users.stream()
-                    .map(User::getId)
-                    .filter(id -> id != null)
-                    .max(Comparator.naturalOrder())
-                    .orElse(-1L) + 1;
-        }
+    private Long generateId() {
+        return users.stream()
+                .map(User::getId)
+                .filter(id -> id != null)
+                .max(Comparator.naturalOrder())
+                .orElse(-1L) + 1;
     }
 
-    public User save(User user) {
-        // Para prevenir sobrescribir la lista, recargamos el contenido desde el archivo
-        loadUsers();
+    public synchronized User save(User user) {
+        loadUsers(); // Recargar para tener la lista más reciente
 
-        // Si el id es null, se asigna un id secuencial
-        if (user.getId() == null) {
-            Long newId = users.stream()
-                .mapToLong(u -> u.getId() != null ? u.getId() : 0L)
-                .max()
-                .orElse(-1L) + 1;
-            user.setId(newId);
+        // Validar email único (opcional, según requisitos)
+        if (users.stream().anyMatch(u -> u.getEmail().equalsIgnoreCase(user.getEmail()))) {
+            throw new IllegalArgumentException("El email ya existe");
         }
-        users.add(user); // Añadir el nuevo usuario
-        saveUsers(); // Guardar toda la lista
+
+        // Asignar ID si no tiene
+        if (user.getId() == null) {
+            user.setId(generateId());
+        }
+
+        users.add(user);
+        saveUsers();
         return user;
     }
-    
+
     public User findByEmail(String email) {
         return users.stream()
-            .filter(u -> u.getEmail().equalsIgnoreCase(email))
-            .findFirst()
-            .orElse(null);
+                .filter(u -> u.getEmail().equalsIgnoreCase(email))
+                .findFirst()
+                .orElse(null);
     }
-    
+
     public List<User> findAll() {
-        return users;
+        return new ArrayList<>(users); // Devolver una copia para evitar modificaciones externas
     }
 }

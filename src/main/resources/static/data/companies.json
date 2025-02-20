@@ -1,8 +1,7 @@
 [ {
   "id" : 0,
-  "name" : "ola",
-  "email" : "caracola@gmail.com",
-  "password" : "DDDsfsf342234",
-  "description" : "Esto es una prueba",
+  "bio" : "Esto es una prueba",
+  "location" : "Bogotá",
+  "imagePath" : "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
   "questionnaireScore" : 43
 } ]

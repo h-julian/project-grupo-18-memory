@@ -7,10 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-
-
 @RestController
 public class SampleLogController {
  private static final Logger log = LoggerFactory.getLogger(SampleLogController.class);

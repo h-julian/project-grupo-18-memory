@@ -18,7 +18,6 @@ public class UserController {
          this.userService = userService;
     }
 
-    // Registro de usuario; se podría adaptar para empresas con otra clase o comprobación
     @PostMapping("/register")
     public User register(@RequestBody User user, HttpSession session){
           User registeredUser = userService.registerUser(user);
@@ -27,11 +26,9 @@ public class UserController {
          return registeredUser;
     }
 
-    // Inicio de sesión
     @PostMapping("/login")
     public User login(@RequestBody User loginUser, HttpSession session){
          User user = userService.getUserByEmail(loginUser.getEmail());
-         // En un entorno real se agregará validación y encriptación de password
          if(user != null && user.getPassword().equals(loginUser.getPassword())){
              session.setAttribute("user", user);
              return user;
