@@ -1,21 +1,10 @@
 package es.grupo18.jobmatcher.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.grupo18.jobmatcher.model.Account;
-import es.grupo18.jobmatcher.model.Company;
-import es.grupo18.jobmatcher.model.JobOffer;
-import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.repository.FileAccountRepository;
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +12,7 @@ public class RegistrationController {
 
     @Autowired
     private FileAccountRepository accountRepository;
-
+    /* 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> payload, HttpSession session) {
         String email = payload.get("email");
@@ -72,4 +61,5 @@ public class RegistrationController {
             "redirect", "/questionnaire"
         ));
     }
+    */
 }
