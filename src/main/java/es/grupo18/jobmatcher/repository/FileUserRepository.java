@@ -50,7 +50,7 @@ public class FileUserRepository {
     }
 
     // Genera un id secuencial, comenzando en 0
-    private Long generateNewId() {
+    private Long Id() {
         if (users.isEmpty()) {
             return 0L;
         } else {

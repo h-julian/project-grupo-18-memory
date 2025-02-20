@@ -11,7 +11,7 @@ public class PasswordEncoder {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] hashInBytes = md.digest(rawPassword.getBytes());
             return Base64.getEncoder().encodeToString(hashInBytes);
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {      
             throw new RuntimeException(e);
         }
     }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+
 public class Company extends Account {
     private Long id;
     private String bio;
@@ -61,17 +62,17 @@ public class Company extends Account {
     }
 
     public void addFavoriteUser(User user){
-        this.favoriteUsersMap.put(String.valueOf(user.getAccountId()), user);
+        this.favoriteUsersMap.put(String.valueOf(user.getId()), user);
     }
 
     public void removeFavoriteUser(User user){
-        this.favoriteUsersMap.remove(String.valueOf(user.getAccountId()));
+        this.favoriteUsersMap.remove(String.valueOf(user.getId()));
     }
 
     // toString
     @Override
     public String toString() {
-        return "Company{id=" + getAccountId() + ", name=" + getName() + ", location=" + location + ", bio=" + bio + "}";
+        return "Company{id=" + getId() + ", name=" + getName() + ", location=" + location + ", bio=" + bio + "}";
     }
 
 

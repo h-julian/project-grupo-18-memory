@@ -70,11 +70,11 @@ public class JobOffer {
 
     //Add & Remove methods
     public void addFavoriteUser(User user){
-        this.favoriteByUsersMap.put(String.valueOf(user.getAccountId()), user);
+        this.favoriteByUsersMap.put(String.valueOf(user.getId()), user);
     }
 
     public void removeFavoriteUser(User user){
-        this.favoriteByUsersMap.remove(String.valueOf(user.getAccountId()));
+        this.favoriteByUsersMap.remove(String.valueOf(user.getId()));
     }
 
     // toString
