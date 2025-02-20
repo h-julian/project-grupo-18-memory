@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobMatcher - Nuevo Post</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/newPostStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+        </div>
+        <div class="title">
+            <a href="/main">JOBMATCHER</a>
+        </div>
+        <div class="header-right">
+            <button class="hidden-button"></button> <!-- Not to show Profile Button -->
+        </div>
+    </header>
+
+    <main class="container">
+        <form id="new-post-form">
+            <h1>Nuevo Post</h1>
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+            
+            <label for="content">Contenido:</label>
+            <textarea id="content" name="content" rows="10" required></textarea>
+            
+            <label for="ownerType">Autor:</label>
+            <input type="text" id="ownerType" name="ownerType" required>
+            
+            <button type="submit">Subir post</button>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('new-post-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const post = {
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value,
+                ownerType: document.getElementById('ownerType').value,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch('/api/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(post)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Post subido con éxito');
+                    window.location.href = '/blog';
+                } else {
+                    alert('Error al subir el post');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al subir el post');
+            });
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

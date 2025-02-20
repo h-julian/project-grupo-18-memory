@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.Map;
 import java.util.ArrayList;
 
 public class User extends Account {
@@ -20,10 +17,6 @@ public class User extends Account {
     private List<String> degreesList;
     private List<String> skillsList;
     private String imagePath;
-<<<<<<< Updated upstream
-    private List<Integer> matchId;
-=======
->>>>>>> Stashed changes
 
     private static final String FILE_PATH = "src/main/resources/static/data/users.json";
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -41,7 +34,6 @@ public class User extends Account {
         this.degreesList = degreesList;
         this.skillsList = skillsList;
         this.imagePath = imagePath;
-        this.matchId = new ArrayList<>();
     }
 
     public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
@@ -173,22 +165,6 @@ public class User extends Account {
             mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), users);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void loadId() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            List<Map<String, Object>> matches = objectMapper.readValue(
-                    Paths.get("src/main/resources/matches.json").toFile(),
-                    new TypeReference<List<Map<String, Object>>>() {
-                    });
-            this.matchId = matches.stream()
-                    .map(match -> (Integer) match.get("id"))
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-            this.matchId = List.of();
         }
     }
 

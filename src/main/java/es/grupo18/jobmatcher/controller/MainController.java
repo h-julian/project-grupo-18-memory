@@ -16,8 +16,8 @@ public class MainController {
         return "options";
     }
 
-    @GetMapping("/userquestions")
-    public String showUserQuestions(){
-        return "user_questions";
+    @GetMapping("/form")
+    public String showForm(){
+        return "form";
     }
 }

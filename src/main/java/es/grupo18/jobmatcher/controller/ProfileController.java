@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.grupo18.jobmatcher.model.User;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class ProfileController {
@@ -24,7 +26,7 @@ public class ProfileController {
         5,
         Arrays.asList("Grado en Ingeniería Informática", "Máster en Ciberseguridad"),
         Arrays.asList("Java", "Spring Boot", "SQL", "Pentesting"),
-        "/img/custom.jpg"
+        "/img/profile.jpg"
     );
 
     @GetMapping("/profile")
@@ -56,7 +58,28 @@ public class ProfileController {
     }
 
     @GetMapping("/profile/form")
-    public String showForm() {
-        return "profileForm";
+    public String editProfileInfo(Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("studies", String.join(", ", user.getDegrees()));
+        model.addAttribute("skills", String.join(", ", user.getSkills()));
+        model.addAttribute("experience", user.getExperience());
+        return "form"; 
     }
+
+    @PostMapping("/profile/form")
+    public String saveProfileInfo(@RequestParam String studies, @RequestParam String skills, @RequestParam Integer experience) {
+        // Convertir los textos en listas separadas por comas
+        List<String> updatedStudies = Arrays.asList(studies.split(",\\s*"));
+        List<String> updatedSkills = Arrays.asList(skills.split(",\\s*"));
+
+        // Actualizar en memoria
+        user.setDegrees(updatedStudies);
+        user.setSkills(updatedSkills);
+        user.setExperience(experience);
+
+        return "redirect:/profile";
+    }
+
+
+
 }
