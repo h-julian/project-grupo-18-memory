@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.grupo18.jobmatcher.repository.FileCompanyRepository;
 import es.grupo18.jobmatcher.repository.FileUserRepository;
+import es.grupo18.jobmatcher.repository.FileMatchRepository;
 import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.model.JobOffer;
 import es.grupo18.jobmatcher.model.User;
+import es.grupo18.jobmatcher.model.Match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,9 @@ public class MatchController {
 
     @Autowired
     private FileUserRepository userRepository;
+
+    @Autowired
+    private FileMatchRepository matchRepository;
 
     @GetMapping("/match")
     public String showMatchPage() {
@@ -65,35 +70,29 @@ public class MatchController {
 
     @PostMapping("/api/match/like/{companyId}")
     @ResponseBody
-    public ResponseEntity<?> likeCompany(@PathVariable Long companyId, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "No user logged in"));
+    public ResponseEntity<?> likeCompany(@PathVariable String companyId, HttpSession session) {
+        try {
+            User user = (User) session.getAttribute("user");
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("success", false, "error", "Usuario no autenticado"));
+            }
+
+            // Create and save match
+            Match match = new Match(user.getId(), Long.parseLong(companyId));
+            matchRepository.save(match);
+
+            return ResponseEntity.ok(Map.of(
+                "success", true,
+                "message", "Match guardado correctamente",
+                "matchId", match.getId()
+            ));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("success", false, "error", e.getMessage()));
         }
-
-        Company company = companyRepository.findById(companyId);
-        if (company == null) {
-            return ResponseEntity.badRequest().body(Map.of("error", "Company not found"));
-        }
-
-        // Create a JobOffer object to represent the liked company
-        JobOffer jobOffer = new JobOffer(
-            company.getId(),
-            company.getName(),
-            company.getBio()  // Using getBio() instead of getDescription()
-        );
-        
-        // Add to user's favorites
-        user.getFavoriteJobOffers().put(String.valueOf(companyId), jobOffer);
-        userRepository.save(user);
-        
-        // Update session
-        session.setAttribute("user", user);
-
-        return ResponseEntity.ok(Map.of(
-            "message", "Match saved successfully",
-            "companyId", companyId
-        ));
     }
 
     // Debug endpoint to check raw data

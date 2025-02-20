@@ -93,29 +93,43 @@
 
         function toggleLike(companyId, button) {
             if (likedCompanies.has(companyId)) {
-                return; // Already liked
+                return; // Ya está liked
             }
+
+            console.log('Enviando like para compañía:', companyId);
 
             fetch(`/api/match/like/${companyId}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                credentials: 'same-origin'
             })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to save match');
-                }
-                return response.json();
+                console.log('Response status:', response.status);
+                return response.json().then(data => {
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Error al guardar el match');
+                    }
+                    return data;
+                });
             })
             .then(data => {
-                // Update UI
-                likedCompanies.add(companyId);
-                sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
-                button.classList.add('liked');
-                button.textContent = '✓ Interesado';
+                if (data.success) {
+                    console.log('Match guardado:', data);
+                    likedCompanies.add(companyId);
+                    sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
+                    button.classList.add('liked');
+                    button.textContent = '✓ Interesado';
+                } else {
+                    throw new Error(data.error || 'Error desconocido');
+                }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
         }
     </script>
 </body>
