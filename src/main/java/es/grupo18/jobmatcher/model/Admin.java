@@ -19,6 +19,7 @@ public class Admin extends Account {
     
     // Getters y setters
 
+<<<<<<< HEAD
     public String getRoleDetail() {
         return roleDetail;
     }
@@ -27,3 +28,6 @@ public class Admin extends Account {
         this.roleDetail = roleDetail;
     }
 }
+=======
+}
+>>>>>>> parent of 6f75eab (Merge branch 'main' of https://github.com/DWS-2025/project-grupo-18)

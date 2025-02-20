@@ -34,6 +34,7 @@ public class User extends Account {
     // URL de la foto de perfil
     private String profilePhoto;
     
+<<<<<<< HEAD
     // Se almacena la lista de habilidades (por ejemplo, obtenidas en el cuestionario)
     @ElementCollection
     @CollectionTable(name = "usuario_habilidades", joinColumns = @JoinColumn(name = "usuario_id"))
@@ -79,6 +80,13 @@ public class User extends Account {
 
     public String getEmail() {
         return email;
+=======
+    public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+        super(id, name, email, password);
+        this.bio = bio;
+        this.favoriteJobOffersMap = new HashMap<>();
+        this.imagePath = imagePath;
+>>>>>>> parent of 6f75eab (Merge branch 'main' of https://github.com/DWS-2025/project-grupo-18)
     }
     
     public void setEmail(String email) {
