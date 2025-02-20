@@ -82,9 +82,5 @@ body {
     font-size: 0.9em;
 }
 
-.like-btn { background-color: #0077b6; color: white; }
-.like-btn:hover { background-color: #005d91; }
-.discard-btn { background-color: #dc3545; color: white; }
-.discard-btn:hover { background-color: #bb2d3b; }
 
 
