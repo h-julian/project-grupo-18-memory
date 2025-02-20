@@ -1,37 +1,58 @@
 [
-  {
-      "title": "Primer Post",
-      "content": "Este es el contenido del primer post.",
+    {
+      "title": "Desarrollador Senior - Microsoft",
+      "content": "Buscamos programadores experimentados en .NET para un ambiente flexible en California.",
       "timestamp": "2025-02-20",
-      "imagePath": "/images/post1.jpg",
-      "ownerId": "01"
-  },
-  {
-      "title": "Segundo Post",
-      "content": "Este es el contenido del segundo post. Más detalles sobre el tema.",
-      "timestamp": "2025-02-19",
-      "imagePath": "/images/post2.jpg",
+      "imagePath": "/images/microsoft_job.jpg",
       "ownerId": "02"
-  },
-  {
-      "title": "Tercer Post",
-      "content": "Contenido del tercer post con información adicional.",
+    },
+    {
+      "title": "Ingeniero IA - Google",
+      "content": "Oportunidad para trabajar en inteligencia artificial y computación en la nube en California.",
+      "timestamp": "2025-02-19",
+      "imagePath": "/images/google_job.jpg",
+      "ownerId": "12"
+    },
+    {
+      "title": "Diseñador UI/UX - Apple",
+      "content": "Buscamos visionarios para crear experiencias revolucionarias en California.",
       "timestamp": "2025-02-18",
-      "imagePath": "/images/post3.jpg",
-      "ownerId": "14"
-  },
-  {
-      "title": "Cuarto Post",
-      "content": "Información relevante en el cuarto post.",
+      "imagePath": "/images/apple_job.jpg",
+      "ownerId": "22"
+    },
+    {
+      "title": "Ingeniero Cloud - Amazon",
+      "content": "Lidera la innovación en comercio electrónico y nube en Seattle.",
       "timestamp": "2025-02-17",
-      "imagePath": "/images/post4.jpg",
-      "ownerId": "24"
-  },
-  {
-      "title": "Quinto Post",
-      "content": "Detalles interesantes en el quinto post.",
+      "imagePath": "/images/amazon_job.jpg",
+      "ownerId": "32"
+    },
+    {
+      "title": "Ingeniero Eléctrico - Tesla",
+      "content": "Trabaja en tecnología eléctrica y autónoma en Texas.",
       "timestamp": "2025-02-16",
-      "imagePath": "/images/post5.jpg",
-      "ownerId": "34"
-  }
-]
+      "imagePath": "/images/tesla_job.jpg",
+      "ownerId": "42"
+    },
+    {
+      "title": "Desarrollador Frontend - Facebook",
+      "content": "Únete a nuestra red social en Menlo Park, California.",
+      "timestamp": "2025-02-15",
+      "imagePath": "/images/facebook_job.jpg",
+      "ownerId": "52"
+    },
+    {
+      "title": "Productor de Contenido - Netflix",
+      "content": "Crea contenido innovador en Los Gatos, California.",
+      "timestamp": "2025-02-14",
+      "imagePath": "/images/netflix_job.jpg",
+      "ownerId": "62"
+    },
+    {
+      "title": "Ingeniero de Logística - Uber",
+      "content": "Transforma la movilidad en San Francisco, California.",
+      "timestamp": "2025-02-13",
+      "imagePath": "/images/uber_job.jpg",
+      "ownerId": "72"
+    }
+  ]

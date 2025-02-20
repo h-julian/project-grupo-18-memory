@@ -1,4 +1,4 @@
-body {
+body { 
     font-family: 'Roboto', sans-serif;
     background-color: var(--background-color);
     margin: 0;
@@ -41,12 +41,13 @@ body {
     transform: translateY(-5px);
 }
 
+
 .profile-photo, .company-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
     border-radius: 50%;
-    border: 2px solid #0077b6;
+    background-color: white;
     margin-bottom: 10px;
 }
 
@@ -70,52 +71,31 @@ body {
     line-height: 1.4;
 }
 
+/* Corrección para hacer que los botones sean uniformes */
 .action-buttons {
     display: flex;
-    gap: 8px;
-    padding: 10px;
-    border-top: 1px solid #eee;
+    justify-content: center;
     margin-top: auto;
 }
 
 .action-buttons button {
-    flex: 1;
-    padding: 8px;
+    width: 90%;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
     transition: background-color 0.2s;
     font-size: 0.9em;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 10px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.left-section {
-    flex: 1 1 40%;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: flex-start;
-    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
-.right-section {
-    flex: 1 1 55%;
-}
-
+/* Ajustar imágenes dentro de los cards */
 img {
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
