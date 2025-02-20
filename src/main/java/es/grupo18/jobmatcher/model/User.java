@@ -17,8 +17,6 @@ public class User extends Account {
     private List<String> degreesList;
     private List<String> skillsList;
     private String imagePath;
-    private Integer questionnaireScore;
-    private List<Integer> matchId;
 
     private static final String FILE_PATH = "src/main/resources/static/data/users.json";
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -36,7 +34,6 @@ public class User extends Account {
         this.degreesList = degreesList;
         this.skillsList = skillsList;
         this.imagePath = imagePath;
-        this.matchId = new ArrayList<>();
     }
 
     public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
@@ -45,7 +42,6 @@ public class User extends Account {
         this.imagePath = imagePath;
         this.skillsList = new ArrayList<>();
         this.degreesList = new ArrayList<>();
-        this.questionnaireScore = 0;
         this.experience = 0;
     }
     
@@ -57,8 +53,6 @@ public class User extends Account {
     public List<String> getDegrees() { return degreesList; }
     public List<String> getSkills() { return skillsList; }
     public String getImagePath() { return imagePath; }
-    public Integer getQuestionnaireScore() { return questionnaireScore; }
-    public List<Integer> getMatchId() { return matchId; }
 
     // Setters
     public void setPhone(String phone) { this.phone = phone; }
@@ -68,7 +62,6 @@ public class User extends Account {
     public void setDegrees(List<String> degreesList) { this.degreesList = degreesList; }
     public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
-    public void setQuestionnaireScore(Integer questionnaireScore) { this.questionnaireScore = questionnaireScore; }
 
     // Update methods
 
