@@ -59,10 +59,10 @@ public class FileMatchRepository {
         return match;
     }
 
-    public List<Match> findByUserId(Long userId) {
+    public List<Match> findByAccountId(Long userId) {
         loadMatches();
         return matches.stream()
-                .filter(m -> m.getUserId().equals(userId))
+                .filter(m -> m.getAccountId().equals(userId))
                 .toList();
     }
 }

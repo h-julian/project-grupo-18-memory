@@ -54,7 +54,7 @@ public class FileCompanyRepository {
             return 0L;
         } else {
             return companies.stream()
-                    .map(Company::getId)
+                    .map(Company::getAccountId)
                     .filter(id -> id != null)
                     .max(Comparator.naturalOrder())
                     .orElse(-1L) + 1;
@@ -63,13 +63,6 @@ public class FileCompanyRepository {
 
     public Company save(Company company) {
         loadCompanies(); 
-        if (company.getId() == null) {
-            Long newId = companies.stream()
-                .mapToLong(c -> c.getId() != null ? c.getId() : 0L)
-                .max()
-                .orElse(-1L) + 1;
-            company.setId(newId);
-        }
         companies.add(company);
         saveCompanies();
         return company;
@@ -82,9 +75,9 @@ public class FileCompanyRepository {
             .orElse(null);
     }
 
-    public Company findById(Long id) {
+    public Company findById(long accountId) {
         return companies.stream()
-            .filter(c -> c.getId().equals(id))
+            .filter(c -> c.getAccountId() == accountId)
             .findFirst()
             .orElse(null);
     }

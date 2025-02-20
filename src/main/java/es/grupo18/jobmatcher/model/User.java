@@ -27,8 +27,8 @@ public class User extends Account {
         
     }
     
-    public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
-        super(id, name, email, password);
+    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+        super(accountId, name, email, password);
         this.bio = bio;
         this.phone = phone;
         this.location = location;
@@ -39,8 +39,8 @@ public class User extends Account {
         this.matchId = new ArrayList<>();
     }
 
-    public User(Long id, String name, String email, String password, String bio, String imagePath) {
-        super(id, name, email, password);
+    public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
+        super(accountId, name, email, password);
         this.bio = bio;
         this.imagePath = imagePath;
         this.skillsList = new ArrayList<>();

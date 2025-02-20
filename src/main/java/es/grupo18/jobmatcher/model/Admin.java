@@ -24,4 +24,16 @@ public class Admin extends Account {
         this.role = newRole;
     }
 
+    // toString
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "accountId=" + getAccountId() +
+                ", name='" + getName() + 
+                ", email='" + getEmail() + 
+                ", password='" + getPassword() + 
+                ", role='" + role + 
+                '}';
+    }
+
 }

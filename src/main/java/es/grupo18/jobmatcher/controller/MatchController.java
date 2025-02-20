@@ -6,7 +6,6 @@ import es.grupo18.jobmatcher.repository.FileCompanyRepository;
 import es.grupo18.jobmatcher.repository.FileUserRepository;
 import es.grupo18.jobmatcher.repository.FileMatchRepository;
 import es.grupo18.jobmatcher.model.Company;
-import es.grupo18.jobmatcher.model.JobOffer;
 import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.model.Match;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+
 
 @Controller
 public class MatchController {
@@ -58,7 +59,7 @@ public class MatchController {
         return companies.stream()
             .map(company -> {
                 Map<String, Object> companyMap = new HashMap<>();
-                companyMap.put("id", company.getId());
+                companyMap.put("accountId", company.getAccountId());
                 companyMap.put("name", company.getName());
                 companyMap.put("location", company.getLocation());
                 companyMap.put("description", company.getBio());
@@ -72,14 +73,30 @@ public class MatchController {
             .collect(Collectors.toList());
     }
 
-    @PostMapping("/api/match/like/{companyId}")
-@ResponseBody
-public ResponseEntity<?> likeCompany(@PathVariable String companyId, HttpSession session) {
-    try {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("success", false, "error", "Usuario no autenticado"));
+    @PostMapping("/api/match/like/{accountId}")
+    @ResponseBody
+    public ResponseEntity<?> likeCompany(@PathVariable String accountId, HttpSession session) {
+        try {
+            User user = (User) session.getAttribute("user");
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("success", false, "error", "Usuario no autenticado"));
+            }
+
+            // Create and save match
+            Match match = new Match(user.getAccountId(), Long.parseLong(accountId));
+            matchRepository.save(match);
+
+            return ResponseEntity.ok(Map.of(
+                "success", true,
+                "message", "Match guardado correctamente",
+                "matchId", match.getId()
+            ));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("success", false, "error", e.getMessage()));
         }
 
         // Create and save match
