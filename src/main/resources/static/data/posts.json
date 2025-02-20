@@ -4,7 +4,7 @@
     "title": "Nuevas Amenazas de Ransomware en 2025",
     "content": "En 2025, las amenazas de ransomware han evolucionado, afectando a empresas de todos los tamaños. Es crucial mantenerse actualizado con las últimas medidas de seguridad.",
     "timestamp": "20/02/2025",
-    "imagePath": "/images/ransomware.jpg",
+    "imagePath": "/img/ransomware.jpg",
     "ownerId": 1,
     "ownerType": "admin"
   },
@@ -13,7 +13,7 @@
     "title": "Cómo Proteger tus Datos Personales en Línea",
     "content": "La protección de datos personales es más importante que nunca. Aquí te mostramos las mejores prácticas para mantener tu información segura en línea.",
     "timestamp": "19/02/2025",
-    "imagePath": "/images/data_protection.jpg",
+    "imagePath": "/img/data_protection.jpg",
     "ownerId": 2,
     "ownerType": "admin"
   },
@@ -22,7 +22,7 @@
     "title": "El Futuro de la Ciberseguridad: IA y Machine Learning",
     "content": "La inteligencia artificial y el machine learning están revolucionando la ciberseguridad. Descubre cómo estas tecnologías están ayudando a detectar y prevenir amenazas.",
     "timestamp": "18/02/2025",
-    "imagePath": "/images/ai_cybersecurity.jpg",
+    "imagePath": "/img/ai_cybersecurity.jpg",
     "ownerId": 3,
     "ownerType": "admin"
   },
@@ -31,7 +31,7 @@
     "title": "Ciberseguridad en el Trabajo Remoto",
     "content": "El trabajo remoto ha aumentado significativamente, y con ello, los riesgos de seguridad. Aprende cómo proteger tu entorno de trabajo remoto.",
     "timestamp": "17/02/2025",
-    "imagePath": "/images/remote_work_security.jpg",
+    "imagePath": "/img/remote_work_security.jpg",
     "ownerId": 4,
     "ownerType": "admin"
   },
@@ -40,7 +40,7 @@
     "title": "Las Mejores Herramientas de Ciberseguridad para 2025",
     "content": "Mantente protegido con las mejores herramientas de ciberseguridad disponibles en 2025. Aquí te presentamos una lista de las más efectivas.",
     "timestamp": "16/02/2025",
-    "imagePath": "/images/cybersecurity_tools.jpg",
+    "imagePath": "/img/cybersecurity_tools.jpg",
     "ownerId": 5,
     "ownerType": "admin"
   }
