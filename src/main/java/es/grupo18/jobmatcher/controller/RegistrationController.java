@@ -55,9 +55,9 @@ public class RegistrationController {
         // Crear la cuenta según el tipo de usuario
         Account tempAccount;
         if ("usuario".equalsIgnoreCase(accountType)) {
-            tempAccount = new User(id, name, email, password, phone, location, bio, experience, degreesList, skillsList, imagePath);
+            tempAccount = new User(id, name, email, password, bio, imagePath);
         } else if ("empresa".equalsIgnoreCase(accountType)) {
-            tempAccount = new Company(1,name,email,password);
+            tempAccount = new Company(id ,name,email,password, bio, imagePath);
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "Tipo de cuenta no válido."));
         }
