@@ -103,9 +103,6 @@ public class User extends Account {
         this.imagePath = null;
     }
 
-    public void addLikedCompany(int id) {
-        this.matchId.add(id);
-    }
 
     // Static methods to load and save user data from/to JSON file
 
