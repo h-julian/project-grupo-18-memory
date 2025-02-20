@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <header>
         <div class="header-left">
             <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
@@ -18,53 +17,59 @@
             <a href="/main">JOBMATCHER</a>
         </div>
         <div class="header-right">
-          <button id="post-btn" onclick="location.href='/newpost'">Postear</button>
+            <button id="post-btn" onclick="location.href='/newpost'">Postear</button>
         </div>
     </header>
 
     <main class="container">
-      <section id="blog-posts" class="blog-posts">
-          <!-- Aquí se insertarán los artículos dinámicamente -->
-      </section>
-      
-      <section class="new-post">
-          <button class="btn admin-btn" onclick="location.href='/newpost'">
-              Sé el primero en postear algo
-          </button>
-      </section>
+        <section id="blog-posts" class="blog-posts">
+            <!-- Aquí se insertarán los artículos dinámicamente -->
+        </section>
+        
+        <section class="new-post">
+            <button class="btn admin-btn" onclick="location.href='/newpost'">
+                Sé el primero en postear algo
+            </button>
+        </section>
     </main>
 
-
     <footer>
-      <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+        <div class="copyright">© 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          const posts = [
-          { title: "Primer Post", content: "Contenido del primer post", timestamp: "2025-02-20", imagePath: "", ownerType: "usuario" },
+        function goBack() {
+            window.history.back();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const posts = [
+                { title: "Primer Post", content: "Contenido del primer post", timestamp: "2025-02-20", imagePath: "", ownerType: "usuario" },
                 { title: "Segundo Post", content: "Contenido del segundo post, EYYYYYYY MUY BUENAS A TODOS AQUI VEGETA 777 EN UN NUEVO VIDEO DE MINECRAFT, QUE TAL WILLYYY", timestamp: "2025-02-19", imagePath: "", ownerType: "empresa" },
                 { title: "Tercer Post", content: "Contenido del tercer post", timestamp: "2025-02-18", imagePath: "", ownerType: "usuario" },
                 { title: "Cuarto Post", content: "Contenido del cuarto post", timestamp: "2025-02-17", imagePath: "", ownerType: "empresa" },
                 { title: "Quinto Post", content: "Contenido del quinto post", timestamp: "2025-02-16", imagePath: "", ownerType: "usuario" }
-          ];
-          
-          const blogPostsContainer = document.getElementById("blog-posts");
-          posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-          
-          posts.forEach(post => {
-              const postElement = document.createElement("div");
-              postElement.classList.add("box");
-              postElement.innerHTML = `
-                  <h2>${post.title}</h2>
-                  <p>${post.content}</p>
-                  <p><strong>Fecha:</strong> ${post.timestamp}</p>
-                  <p><strong>Autor:</strong> ${post.ownerType}</p>
-              `;
-              blogPostsContainer.appendChild(postElement);
-          });
-      });
-    </script>
+            ];
+            
+            const blogPostsContainer = document.getElementById("blog-posts");
+            posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            if (posts.length > 0) {
+                document.querySelector('.new-post').style.display = 'none';
+            }
 
+            posts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.classList.add("box");
+                postElement.innerHTML = `
+                    <h2>${post.title}</h2>
+                    <p>${post.content}</p>
+                    <p><strong>Fecha:</strong> ${post.timestamp}</p>
+                    <p><strong>Autor:</strong> ${post.ownerType}</p>
+                `;
+                blogPostsContainer.appendChild(postElement);
+            });
+        });
+    </script>
 </body>
 </html>
