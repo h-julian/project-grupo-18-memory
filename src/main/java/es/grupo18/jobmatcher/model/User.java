@@ -17,6 +17,7 @@ public class User extends Account {
     private List<String> degreesList;
     private List<String> skillsList;
     private String imagePath;
+    private List<Integer> matchId = new ArrayList<>();
 
     private static final String FILE_PATH = "src/main/resources/static/data/users.json";
     private static final ObjectMapper mapper = new ObjectMapper();
