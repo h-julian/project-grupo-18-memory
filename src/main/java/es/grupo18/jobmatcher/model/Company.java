@@ -1,9 +1,13 @@
 package es.grupo18.jobmatcher.model;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-
 
 public class Company extends Account {  
     private String bio;
@@ -13,11 +17,12 @@ public class Company extends Account {
     private Map<String, User> favoriteUsersMap;
     private int questionnaireScore;
 
+    private static final String FILE_PATH = "src/main/resources/static/data/companies.json";
+    private static final ObjectMapper mapper = new ObjectMapper();
+
     // Constructors
 
-    public Company(){
-
-    }
+    public Company() {}
 
     public Company(long accountId, String name, String email, String password, String location, String bio, String imagePath, Map<String, JobOffer> jobOffersMap, Map<String, User> favoriteUsersMap) {
         super(accountId, name, email, password);
@@ -37,6 +42,13 @@ public class Company extends Account {
         this.questionnaireScore = 0;
         this.location = "";
     }
+
+    public Company(Long accountId, String name, String email, String password, String description, String location, String profilePhoto) {
+        super(accountId, name, email, password);
+        this.bio = description;
+        this.location = location;
+        this.imagePath = profilePhoto;
+    }
     
     // Getters
     public String getBio() { return bio; }
@@ -52,6 +64,8 @@ public class Company extends Account {
     public void setJobOffers(Map<String, JobOffer> jobOffersMap) { this.jobOffersMap = jobOffersMap; }
     public void setFavoriteUsers(Map<String, User> favoriteUsersMap) { this.favoriteUsersMap = favoriteUsersMap; }
     public void setQuestionnaireScore(int score) { this.questionnaireScore = score; }
+    public void setLocation(String location) { this.location = location; }
+    public void setProfilePhoto(String profilePhoto) { this.imagePath = profilePhoto; }
 
     // Update methods
     public void updateLocation(String newLocation){
@@ -84,13 +98,26 @@ public class Company extends Account {
     }
 
     public void addImage(String imagePath) {
-    this.imagePath = imagePath;
-}
+        this.imagePath = imagePath;
+    }
 
     public void removeImage() {
         this.imagePath = null;
     }
 
+    public static Company loadCompanyById(Long companyId) {
+        try {
+            List<Company> companies = mapper.readValue(new File(FILE_PATH), new TypeReference<List<Company>>() {});
+            for (Company company : companies) {
+                if (company.getAccountId() == companyId) {
+                    return company;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     // toString
     @Override
@@ -104,6 +131,4 @@ public class Company extends Account {
                 ", questionnaireScore=" + questionnaireScore +
                 '}';
     }
-
-
 }
