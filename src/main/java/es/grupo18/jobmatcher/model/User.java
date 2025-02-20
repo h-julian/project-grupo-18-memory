@@ -20,10 +20,8 @@ public class User extends Account {
     private List<String> degreesList;
     private List<String> skillsList;
     private String imagePath;
-<<<<<<< Updated upstream
     private List<Integer> matchId;
-=======
->>>>>>> Stashed changes
+
 
     private static final String FILE_PATH = "src/main/resources/static/data/users.json";
     private static final ObjectMapper mapper = new ObjectMapper();

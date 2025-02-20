@@ -3,79 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuestionario</title>
+    <title>Editar Perfil</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="css/questionnaireStyles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <header class="header">
-        <a href="/main" class="logo">
-            <div>JobMatcher</div>
-        </a>
+
+    <header>
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+        </div>
+        <div class="title">
+            <a href="/main">JOBMATCHER</a>
+        </div>
+        <div class="header-right">
+            <button class="hidden-button"></button>
+        </div>
     </header>
 
-    <div class="questionnaire-container">
-        <h2 id="welcomeMsg"></h2>
-        <form id="questionnaireForm">
-            <div id="questionsContainer"></div>
-            <div class="button-group">
-                <button type="submit" class="btn">Enviar Respuestas</button>
-            </div>
-        </form>
+    <div class="container">
+        <div class="box">
+            <h1>Editar perfil</h1>
+            <form id="profileEditorForm" method="post" action="/profile/form">
+                <div class="input-group">
+                    <label for="studies">Estudios (separados por comas):</label>
+                    <input type="text" id="studies" name="studies" value="{{studies}}" required>
+                </div>
+                <div class="input-group">
+                    <label for="skills">Habilidades (separadas por comas):</label>
+                    <input type="text" id="skills" name="skills" value="{{skills}}" required>
+                </div>
+                <div class="input-group">
+                    <label for="experience">Experiencia (en años):</label>
+                    <input type="number" id="experience" name="experience" value="{{experience}}">
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="button">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
-        // Extract parameters from the URL (example: ?name=Juan&account_type=usuario)
-        const params = new URLSearchParams(window.location.search);
-        const userName = params.get('name') || 'Usuario';
-        const accountType = params.get('account_type') || 'usuario';
-
-        // Define the welcome message based on the account type
-        const welcomeMsg = document.getElementById('welcomeMsg');
-        if (accountType === 'empresa') {
-            welcomeMsg.textContent = `Bienvenido, ${userName}`;
-        } else {
-            welcomeMsg.textContent = `Bienvenido/a, ${userName}. Realiza este cuestionario sobre ti`;
+        function goBack() {
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = "/profile";
+            }
         }
-
-        // Determine the questions file based on the account type
-        const questionsFile = accountType === 'empresa' ?
-                              '/src/main/resources/static/data/company_questions.json' :
-                              '/src/main/resources/static/data/user_questions.json';
-
-        let respuestas = {}; // In-memory variable to store the answers
-
-        // Load questions from the JSON
-        fetch(questionsFile)
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('questionsContainer');
-                data.questions.forEach(q => {
-                    const div = document.createElement('div');
-                    div.className = 'question-group';
-                    // Display each question vertically
-                    div.innerHTML = `
-                        <label for="q${q.id}">${q.question}</label>
-                        <input type="text" id="q${q.id}" name="q${q.id}" required>
-                    `;
-                    container.appendChild(div);
-                });
-            })
-            .catch(error => console.error('Error loading questions:', error));
-
-        // Handle form submission, save answers in memory and redirect to main
-        document.getElementById('questionnaireForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            respuestas = {};
-            document.querySelectorAll('.question-group input').forEach(input => {
-                respuestas[input.id] = input.value;
-            });
-            console.log('Answers stored in memory:', respuestas);
-            alert('Answers submitted successfully');
-            // After submission, redirect to main
-            window.location.href = '/main';
-        });
     </script>
+
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+    </footer>
+    
 </body>
 </html>
