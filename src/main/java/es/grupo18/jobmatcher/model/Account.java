@@ -53,7 +53,6 @@ public abstract class Account {
 
     // toString
     @Override
-
     public String toString() {
         return "Account{" +
                 "accountId=" + accountId +
