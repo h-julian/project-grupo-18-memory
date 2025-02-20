@@ -41,8 +41,6 @@ public class Post {
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setOwnerId(long ownerId) { this.ownerId = ownerId; }
-    public void setOwnerType(String ownerType) { this.ownerType = ownerType; }
-
-    
+    public void setOwnerType(String ownerType) { this.ownerType = ownerType; }    
 }
 

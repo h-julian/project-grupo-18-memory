@@ -26,8 +26,6 @@ public class JobOffer {
         this.salary = salary;
         this.ownerId = ownerId;
         this.favoriteByUsersMap = new HashMap<>();
-
-
     }
 
     // Getters

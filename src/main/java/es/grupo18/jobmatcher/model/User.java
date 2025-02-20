@@ -73,10 +73,5 @@ public class User extends Account {
 
     public void updateImagePath(String newImagePath){
         this.imagePath = newImagePath;
-    }
-
-    
-
-
-    
+    }  
 }
