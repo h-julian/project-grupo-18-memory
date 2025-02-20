@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-
-
 <body>
 
     <header>
@@ -19,33 +17,33 @@
             <a href="/main">JOBMATCHER</a>
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button> <!-- Sin función -->
+            <button class="hidden-button"></button>
         </div>
     </header>
 
     <div class="container">
         <div class="box">
             <h1>Editar perfil</h1>
-            <form id="profileEditorForm">
+            <form id="profileEditorForm" method="post" action="/profile/edit">
                 <div class="input-group">
                     <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" th:value="${user.name}" required>
                 </div>
                 <div class="input-group">
                     <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" th:value="${user.email}" required>
                 </div>
                 <div class="input-group">
                     <label for="phone">Teléfono:</label>
-                    <input type="text" id="phone" name="phone">
+                    <input type="text" id="phone" name="phone" th:value="${user.phone}">
                 </div>
                 <div class="input-group">
                     <label for="location">Ubicación:</label>
-                    <input type="text" id="location" name="location">
+                    <input type="text" id="location" name="location" th:value="${user.location}">
                 </div>
                 <div class="input-group">
                     <label for="bio">Biografía:</label>
-                    <textarea id="bio" name="bio" rows="4" required></textarea>
+                    <textarea id="bio" name="about" rows="4" required th:text="${user.bio}"></textarea>
                 </div>
                 <div class="input-group">
                     <button type="submit" class="button">Guardar Cambios</button>
@@ -55,40 +53,18 @@
     </div>
 
     <script>
-        // Escuchar el envío del formulario y guardar la información del perfil en localStorage
-        document.getElementById("profileEditorForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const profile = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                location: document.getElementById("location").value,
-                about: document.getElementById("bio").value
-            };
-            localStorage.setItem("profile", JSON.stringify(profile));
-            alert("Perfil actualizado correctamente.");
-            window.location.href = "/profile";
-        });
-    </script>
-
-    <script>
         function goBack() {
             if (document.referrer) {
-                window.history.back(); // Vuelve a la página anterior si hay historial
+                window.history.back();
             } else {
-                window.location.href = "/profile"; // Si no hay historial, redirige a la página principal
+                window.location.href = "/profile";
             }
         }
     </script>
 
-    
-
-<footer>
+    <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
     
 </body>
-
-
-
 </html>
