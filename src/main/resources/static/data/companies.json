@@ -1,8 +1,43 @@
-[ {
-  "id" : 0,
-  "name" : "Empresa 1",
-  "bio" : "Esto es una prueba",
-  "location" : "Bogotá",
-  "imagePath" : "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
-  "questionnaireScore" : 43
-} ]
+[
+  {
+    "id": 0,
+    "name": "Microsoft",
+    "bio": "Buscamos programadores experimentados, ofrecemos un ambiente de trabajo flexible y beneficios de bienestar.",
+    "location": "California",
+    "imagePath": "https://app.readingwise.com/images/microsoft-logo.png",
+    "questionnaireScore": 43
+  },
+  {
+    "id": 1,
+    "name": "Google",
+    "bio": "Innovamos en tecnología y buscamos talento apasionado por la inteligencia artificial y la computación en la nube.",
+    "location": "California",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    "questionnaireScore": 50
+  },
+  {
+    "id": 2,
+    "name": "Apple",
+    "bio": "Creamos experiencias revolucionarias con nuestros productos, buscamos diseñadores y desarrolladores visionarios.",
+    "location": "California",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+    "questionnaireScore": 48
+  },
+  {
+    "id": 3,
+    "name": "Amazon",
+    "bio": "Lideramos el comercio electrónico y la computación en la nube, buscamos ingenieros que impulsen la innovación.",
+    "location": "Seattle",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    "questionnaireScore": 45
+  },
+  {
+    "id": 4,
+    "name": "Tesla",
+    "bio": "Revolucionamos la industria automotriz con tecnología eléctrica y autónoma, buscamos talento disruptivo.",
+    "location": "Texas",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg",
+    "questionnaireScore": 47
+  }
+]
+

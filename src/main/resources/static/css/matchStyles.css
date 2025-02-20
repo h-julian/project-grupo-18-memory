@@ -1,8 +1,18 @@
+:root {
+    --primary-color: #0077b6;
+    --secondary-color: #48cae4;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --border-radius: 12px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
+    padding: 20px;
 }
 
 /* Header */
@@ -11,7 +21,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: #0077b6;
+    background: var(--primary-color);
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -63,7 +73,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 10px auto;
-    background-color: #fff;
+    background-color: var(--card-background);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -83,7 +93,7 @@ body {
 .header-match h2 {
     font-size: 24px;
     font-weight: bold;
-    color: #0077b6;
+    color: var(--primary-color);
     margin-bottom: 20px;
 }
 
@@ -96,7 +106,7 @@ body {
 
 /* Estilo de cada tarjeta de persona */
 .match-card {
-    background-color: #fff;
+    background-color: var(--card-background);
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -121,7 +131,7 @@ body {
 
 .match-card p {
     font-size: 14px;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* Botón */
@@ -139,4 +149,126 @@ body {
 
 .match-card .btn:hover {
     background: #0096c7;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.title h1 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 24px;
+}
+
+.companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.company-card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.company-card:hover {
+    transform: translateY(-5px);
+}
+
+.company-header {
+    padding: 20px;
+    text-align: center;
+}
+
+.company-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.company-name {
+    margin: 10px 0;
+    color: var(--text-color);
+    font-size: 1.5em;
+}
+
+.company-info {
+    padding: 0 20px;
+}
+
+.company-description {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.company-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+}
+
+.action-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.like-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.like-btn:hover {
+    background-color: #005d91;
+}
+
+.discard-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.discard-btn:hover {
+    background-color: #bb2d3b;
+}
+
+.button-icon {
+    margin-right: 5px;
+}
+
+.back-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background-color: #005d91;
 }

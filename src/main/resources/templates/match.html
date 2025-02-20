@@ -1,47 +1,105 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match - Empresas</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/matchStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Match con Empresas</h1>
-    <div id="companies-container"></div>
+    <header>
+        <div class="header-left">
+            <button class="back-btn" onclick="window.location.href='/main'">⬅️ Atrás</button>
+        </div>
+        <div class="title">
+            <h1>Match con Empresas</h1>
+        </div>
+        <div class="header-right"></div>
+    </header>
+
+    <div class="companies-grid" id="companies-container">
+        <!-- Companies will be loaded here -->
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('/match/companies')
+            fetch('/api/companies')
                 .then(response => response.json())
-                .then(data => {
+                .then(companies => {
                     const container = document.getElementById('companies-container');
-                    data.forEach(company => {
-                        const companyDiv = document.createElement('div');
-                        companyDiv.classList.add('company');
-                        companyDiv.innerHTML = `
-                            <img src="${company.imagePath}" alt="${company.name}" class="company-image">
-                            <h2>${company.name}</h2>
-                            <p><strong>Bio:</strong> ${company.bio}</p>
-                            <p><strong>Ubicación:</strong> ${company.location}</p>
-                            <p><strong>Puntuación:</strong> ${company.questionnaireScore}</p>
-                            <button onclick="likeCompany(${company.id})">Me gusta</button>
-                            <button onclick="discardCompany(${company.id})">Descartar</button>
-                        `;
-                        container.appendChild(companyDiv);
+                    companies.forEach(company => {
+                        const card = createCompanyCard(company);
+                        container.appendChild(card);
                     });
                 })
-                .catch(error => console.error('Error al cargar las empresas:', error));
+                .catch(error => console.error('Error loading companies:', error));
         });
 
+        function createCompanyCard(company) {
+            const card = document.createElement('div');
+            card.className = 'company-card';
+            card.innerHTML = `
+                <div class="company-header">
+                    <img src="${company.profilePhoto || '/images/default-company.png'}" 
+                         alt="${company.name}" 
+                         class="company-image">
+                    <h2 class="company-name">${company.name}</h2>
+                </div>
+                <div class="company-info">
+                    <p class="company-description">${company.description || 'Sin descripción'}</p>
+                    <div class="company-details">
+                        <p><i class="location-icon">📍</i> ${company.location || 'No especificada'}</p>
+                        <p><i class="score-icon">🎯</i> Match: ${company.questionnaireScore || 0}%</p>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn" onclick="likeCompany(${company.id})">
+                        <span class="button-icon">❤️</span> Me interesa
+                    </button>
+                    <button class="discard-btn" onclick="discardCompany(${company.id})">
+                        <span class="button-icon">✖️</span> Descartar
+                    </button>
+                </div>
+            `;
+            return card;
+        }
+
         function likeCompany(id) {
-            alert('Te gusta la empresa con ID: ' + id);
-            // Aquí podrías enviar una solicitud al backend para guardar la preferencia
+            fetch(`/api/match/like/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('¡Match realizado con éxito!', 'success');
+                }
+            })
+            .catch(error => showNotification('Error al realizar match', 'error'));
         }
 
         function discardCompany(id) {
-            alert('Has descartado la empresa con ID: ' + id);
-            // Aquí podrías enviar una solicitud al backend para descartar la empresa
+            fetch(`/api/match/discard/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('Empresa descartada', 'info');
+                }
+            })
+            .catch(error => showNotification('Error al descartar', 'error'));
+        }
+
+        function showNotification(message, type) {
+            // Implementation of notification system
+            alert(message);
         }
     </script>
 </body>
