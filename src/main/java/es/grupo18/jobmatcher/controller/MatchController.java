@@ -1,8 +1,8 @@
 package es.grupo18.jobmatcher.controller;
 
+import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.model.Match;
 import es.grupo18.jobmatcher.model.User;
-import es.grupo18.jobmatcher.model.Company;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -21,28 +21,13 @@ import java.util.List;
 public class MatchController {
 
     private static final String MATCHES_FILE_PATH = "src/main/resources/static/data/matches.json";
+    private static final String COMPANIES_FILE_PATH = "src/main/resources/static/data/companies.json";
     private static final ObjectMapper mapper = new ObjectMapper();
 
     @GetMapping("/companies")
-    public String getMatchedCompanies(Model model) {
-        User user = User.loadUser();
-        if (user == null) {
-            model.addAttribute("companies", new ArrayList<>());
-            return "companies";
-        }
-
-        List<Match> matches = loadMatches();
-        List<Company> matchedCompanies = new ArrayList<>();
-        for (Match match : matches) {
-            if (match.getId() == user.getAccountId()) {
-                Company company = Company.loadCompanyById(match.getCompanyId());
-                if (company != null) {
-                    matchedCompanies.add(company);
-                }
-            }
-        }
-        model.addAttribute("companies", matchedCompanies);
-        return "companies";
+    @ResponseBody
+    public List<Company> getMatchedCompanies() {
+        return loadCompanies();
     }
 
     @PostMapping("/like/{companyId}")
@@ -61,13 +46,24 @@ public class MatchController {
     }
 
     @GetMapping("/match")
-    public String showMatchPage() {
+    public String showMatchPage(Model model) {
+        List<Company> companies = loadCompanies();
+        model.addAttribute("companies", companies);
         return "match";
     }
 
     private List<Match> loadMatches() {
         try {
             return mapper.readValue(new File(MATCHES_FILE_PATH), new TypeReference<List<Match>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    private List<Company> loadCompanies() {
+        try {
+            return mapper.readValue(new File(COMPANIES_FILE_PATH), new TypeReference<List<Company>>() {});
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();

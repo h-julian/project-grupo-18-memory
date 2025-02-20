@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 
 <header>
     <div class="header-left">
-    <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
     </div>
     <div class="title">
         <a href="/main">JOBMATCHER</a>
@@ -30,7 +30,7 @@
     <script>
         // Track liked companies in session storage
         const likedCompanies = new Set(JSON.parse(sessionStorage.getItem('likedCompanies') || '[]'));
-    
+
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Loading companies...');
             fetch('/api/match/companies')
@@ -48,24 +48,24 @@
                     container.innerHTML = '<p class="error-message">Error al cargar las empresas</p>';
                 });
         });
-    
+
         function createCompanyCard(company) {
             console.log('Company data:', company);
             const defaultImage = '/img/default-company.png';
             const card = document.createElement('div');
             card.className = 'company-card';
             const isLiked = likedCompanies.has(company.accountId);
-    
+
             card.innerHTML = `
                 <div class="company-header">
-                    <img src="${company.profilePhoto || defaultImage}" 
+                    <img src="${company.imagePath || defaultImage}" 
                          alt="${company.name}"
                          class="company-image"
                          onerror="this.src='${defaultImage}'">
                     <h2 class="company-name">${company.name || 'Sin nombre'}</h2>
                 </div>
                 <div class="company-info">
-                    <p class="company-description">${company.description || 'Sin descripción'}</p>
+                    <p class="company-description">${company.bio || 'Sin descripción'}</p>
                     <p class="company-location">📍 ${company.location || 'Ubicación no especificada'}</p>
                 </div>
                 <div class="action-buttons">
@@ -77,14 +77,14 @@
             `;
             return card;
         }
-    
+
         function toggleLike(companyId, button) {
             if (likedCompanies.has(companyId)) {
                 return; // Already liked
             }
-    
+
             console.log('Enviando like para compañía:', companyId);
-    
+
             fetch(`/api/match/like/${companyId}`, {
                 method: 'POST',
                 headers: {
