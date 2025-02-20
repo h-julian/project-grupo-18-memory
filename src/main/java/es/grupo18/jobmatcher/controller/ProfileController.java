@@ -26,7 +26,7 @@ public class ProfileController {
         5,
         Arrays.asList("Grado en Ingeniería Informática", "Máster en Ciberseguridad"),
         Arrays.asList("Java", "Spring Boot", "SQL", "Pentesting"),
-        "/img/custom.jpg"
+        "/img/profile.jpg"
     );
 
     @GetMapping("/profile")
