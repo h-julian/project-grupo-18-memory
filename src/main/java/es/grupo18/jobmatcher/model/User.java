@@ -1,87 +1,127 @@
 package es.grupo18.jobmatcher.model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "users")
 public class User extends Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String nombre;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    // Se recomienda almacenar la contraseña hasheada
+    @Column(nullable = false)
+    private String password;
     
-    private String phone;
-    private String location;
-    private String bio;
-    private Integer experience;
-    private List<String> degreesList;
-    private List<String> skillsList;
-    private Map<String, JobOffer> favoriteJobOffersMap;
-    private String imagePath;
-    private int questionnaireScore;  // Add this field
+    // URL de la foto de perfil
+    private String profilePhoto;
     
-    public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
-        super(id, name, email, password);
-        this.bio = bio;
-        this.phone = phone;
-        this.location = location;
-        this.experience = experience;
-        this.degreesList = degreesList;
-        this.skillsList = skillsList;
-        this.favoriteJobOffersMap = (favoriteJobOffersMap != null) ? favoriteJobOffersMap : new HashMap<>();
-        this.imagePath = imagePath;
+    // Se almacena la lista de habilidades (por ejemplo, obtenidas en el cuestionario)
+    @ElementCollection
+    @CollectionTable(name = "usuario_habilidades", joinColumns = @JoinColumn(name = "usuario_id"))
+    @Column(name = "habilidad")
+    private List<String> skills = new ArrayList<>();
+    
+    // Se almacena la lista de preferencias (por ejemplo, áreas de interés)
+    @ElementCollection
+    @CollectionTable(name = "usuario_preferencias", joinColumns = @JoinColumn(name = "usuario_id"))
+    @Column(name = "preferencia")
+    private List<String> preferences = new ArrayList<>();
+    
+    // Respuestas del cuestionario almacenadas en formato JSON (opcional)
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String questionnaireResponses;
+
+    public User() {}
+
+    // Constructor completo
+    public User(String name, String email, String password, String profilePhoto) {
+        this.setName(name);
+        this.setEmail(email);
+        this.setPassword(password);
+        this.profilePhoto = profilePhoto;
+    }
+
+    // Getters y setters
+
+    public Long getId() {
+        return id;
+    }
+
+    // No se incluye setter para id ya que se genera automáticamente
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
     }
     
-    // Getters
-    public String getPhone() { return phone; }
-    public String getLocation() { return location; }
-    public String getBio() { return bio; }
-    public Integer getExperience() { return experience; }
-    public List<String> getDegrees() { return degreesList; }
-    public List<String> getSkills() { return skillsList; }
-    public Map<String, JobOffer> getFavoriteJobOffers() { return favoriteJobOffersMap; }
-    public String getImagePath() { return imagePath; }
-    public int getQuestionnaireScore() { return this.questionnaireScore; }  // Add this getter
-
-    // Setters
-    public void setPhone(String phone) { this.phone = phone; }
-    public void setLocation(String location) { this.location = location; }
-    public void setBio(String bio) { this.bio = bio; }
-    public void setExperience(Integer experience) { this.experience = experience; }
-    public void setDegrees(List<String> degreesList) { this.degreesList = degreesList; }
-    public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
-    public void setFavoriteJobOffers(Map<String, JobOffer> favoriteJobOffersMap) { this.favoriteJobOffersMap = favoriteJobOffersMap; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
-    public void setQuestionnaireScore(int score) { this.questionnaireScore = score; }  // Add this setter
-
-    // Update methods
-
-    public void updatePhone(String newPhone){
-        this.phone = newPhone;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
-    public void updateLocation(String newLocation){
-        this.location = newLocation;
+     
+    public String getPassword() {
+        return password;
     }
-
-    public void updateBio(String newBio){
-        this.bio = newBio;
-    }
-
-    public void updateExperience(Integer newExperience){
-        this.experience = newExperience;
-    }
-
-    public void updateDegrees(List<String> newDegrees){
-        this.degreesList = newDegrees;
-    }
-
-    public void updateSkills(List<String> newSkills){
-        this.skillsList = newSkills;
-    }
-
-    public void updateImagePath(String newImagePath){
-        this.imagePath = newImagePath;
-    }
-
     
-
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+    
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+    
+    public List<String> getSkills() {
+        return skills;
+    }
+    
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+    
+    public List<String> getPreferences() {
+        return preferences;
+    }
+    
+    public void setPreferences(List<String> preferences) {
+        this.preferences = preferences;
+    }
+    
+    public String getQuestionnaireResponses() {
+        return questionnaireResponses;
+    }
+    
+    public void setQuestionnaireResponses(String questionnaireResponses) {
+        this.questionnaireResponses = questionnaireResponses;
+    }
 }
