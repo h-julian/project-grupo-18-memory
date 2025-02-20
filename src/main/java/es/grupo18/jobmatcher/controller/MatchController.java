@@ -29,8 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
-
 @Controller
 public class MatchController {
 
@@ -87,6 +85,9 @@ public class MatchController {
             Match match = new Match(user.getAccountId(), Long.parseLong(accountId));
             matchRepository.save(match);
 
+            // Update user's liked companies list
+            User.saveUser(user);
+
             return ResponseEntity.ok(Map.of(
                 "success", true,
                 "message", "Match guardado correctamente",
@@ -98,41 +99,7 @@ public class MatchController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("success", false, "error", e.getMessage()));
         }
-
-        // Create and save match
-        Match match = new Match(user.getId(), Long.parseLong(companyId));
-        
-        // Read existing matches
-        ObjectMapper mapper = new ObjectMapper();
-        List<Match> matches = new ArrayList<>();
-        try {
-            matches = mapper.readValue(Files.readAllBytes(Paths.get("src/main/resources/static/data/matches.json")), new TypeReference<List<Match>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Add new match and save
-        matches.add(match);
-        try (FileWriter writer = new FileWriter("src/main/resources/static/data/matches.json")) {
-            mapper.writeValue(writer, matches);
-        }
-
-        // Update user's matchId list and save user
-        user.getMatchId().add(match.getCompanyId().intValue());
-        User.saveUser(user);
-
-        return ResponseEntity.ok(Map.of(
-            "success", true,
-            "message", "Match guardado correctamente",
-            "matchId", match.getId()
-        ));
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body(Map.of("success", false, "error", e.getMessage()));
     }
-}
 
     // Debug endpoint to check raw data
     @GetMapping("/api/companies/debug")

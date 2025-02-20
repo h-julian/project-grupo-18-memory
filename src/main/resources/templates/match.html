@@ -54,7 +54,7 @@
             const defaultImage = '/img/default-company.png';
             const card = document.createElement('div');
             card.className = 'company-card';
-            const isLiked = likedCompanies.has(company.id);
+            const isLiked = likedCompanies.has(company.accountId);
     
             card.innerHTML = `
                 <div class="company-header">
@@ -70,7 +70,7 @@
                 </div>
                 <div class="action-buttons">
                     <button class="like-btn ${isLiked ? 'liked' : ''}" 
-                            onclick="toggleLike(${company.id}, this)">
+                            onclick="toggleLike(${company.accountId}, this)">
                         ${isLiked ? '✓ Interesado' : '❤️ Me interesa'}
                     </button>
                 </div>
