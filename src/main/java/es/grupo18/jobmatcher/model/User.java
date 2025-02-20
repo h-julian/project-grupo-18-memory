@@ -143,4 +143,20 @@ public class User extends Account {
     public void addFavoriteCompany(String accountId, JobOffer jobOffer) {
         favoriteJobOffersMap.put(accountId, jobOffer);
     }
+
+    // toString
+    @Override
+    public String toString() {
+        return "User{" + super.toString() +
+                "phone='" + phone + 
+                ", location='" + location + 
+                ", bio='" + bio + 
+                ", experience=" + experience + 
+                ", degreesList=" + degreesList + 
+                ", skillsList=" + skillsList + 
+                ", favoriteJobOffersMap=" + favoriteJobOffersMap + 
+                ", imagePath='" + imagePath + 
+                ", questionnaireScore=" + questionnaireScore + 
+                '}';
+    }
 }

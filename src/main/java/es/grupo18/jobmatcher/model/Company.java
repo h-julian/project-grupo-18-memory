@@ -5,8 +5,7 @@ import java.util.Map;
 
 
 
-public class Company extends Account {
-    private Long id;   
+public class Company extends Account {  
     private String bio;
     private String location;
     private String imagePath;
@@ -20,7 +19,7 @@ public class Company extends Account {
 
     }
 
-    public Company(Long accountId, String name, String email, String password, String location, String bio, String imagePath, Map<String, JobOffer> jobOffersMap, Map<String, User> favoriteUsersMap) {
+    public Company(long accountId, String name, String email, String password, String location, String bio, String imagePath, Map<String, JobOffer> jobOffersMap, Map<String, User> favoriteUsersMap) {
         super(accountId, name, email, password);
         this.location = location;
         this.bio = bio;
@@ -29,8 +28,8 @@ public class Company extends Account {
         this.favoriteUsersMap = (favoriteUsersMap != null) ? favoriteUsersMap : new HashMap<>();
     }
 
-    public Company(Long id, String name, String email, String password, String bio, String imagePath) {
-        super(id, name, email, password);
+    public Company(long accountId, String name, String email, String password, String bio, String imagePath) {
+        super(accountId, name, email, password);
         this.bio = bio;
         this.imagePath = imagePath;
         this.jobOffersMap = new HashMap<>();
@@ -40,7 +39,6 @@ public class Company extends Account {
     }
     
     // Getters
-    public Long getId() { return id; }
     public String getBio() { return bio; }
     public String getImagePath() { return imagePath; }
     public Map<String, JobOffer> getJobOffers() { return jobOffersMap; }
@@ -49,7 +47,6 @@ public class Company extends Account {
     public String getLocation() { return location; }
 
     // Setters
-    public void setId(Long id) { this.id = id; }
     public void setBio(String bio) { this.bio = bio; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setJobOffers(Map<String, JobOffer> jobOffersMap) { this.jobOffersMap = jobOffersMap; }
@@ -79,11 +76,11 @@ public class Company extends Account {
     }
 
     public void addFavoriteUser(User user){
-        this.favoriteUsersMap.put(String.valueOf(user.getId()), user);
+        this.favoriteUsersMap.put(String.valueOf(user.getAccountId()), user);
     }
 
     public void removeFavoriteUser(User user){
-        this.favoriteUsersMap.remove(String.valueOf(user.getId()));
+        this.favoriteUsersMap.remove(String.valueOf(user.getAccountId()));
     }
 
     public void addImage(String imagePath) {
@@ -98,7 +95,14 @@ public class Company extends Account {
     // toString
     @Override
     public String toString() {
-        return "Company{id=" + getId() + ", name=" + getName() + ", location=" + location + ", bio=" + bio + "}";
+        return "Company{" + super.toString() +
+                "bio='" + bio  +
+                ", location='" + location + 
+                ", imagePath='" + imagePath + 
+                ", jobOffersMap=" + jobOffersMap +
+                ", favoriteUsersMap=" + favoriteUsersMap +
+                ", questionnaireScore=" + questionnaireScore +
+                '}';
     }
 
 

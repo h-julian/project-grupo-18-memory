@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "accountId": "02",
     "name": "Microsoft",
     "bio": "Buscamos programadores experimentados, ofrecemos un ambiente de trabajo flexible y beneficios de bienestar.",
     "location": "California",
@@ -8,7 +8,7 @@
     "questionnaireScore": 43
   },
   {
-    "id": 1,
+    "accountId": "12",
     "name": "Google",
     "bio": "Innovamos en tecnología y buscamos talento apasionado por la inteligencia artificial y la computación en la nube.",
     "location": "California",
@@ -16,7 +16,7 @@
     "questionnaireScore": 50
   },
   {
-    "id": 2,
+    "accountId": "22",
     "name": "Apple",
     "bio": "Creamos experiencias revolucionarias con nuestros productos, buscamos diseñadores y desarrolladores visionarios.",
     "location": "California",
@@ -24,7 +24,7 @@
     "questionnaireScore": 48
   },
   {
-    "id": 3,
+    "accountId": "32",
     "name": "Amazon",
     "bio": "Lideramos el comercio electrónico y la computación en la nube, buscamos ingenieros que impulsen la innovación.",
     "location": "Seattle",
@@ -32,7 +32,7 @@
     "questionnaireScore": 45
   },
   {
-    "id": 4,
+    "accountId": "42",
     "name": "Tesla",
     "bio": "Revolucionamos la industria automotriz con tecnología eléctrica y autónoma, buscamos talento disruptivo.",
     "location": "Texas",

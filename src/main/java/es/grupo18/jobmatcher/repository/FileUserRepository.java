@@ -51,7 +51,7 @@ public class FileUserRepository {
 
     private Long generateId() {
         return users.stream()
-                .map(User::getId)
+                .map(User::getAccountId)
                 .filter(id -> id != null)
                 .max(Comparator.naturalOrder())
                 .orElse(-1L) + 1;
@@ -66,9 +66,8 @@ public class FileUserRepository {
         }
 
         // Asignar ID si no tiene
-        if (user.getId() == null) {
-            user.setId(generateId());
-        }
+        user.setAccountId(generateId());
+        
 
         users.add(user);
         saveUsers();

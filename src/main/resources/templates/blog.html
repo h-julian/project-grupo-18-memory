@@ -38,38 +38,35 @@
     </footer>
 
     <script>
-        function goBack() {
-            window.history.back();
-        }
+      function goBack() {
+          window.history.back();
+      }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const posts = [
-                { title: "Primer Post", content: "Contenido del primer post", timestamp: "2025-02-20", imagePath: "", ownerType: "usuario" },
-                { title: "Segundo Post", content: "Contenido del segundo post, EYYYYYYY MUY BUENAS A TODOS AQUI VEGETA 777 EN UN NUEVO VIDEO DE MINECRAFT, QUE TAL WILLYYY", timestamp: "2025-02-19", imagePath: "", ownerType: "empresa" },
-                { title: "Tercer Post", content: "Contenido del tercer post", timestamp: "2025-02-18", imagePath: "", ownerType: "usuario" },
-                { title: "Cuarto Post", content: "Contenido del cuarto post", timestamp: "2025-02-17", imagePath: "", ownerType: "empresa" },
-                { title: "Quinto Post", content: "Contenido del quinto post", timestamp: "2025-02-16", imagePath: "", ownerType: "usuario" }
-            ];
-            
-            const blogPostsContainer = document.getElementById("blog-posts");
-            posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            
-            if (posts.length > 0) {
-                document.querySelector('.new-post').style.display = 'none';
-            }
+      document.addEventListener("DOMContentLoaded", function() {
+          fetch('/data/posts.json')
+              .then(response => response.json())
+              .then(posts => {
+                  const blogPostsContainer = document.getElementById("blog-posts");
+                  posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                  
+                  if (posts.length > 0) {
+                      document.querySelector('.new-post').style.display = 'none';
+                  }
 
-            posts.forEach(post => {
-                const postElement = document.createElement("div");
-                postElement.classList.add("box");
-                postElement.innerHTML = `
-                    <h1>${post.title}</h1>
-                    <p>${post.content}</p>
-                    <p><strong>Fecha:</strong> ${post.timestamp}</p>
-                    <p><strong>Autor:</strong> ${post.ownerType}</p>
-                `;
-                blogPostsContainer.appendChild(postElement);
-            });
-        });
-    </script>
+                  posts.forEach(post => {
+                      const postElement = document.createElement("div");
+                      postElement.classList.add("box");
+                      postElement.innerHTML = `
+                          <h1>${post.title}</h1>
+                          <p>${post.content}</p>
+                          <p><strong>Fecha:</strong> ${post.timestamp}</p>
+                          <p><strong>Autor:</strong> ${post.ownerType}</p>
+                      `;
+                      blogPostsContainer.appendChild(postElement);
+                  });
+              })
+              .catch(error => console.error('Error cargando los posts:', error));
+      });
+  </script>
 </body>
 </html>
