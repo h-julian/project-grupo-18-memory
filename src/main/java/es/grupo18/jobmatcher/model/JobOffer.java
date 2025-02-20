@@ -14,8 +14,13 @@ public class JobOffer {
     private Integer salary;
     private long ownerId;
     private Map<String, User> favoriteByUsersMap;
-    
+    private Long companyId;
+    private String companyName;
 
+    // Add default constructor
+    public JobOffer() {
+        // Empty constructor
+    }
 
     public JobOffer(long offerId, String title, String description, Integer requiredExperience, List<String> requiredDegreeList, List<String> requiredSkillsList, Integer salary, long ownerId, Map<String, User> favoriteByUsersMap) {
         this.offerId = offerId;
@@ -29,6 +34,13 @@ public class JobOffer {
         this.favoriteByUsersMap = new HashMap<>();
     }
 
+    // Add constructor with parameters
+    public JobOffer(Long companyId, String companyName, String description) {
+        this.companyId = companyId;
+        this.companyName = companyName;
+        this.description = description;
+    }
+
     // Getters
     public long getOfferId() { return offerId; }
     public String getTitle() { return title; }
@@ -39,6 +51,8 @@ public class JobOffer {
     public Integer getSalary() { return salary; }
     public long getOwnerId() { return ownerId; }
     public Map<String, User> getFavoriteByUsers() { return favoriteByUsersMap; }
+    public Long getCompanyId() { return companyId; }
+    public String getCompanyName() { return companyName; }
 
     // Setters
     public void setOfferId(long offerId) { this.offerId = offerId; }
@@ -50,6 +64,8 @@ public class JobOffer {
     public void setSalary(Integer salary) { this.salary = salary; }
     public void setOwnerId(long ownerId) { this.ownerId = ownerId; }
     public void setFavoriteByUsers(Map<String, User> favoriteByUsersMap) { this.favoriteByUsersMap = favoriteByUsersMap; }
+    public void setCompanyId(Long companyId) { this.companyId = companyId; }
+    public void setCompanyName(String companyName) { this.companyName = companyName; }
 
     // Update methods
     public void updateTitle(String newTitle){

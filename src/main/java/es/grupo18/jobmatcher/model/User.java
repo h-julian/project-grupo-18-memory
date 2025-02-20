@@ -135,4 +135,12 @@ public class User extends Account {
             e.printStackTrace();
         }
     }
+
+    public boolean hasLikedCompany(String companyId) {
+        return favoriteJobOffersMap.containsKey(companyId);
+    }
+
+    public void addFavoriteCompany(String companyId, JobOffer jobOffer) {
+        favoriteJobOffersMap.put(companyId, jobOffer);
+    }
 }

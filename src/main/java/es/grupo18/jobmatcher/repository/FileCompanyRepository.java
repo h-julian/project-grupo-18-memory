@@ -82,6 +82,13 @@ public class FileCompanyRepository {
             .orElse(null);
     }
 
+    public Company findById(Long id) {
+        return companies.stream()
+            .filter(c -> c.getId().equals(id))
+            .findFirst()
+            .orElse(null);
+    }
+
     public List<Company> findAll() {
         return companies;
     }

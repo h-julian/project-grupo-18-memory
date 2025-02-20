@@ -29,6 +29,9 @@
 
 
     <script>
+        // Track liked companies in session storage
+        const likedCompanies = new Set(JSON.parse(sessionStorage.getItem('likedCompanies') || '[]'));
+
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Loading companies...');
             fetch('/api/match/companies')
@@ -64,6 +67,8 @@
             const defaultImage = '/img/default-company.png';
             const card = document.createElement('div');
             card.className = 'company-card';
+            const isLiked = likedCompanies.has(company.id);
+
             card.innerHTML = `
                 <div class="company-header">
                     <img src="${company.profilePhoto || defaultImage}" 
@@ -77,15 +82,40 @@
                     <p class="company-location">📍 ${company.location || 'Ubicación no especificada'}</p>
                 </div>
                 <div class="action-buttons">
-                    <button class="like-btn" onclick="likeCompany(${company.id})">
-                        ❤️ Me interesa
-                    </button>
-                    <button class="discard-btn" onclick="discardCompany(${company.id})">
-                        ✖️ Descartar
+                    <button class="like-btn ${isLiked ? 'liked' : ''}" 
+                            onclick="toggleLike(${company.id}, this)">
+                        ${isLiked ? '✓ Interesado' : '❤️ Me interesa'}
                     </button>
                 </div>
             `;
             return card;
+        }
+
+        function toggleLike(companyId, button) {
+            if (likedCompanies.has(companyId)) {
+                return; // Already liked
+            }
+
+            fetch(`/api/match/like/${companyId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to save match');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update UI
+                likedCompanies.add(companyId);
+                sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
+                button.classList.add('liked');
+                button.textContent = '✓ Interesado';
+            })
+            .catch(error => console.error('Error:', error));
         }
     </script>
 </body>
