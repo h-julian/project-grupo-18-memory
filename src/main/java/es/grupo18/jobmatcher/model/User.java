@@ -23,7 +23,8 @@ public class User extends Account {
         this.experience = experience;
         this.degreesList = degreesList;
         this.skillsList = skillsList;
-        this.favoriteJobOffersMap = new HashMap<>();
+        this.favoriteJobOffersMap = (favoriteJobOffersMap != null) ? favoriteJobOffersMap : new HashMap<>();
+
         this.imagePath = imagePath;
     }
     

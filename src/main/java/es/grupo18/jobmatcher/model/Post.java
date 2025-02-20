@@ -24,7 +24,7 @@ public class Post {
     }
 
     // Getters
-    public long getId() { return postId; }
+    public long getPostId() { return postId; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public Date getTimestamp() { return timestamp; }
@@ -33,7 +33,7 @@ public class Post {
     public String getOwnerType() { return ownerType; }
 
     // Setters
-    public void setId(long postId) { this.postId = postId; }
+    public void setPostId(long postId) { this.postId = postId; }
     public void setTitle(String title) { this.title = title; }
     public void setDescription(String description) { this.description = description; }
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }

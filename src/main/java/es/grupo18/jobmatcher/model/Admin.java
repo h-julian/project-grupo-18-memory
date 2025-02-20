@@ -19,4 +19,9 @@ public class Admin extends Account {
     // Setters
     public void setRole(Role role) { this.role = role; }
 
+    // Update methods
+    public void updateRole(Role newRole){
+        this.role = newRole;
+    }
+
 }
