@@ -29,8 +29,8 @@ public class User extends Account {
         
     }
     
-    public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
-        super(id, name, email, password);
+    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+        super(accountId, name, email, password);
         this.bio = bio;
         this.phone = phone;
         this.location = location;
@@ -41,8 +41,8 @@ public class User extends Account {
         this.imagePath = imagePath;
     }
 
-    public User(Long id, String name, String email, String password, String bio, String imagePath) {
-        super(id, name, email, password);
+    public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
+        super(accountId, name, email, password);
         this.bio = bio;
         this.imagePath = imagePath;
         this.favoriteJobOffersMap = new HashMap<>();
@@ -136,11 +136,11 @@ public class User extends Account {
         }
     }
 
-    public boolean hasLikedCompany(String companyId) {
-        return favoriteJobOffersMap.containsKey(companyId);
+    public boolean hasLikedCompany(String accountId) {
+        return favoriteJobOffersMap.containsKey(accountId);
     }
 
-    public void addFavoriteCompany(String companyId, JobOffer jobOffer) {
-        favoriteJobOffersMap.put(companyId, jobOffer);
+    public void addFavoriteCompany(String accountId, JobOffer jobOffer) {
+        favoriteJobOffersMap.put(accountId, jobOffer);
     }
 }
