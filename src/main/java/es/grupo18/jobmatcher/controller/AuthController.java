@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
-import es.grupo18.jobmatcher.repository.FileAccountRepository;
 import es.grupo18.jobmatcher.model.Account;
 import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.model.User;
