@@ -19,7 +19,12 @@ public class User extends Account {
     public User(Long id, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
         super(id, name, email, password);
         this.bio = bio;
-        this.favoriteJobOffersMap = new HashMap<>();
+        this.phone = phone;
+        this.location = location;
+        this.experience = experience;
+        this.degreesList = degreesList;
+        this.skillsList = skillsList;
+        this.favoriteJobOffersMap = (favoriteJobOffersMap != null) ? favoriteJobOffersMap : new HashMap<>();
         this.imagePath = imagePath;
     }
     
