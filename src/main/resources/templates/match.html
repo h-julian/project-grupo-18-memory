@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match - Empresas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Match con Empresas</h1>
+    <div id="companies-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/match/companies')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('companies-container');
+                    data.forEach(company => {
+                        const companyDiv = document.createElement('div');
+                        companyDiv.classList.add('company');
+                        companyDiv.innerHTML = `
+                            <img src="${company.imagePath}" alt="${company.name}" class="company-image">
+                            <h2>${company.name}</h2>
+                            <p><strong>Bio:</strong> ${company.bio}</p>
+                            <p><strong>Ubicación:</strong> ${company.location}</p>
+                            <p><strong>Puntuación:</strong> ${company.questionnaireScore}</p>
+                            <button onclick="likeCompany(${company.id})">Me gusta</button>
+                            <button onclick="discardCompany(${company.id})">Descartar</button>
+                        `;
+                        container.appendChild(companyDiv);
+                    });
+                })
+                .catch(error => console.error('Error al cargar las empresas:', error));
+        });
+
+        function likeCompany(id) {
+            alert('Te gusta la empresa con ID: ' + id);
+            // Aquí podrías enviar una solicitud al backend para guardar la preferencia
+        }
+
+        function discardCompany(id) {
+            alert('Has descartado la empresa con ID: ' + id);
+            // Aquí podrías enviar una solicitud al backend para descartar la empresa
+        }
+    </script>
+</body>
+</html>
