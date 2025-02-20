@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 public class MatchController {
 
-    @GetMapping("/match/companies")
+    @GetMapping("/match")
     public List<Map<String, Object>> getCompanies() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         FileReader reader = new FileReader("src/main/resources/static/data/companies.json");
