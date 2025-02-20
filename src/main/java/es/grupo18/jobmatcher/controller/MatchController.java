@@ -2,7 +2,6 @@ package es.grupo18.jobmatcher.controller;
 
 import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.model.Match;
-import es.grupo18.jobmatcher.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/api/match")
@@ -32,17 +32,17 @@ public class MatchController {
 
     @PostMapping("/like/{companyId}")
     public ResponseEntity<?> likeCompany(@PathVariable Long companyId) {
-        User user = User.loadUser();
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User not found");
+        List<Match> matches = loadMatches();
+        boolean matchExists = matches.removeIf(match -> match.getCompanyId().equals(companyId));
+
+        if (!matchExists) {
+            Match match = new Match(null, companyId); // No user ID, only company ID
+            matches.add(match);
         }
 
-        Match match = new Match(user.getAccountId(), companyId);
-        List<Match> matches = loadMatches();
-        matches.add(match);
         saveMatches(matches);
 
-        return ResponseEntity.ok().body("{\"success\": true}");
+        return ResponseEntity.ok().body("{\"success\": true, \"liked\": " + !matchExists + "}");
     }
 
     @GetMapping("/match")

@@ -79,10 +79,6 @@
         }
 
         function toggleLike(companyId, button) {
-            if (likedCompanies.has(companyId)) {
-                return; // Already liked
-            }
-
             console.log('Enviando like para compañía:', companyId);
 
             fetch(`/api/match/like/${companyId}`, {
@@ -105,10 +101,16 @@
             .then(data => {
                 if (data.success) {
                     console.log('Match guardado:', data);
-                    likedCompanies.add(companyId);
+                    if (data.liked) {
+                        likedCompanies.add(companyId);
+                        button.classList.add('liked');
+                        button.textContent = '✓ Interesado';
+                    } else {
+                        likedCompanies.delete(companyId);
+                        button.classList.remove('liked');
+                        button.textContent = '❤️ Me interesa';
+                    }
                     sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
-                    button.classList.add('liked');
-                    button.textContent = '✓ Interesado';
                 } else {
                     throw new Error(data.error || 'Error desconocido');
                 }
