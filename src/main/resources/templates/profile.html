@@ -26,15 +26,16 @@
     <div class="container">
         <div class="foto-box">
             <h2>Foto de Perfil</h2>
-            <img id="profilePhoto" src="{{user.photoPath}}" alt="Foto de perfil">
-            
-            <form id="photoUploadForm" action="/profile/uploadPhoto" method="post" enctype="multipart/form-data">
-                <input type="file" id="photoInput" name="photo" accept="image/*" style="display:none;" onchange="uploadPhoto()">
+            <img id="profilePhoto" src="{{user.imagePath}}" alt="Foto de perfil">
+        
+            <form action="/profile/upload_image" method="post" enctype="multipart/form-data">
+                <input type="file" id="photoInput" name="image" accept="image/*" style="display:none;" onchange="this.form.submit();">
                 <div class="button-group">
                     <button type="button" onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
                 </div>
             </form>
         </div>
+        
         <div class="info-box">
             <h2>Datos del usuario</h2>
             <ul>
