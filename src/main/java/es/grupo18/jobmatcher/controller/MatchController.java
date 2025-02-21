@@ -17,7 +17,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/match")
 public class MatchController {
-
     private static final String MATCHES_FILE_PATH = "src/main/resources/static/data/matches.json";
     private static final String COMPANIES_FILE_PATH = "src/main/resources/static/data/companies.json";
     private static final ObjectMapper mapper = new ObjectMapper();

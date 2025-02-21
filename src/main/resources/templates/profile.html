@@ -83,7 +83,33 @@
         
         
     </div>
+
+
+ <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const defaultPhoto = "/profile/profile.jpg";
+            const storedProfile = localStorage.getItem("profile");
+            let profile = storedProfile ? JSON.parse(storedProfile) : {};
     
+            document.getElementById("profilePhoto").src = profile.photo || defaultPhoto;
+    
+            document.getElementById('photoInput').addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (evt) {
+                        const imgData = evt.target.result;
+                        document.getElementById("profilePhoto").src = imgData;
+                        profile.photo = imgData;
+                        localStorage.setItem("profile", JSON.stringify(profile));
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script> 
+    
+
 
     <script> 
         document.addEventListener("DOMContentLoaded", function () {

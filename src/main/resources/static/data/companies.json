@@ -4,7 +4,7 @@
     "name": "Microsoft",
     "bio": "Buscamos programadores experimentados, ofrecemos un ambiente de trabajo flexible y beneficios de bienestar.",
     "location": "California",
-    "imagePath": "https://app.readingwise.com/images/microsoft-logo.png",
+    "imagePath": "https://static.vecteezy.com/system/resources/previews/022/100/816/non_2x/microsoft-logo-transparent-free-png.png",
     "questionnaireScore": 43
   },
   {
@@ -12,7 +12,7 @@
     "name": "Google",
     "bio": "Innovamos en tecnología y buscamos talento apasionado por la inteligencia artificial y la computación en la nube.",
     "location": "California",
-    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    "imagePath": "https://freelogopng.com/images/all_img/1657952440google-logo-png-transparent.png",
     "questionnaireScore": 50
   },
   {
@@ -20,7 +20,7 @@
     "name": "Apple",
     "bio": "Creamos experiencias revolucionarias con nuestros productos, buscamos diseñadores y desarrolladores visionarios.",
     "location": "California",
-    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+    "imagePath": "https://th.bing.com/th/id/R.f0e640bfaee46b31d21a8fa1087c2efc?rik=hOALEOwA2O57Xw&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2fKTj%2fe86%2fKTje864Gc.png&ehk=S7kcbJXIsaBs9AVw11W6hinI6sU03acCyZ%2bDk79TZrU%3d&risl=&pid=ImgRaw&r=0",
     "questionnaireScore": 48
   },
   {
@@ -28,7 +28,7 @@
     "name": "Amazon",
     "bio": "Lideramos el comercio electrónico y la computación en la nube, buscamos ingenieros que impulsen la innovación.",
     "location": "Seattle",
-    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    "imagePath": "https://images.squarespace-cdn.com/content/v1/5d04183c2027f10001d3c405/1563888556224-GD8RXHAUD6NXG36IJYQY/nogotell-amazon.png",
     "questionnaireScore": 45
   },
   {
@@ -36,7 +36,31 @@
     "name": "Tesla",
     "bio": "Revolucionamos la industria automotriz con tecnología eléctrica y autónoma, buscamos talento disruptivo.",
     "location": "Texas",
-    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg",
+    "imagePath": "https://www.pngmart.com/files/22/Tesla-Logo-PNG-Transparent.png",
     "questionnaireScore": 47
+  },
+  {
+    "accountId": "52",
+    "name": "Facebook",
+    "bio": "Construimos la red social más grande, buscamos ingenieros para conectar el mundo.",
+    "location": "Menlo Park",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    "questionnaireScore": 46
+  },
+  {
+    "accountId": "62",
+    "name": "Netflix",
+    "bio": "Revolucionamos el entretenimiento, buscamos creativos para contenido innovador.",
+    "location": "Los Gatos",
+    "imagePath": "https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg",
+    "questionnaireScore": 49
+  },
+  {
+    "accountId": "72",
+    "name": "Uber",
+    "bio": "Transformamos la movilidad, buscamos talento en tecnología y logística.",
+    "location": "San Francisco",
+    "imagePath": "https://th.bing.com/th/id/OIP.QMOhFSBODe1KQumgVL-LqwHaHa?rs=1&pid=ImgDetMain",
+    "questionnaireScore": 44
   }
 ]
