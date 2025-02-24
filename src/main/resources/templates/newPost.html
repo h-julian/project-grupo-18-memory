@@ -28,7 +28,7 @@
         
         <div class="box"> 
             <h1>Nueva Noticia</h1>
-            <form id="newPostForm" method="post" action="/noticias/crear">
+            <form id="newPostForm" method="post" action="/blog/newpost">
                 <div class="input-group">
                     <label for="title">Título:</label>
                     <input type="text" id="title" name="title" required>
@@ -38,56 +38,30 @@
                     <textarea id="content" name="content" rows="10" required></textarea>
                 </div>
                 <div class="input-group">
-                    <label for="ownerType">Autor:</label>
+                    <label for="imagePath">Imagen (URL):</label>
+                    <input type="text" id="imagePath" name="imagePath">
+                </div>
+                <div class="input-group">
+                    <label for="ownerId">ID del Autor:</label>
+                    <input type="number" id="ownerId" name="ownerId" required>
+                </div>
+                <div class="input-group">
+                    <label for="ownerType">Tipo de Autor:</label>
                     <input type="text" id="ownerType" name="ownerType" required>
                 </div>
                 <div class="button-group">
                     <button type="submit">Publicar Noticia</button>
                 </div>
-            </form>
+            </form>                        
         </div>
-        
-        
-        
     </main>
 
-    <script>
-        document.getElementById('new-post-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
+        </div>
+    </footer>
 
-            const post = {
-                title: document.getElementById('title').value,
-                content: document.getElementById('content').value,
-                ownerType: document.getElementById('ownerType').value,
-                timestamp: new Date().toISOString()
-            };
-
-            fetch('/api/posts', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(post)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Post subido con éxito');
-                        window.location.href = '/blog';
-                    } else {
-                        alert('Error al subir el post');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al subir el post');
-                });
-        });
-
-        function goBack() {
-            window.location.href = "/main";
-        }
-    </script>
+</body>
 </body>
 
 </html>
