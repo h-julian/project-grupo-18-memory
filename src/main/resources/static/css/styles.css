@@ -182,3 +182,86 @@ input, select {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
+/* Dark Mode */
+
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode header, 
+.dark-mode footer {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+.dark-mode header a, 
+.dark-mode footer a {
+    color: #ffffff;
+}
+
+.dark-mode .box {
+    background: #1e1e1e;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode h1, 
+.dark-mode h2 {
+    color: #00b4d8;
+}
+
+.dark-mode p {
+    color: #cccccc;
+}
+
+.dark-mode a {
+    color: #00b4d8;
+}
+
+.dark-mode a:hover {
+    color: #0096c7;
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+.dark-mode button {
+    background: #0077b6;
+    color: white;
+}
+
+.dark-mode button:hover {
+    background: #005f8a;
+}
+
+.dark-mode label {
+    color: #ffffff;
+}
+
+.dark-mode input, 
+.dark-mode select, 
+.dark-mode textarea {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+.dark-mode input::placeholder, 
+.dark-mode textarea::placeholder {
+    color: #bbbbbb;
+}
+
+.dark-mode .match-card {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+.dark-mode .match-name {
+    color: #00b4d8;
+}
+
+.dark-mode .match-description, 
+.dark-mode .match-location {
+    color: #dddddd;
+}

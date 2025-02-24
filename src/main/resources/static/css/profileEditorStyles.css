@@ -1,4 +1,5 @@
 /* General Styles */
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f9;
@@ -11,9 +12,10 @@ body {
 }
 
 /* Header */
+
 .header {
     display: flex;
-    justify-content: flex-start; /* Alinea los elementos al inicio */
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     padding: 15px 20px;
@@ -28,7 +30,7 @@ body {
 }
 
 .header h1 {
-    margin-left: 20px; /* Ajusta el margen izquierdo del texto */
+    margin-left: 20px;
 }
 
 .back-btn {
@@ -51,7 +53,7 @@ body {
     padding: 20px;
     max-width: 600px;
     width: 90%;
-    margin: 100px auto 0; /* Espacio para el header fijado */
+    margin: 100px auto 0;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -69,12 +71,12 @@ body {
 
 .form-group input,
 .form-group textarea {
-    width: calc(100% - 20px); /* Ajuste para no alcanzar el borde del recuadro blanco */
+    width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    margin-left: 10px; /* Espacio desde el borde izquierdo */
+    margin-left: 10px;
 }
 
 .form-group input[type="file"] {
