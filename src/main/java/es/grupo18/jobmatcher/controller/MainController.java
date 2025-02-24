@@ -15,10 +15,4 @@ public class MainController {
     public String showOptionsPage() {
         return "options";
     }
-
-    @GetMapping("/form")
-    public String showForm() {
-        return "form";
-    }
-
 }

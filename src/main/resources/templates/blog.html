@@ -21,20 +21,33 @@
             <a href="/main">JOBMATCHER</a>
         </div>
         <div class="header-right">
-            <button id="post-btn" onclick="location.href='/newpost'">Postear</button>
+            <button id="post-btn" onclick="location.href='/blog/newpost'">Postear</button>
         </div>
     </header>
 
     <main class="container">
-        <section id="blog-posts" class="blog-posts">
-            <!-- Posts will be loaded here -->
-        </section>
-
-        <section class="new-post">
-            <button class="btn admin-btn" onclick="location.href='/newpost'">
-                Sé el primero en postear algo
-            </button>
-        </section>
+        <main class="container">
+            <section id="blog-posts" class="blog-posts">
+                {{#posts}}
+                <div class="box">
+                    <h1>{{title}}</h1>
+                    <img src="{{imagePath}}" alt="{{title}}" class="post-image">
+                    <p>{{content}}</p>
+                    <p><strong>Fecha:</strong> {{timestamp}}</p>
+                    <p><strong>Autor:</strong> {{ownerType}} (ID: {{ownerId}})</p>
+                </div>
+                {{/posts}}
+        
+                {{^posts}}
+                <div class="box">
+                    <p>No hay publicaciones todavía.</p>
+                </div>
+                {{/posts}}
+            </section>
+        </main>
+        
+        
+        
     </main>
 
     <footer>
@@ -45,33 +58,6 @@
         function goBack() {
             window.location.href = "/main";
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch('/data/posts.json')
-                .then(response => response.json())
-                .then(posts => {
-                    const blogPostsContainer = document.getElementById("blog-posts");
-                    posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-                    if (posts.length > 0) {
-                        document.querySelector('.new-post').style.display = 'none';
-                    }
-
-                    posts.forEach(post => {
-                        const postElement = document.createElement("div");
-                        postElement.classList.add("box");
-                        postElement.innerHTML = `
-                          <h1>${post.title}</h1>
-                          <img src="${post.imagePath}" alt="${post.title}" class="post-image">
-                          <p>${post.content}</p>
-                          <p><strong>Fecha:</strong> ${post.timestamp}</p>
-                          <p><strong>Autor:</strong> ${post.ownerType}</p>
-                      `;
-                        blogPostsContainer.appendChild(postElement);
-                    });
-                })
-                .catch(error => console.error('Error cargando los posts:', error));
-        });
     </script>
 </body>
 
