@@ -1,4 +1,5 @@
 /* General Styles */
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f9;
@@ -7,6 +8,7 @@ body {
 }
 
 /* Header */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -35,6 +37,7 @@ body {
 }
 
 /* Main Content */
+
 h1 {
     font-size: 24px;
     text-align: center;
@@ -42,6 +45,7 @@ h1 {
 }
 
 /* Form Styles */
+
 form {
     max-width: 800px;
     margin: 20px auto;
@@ -87,6 +91,7 @@ button[type="submit"]:hover {
 }
 
 /* Dark Mode Styles */
+
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;

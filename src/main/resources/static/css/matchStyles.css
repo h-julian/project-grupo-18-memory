@@ -71,7 +71,6 @@ body {
     line-height: 1.4;
 }
 
-/* Corrección para hacer que los botones sean uniformes */
 .action-buttons {
     display: flex;
     justify-content: center;
@@ -93,7 +92,6 @@ body {
     gap: 5px;
 }
 
-/* Ajustar imágenes dentro de los cards */
 img {
     max-width: 100%;
     height: auto;
