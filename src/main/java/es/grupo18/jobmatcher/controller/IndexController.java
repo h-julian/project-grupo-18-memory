@@ -8,6 +8,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String showIndexPage() {
-        return "index"; // Renderiza index.mustache (o index.html si usas Spring MVC con Thymeleaf)
+        return "index";
     }
 }
