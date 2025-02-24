@@ -1,58 +1,73 @@
-[
-    {
-      "title": "Desarrollador Senior - Microsoft",
-      "content": "Buscamos programadores experimentados en .NET para un ambiente flexible en California.",
-      "timestamp": "2025-02-20",
-      "imagePath": "/images/microsoft_job.jpg",
-      "ownerId": "02"
-    },
-    {
-      "title": "Ingeniero IA - Google",
-      "content": "Oportunidad para trabajar en inteligencia artificial y computación en la nube en California.",
-      "timestamp": "2025-02-19",
-      "imagePath": "/images/google_job.jpg",
-      "ownerId": "12"
-    },
-    {
-      "title": "Diseñador UI/UX - Apple",
-      "content": "Buscamos visionarios para crear experiencias revolucionarias en California.",
-      "timestamp": "2025-02-18",
-      "imagePath": "/images/apple_job.jpg",
-      "ownerId": "22"
-    },
-    {
-      "title": "Ingeniero Cloud - Amazon",
-      "content": "Lidera la innovación en comercio electrónico y nube en Seattle.",
-      "timestamp": "2025-02-17",
-      "imagePath": "/images/amazon_job.jpg",
-      "ownerId": "32"
-    },
-    {
-      "title": "Ingeniero Eléctrico - Tesla",
-      "content": "Trabaja en tecnología eléctrica y autónoma en Texas.",
-      "timestamp": "2025-02-16",
-      "imagePath": "/images/tesla_job.jpg",
-      "ownerId": "42"
-    },
-    {
-      "title": "Desarrollador Frontend - Facebook",
-      "content": "Únete a nuestra red social en Menlo Park, California.",
-      "timestamp": "2025-02-15",
-      "imagePath": "/images/facebook_job.jpg",
-      "ownerId": "52"
-    },
-    {
-      "title": "Productor de Contenido - Netflix",
-      "content": "Crea contenido innovador en Los Gatos, California.",
-      "timestamp": "2025-02-14",
-      "imagePath": "/images/netflix_job.jpg",
-      "ownerId": "62"
-    },
-    {
-      "title": "Ingeniero de Logística - Uber",
-      "content": "Transforma la movilidad en San Francisco, California.",
-      "timestamp": "2025-02-13",
-      "imagePath": "/images/uber_job.jpg",
-      "ownerId": "72"
-    }
-  ]
+[ {
+  "postId" : 0,
+  "title" : "Desarrollador Senior - Microsoft",
+  "content" : "Buscamos programadores experimentados en .NET para un ambiente flexible en California.",
+  "timestamp" : "2025-02-20",
+  "imagePath" : "/images/microsoft_job.jpg",
+  "ownerId" : 2,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Ingeniero IA - Google",
+  "content" : "Oportunidad para trabajar en inteligencia artificial y computación en la nube en California.",
+  "timestamp" : "2025-02-19",
+  "imagePath" : "/images/google_job.jpg",
+  "ownerId" : 12,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Diseñador UI/UX - Apple",
+  "content" : "Buscamos visionarios para crear experiencias revolucionarias en California.",
+  "timestamp" : "2025-02-18",
+  "imagePath" : "/images/apple_job.jpg",
+  "ownerId" : 22,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Ingeniero Cloud - Amazon",
+  "content" : "Lidera la innovación en comercio electrónico y nube en Seattle.",
+  "timestamp" : "2025-02-17",
+  "imagePath" : "/images/amazon_job.jpg",
+  "ownerId" : 32,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Ingeniero Eléctrico - Tesla",
+  "content" : "Trabaja en tecnología eléctrica y autónoma en Texas.",
+  "timestamp" : "2025-02-16",
+  "imagePath" : "/images/tesla_job.jpg",
+  "ownerId" : 42,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Desarrollador Frontend - Facebook",
+  "content" : "Únete a nuestra red social en Menlo Park, California.",
+  "timestamp" : "2025-02-15",
+  "imagePath" : "/images/facebook_job.jpg",
+  "ownerId" : 52,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Productor de Contenido - Netflix",
+  "content" : "Crea contenido innovador en Los Gatos, California.",
+  "timestamp" : "2025-02-14",
+  "imagePath" : "/images/netflix_job.jpg",
+  "ownerId" : 62,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Ingeniero de Logística - Uber",
+  "content" : "Transforma la movilidad en San Francisco, California.",
+  "timestamp" : "2025-02-13",
+  "imagePath" : "/images/uber_job.jpg",
+  "ownerId" : 72,
+  "ownerType" : null
+}, {
+  "postId" : 0,
+  "title" : "Testing",
+  "content" : "Esto es una prueba",
+  "timestamp" : "21/02/2025",
+  "imagePath" : null,
+  "ownerId" : 0,
+  "ownerType" : "Dani"
+} ]
