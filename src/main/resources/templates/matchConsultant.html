@@ -30,6 +30,12 @@
         <!-- Matches will be loaded here -->
     </div>
 
+    <!-- Container for when there are no matches -->
+    <div id="no-matches-container" class="no-matches" style="display: none;">
+        <p>No hay matches disponibles.</p>
+        <a href="/main" class="btn">Volver al inicio</a>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Loading matches...');
@@ -37,15 +43,24 @@
                 .then(response => response.json())
                 .then(matches => {
                     const container = document.getElementById('matches-container');
-                    matches.forEach(match => {
-                        const card = createMatchCard(match);
-                        container.appendChild(card);
-                    });
+                    const noMatchesContainer = document.getElementById('no-matches-container');
+
+                    if (matches.length === 0) {
+                        // If there are no matches, shows a message and hides the content
+                        noMatchesContainer.style.display = 'block';
+                        container.style.display = 'none';
+                    } else {
+                        // If there are matches, show them
+                        matches.forEach(match => {
+                            const card = createMatchCard(match);
+                            container.appendChild(card);
+                        });
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading matches:', error);
-                    const container = document.getElementById('matches-container');
-                    container.innerHTML = '<p class="error-message">Error al cargar los matches</p>';
+                    document.getElementById('matches-container').innerHTML = 
+                        '<p class="error-message">Error al cargar los matches</p>';
                 });
         });
 

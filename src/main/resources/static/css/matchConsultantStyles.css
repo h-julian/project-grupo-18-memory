@@ -52,3 +52,42 @@
     text-align: center;
     font-size: 1.2rem;
 }
+
+/* No matches */
+
+.no-matches {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.no-matches p {
+    color: #333;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.no-matches .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #00b4d8;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.no-matches .btn:hover {
+    background: #0096c7;
+    transform: scale(1.05);
+}
