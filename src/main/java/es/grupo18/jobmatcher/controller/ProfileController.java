@@ -5,14 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import es.grupo18.jobmatcher.model.User;
-
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,66 +22,62 @@ public class ProfileController {
 
     private static final Path IMAGES_FOLDER = Paths.get("src/main/resources/static/img/");
 
-    // Usuario en memoria
+    // Hardcoded user
     private static final User user = new User(
-        1L, 
-        "Juan Pérez", 
-        "juan.perez@email.com", 
-        "password123",
-        "123456789",
-        "Madrid España",
-        "Apasionado por la tecnología y la programación.",
-        5,
-        Arrays.asList("Grado en Ingeniería Informática", "Máster en Ciberseguridad"),
-        Arrays.asList("Java", "Spring Boot", "SQL", "Pentesting"),
-        "/img/profile.jpg"
-    );
+            1L,
+            "Juan Javier",
+            "juja@gmail.com",
+            "password123",
+            "651479899",
+            "Carballo, A Coruña",
+            "Y tal",
+            5,
+            Arrays.asList("Grado en Ingeniería Informática", "Máster en Ciberseguridad"),
+            Arrays.asList("Java", "Spring Boot", "SQL", "Pentesting"),
+            "/img/profile.jpg");
 
     @GetMapping("/profile")
     public String showProfile(Model model) {
         model.addAttribute("user", user);
-        model.addAttribute("studies", user.getDegrees()); 
+        model.addAttribute("studies", user.getDegrees());
         model.addAttribute("skills", user.getSkills());
         model.addAttribute("experience", user.getExperience());
         return "profile";
     }
 
-
     @PostMapping("/profile/upload_image")
     public String uploadImage(@RequestParam("image") MultipartFile image) throws IOException {
         if (!image.isEmpty()) {
-            // Asegurar que la carpeta de imágenes existe
+            // Checks if the image folder exists.
             Files.createDirectories(IMAGES_FOLDER);
 
-            // Guardar la imagen con el nombre del usuario
+            // Saves the user's profile image
             Path imagePath = IMAGES_FOLDER.resolve("profile_" + user.getAccountId() + ".jpg");
             image.transferTo(imagePath);
 
-            // Actualizar la ruta de la imagen en el usuario
+            // Updates the path with the user's profile image
             user.setImagePath("/img/profile_" + user.getAccountId() + ".jpg");
         }
-        
-        return "redirect:/profile"; // Redirige para recargar la página y ver la nueva imagen
+
+        return "redirect:/profile"; // Redirects to profile to check the changes
     }
-
-
 
     @GetMapping("/profile/edit")
     public String editProfile(Model model) {
-        model.addAttribute("user", user); // Usa el usuario en memoria
+        model.addAttribute("user", user); // Uses the hardcoded user by default
         return "profileEditor";
     }
 
     @PostMapping("/profile/edit")
     public String saveProfile(@RequestParam String name, @RequestParam String email, @RequestParam String phone,
-                              @RequestParam String location, @RequestParam String about) {
-        // Actualiza los valores en memoria
+            @RequestParam String location, @RequestParam String about) {
+        // Updates the user's information in local memory
         user.setName(name);
         user.setEmail(email);
         user.setPhone(phone);
         user.setLocation(location);
         user.setBio(about);
-        
+
         return "redirect:/profile";
     }
 
@@ -95,23 +87,22 @@ public class ProfileController {
         model.addAttribute("studies", String.join(", ", user.getDegrees()));
         model.addAttribute("skills", String.join(", ", user.getSkills()));
         model.addAttribute("experience", user.getExperience());
-        return "form"; 
+        return "form";
     }
 
     @PostMapping("/profile/form")
-    public String saveProfileInfo(@RequestParam String studies, @RequestParam String skills, @RequestParam Integer experience) {
-        // Convertir los textos en listas separadas por comas
+    public String saveProfileInfo(@RequestParam String studies, @RequestParam String skills,
+            @RequestParam Integer experience) {
+        // Splits texts by commas
         List<String> updatedStudies = Arrays.asList(studies.split(",\\s*"));
         List<String> updatedSkills = Arrays.asList(skills.split(",\\s*"));
 
-        // Actualizar en memoria
+        // Updates local memory
         user.setDegrees(updatedStudies);
         user.setSkills(updatedSkills);
         user.setExperience(experience);
 
         return "redirect:/profile";
     }
-
-
 
 }

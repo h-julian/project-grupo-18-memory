@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="/js/darkMode.js" defer></script>
 </head>
+
 <body>
     <header>
         <div class="header-left">
@@ -50,9 +52,9 @@
     </main>
 
     <script>
-        document.getElementById('new-post-form').addEventListener('submit', function(event) {
+        document.getElementById('new-post-form').addEventListener('submit', function (event) {
             event.preventDefault();
-            
+
             const post = {
                 title: document.getElementById('title').value,
                 content: document.getElementById('content').value,
@@ -67,19 +69,19 @@
                 },
                 body: JSON.stringify(post)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Post subido con éxito');
-                    window.location.href = '/blog';
-                } else {
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Post subido con éxito');
+                        window.location.href = '/blog';
+                    } else {
+                        alert('Error al subir el post');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                     alert('Error al subir el post');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al subir el post');
-            });
+                });
         });
 
         function goBack() {
@@ -87,4 +89,5 @@
         }
     </script>
 </body>
+
 </html>

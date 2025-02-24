@@ -19,7 +19,9 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.option-box, .logo, .icons {
+.option-box,
+.logo,
+.icons {
     display: flex;
     align-items: center;
 }
@@ -37,7 +39,8 @@ body {
     gap: 15px;
 }
 
-.icon .button, .option-box .button {
+.icon .button,
+.option-box .button {
     background: #00b4d8;
     border: none;
     color: white;
@@ -50,7 +53,8 @@ body {
     display: inline-block;
 }
 
-.icon .button:hover, .option-box .button:hover {
+.icon .button:hover,
+.option-box .button:hover {
     background: #0096c7;
     transform: scale(1.05);
 }
@@ -67,7 +71,8 @@ body {
     text-align: center;
 }
 
-#jobListing h2, #jobListing h3 {
+#jobListing h2,
+#jobListing h3 {
     color: #0077b6;
 }
 

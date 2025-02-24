@@ -51,7 +51,8 @@ public class MatchController {
 
     private List<Match> loadMatches() {
         try {
-            return mapper.readValue(new File(MATCHES_FILE_PATH), new TypeReference<List<Match>>() {});
+            return mapper.readValue(new File(MATCHES_FILE_PATH), new TypeReference<List<Match>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -60,7 +61,8 @@ public class MatchController {
 
     private List<Company> loadCompanies() {
         try {
-            return mapper.readValue(new File(COMPANIES_FILE_PATH), new TypeReference<List<Company>>() {});
+            return mapper.readValue(new File(COMPANIES_FILE_PATH), new TypeReference<List<Company>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -74,4 +76,5 @@ public class MatchController {
             e.printStackTrace();
         }
     }
+
 }

@@ -17,7 +17,8 @@ public class MainController {
     }
 
     @GetMapping("/form")
-    public String showForm(){
+    public String showForm() {
         return "form";
     }
+
 }

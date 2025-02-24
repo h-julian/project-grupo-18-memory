@@ -14,17 +14,21 @@ public class Admin extends Account {
     }
     
     // Getters
+
     public Role getRole() { return role; }
     
     // Setters
+
     public void setRole(Role role) { this.role = role; }
 
     // Update methods
+
     public void updateRole(Role newRole){
         this.role = newRole;
     }
 
     // toString
+
     @Override
     public String toString() {
         return "Admin{" +
@@ -35,5 +39,4 @@ public class Admin extends Account {
                 ", role='" + role + 
                 '}';
     }
-
 }

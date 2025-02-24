@@ -17,9 +17,10 @@ public class JobOffer {
     private Long companyId;
     private String companyName;
 
-    // Add default constructor
+    // Default constructor for some opperations
+
     public JobOffer() {
-        // Empty constructor
+        
     }
 
     public JobOffer(long offerId, String title, String description, Integer requiredExperience, List<String> requiredDegreeList, List<String> requiredSkillsList, Integer salary, long ownerId, Map<String, User> favoriteByUsersMap) {
@@ -35,6 +36,7 @@ public class JobOffer {
     }
 
     // Add constructor with parameters
+
     public JobOffer(Long companyId, String companyName, String description) {
         this.companyId = companyId;
         this.companyName = companyName;
@@ -42,6 +44,7 @@ public class JobOffer {
     }
 
     // Getters
+
     public long getOfferId() { return offerId; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
@@ -55,6 +58,7 @@ public class JobOffer {
     public String getCompanyName() { return companyName; }
 
     // Setters
+
     public void setOfferId(long offerId) { this.offerId = offerId; }
     public void setTitle(String title) { this.title = title; }
     public void setDescription(String description) { this.description = description; }
@@ -68,6 +72,7 @@ public class JobOffer {
     public void setCompanyName(String companyName) { this.companyName = companyName; }
 
     // Update methods
+
     public void updateTitle(String newTitle){
         this.title = newTitle;
     }
@@ -85,6 +90,7 @@ public class JobOffer {
     }
 
     //Add & Remove methods
+
     public void addFavoriteUser(User user){
         this.favoriteByUsersMap.put(String.valueOf(user.getAccountId()), user);
     }
@@ -94,6 +100,7 @@ public class JobOffer {
     }
 
     // toString
+
     @Override
     public String toString() {
         return "JobOffer{id=" + offerId + ", title=" + title + ", description=" + description + "}";

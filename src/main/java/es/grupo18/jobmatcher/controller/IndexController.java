@@ -8,6 +8,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String showIndexPage() {
-        return "index";
+        return "index"; // Renders index.mustache
     }
+
 }

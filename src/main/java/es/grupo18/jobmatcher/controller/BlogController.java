@@ -13,7 +13,7 @@ public class BlogController {
 
     @GetMapping("")
     public String showBlogPage(Model model) {
-        // Aquí en el futuro se cargarán los posts desde la base de datos
+        // Future posts will be retrieved from the database here
         return "blog";
     }
 
@@ -24,7 +24,8 @@ public class BlogController {
 
     @PostMapping("/newpost")
     public String createNewPost(@RequestParam String title, @RequestParam String content) {
-        // Aquí en el futuro se guardará el post en la base de datos
-        return "redirect:/blog";
+        // Future posts will be retrieved from the database here
+        return "redirect:/blog"; // Redirects to the blog page after creating the new post
     }
+
 }
