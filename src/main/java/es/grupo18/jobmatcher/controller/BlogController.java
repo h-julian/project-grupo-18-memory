@@ -4,12 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/blog")
 public class BlogController {
 
-    @GetMapping("/blog")
+    @GetMapping("")
     public String showBlogPage(Model model) {
         // Future posts will be retrieved from the database here
         return "blog";
