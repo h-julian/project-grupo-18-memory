@@ -20,15 +20,26 @@ body {
     max-width: none;
     margin-bottom: 20px;
     overflow: visible;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.post-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
 
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
 
-
-
-
-
-
-
-
-
+p {
+    margin-bottom: 10px;
+}

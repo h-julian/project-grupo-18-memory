@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
         // Track liked companies in session storage
         const likedCompanies = new Set(JSON.parse(sessionStorage.getItem('likedCompanies') || '[]'));
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('Loading companies...');
             fetch('/api/match/companies')
                 .then(response => response.json())
@@ -89,36 +90,36 @@
                 },
                 credentials: 'same-origin'
             })
-            .then(response => {
-                console.log('Response status:', response.status);
-                if (!response.ok) {
-                    return response.json().then(data => {
-                        throw new Error(data.error || 'Error al guardar el match');
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    console.log('Match guardado:', data);
-                    if (data.liked) {
-                        likedCompanies.add(companyId);
-                        button.classList.add('liked');
-                        button.textContent = '✓ Interesado';
-                    } else {
-                        likedCompanies.delete(companyId);
-                        button.classList.remove('liked');
-                        button.textContent = '❤️ Me interesa';
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        return response.json().then(data => {
+                            throw new Error(data.error || 'Error al guardar el match');
+                        });
                     }
-                    sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
-                } else {
-                    throw new Error(data.error || 'Error desconocido');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert(error.message);
-            });
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        console.log('Match guardado:', data);
+                        if (data.liked) {
+                            likedCompanies.add(companyId);
+                            button.classList.add('liked');
+                            button.textContent = '✓ Interesado';
+                        } else {
+                            likedCompanies.delete(companyId);
+                            button.classList.remove('liked');
+                            button.textContent = '❤️ Me interesa';
+                        }
+                        sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
+                    } else {
+                        throw new Error(data.error || 'Error desconocido');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert(error.message);
+                });
         }
     </script>
 
@@ -126,11 +127,7 @@
 
 <script>
     function goBack() {
-        if (document.referrer) {
-            window.history.back(); // Goes back to the previous page
-        } else {
-            window.location.href = "/main"; // If there isn't a previous page, goes to the main page
-        }
+        window.location.href = "/main";
     }
 </script>
 

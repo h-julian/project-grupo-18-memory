@@ -24,5 +24,16 @@
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>    
     </footer>
+
+    <script>
+        function goBack() {
+            if (document.referrer) {
+                window.history.back(); // Goes back to previous page
+            } else {
+                window.location.href = "/main"; // Else goes to main page
+            }
+        }
+    </script>
+    
 </body>
 </html>

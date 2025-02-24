@@ -3,7 +3,7 @@
   "title" : "Desarrollador Senior - Microsoft",
   "content" : "Buscamos programadores experimentados en .NET para un ambiente flexible en California.",
   "timestamp" : "2025-02-20",
-  "imagePath" : "/images/microsoft_job.jpg",
+  "imagePath" : "/img/coder.jpg",
   "ownerId" : 2,
   "ownerType" : null
 }, {
@@ -11,7 +11,7 @@
   "title" : "Ingeniero IA - Google",
   "content" : "Oportunidad para trabajar en inteligencia artificial y computación en la nube en California.",
   "timestamp" : "2025-02-19",
-  "imagePath" : "/images/google_job.jpg",
+  "imagePath" : "/img/ai.jpg",
   "ownerId" : 12,
   "ownerType" : null
 }, {
@@ -19,7 +19,7 @@
   "title" : "Diseñador UI/UX - Apple",
   "content" : "Buscamos visionarios para crear experiencias revolucionarias en California.",
   "timestamp" : "2025-02-18",
-  "imagePath" : "/images/apple_job.jpg",
+  "imagePath" : "/img/cloud_engineer.jpg",
   "ownerId" : 22,
   "ownerType" : null
 }, {
@@ -27,7 +27,7 @@
   "title" : "Ingeniero Cloud - Amazon",
   "content" : "Lidera la innovación en comercio electrónico y nube en Seattle.",
   "timestamp" : "2025-02-17",
-  "imagePath" : "/images/amazon_job.jpg",
+  "imagePath" : "/img/remote_work_security.jpg",
   "ownerId" : 32,
   "ownerType" : null
 }, {
@@ -35,7 +35,7 @@
   "title" : "Ingeniero Eléctrico - Tesla",
   "content" : "Trabaja en tecnología eléctrica y autónoma en Texas.",
   "timestamp" : "2025-02-16",
-  "imagePath" : "/images/tesla_job.jpg",
+  "imagePath" : "/img/tesla.jpg",
   "ownerId" : 42,
   "ownerType" : null
 }, {
@@ -43,7 +43,7 @@
   "title" : "Desarrollador Frontend - Facebook",
   "content" : "Únete a nuestra red social en Menlo Park, California.",
   "timestamp" : "2025-02-15",
-  "imagePath" : "/images/facebook_job.jpg",
+  "imagePath" : "/img/facebook.jpg",
   "ownerId" : 52,
   "ownerType" : null
 }, {
@@ -51,7 +51,7 @@
   "title" : "Productor de Contenido - Netflix",
   "content" : "Crea contenido innovador en Los Gatos, California.",
   "timestamp" : "2025-02-14",
-  "imagePath" : "/images/netflix_job.jpg",
+  "imagePath" : "/img/netflix.jpg",
   "ownerId" : 62,
   "ownerType" : null
 }, {
@@ -59,7 +59,7 @@
   "title" : "Ingeniero de Logística - Uber",
   "content" : "Transforma la movilidad en San Francisco, California.",
   "timestamp" : "2025-02-13",
-  "imagePath" : "/images/uber_job.jpg",
+  "imagePath" : "/img/logistic.jpg",
   "ownerId" : 72,
   "ownerType" : null
 }, {

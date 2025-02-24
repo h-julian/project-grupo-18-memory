@@ -60,6 +60,7 @@
                         postElement.classList.add("box");
                         postElement.innerHTML = `
                           <h1>${post.title}</h1>
+                          <img src="${post.imagePath}" alt="${post.title}" class="post-image">
                           <p>${post.content}</p>
                           <p><strong>Fecha:</strong> ${post.timestamp}</p>
                           <p><strong>Autor:</strong> ${post.ownerType}</p>

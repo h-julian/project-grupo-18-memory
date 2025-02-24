@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
 
     <header>
         <div class="header-left">
-        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
         </div>
         <div class="title">
             <a href="/main">JOBMATCHER</a>
@@ -38,7 +39,7 @@
 
     <script>
         // JavaScript to handle the switches
-        document.getElementById('notificationsSwitch').addEventListener('change', function() {
+        document.getElementById('notificationsSwitch').addEventListener('change', function () {
             if (this.checked) {
                 // Code to enable notifications
                 console.log('Notificaciones activadas');
@@ -48,7 +49,7 @@
             }
         });
 
-        document.getElementById('darkModeSwitch').addEventListener('change', function() {
+        document.getElementById('darkModeSwitch').addEventListener('change', function () {
             if (this.checked) {
                 // Code to enable dark mode
                 document.body.classList.add('dark-mode');
@@ -69,19 +70,16 @@
         }
     </script>
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
+        </div>
     </footer>
 
     <script>
         function goBack() {
-            if (document.referrer) {
-                window.history.back(); // Vuelve a la página anterior si hay historial
-            } else {
-                window.location.href = "/main"; // Si no hay historial, redirige a la página principal
-            }
+            window.location.href = "/main"; // Else goes to main page
         }
     </script>
-    
+
 </body>
 
 

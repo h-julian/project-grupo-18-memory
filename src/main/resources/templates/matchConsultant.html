@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +29,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('Loading matches...');
             fetch('/api/match/consultant')
                 .then(response => response.json())
@@ -73,11 +74,7 @@
 
 <script>
     function goBack() {
-        if (document.referrer) {
-            window.history.back(); // Goes back to the previous page
-        } else {
-            window.location.href = "/main"; // If there isn't a previous page, goes to the main page
-        }
+        window.location.href = "/main"; // If there isn't a previous page, goes to the main page
     }
 </script>
 
