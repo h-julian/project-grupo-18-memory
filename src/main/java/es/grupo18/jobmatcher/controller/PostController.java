@@ -25,11 +25,12 @@ public class PostController {
     @ResponseBody
     public ResponseEntity<?> createPost(@RequestBody Post post) {
         List<Post> posts = loadPosts();
-        
-        // Formatear el timestamp
+
+        // Formats the timestamp
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         post.setTimestamp(dateFormat.format(new Date()));
-        
+
         posts.add(post);
         savePosts(posts);
         return ResponseEntity.ok().body("{\"success\": true}");
@@ -37,7 +38,8 @@ public class PostController {
 
     private List<Post> loadPosts() {
         try {
-            return mapper.readValue(new File(POSTS_FILE_PATH), new TypeReference<List<Post>>() {});
+            return mapper.readValue(new File(POSTS_FILE_PATH), new TypeReference<List<Post>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -51,4 +53,5 @@ public class PostController {
             e.printStackTrace();
         }
     }
+
 }

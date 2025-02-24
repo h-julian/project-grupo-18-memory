@@ -11,6 +11,7 @@ public class Post {
     private String ownerType;
 
     // Constructor
+    
     public Post() {}
 
     public Post(long postId, String title, String content, String timestamp, String imagePath, long ownerId, String ownerType) {
@@ -24,6 +25,7 @@ public class Post {
     }
 
     // Getters
+
     public long getPostId() { return postId; }
     public String getTitle() { return title; }
     public String getContent() { return content; }
@@ -33,6 +35,7 @@ public class Post {
     public String getOwnerType() { return ownerType; }
 
     // Setters
+
     public void setPostId(long postId) { this.postId = postId; }
     public void setTitle(String title) { this.title = title; }
     public void setContent(String content) { this.content = content; }

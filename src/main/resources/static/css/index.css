@@ -1,13 +1,12 @@
 /* Logo image style */
 
-.logo img{
+.logo img {
     display: block;
     max-width: 150px;
     width: 100%;
     height: auto;
     margin: 0 auto;
 }
-
 
 .button-group {
     gap: 40px;

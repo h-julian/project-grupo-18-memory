@@ -11,24 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/test")
 public class SampleLogController {
- private static final Logger log = LoggerFactory.getLogger(SampleLogController.class);
- @GetMapping("/log")
- public ResponseEntity<Void> logMessages() {
-   log.trace("A TRACE Message");
-   log.debug("A DEBUG Message");
-   log.info("An INFO Message");
-   log.warn("A WARN Message");
-   log.error("An ERROR Message");
+  private static final Logger log = LoggerFactory.getLogger(SampleLogController.class);
 
-  return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // Devuelve 204 No Content
- }
+  @GetMapping("/log")
+  public ResponseEntity<Void> logMessages() {
+    log.trace("A TRACE Message");
+    log.debug("A DEBUG Message");
+    log.info("An INFO Message");
+    log.warn("A WARN Message");
+    log.error("An ERROR Message");
 
- @GetMapping("/ping")
- public ResponseEntity<Void> ping() {
-    log.info("¡Spring Boot está funcionando!");
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // Answers with 204 No Content
+  }
 
-  return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // Responde con 204 No Content
+  @GetMapping("/ping")
+  public ResponseEntity<Void> ping() {
+    log.info("Spring Boot is working");
 
- }
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // Answers with 204 No Content
 
+  }
+  
 }

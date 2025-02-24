@@ -30,7 +30,9 @@ body {
     letter-spacing: 2px;
 }
 
-.option-box, .logo, .icons {
+.option-box,
+.logo,
+.icons {
     display: flex;
     align-items: center;
 }
@@ -48,7 +50,8 @@ body {
     gap: 15px;
 }
 
-.icon .button, .option-box .button {
+.icon .button,
+.option-box .button {
     background: #00b4d8;
     border: none;
     color: white;
@@ -61,7 +64,8 @@ body {
     display: inline-block;
 }
 
-.icon .button:hover, .option-box .button:hover {
+.icon .button:hover,
+.option-box .button:hover {
     background: #0096c7;
     transform: scale(1.05);
 }
@@ -91,7 +95,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
 h2 {
@@ -110,7 +114,8 @@ label {
     color: #333333;
 }
 
-input, select {
+input,
+select {
     width: 100%;
     padding: 10px;
     border: 1px solid #cccccc;

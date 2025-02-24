@@ -40,7 +40,8 @@
     padding: 20px;
 }
 
-.match-description, .match-location {
+.match-description,
+.match-location {
     margin: 10px 0;
     font-size: 1rem;
     color: #555;

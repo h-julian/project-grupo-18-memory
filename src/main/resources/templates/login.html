@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,13 +37,12 @@
                     <button id="submit">Ingresar</button>
                 </div>
             </form>
-            
             <!--<p>¿No tienes cuenta? <a href="register">Regístrate</a></p>-->
         </div>
     </div>
 
     <script>
-        function validarLogin(event) {
+        function validateLogin(event) {
             event.preventDefault();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
@@ -66,24 +66,25 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text) });
-                }
-                return response.json();
-            })
-            .then(user => {
-                window.location.href = '/main';
-            })
-            .catch(error => {
-                alert("Error: " + error.message);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text) });
+                    }
+                    return response.json();
+                })
+                .then(user => {
+                    window.location.href = '/main';
+                })
+                .catch(error => {
+                    alert("Error: " + error.message);
+                });
             return false;
         }
     </script>
 
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
+        </div>
     </footer>
 
 </body>

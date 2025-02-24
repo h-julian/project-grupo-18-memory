@@ -51,6 +51,7 @@ public class Company extends Account {
     }
     
     // Getters
+
     public String getBio() { return bio; }
     public String getImagePath() { return imagePath; }
     public Map<String, JobOffer> getJobOffers() { return jobOffersMap; }
@@ -59,6 +60,7 @@ public class Company extends Account {
     public String getLocation() { return location; }
 
     // Setters
+
     public void setBio(String bio) { this.bio = bio; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setJobOffers(Map<String, JobOffer> jobOffersMap) { this.jobOffersMap = jobOffersMap; }
@@ -68,6 +70,7 @@ public class Company extends Account {
     public void setProfilePhoto(String profilePhoto) { this.imagePath = profilePhoto; }
 
     // Update methods
+
     public void updateLocation(String newLocation){
         this.location = newLocation;
     }
@@ -81,6 +84,7 @@ public class Company extends Account {
     }
 
     // Add & Remove methods
+
     public void addJobOffer(JobOffer jobOffer){
         this.jobOffersMap.put(String.valueOf(jobOffer.getOfferId()), jobOffer);
     }
@@ -120,6 +124,7 @@ public class Company extends Account {
     }
 
     // toString
+
     @Override
     public String toString() {
         return "Company{" + super.toString() +
