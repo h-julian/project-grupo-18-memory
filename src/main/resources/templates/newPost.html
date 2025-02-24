@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobMatcher - Nuevo Post</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/newPostStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -22,19 +21,30 @@
     </header>
 
     <main class="container">
-        <form id="new-post-form">
-            <h1>Nuevo Post</h1>
-            <label for="title">Título:</label>
-            <input type="text" id="title" name="title" required>
-            
-            <label for="content">Contenido:</label>
-            <textarea id="content" name="content" rows="10" required></textarea>
-            
-            <label for="ownerType">Autor:</label>
-            <input type="text" id="ownerType" name="ownerType" required>
-            
-            <button type="submit">Subir post</button>
-        </form>
+        
+        <div class="box"> 
+            <h1>Nueva Noticia</h1>
+            <form id="newPostForm" method="post" action="/noticias/crear">
+                <div class="input-group">
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="input-group">
+                    <label for="content">Contenido:</label>
+                    <textarea id="content" name="content" rows="10" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="ownerType">Autor:</label>
+                    <input type="text" id="ownerType" name="ownerType" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Publicar Noticia</button>
+                </div>
+            </form>
+        </div>
+        
+        
+        
     </main>
 
     <script>
