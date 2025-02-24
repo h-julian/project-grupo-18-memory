@@ -1,28 +1,22 @@
 .container {
-    display: flex;
-    justify-content: center;
+    display: grid;
     align-items: flex-start;
     gap: 20px;
     padding: 20px;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch; 
 }
 
-.foto-box, .info-box {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
+.box {
     max-width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra el contenido verticalmente */
-    min-height: 400px; /* Asegura que todos los cuadros tengan la misma altura */
+    justify-content: center;
 }
 
-.foto-box img {
+.box img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -31,60 +25,21 @@
     background-color: #f0f0f0;
 }
 
-.foto-box h2, .info-box h2 {
-    font-size: 1.4rem;
-    color: #0077b6;
-    margin-bottom: 10px;
-}
-
-.info-box ul {
+.box ul {
     list-style: none;
     padding: 0;
-    text-align: center; /* Centra el texto dentro del cuadro */
-    width: 100%;
+    text-align: justify;
 }
 
-.info-box li {
+.box li {
     margin-bottom: 8px;
-    font-size: 1rem;
 }
 
-.info-box li strong {
+.box li strong {
     color: #0077b6;
 }
 
-/* Botones */
+
 .button-group {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.button-group button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.edit-btn {
-    background-color: #0077b6;
-    color: white;
-}
-
-.edit-btn:hover {
-    background: #005f8b;
-}
-
-/* Ajuste de columnas */
-@media (min-width: 768px) {
-    .container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        align-items: stretch; /* Hace que todos los cuadros tengan la misma altura */
-    }
+    margin-top: 30px;
 }
