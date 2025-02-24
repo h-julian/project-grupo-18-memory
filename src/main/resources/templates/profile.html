@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
 
     <header>
         <div class="header-left">
-        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
         </div>
         <div class="title">
             <a href="/main">JOBMATCHER</a>
@@ -27,15 +28,16 @@
         <div class="foto-box">
             <h2>Foto de Perfil</h2>
             <img id="profilePhoto" src="{{user.imagePath}}" alt="Foto de perfil">
-        
+
             <form action="/profile/upload_image" method="post" enctype="multipart/form-data">
-                <input type="file" id="photoInput" name="image" accept="image/*" style="display:none;" onchange="this.form.submit();">
+                <input type="file" id="photoInput" name="image" accept="image/*" style="display:none;"
+                    onchange="this.form.submit();">
                 <div class="button-group">
                     <button type="button" onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
                 </div>
             </form>
         </div>
-        
+
         <div class="info-box">
             <h2>Datos del usuario</h2>
             <ul>
@@ -63,36 +65,36 @@
             <h2>Estudios</h2>
             <ul>
                 {{#studies}}
-                    <li>{{.}}</li>
+                <li>{{.}}</li>
                 {{/studies}}
             </ul>
-        
+
             <h2>Habilidades</h2>
             <ul>
                 {{#skills}}
-                    <li>{{.}}</li>
+                <li>{{.}}</li>
                 {{/skills}}
             </ul>
             <h2>Experiencia</h2>
             </span>{{experience}} años</span>
-        
-        <div class="button-group">
-            <button onclick="location.href='/profile/form'">Editar información</button>
+
+            <div class="button-group">
+                <button onclick="location.href='/profile/form'">Editar información</button>
+            </div>
         </div>
-    </div>
-        
-        
+
+
     </div>
 
 
- <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const defaultPhoto = "/profile/profile.jpg";
             const storedProfile = localStorage.getItem("profile");
             let profile = storedProfile ? JSON.parse(storedProfile) : {};
-    
+
             document.getElementById("profilePhoto").src = profile.photo || defaultPhoto;
-    
+
             document.getElementById('photoInput').addEventListener('change', function (e) {
                 const file = e.target.files[0];
                 if (file) {
@@ -107,11 +109,11 @@
                 }
             });
         });
-    </script> 
-    
+    </script>
 
 
-    <script> 
+
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             window.scrollTo(0, document.body.scrollHeight);
         });
@@ -119,17 +121,15 @@
 
     <script>
         function goBack() {
-            if (document.referrer) {
-                window.history.back();
-            } else {
-                window.location.href = "/main";
-            }
+            window.location.href = "/main";
         }
     </script>
 
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
+        </div>
     </footer>
 
 </body>
+
 </html>

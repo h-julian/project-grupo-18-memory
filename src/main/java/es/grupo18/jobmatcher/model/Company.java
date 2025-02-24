@@ -80,7 +80,7 @@ public class Company extends Account {
         this.imagePath = newImagePath;
     }
 
-    //Add & Remove methods
+    // Add & Remove methods
     public void addJobOffer(JobOffer jobOffer){
         this.jobOffersMap.put(String.valueOf(jobOffer.getOfferId()), jobOffer);
     }
