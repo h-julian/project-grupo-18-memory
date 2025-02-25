@@ -1,7 +1,11 @@
 package es.grupo18.jobmatcher.controller;
 
+import es.grupo18.jobmatcher.model.Account;
 import es.grupo18.jobmatcher.model.Post;
-import es.grupo18.jobmatcher.service.BlogService;
+import es.grupo18.jobmatcher.service.AccountService;
+import es.grupo18.jobmatcher.service.PostService;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,22 +13,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
 
-    private final BlogService blogService;
+    private final AccountService accountService;
+    private final PostService postService;
 
-    public BlogController(BlogService blogService) {
-        this.blogService = blogService;
+    public BlogController(PostService postService, AccountService accountService) {
+        this.postService = postService;
+        this.accountService = accountService;
     }
 
     @GetMapping("")
     public String showBlogPage(Model model) {
-        List<Post> posts = blogService.getAllPosts();;
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postService.getAllPosts());
         return "blog";
     }
 
@@ -37,7 +43,21 @@ public class BlogController {
     public String createNewPost(@RequestParam String title,
                                 @RequestParam String content,
                                 @RequestParam(required = false) String imagePath) {
-        blogService.addPost(title, content, imagePath);
+
+        Account currentUser = accountService.findAccountById(1L); // Usuario actual en fase 1
+
+        Post newPost = new Post(
+            System.currentTimeMillis(),
+            title,
+            content,
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
+            imagePath,
+            currentUser
+        );
+
+        currentUser.addPost(newPost);
+        postService.addPost(newPost);
+
         return "redirect:/blog";
     }
 }

@@ -1,10 +1,15 @@
 package es.grupo18.jobmatcher.model;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public abstract class Account {
     private long accountId;
     private String name;
     private String email;
     private String password;
+
+    private List<Post> posts = new ArrayList<>();
 
     // Constructors
 
@@ -52,6 +57,19 @@ public abstract class Account {
 
     public static long generateNewAccountId(){
         return (long) (Math.random() * 1000);
+    }
+
+    // Nuevos métodos para gestionar posts
+    public void addPost(Post post){
+        posts.add(post);
+    }
+
+    public void removePost(Post post){
+        posts.remove(post);
+    }
+
+    public List<Post> getPosts(){
+        return posts;
     }
 
     // toString

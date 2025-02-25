@@ -7,20 +7,19 @@ public class Post {
     private String content;
     private String timestamp; 
     private String imagePath;
-    private long ownerId;
-    private String ownerName;
+    private Account owner;
 
     // Constructor
     
     public Post() {}
 
-    public Post(long postId, String title, String content, String timestamp, String imagePath, String ownerName) {
+    public Post(long postId, String title, String content, String timestamp, String imagePath, Account owner) {
         this.postId = postId;
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
         this.imagePath = imagePath;
-        this.ownerName = ownerName;
+        this.owner = owner;
     }
 
     // Getters
@@ -30,8 +29,7 @@ public class Post {
     public String getContent() { return content; }
     public String getTimestamp() { return timestamp; }
     public String getImagePath() { return imagePath; }
-    public long getOwnerId() { return ownerId; }
-    public String getOwnerName() { return ownerName; }
+    public Account getOwner() { return owner; }
 
     // Setters
 
@@ -40,7 +38,6 @@ public class Post {
     public void setContent(String content) { this.content = content; }
     public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
-    public void setOwnerId(long ownerId) { this.ownerId = ownerId; }
-    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
+    public void setOwner(Account owner) {this.owner = owner; }
 
 }

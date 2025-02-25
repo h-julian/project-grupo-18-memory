@@ -12,7 +12,7 @@ public class UserService {
 
     public UserService() {
         // Simulación de usuario en memoria
-        this.user = new User(
+        user = new User(
             1L, 
             "Juan Javier", 
             "juja@gmail.com", 

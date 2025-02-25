@@ -26,25 +26,26 @@
 
     <div class="container">
         <div class="box">
-            <h1>Editar perfil</h1>
+            <h1>Editar CV</h1>
             <form id="profileEditorForm" method="post" action="/profile/form">
                 <div class="input-group">
                     <label for="studies">Estudios (separados por comas):</label>
-                    <input type="text" id="studies" name="studies" value="{{studies}}" required>
+                    <input type="text" id="studies" name="studies" value="{{studies}}" minlength="2" maxlength="250">
                 </div>
                 <div class="input-group">
                     <label for="skills">Habilidades (separadas por comas):</label>
-                    <input type="text" id="skills" name="skills" value="{{skills}}" required>
+                    <input type="text" id="skills" name="skills" value="{{skills}}" minlength="2" maxlength="250">
                 </div>
                 <div class="input-group">
                     <label for="experience">Experiencia (en años):</label>
-                    <input type="number" id="experience" name="experience" value="{{experience}}">
+                    <input type="number" id="experience" name="experience" value="{{experience}}" min="0" max="100" required>
                 </div>
                 <div class="button-group">
                     <button type="submit">Guardar Cambios</button>
                 </div>
             </form>
         </div>
+        
     </div>
 
     <script>

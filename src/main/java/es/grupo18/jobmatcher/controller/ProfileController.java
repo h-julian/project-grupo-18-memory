@@ -52,14 +52,19 @@ public class ProfileController {
 
     @GetMapping("/profile/edit")
     public String editProfile(Model model) {
-        model.addAttribute("user", userService.getUser());
+        User user = userService.getUser();
+        model.addAttribute("name", user.getName());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("phone", user.getPhone());
+        model.addAttribute("location", user.getLocation());
+        model.addAttribute("bio", user.getBio());
         return "profileEditor";
     }
 
     @PostMapping("/profile/edit")
     public String saveProfile(@RequestParam String name, @RequestParam String email, @RequestParam String phone,
-                              @RequestParam String location, @RequestParam String about) {
-        userService.updateUserProfile(name, email, phone, location, about);
+                              @RequestParam String location, @RequestParam String bio) {
+        userService.updateUserProfile(name, email, phone, location, bio);
         return "redirect:/profile";
     }
 
