@@ -14,7 +14,6 @@
 
 <body>
 
-
     <header>
         <div class="header-left">
             <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
@@ -26,8 +25,6 @@
             <button class="hidden-button"></button> <!-- Not to show Profile Button -->
         </div>
     </header>
-
-
 
     <div class="container" id="matches-container">
         <!-- Matches will be loaded here -->
@@ -62,7 +59,7 @@
                 })
                 .catch(error => {
                     console.error('Error loading matches:', error);
-                    document.getElementById('matches-container').innerHTML = 
+                    document.getElementById('matches-container').innerHTML =
                         '<p class="error-message">Error al cargar los matches</p>';
                 });
         });
@@ -89,6 +86,11 @@
             return box;
         }
     </script>
+
+    <footer>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
+        </div>
+    </footer>
 
 </body>
 

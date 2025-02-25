@@ -21,7 +21,7 @@
             <a href="/main">JOBMATCHER</a>
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button> <!-- Sin función -->
+            <button class="hidden-button"></button> <!-- Not to show Profile Button -->
         </div>
     </header>
 
@@ -35,49 +35,17 @@
         </section>
     </main>
 
-    <script>
-        // JavaScript to handle the switches
-        document.getElementById('notificationsSwitch').addEventListener('change', function () {
-            if (this.checked) {
-                // Code to enable notifications
-                console.log('Notificaciones activadas');
-            } else {
-                // Code to disable notifications
-                console.log('Notificaciones desactivadas');
-            }
-        });
-
-        document.getElementById('darkModeSwitch').addEventListener('change', function () {
-            if (this.checked) {
-                // Code to enable dark mode
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'enabled');
-                console.log('Modo oscuro activado');
-            } else {
-                // Code to disable dark mode
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'disabled');
-                console.log('Modo oscuro desactivado');
-            }
-        });
-
-        // Check the dark mode status on page load
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.body.classList.add('dark-mode');
-            document.getElementById('darkModeSwitch').checked = true;
-        }
-    </script>
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
         </div>
     </footer>
 
-    <script>
-        function goBack() {
-            window.location.href = "/main"; // Else goes to main page
-        }
-    </script>
-
 </body>
+
+<script>
+    function goBack() {
+        window.location.href = "/main"; // Else goes to main page
+    }
+</script>
 
 </html>
