@@ -29,3 +29,22 @@ img {
     display: block;
     margin: 0 auto;
 }
+
+/* Dark Mode (to avoid conflicts with other styles in styles.css) */
+
+.dark-mode .container {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .left-section,
+.dark-mode .right-section {
+    color: #ffffff;
+}
+
+.dark-mode img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
