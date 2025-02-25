@@ -3,30 +3,18 @@ body {
     min-height: 100vh;
 }
 
-.container,
-.companies-grid {
+.container {
     max-width: 1200px;
 }
 
 .match-container,
-.companies-grid {
+.container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
 }
 
-.match-card,
-.company-card {
-    background-color: var(--card-background);
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.match-card:hover,
-.company-card:hover {
+.box:hover {
     transform: translateY(-5px);
 }
 
@@ -46,15 +34,14 @@ body {
     align-items: center;
 }
 
-.match-card h3,
-.company-name {
+.match-box h3{
     font-size: 1.2em;
     font-weight: bold;
     color: #333;
     margin: 10px 0;
 }
 
-.match-card p,
+.match-box p,
 .company-description,
 .company-location {
     font-size: 0.9em;
@@ -62,22 +49,50 @@ body {
     line-height: 1.4;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: auto;
+.container {
+    display: grid;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
 }
 
-.action-buttons button {
-    width: 90%;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s;
-    font-size: 0.9em;
+.box {
+    width: 350px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
+
+.box img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ffffff;
+}
+
+.box ul {
+    list-style: none;
+    padding: 0;
+    text-align: justify;
+}
+
+.box li {
+    margin-bottom: 8px;
+}
+
+.box li strong {
+    color: #0077b6;
+}
+
+.button-group {
+    margin-top: 30px;
+}
+
+
+

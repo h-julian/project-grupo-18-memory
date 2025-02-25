@@ -12,21 +12,24 @@
     <script src="/js/darkMode.js" defer></script>
 </head>
 
-<header>
-    <div class="header-left">
-        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
-    </div>
-    <div class="title">
-        <a href="/main">JOBMATCHER</a>
-    </div>
-    <div class="header-right">
-        <button class="hidden-button"></button> <!-- Not to show Profile Button -->
-    </div>
-</header>
 
 <body>
 
-    <div class="companies-grid" id="companies-container">
+    <header>
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+        </div>
+        <div class="title">
+            <a href="/main">JOBMATCHER</a>
+        </div>
+        <div class="header-right">
+            <button class="hidden-button"></button> <!-- Not to show Profile Button -->
+        </div>
+    </header>
+
+
+
+    <div class="container" id="companies-container">
         <!-- Companies will be loaded here -->
     </div>
 
@@ -41,7 +44,7 @@
                 .then(companies => {
                     const container = document.getElementById('companies-container');
                     companies.forEach(company => {
-                        const card = createCompanyCard(company);
+                        const card = createCompanyBox(company);
                         container.appendChild(card);
                     });
                 })
@@ -51,35 +54,37 @@
                     container.innerHTML = '<p class="error-message">Error al cargar las empresas</p>';
                 });
         });
-
-        function createCompanyCard(company) {
+    
+        function createCompanyBox(company) {
             console.log('Company data:', company);
             const defaultImage = '/img/default-company.png';
-            const card = document.createElement('div');
-            card.className = 'company-card';
+            const box = document.createElement('div');
+            box.className = 'box';  // Cambia company-box por box para unificar estilos
+
             const isLiked = likedCompanies.has(company.accountId);
 
-            card.innerHTML = `
-                <div class="company-header">
+            box.innerHTML = `
+                <h1 class="company-name">${company.name || 'Sin nombre'}</h1>
+                <div class="profile-image-container">
                     <img src="${company.imagePath || defaultImage}" 
-                         alt="${company.name}"
-                         class="company-image"
-                         onerror="this.src='${defaultImage}'">
-                    <h2 class="company-name">${company.name || 'Sin nombre'}</h2>
+                        alt="${company.name}"
+                        class="profile-photo"
+                        onerror="this.src='${defaultImage}'">
                 </div>
-                <div class="company-info">
-                    <p class="company-description">${company.bio || 'Sin descripción'}</p>
-                    <p class="company-location">📍 ${company.location || 'Ubicación no especificada'}</p>
-                </div>
-                <div class="action-buttons">
+                <ul class="company-details">
+                    <li><strong>Descripción:</strong> ${company.bio || 'Sin descripción'}</li>
+                    <li><strong>Ubicación:</strong> 📍 ${company.location || 'Ubicación no especificada'}</li>
+                </ul>
+                <div class="button-group">
                     <button class="like-btn ${isLiked ? 'liked' : ''}" 
                             onclick="toggleLike(${company.accountId}, this)">
                         ${isLiked ? '✓ Interesado' : '❤️ Me interesa'}
                     </button>
                 </div>
             `;
-            return card;
+            return box;
         }
+
 
         function toggleLike(companyId, button) {
             console.log('Enviando like para compañía:', companyId);
