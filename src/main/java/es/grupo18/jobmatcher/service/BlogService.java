@@ -19,7 +19,12 @@ import java.util.List;
 public class BlogService {
 
     private final List<Post> posts = new ArrayList<>();
+    private final UserService userService;
     private static final String JSON_FILE_PATH = "src/main/resources/static/data/posts.json";
+
+    public BlogService(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostConstruct
     public void loadPostsFromJson() {
@@ -44,9 +49,10 @@ public class BlogService {
         return reversedPosts;
     }
 
-    public void addPost(String title, String content, String imagePath, String ownerName) {
+    public void addPost(String title, String content, String imagePath) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         long newId = posts.isEmpty() ? 1 : posts.get(posts.size() - 1).getPostId() + 1;
+        String ownerName = userService.getCurrentUserName();
         posts.add(new Post(newId, title, content, timestamp, imagePath, ownerName));
         System.out.println("✅ Nuevo post agregado en memoria.");
     }

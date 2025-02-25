@@ -36,9 +36,8 @@ public class BlogController {
     @PostMapping("/newpost")
     public String createNewPost(@RequestParam String title,
                                 @RequestParam String content,
-                                @RequestParam(required = false) String imagePath,
-                                @RequestParam String ownerName) {
-        blogService.addPost(title, content, imagePath, ownerName);
+                                @RequestParam(required = false) String imagePath) {
+        blogService.addPost(title, content, imagePath);
         return "redirect:/blog";
     }
 }
