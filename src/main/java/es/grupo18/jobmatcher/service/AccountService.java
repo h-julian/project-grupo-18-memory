@@ -2,7 +2,6 @@ package es.grupo18.jobmatcher.service;
 
 import es.grupo18.jobmatcher.model.Account;
 import es.grupo18.jobmatcher.model.Company;
-import es.grupo18.jobmatcher.model.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +20,7 @@ public class AccountService {
 
     @PostConstruct
     public void initAccounts() {
-        // Añadir usuario existente desde UserService
+        // Obtains existant users from AccountService
         Account user = userService.getUser();
         accounts.add(user);
 
@@ -30,7 +29,7 @@ public class AccountService {
         accounts.add(new Company(12L, "Google", "careers@google.com", "pass123", "Barcelona", "Google LLC", "/img/google.png"));
         accounts.add(new Company(22L, "Apple", "jobs@apple.com", "pass123", "Lima", "Apple Inc.", "/img/apple.png"));
 
-        System.out.println("✅ Cuentas (usuario y empresas) cargadas correctamente en memoria.");
+        System.out.println("Accounts (users and companies) uploaded to memory");
     }
 
     public Account findAccountById(long id) {
@@ -43,4 +42,5 @@ public class AccountService {
     public List<Account> getAccounts() {
         return accounts;
     }
+
 }

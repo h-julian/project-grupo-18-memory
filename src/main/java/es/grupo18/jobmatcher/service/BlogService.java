@@ -14,11 +14,11 @@ public class BlogService {
     }
 
     public List<Post> getAllPosts() {
-        // Ahora BlogService solo delega a PostService
         return postService.getAllPosts();
     }
 
     public void addPost(Post post) {
         postService.addPost(post);
     }
+
 }
