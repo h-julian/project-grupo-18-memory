@@ -12,7 +12,6 @@
     <script src="/js/darkMode.js" defer></script>
 </head>
 
-
 <body>
 
     <header>
@@ -27,14 +26,12 @@
         </div>
     </header>
 
-
-
     <div class="container" id="companies-container">
         <!-- Companies will be loaded here -->
     </div>
 
     <script>
-        // Track liked companies in session storage
+        // Tracks liked companies in session storage
         const likedCompanies = new Set(JSON.parse(sessionStorage.getItem('likedCompanies') || '[]'));
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -54,12 +51,12 @@
                     container.innerHTML = '<p class="error-message">Error al cargar las empresas</p>';
                 });
         });
-    
+
         function createCompanyBox(company) {
             console.log('Company data:', company);
             const defaultImage = '/img/default-company.png';
             const box = document.createElement('div');
-            box.className = 'box';  // Cambia company-box por box para unificar estilos
+            box.className = 'box';
 
             const isLiked = likedCompanies.has(company.accountId);
 
@@ -85,9 +82,8 @@
             return box;
         }
 
-
         function toggleLike(companyId, button) {
-            console.log('Enviando like para compañía:', companyId);
+            console.log('Sending like to company:', companyId);
 
             fetch(`/api/match/like/${companyId}`, {
                 method: 'POST',
@@ -101,14 +97,14 @@
                     console.log('Response status:', response.status);
                     if (!response.ok) {
                         return response.json().then(data => {
-                            throw new Error(data.error || 'Error al guardar el match');
+                            throw new Error(data.error || 'Error saving the match');
                         });
                     }
                     return response.json();
                 })
                 .then(data => {
                     if (data.success) {
-                        console.log('Match guardado:', data);
+                        console.log('Match saved:', data);
                         if (data.liked) {
                             likedCompanies.add(companyId);
                             button.classList.add('liked');
@@ -120,7 +116,7 @@
                         }
                         sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
                     } else {
-                        throw new Error(data.error || 'Error desconocido');
+                        throw new Error(data.error || 'Unknown error');
                     }
                 })
                 .catch(error => {
@@ -129,10 +125,12 @@
                 });
         }
     </script>
+
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
         </div>
     </footer>
+
 </body>
 
 <script>
