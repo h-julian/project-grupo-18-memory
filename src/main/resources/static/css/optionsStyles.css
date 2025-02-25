@@ -63,6 +63,7 @@ input:checked+.slider:before {
 }
 
 /* Dark mode styles */
+
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <header class="title">
         <a href="/main" class="logo">
             <div>JOBMATCHER</div>
@@ -32,16 +33,16 @@
         </div>
     </footer>
 
-    <script>
-        function goBack() {
-            if (document.referrer) {
-                window.history.back(); // Goes back to previous page
-            } else {
-                window.location.href = "/main"; // Else goes to main page
-            }
-        }
-    </script>
-
 </body>
+
+<script>
+    function goBack() {
+        if (document.referrer) {
+            window.history.back(); // Goes back to previous page
+        } else {
+            window.location.href = "/main"; // Else goes to main page
+        }
+    }
+</script>
 
 </html>
