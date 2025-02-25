@@ -12,35 +12,26 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class BlogService {
 
     private final List<Post> posts = new ArrayList<>();
-    private final AtomicLong postCounter = new AtomicLong(1);
-    private static final String JSON_FILE_PATH = "src/main/resources/static/data/posts.json"; // Ruta absoluta
+    private static final String JSON_FILE_PATH = "src/main/resources/static/data/posts.json";
 
     @PostConstruct
     public void loadPostsFromJson() {
+        File file = Paths.get(JSON_FILE_PATH).toFile();
+        if (!file.exists()) {
+            System.out.println("⚠️ No se encontró el archivo JSON, iniciando con lista vacía.");
+            return;
+        }
+
         try {
-            File file = Paths.get(JSON_FILE_PATH).toFile();
-
-            if (!file.exists()) {
-                System.out.println("⚠️ No se encontró el archivo JSON en " + JSON_FILE_PATH + ", iniciando con lista vacía.");
-                return;
-            }
-
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Post> loadedPosts = objectMapper.readValue(file, new TypeReference<List<Post>>() {});
-            posts.addAll(loadedPosts);
-
-            if (!posts.isEmpty()) {
-                long maxId = posts.stream().mapToLong(Post::getPostId).max().orElse(0);
-                postCounter.set(maxId + 1);
-            }
-
+            posts.addAll(objectMapper.readValue(file, new TypeReference<List<Post>>() {}));
             System.out.println("✅ Posts cargados desde JSON: " + posts.size());
         } catch (IOException e) {
             System.err.println("❌ Error cargando posts desde JSON: " + e.getMessage());
@@ -48,13 +39,16 @@ public class BlogService {
     }
 
     public List<Post> getAllPosts() {
-        return new ArrayList<>(posts);
+        List<Post> reversedPosts = new ArrayList<>(posts);
+        Collections.reverse(reversedPosts);
+        return reversedPosts;
     }
 
-    public void addPost(String title, String content, String imagePath, long ownerId, String ownerType) {
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Post newPost = new Post(postCounter.getAndIncrement(), title, content, timestamp, imagePath, ownerId, ownerType);
-        posts.add(newPost);
-        System.out.println("Nuevo post agregado en memoria: " + newPost);
+    public void addPost(String title, String content, String imagePath, String ownerName) {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        long newId = posts.isEmpty() ? 1 : posts.get(posts.size() - 1).getPostId() + 1;
+        posts.add(new Post(newId, title, content, timestamp, imagePath, ownerName));
+        System.out.println("✅ Nuevo post agregado en memoria.");
     }
 }
+

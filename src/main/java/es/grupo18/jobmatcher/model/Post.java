@@ -8,20 +8,19 @@ public class Post {
     private String timestamp; 
     private String imagePath;
     private long ownerId;
-    private String ownerType;
+    private String ownerName;
 
     // Constructor
     
     public Post() {}
 
-    public Post(long postId, String title, String content, String timestamp, String imagePath, long ownerId, String ownerType) {
+    public Post(long postId, String title, String content, String timestamp, String imagePath, String ownerName) {
         this.postId = postId;
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
         this.imagePath = imagePath;
-        this.ownerId = ownerId;
-        this.ownerType = ownerType;
+        this.ownerName = ownerName;
     }
 
     // Getters
@@ -32,7 +31,7 @@ public class Post {
     public String getTimestamp() { return timestamp; }
     public String getImagePath() { return imagePath; }
     public long getOwnerId() { return ownerId; }
-    public String getOwnerType() { return ownerType; }
+    public String getOwnerName() { return ownerName; }
 
     // Setters
 
@@ -42,6 +41,6 @@ public class Post {
     public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setOwnerId(long ownerId) { this.ownerId = ownerId; }
-    public void setOwnerType(String ownerType) { this.ownerType = ownerType; }
+    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
 
 }

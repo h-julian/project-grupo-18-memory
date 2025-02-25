@@ -23,8 +23,7 @@ public class BlogController {
 
     @GetMapping("")
     public String showBlogPage(Model model) {
-        List<Post> posts = blogService.getAllPosts();
-        System.out.println("📢 Mostrando " + posts.size() + " posts en el blog.");
+        List<Post> posts = blogService.getAllPosts();;
         model.addAttribute("posts", posts);
         return "blog";
     }
@@ -38,9 +37,8 @@ public class BlogController {
     public String createNewPost(@RequestParam String title,
                                 @RequestParam String content,
                                 @RequestParam(required = false) String imagePath,
-                                @RequestParam long ownerId,
-                                @RequestParam String ownerType) {
-        blogService.addPost(title, content, imagePath, ownerId, ownerType);
+                                @RequestParam String ownerName) {
+        blogService.addPost(title, content, imagePath, ownerName);
         return "redirect:/blog";
     }
 }

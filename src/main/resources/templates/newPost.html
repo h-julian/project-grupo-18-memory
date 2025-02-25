@@ -14,7 +14,7 @@
 <body>
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+            <button class="back-btn" onclick="location.href='/blog'">⬅️ Atrás</button>
         </div>
         <div class="title">
             <a href="/main">JOBMATCHER</a>
@@ -42,15 +42,11 @@
                     <input type="text" id="imagePath" name="imagePath">
                 </div>
                 <div class="input-group">
-                    <label for="ownerId">ID del Autor:</label>
-                    <input type="number" id="ownerId" name="ownerId" required>
-                </div>
-                <div class="input-group">
-                    <label for="ownerType">Tipo de Autor:</label>
-                    <input type="text" id="ownerType" name="ownerType" required>
+                    <label for="ownerName">Nombre del autor:</label>
+                    <input type="text" id="ownerName" name="ownerName" required>
                 </div>
                 <div class="button-group">
-                    <button type="submit">Publicar Noticia</button>
+                    <button type="submit">Publicar</button>
                 </div>
             </form>                        
         </div>

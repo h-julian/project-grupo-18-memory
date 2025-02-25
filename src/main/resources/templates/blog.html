@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+            <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
         </div>
         <div class="title">
             <a href="/main">JOBMATCHER</a>
@@ -26,7 +26,7 @@
     </header>
 
     <main class="container">
-        <main class="container">
+        <div class="container">
             <section id="blog-posts" class="blog-posts">
                 {{#posts}}
                 <div class="box">
@@ -34,7 +34,7 @@
                     <img src="{{imagePath}}" alt="{{title}}" class="post-image">
                     <p>{{content}}</p>
                     <p><strong>Fecha:</strong> {{timestamp}}</p>
-                    <p><strong>Autor:</strong> {{ownerType}} (ID: {{ownerId}})</p>
+                    <p><strong>Autor: </strong>{{ownerName}}</p>
                 </div>
                 {{/posts}}
         
@@ -44,21 +44,13 @@
                 </div>
                 {{/posts}}
             </section>
-        </main>
-        
-        
-        
+        </div>
     </main>
 
     <footer>
         <div class="copyright">© 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
 
-    <script>
-        function goBack() {
-            window.location.href = "/main";
-        }
-    </script>
 </body>
 
 </html>
