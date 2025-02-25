@@ -39,3 +39,43 @@ body {
     list-style: none;
     text-align: justify;
 }
+
+/* No matches */
+
+.no-matches {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 100px auto;
+}
+
+.no-matches p {
+    font-size: 1.5rem;
+    color: #0077b6;
+    margin-bottom: 30px; /* Aumentada separación entre el texto y el botón */
+}
+
+.no-matches a.btn {
+    background: #00b4d8;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.no-matches a.btn:hover {
+    background: #0096c7;
+    transform: scale(1.05);
+}
