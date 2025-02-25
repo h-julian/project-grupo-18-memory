@@ -17,7 +17,6 @@ public class User extends Account {
 
 
     public User() {
-
     }
 
     public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
