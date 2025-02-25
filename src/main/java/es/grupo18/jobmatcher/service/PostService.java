@@ -1,6 +1,5 @@
 package es.grupo18.jobmatcher.service;
 
-
 import es.grupo18.jobmatcher.model.Account;
 import es.grupo18.jobmatcher.model.Post;
 import org.springframework.stereotype.Service;
@@ -11,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import es.grupo18.jobmatcher.service.PostService;
-
-
-
 
 @Service
 public class PostService {
@@ -29,13 +25,13 @@ public class PostService {
     public void loadInitialPosts() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-        // Obtener cuentas desde AccountService
+        // Obtains accounts from AccountService
         Account microsoft = accountService.findAccountById(2L);
         Account google = accountService.findAccountById(12L);
         Account apple = accountService.findAccountById(22L);
 
-        // Crear posts directamente en memoria
-        Post post1 = new Post(1L, "Mi polla gorda - Microsoft",
+        // Creates posts directly in memory
+        Post post1 = new Post(1L, "Programador - Microsoft",
                 "Buscamos programadores experimentados en .NET para un ambiente flexible en California.",
                 LocalDateTime.now().minusDays(3).format(dtf), "/img/coder.jpg", microsoft);
 
@@ -47,19 +43,16 @@ public class PostService {
                 "Únete al equipo de diseño en Cupertino.",
                 LocalDateTime.now().minusDays(1).format(dtf), "/img/uiux.jpg", apple);
 
-        // Añadir posts a la lista interna del servicio
+        // Adds all posts to the list
         posts.addAll(List.of(post1, post2, post3));
 
-        // Asociar cada post con su dueño
+        // Matches posts with their respective accounts
         microsoft.addPost(post1);
         google.addPost(post2);
         apple.addPost(post3);
 
-        System.out.println("✅ Posts cargados correctamente en memoria.");
+        System.out.println("Posts uploaded to memory");
     }
-
-
-
 
     public List<Post> getAllPosts() {
         List<Post> reversedPosts = new ArrayList<>(posts);
@@ -70,4 +63,5 @@ public class PostService {
     public void addPost(Post post) {
         posts.add(post);
     }
+
 }
