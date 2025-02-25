@@ -6,27 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobMatcher - Matches Realizados</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/matchConsultantStyles.css">
+    <link rel="stylesheet" href="/css/matchStyles.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="/js/darkMode.js" defer></script>
 </head>
 
-<header>
-    <div class="header-left">
-        <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
-    </div>
-    <div class="title">
-        <a href="/main">JOBMATCHER</a>
-    </div>
-    <div class="header-right">
-        <button class="hidden-button"></button> <!-- Not to show Profile Button -->
-    </div>
-</header>
-
 <body>
 
-    <div class="matches-grid" id="matches-container">
+
+    <header>
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+        </div>
+        <div class="title">
+            <a href="/main">JOBMATCHER</a>
+        </div>
+        <div class="header-right">
+            <button class="hidden-button"></button> <!-- Not to show Profile Button -->
+        </div>
+    </header>
+
+
+
+    <div class="container" id="matches-container">
         <!-- Matches will be loaded here -->
     </div>
 
@@ -52,8 +55,8 @@
                     } else {
                         // If there are matches, show them
                         matches.forEach(match => {
-                            const card = createMatchCard(match);
-                            container.appendChild(card);
+                            const box = createMatchBox(match);
+                            container.appendChild(box);
                         });
                     }
                 })
@@ -64,26 +67,26 @@
                 });
         });
 
-        function createMatchCard(match) {
+        function createMatchBox(match) {
             console.log('Match data:', match);
             const defaultImage = '/img/default-company.png';
-            const card = document.createElement('div');
-            card.className = 'match-card';
+            const box = document.createElement('div');
+            box.className = 'box';
 
-            card.innerHTML = `
-                <div class="match-header">
+            box.innerHTML = `
+                <h1 class="match-name">${match.name || 'Sin nombre'}</h1>   
+                <div class="match-image-container">
                     <img src="${match.imagePath || defaultImage}" 
                          alt="${match.name}"
-                         class="match-image"
+                         class="profile-photo"
                          onerror="this.src='${defaultImage}'">
-                    <h2 class="match-name">${match.name || 'Sin nombre'}</h2>
                 </div>
-                <div class="match-info">
-                    <p class="match-description">${match.bio || 'Sin descripción'}</p>
-                    <p class="match-location">📍 ${match.location || 'Ubicación no especificada'}</p>
-                </div>
+                <ul class="match-info">
+                    <li <strong>Descripción:</strong> ${match.bio || 'Sin descripción'}</li>
+                    <li <strong>Localización:</strong> 📍 ${match.location || 'Ubicación no especificada'}</li>
+                </ul>
             `;
-            return card;
+            return box;
         }
     </script>
 

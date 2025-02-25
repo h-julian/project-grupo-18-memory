@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 public class ProfileController {
@@ -28,7 +26,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String showProfile(Model model) {
-        User user = userService.getUser(); // 🔹 Ahora obtenemos el usuario en memoria desde UserService
+        User user = userService.getUser(); // Ahora obtenemos el usuario en memoria desde UserService
         model.addAttribute("user", user);
         model.addAttribute("studies", user.getDegrees());
         model.addAttribute("skills", user.getSkills());
@@ -45,7 +43,7 @@ public class ProfileController {
             Path imagePath = IMAGES_FOLDER.resolve("profile_" + user.getAccountId() + ".jpg");
             image.transferTo(imagePath);
 
-            // 🔹 Actualizar el usuario en memoria con la nueva imagen
+            // Actualizar el usuario en memoria con la nueva imagen
             userService.updateUserImage("/img/profile_" + user.getAccountId() + ".jpg");
         }
 
