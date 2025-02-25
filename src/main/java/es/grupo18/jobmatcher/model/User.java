@@ -1,10 +1,5 @@
 package es.grupo18.jobmatcher.model;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,9 +12,9 @@ public class User extends Account {
     private List<String> degreesList;
     private List<String> skillsList;
     private String imagePath;
+    private List<Company> favouriteCompaniesList;
 
-    private static final String FILE_PATH = "src/main/resources/static/data/users.json";
-    private static final ObjectMapper mapper = new ObjectMapper();
+
 
     public User() {
 
@@ -35,44 +30,27 @@ public class User extends Account {
         this.skillsList = skillsList;
         this.imagePath = imagePath;
     }
-
+ 
     public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
         super(accountId, name, email, password);
         this.bio = bio;
         this.imagePath = imagePath;
         this.skillsList = new ArrayList<>();
         this.degreesList = new ArrayList<>();
+        this.favouriteCompaniesList = new ArrayList<>();
         this.experience = 0;
     }
 
     // Getters
-    public String getPhone() {
-        return phone;
-    }
+    public String getPhone() {return phone;}
+    public String getLocation() {return location;}
+    public String getBio() {return bio;}
+    public Integer getExperience() {return experience;}
+    public List<String> getDegrees() {return degreesList;}
+    public List<String> getSkills() {return skillsList;}
+    public String getImagePath() {return imagePath;}
+    public List<User> getfavouriteCompaniesList() { return getfavouriteCompaniesList(); }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public Integer getExperience() {
-        return experience;
-    }
-
-    public List<String> getDegrees() {
-        return degreesList;
-    }
-
-    public List<String> getSkills() {
-        return skillsList;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
 
     // Setters
     public void setPhone(String phone) {
@@ -102,6 +80,8 @@ public class User extends Account {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+
 
     // Update methods
 
@@ -143,29 +123,13 @@ public class User extends Account {
         this.imagePath = null;
     }
 
-    // Static methods to load and save user data from/to JSON file
-
-    public static User loadUser() {
-        try {
-            List<User> users = mapper.readValue(new File(FILE_PATH), new TypeReference<List<User>>() {
-            });
-            if (!users.isEmpty()) {
-                return users.get(0); // Return the first user
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void addFavouriteCompaniesList(Company company){
+        this.favouriteCompaniesList.add(company);
     }
 
-    public static void saveUser(User user) {
-        try {
-            List<User> users = new ArrayList<>();
-            users.add(user);
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), users);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void removeFavoriteUser(Company company){
+        this.favouriteCompaniesList.remove(company);
     }
+
 
 }

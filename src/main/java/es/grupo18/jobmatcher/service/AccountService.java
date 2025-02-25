@@ -26,9 +26,9 @@ public class AccountService {
         accounts.add(user);
 
         // Crear empresas directamente en memoria
-        accounts.add(new Company(2L, "Microsoft", "hr@microsoft.com", "pass123", "Microsoft Corporation", "/img/microsoft.png"));
-        accounts.add(new Company(12L, "Google", "careers@google.com", "pass123", "Google LLC", "/img/google.png"));
-        accounts.add(new Company(22L, "Apple", "jobs@apple.com", "pass123", "Apple Inc.", "/img/apple.png"));
+        accounts.add(new Company(2L, "Microsoft", "hr@microsoft.com", "pass123", "Madrid", "Microsoft Corporation", "/img/microsoft.png"));
+        accounts.add(new Company(12L, "Google", "careers@google.com", "pass123", "Barcelona", "Google LLC", "/img/google.png"));
+        accounts.add(new Company(22L, "Apple", "jobs@apple.com", "pass123", "Lima", "Apple Inc.", "/img/apple.png"));
 
         System.out.println("✅ Cuentas (usuario y empresas) cargadas correctamente en memoria.");
     }
