@@ -24,4 +24,5 @@ public class Match {
     public void setCompanyId(Long accountId) { this.accountId = accountId; }
     public String getTimestamp() { return timestamp; }
     public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+    
 }

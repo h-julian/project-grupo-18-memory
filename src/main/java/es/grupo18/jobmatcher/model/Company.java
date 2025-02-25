@@ -10,7 +10,6 @@ public class Company extends Account {
     private List<User> favouriteUsersList;
     private int questionnaireScore;
 
-
     // Constructors
 
     public Company() {}
@@ -24,7 +23,6 @@ public class Company extends Account {
 
     }
 
-    
     // Getters
 
     public String getBio() { return bio; }
@@ -60,14 +58,13 @@ public class Company extends Account {
 
     // Add & Remove methods
 
-    public void addFavoriteUser(User user){
+    public void addFavouriteUser(User user){
         this.favouriteUsersList.add(user);
     }
 
     public void removeFavoriteUser(User user){
         this.favouriteUsersList.remove(user);
     }
-
 
     public void addImage(String imagePath) {
         this.imagePath = imagePath;
@@ -88,4 +85,5 @@ public class Company extends Account {
                 ", favouriteUsersList=" + favouriteUsersList +
                 '}';
     }
+    
 }
