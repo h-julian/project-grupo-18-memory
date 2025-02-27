@@ -36,9 +36,15 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Loading companies...');
-            fetch('/api/match/companies')
-                .then(response => response.json())
+            fetch('/match')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(companies => {
+                    console.log('Companies loaded:', companies);
                     const container = document.getElementById('companies-container');
                     companies.forEach(company => {
                         const card = createCompanyBox(company);
@@ -58,7 +64,7 @@
             const box = document.createElement('div');
             box.className = 'box';
 
-            const isLiked = likedCompanies.has(company.accountId);
+            const isLiked = likedCompanies.has(company.name);
 
             box.innerHTML = `
                 <h1 class="company-name">${company.name || 'Sin nombre'}</h1>
@@ -74,7 +80,7 @@
                 </ul>
                 <div class="button-group">
                     <button class="like-btn ${isLiked ? 'liked' : ''}" 
-                            onclick="toggleLike(${company.accountId}, this)">
+                            onclick="toggleLike('${company.name}', this)">
                         ${isLiked ? '✓ Interesado' : '❤️ Me interesa'}
                     </button>
                 </div>
@@ -82,10 +88,10 @@
             return box;
         }
 
-        function toggleLike(companyId, button) {
-            console.log('Sending like to company:', companyId);
+        function toggleLike(companyName, button) {
+            console.log('Sending like to company:', companyName);
 
-            fetch(`/api/match/like/${companyId}`, {
+            fetch(`/match/like?companyName=${companyName}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -106,11 +112,11 @@
                     if (data.success) {
                         console.log('Match saved:', data);
                         if (data.liked) {
-                            likedCompanies.add(companyId);
+                            likedCompanies.add(companyName);
                             button.classList.add('liked');
                             button.textContent = '✓ Interesado';
                         } else {
-                            likedCompanies.delete(companyId);
+                            likedCompanies.delete(companyName);
                             button.classList.remove('liked');
                             button.textContent = '❤️ Me interesa';
                         }

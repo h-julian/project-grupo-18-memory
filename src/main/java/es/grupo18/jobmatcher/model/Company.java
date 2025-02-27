@@ -8,26 +8,23 @@ public class Company extends Account {
     private String location;
     private String imagePath;
     private List<User> favouriteUsersList;
-    private int questionnaireScore;
 
     // Constructors
 
     public Company() {}
 
-    public Company(long accountId, String name, String email, String password, String location, String bio, String imagePath ) {
+    public Company(long accountId, String name, String email, String password, String location, String bio, String imagePath, List<User> favouriteUsersList) {
         super(accountId, name, email, password);
         this.location = location;
         this.bio = bio;
         this.imagePath = imagePath;
-        this.favouriteUsersList = new ArrayList<>();
-
+        this.favouriteUsersList = new ArrayList<>(favouriteUsersList);
     }
 
     // Getters
 
     public String getBio() { return bio; }
     public String getImagePath() { return imagePath; }
-    public int getQuestionnaireScore() { return this.questionnaireScore; }
     public String getLocation() { return location; }
     public List<User> getFavoriteUsers() { return favouriteUsersList; }
 
@@ -35,11 +32,9 @@ public class Company extends Account {
 
     public void setBio(String bio) { this.bio = bio; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
-    public void setQuestionnaireScore(int score) { this.questionnaireScore = score; }
     public void setLocation(String location) { this.location = location; }
-    public void setProfilePhoto(String profilePhoto) { this.imagePath = profilePhoto; }
     public void setFavoriteUsers(List<User> favouriteUsersList) {
-        this.favouriteUsersList = favouriteUsersList;
+        this.favouriteUsersList = new ArrayList<>(favouriteUsersList);
     }
 
     // Update methods
@@ -85,5 +80,4 @@ public class Company extends Account {
                 ", favouriteUsersList=" + favouriteUsersList +
                 '}';
     }
-    
 }

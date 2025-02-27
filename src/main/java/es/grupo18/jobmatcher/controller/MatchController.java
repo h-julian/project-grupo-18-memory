@@ -1,80 +1,50 @@
 package es.grupo18.jobmatcher.controller;
 
 import es.grupo18.jobmatcher.model.Company;
-import es.grupo18.jobmatcher.model.Match;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import es.grupo18.jobmatcher.model.User;
+import es.grupo18.jobmatcher.service.CompanyService;
+import es.grupo18.jobmatcher.service.MatchService;
+import es.grupo18.jobmatcher.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/match")
+@RequestMapping("/match")
 public class MatchController {
-    private static final String MATCHES_FILE_PATH = "src/main/resources/static/data/matches.json";
-    private static final String COMPANIES_FILE_PATH = "src/main/resources/static/data/companies.json";
-    private static final ObjectMapper mapper = new ObjectMapper();
 
-    @GetMapping("/companies")
-    @ResponseBody
-    public List<Company> getMatchedCompanies() {
-        return loadCompanies();
+    private final MatchService matchService;
+    private final CompanyService companyService;
+    private final UserService userService;
+
+    public MatchController(MatchService matchService, CompanyService companyService, UserService userService) {
+        this.matchService = matchService;
+        this.companyService = companyService;
+        this.userService = userService;
     }
 
-    @PostMapping("/like/{companyId}")
-    public ResponseEntity<?> likeCompany(@PathVariable Long companyId) {
-        List<Match> matches = loadMatches();
-        boolean matchExists = matches.removeIf(match -> match.getCompanyId().equals(companyId));
-
-        if (!matchExists) {
-            Match match = new Match(null, companyId); // No user ID, only company ID
-            matches.add(match);
-        }
-
-        saveMatches(matches);
-
-        return ResponseEntity.ok().body("{\"success\": true, \"liked\": " + !matchExists + "}");
-    }
-
-    @GetMapping("/match")
+    @GetMapping("")
     public String showMatchPage(Model model) {
-        List<Company> companies = loadCompanies();
+        List<Company> companies = companyService.getCompaniesList();
+        System.out.println("Companies loaded: " + companies.size());
         model.addAttribute("companies", companies);
         return "match";
     }
 
-    private List<Match> loadMatches() {
-        try {
-            return mapper.readValue(new File(MATCHES_FILE_PATH), new TypeReference<List<Match>>() {
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
+    @PostMapping("/like")
+    public ResponseEntity<?> likeCompany(@RequestParam String companyName) {
+        Company company = companyService.getCompanyByName(companyName);
+        User user = userService.getUser();
 
-    private List<Company> loadCompanies() {
-        try {
-            return mapper.readValue(new File(COMPANIES_FILE_PATH), new TypeReference<List<Company>>() {
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+        if (company == null || user == null) {
+            return ResponseEntity.badRequest().body("{\"success\": false, \"message\": \"Invalid company or user.\"}");
         }
-    }
 
-    private void saveMatches(List<Match> matches) {
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(MATCHES_FILE_PATH), matches);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+        boolean matchExists = matchService.toggleMatch(user, company);
 
+        return ResponseEntity.ok().body("{\"success\": true, \"liked\": " + matchExists + "}");
+    }
 }
