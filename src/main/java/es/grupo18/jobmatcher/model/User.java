@@ -2,7 +2,9 @@ package es.grupo18.jobmatcher.model;
 
 import java.util.List;
 import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(value = {"favouriteCompanies"})
 public class User extends Account {
 
     private String phone;

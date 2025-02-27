@@ -1,5 +1,6 @@
 package es.grupo18.jobmatcher.controller;
 
+import es.grupo18.jobmatcher.dto.CompanyDTO;
 import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.model.User;
 import es.grupo18.jobmatcher.service.CompanyService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,11 +29,23 @@ public class MatchController {
     }
 
     @GetMapping("")
-    public String showMatchPage(Model model) {
+    public String showMatchPage() {
+        return "match"; // Solo devuelve la plantilla HTML
+    }
+    
+    @GetMapping("/companies")
+    @ResponseBody
+    public List<CompanyDTO> getCompanies() {
         List<Company> companies = companyService.getCompaniesList();
         System.out.println("Companies loaded: " + companies.size());
-        model.addAttribute("companies", companies);
-        return "match";
+        
+        // Convertir Companies a CompanyDTOs
+        List<CompanyDTO> companyDTOs = new ArrayList<>();
+        for (Company company : companies) {
+            companyDTOs.add(new CompanyDTO(company));
+        }
+        
+        return companyDTOs;
     }
 
     @PostMapping("/like")

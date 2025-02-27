@@ -36,7 +36,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Loading companies...');
-            fetch('/match')
+            fetch('/match/companies')  // Cambio aquí: usar el nuevo endpoint
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
