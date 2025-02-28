@@ -14,118 +14,120 @@
 
 <body>
 
+    <!-- Header section with back button, title, and a hidden button for layout balance -->
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button> <!-- Back button to return to the main page -->
         </div>
         <div class="title">
-            <a href="/main">JOBMATCHER</a>
+            <a href="/main">JOBMATCHER</a> <!-- Link to the main page -->
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button>
+            <button class="hidden-button"></button> <!-- Hidden button for layout purposes -->
         </div>
     </header>
 
+    <!-- Main content: Profile information and editing options -->
     <div class="container">
+        <!-- Box for profile photo and upload functionality -->
         <div class="box">
             <h2>Foto de Perfil</h2>
-            <img id="profilePhoto" src="{{user.imagePath}}" alt="Foto de perfil">
+            <img id="profilePhoto" src="{{user.imagePath}}" alt="Foto de perfil"> <!-- Profile photo -->
 
+            <!-- Form for uploading a new profile photo -->
             <form action="/profile/upload_image" method="post" enctype="multipart/form-data">
                 <input type="file" id="photoInput" name="image" accept="image/*" style="display:none;"
-                    onchange="this.form.submit();">
+                    onchange="this.form.submit();"> <!-- Hidden file input -->
                 <div class="button-group">
-                    <button type="button" onclick="document.getElementById('photoInput').click()">Cambiar Foto</button>
+                    <button type="button" onclick="document.getElementById('photoInput').click()">Cambiar Foto</button> <!-- Button to trigger file input -->
                 </div>
             </form>
         </div>
 
+        <!-- Box for user details -->
         <div class="box">
             <h2>Datos del usuario</h2>
             <ul>
-                <li>
-                    <strong>Nombre:</strong> </span>{{user.name}}</span>
-                </li>
-                <li>
-                    <strong>Teléfono:</strong> </span>{{user.phone}}</span>
-                </li>
-                <li>
-                    <strong>Email:</strong> </span>{{user.email}}</span>
-                </li>
-                <li>
-                    <strong>Ubicación:</strong> </span>{{user.location}}</span>
-                </li>
-                <li>
-                    <strong>Acerca de mí:</strong> </span>{{user.bio}}</span>
-                </li>
+                <li><strong>Nombre:</strong> {{user.name}}</li> <!-- User name -->
+                <li><strong>Teléfono:</strong> {{user.phone}}</li> <!-- User phone -->
+                <li><strong>Email:</strong> {{user.email}}</li> <!-- User email -->
+                <li><strong>Ubicación:</strong> {{user.location}}</li> <!-- User location -->
+                <li><strong>Acerca de mí:</strong> {{user.bio}}</li> <!-- User bio -->
             </ul>
             <div class="button-group">
-                <button onclick="location.href='/profile/edit'">Editar Datos</button>
+                <button onclick="location.href='/profile/edit'">Editar Datos</button> <!-- Button to edit user details -->
             </div>
         </div>
+
+        <!-- Box for CV details (studies, skills, experience) -->
         <div class="box">
             <h2>Estudios</h2>
             <ul>
                 {{#studies}}
-                <li>{{.}}</li>
+                <li>{{.}}</li> <!-- List of studies -->
                 {{/studies}}
             </ul>
 
             <h2>Habilidades</h2>
             <ul>
                 {{#skills}}
-                <li>{{.}}</li>
+                <li>{{.}}</li> <!-- List of skills -->
                 {{/skills}}
             </ul>
             <h2>Experiencia</h2>
-            </span>{{experience}} años</span>
+            <span>{{experience}} años</span> <!-- Years of experience -->
 
             <div class="button-group">
-                <button onclick="location.href='/profile/form'">Editar CV</button>
+                <button onclick="location.href='/profile/form'">Editar CV</button> <!-- Button to edit CV -->
             </div>
         </div>
     </div>
 
+    <!-- Script to handle profile photo upload and display -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const defaultPhoto = "/profile/profile.jpg";
-            const storedProfile = localStorage.getItem("profile");
-            let profile = storedProfile ? JSON.parse(storedProfile) : {};
+            const defaultPhoto = "/profile/profile.jpg"; // Default profile photo
+            const storedProfile = localStorage.getItem("profile"); // Retrieve profile data from localStorage
+            let profile = storedProfile ? JSON.parse(storedProfile) : {}; // Parse profile data or initialize as empty object
 
+            // Set profile photo source
             document.getElementById("profilePhoto").src = profile.photo || defaultPhoto;
 
+            // Handle file input change
             document.getElementById('photoInput').addEventListener('change', function (e) {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function (evt) {
-                        const imgData = evt.target.result;
-                        document.getElementById("profilePhoto").src = imgData;
-                        profile.photo = imgData;
-                        localStorage.setItem("profile", JSON.stringify(profile));
+                        const imgData = evt.target.result; // Get image data as base64
+                        document.getElementById("profilePhoto").src = imgData; // Update profile photo
+                        profile.photo = imgData; // Save photo data to profile object
+                        localStorage.setItem("profile", JSON.stringify(profile)); // Save profile data to localStorage
                     };
-                    reader.readAsDataURL(file);
+                    reader.readAsDataURL(file); // Read file as data URL
                 }
             });
         });
     </script>
 
+    <!-- Script to scroll to the bottom of the page on load -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            window.scrollTo(0, document.body.scrollHeight);
+            window.scrollTo(0, document.body.scrollHeight); // Scroll to the bottom of the page
         });
     </script>
 
+    <!-- Footer with copyright information -->
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
-        </div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
 
 </body>
 
+<!-- Script to handle the back button functionality -->
 <script>
     function goBack() {
-        window.location.href = "/main";
+        window.location.href = "/main"; // Redirects to the main page
     }
 </script>
 

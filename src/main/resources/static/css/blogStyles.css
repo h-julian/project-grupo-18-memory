@@ -1,8 +1,10 @@
+/* Body styles with padding at the top and automatic height */
 body {
     padding-top: 65px;
     height: auto;
 }
 
+/* Container styles for main content, including minimum height and centered layout */
 .container {
     height: auto;
     min-height: calc(100vh - 115px);
@@ -13,6 +15,7 @@ body {
     margin: 0 auto;
 }
 
+/* Box styles for content sections with justified text and spacing */
 .box {
     padding: 20px;
     text-align: justify;
@@ -21,6 +24,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Styles for images within posts, including sizing and spacing */
 .post-image {
     width: 100%;
     height: auto;
@@ -29,4 +33,3 @@ body {
     border-radius: 8px;
     margin-bottom: 15px;
 }
-

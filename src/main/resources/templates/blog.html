@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+    <!-- Header section with back button, title, and post button -->
     <header>
         <div class="header-left">
             <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
@@ -26,9 +26,12 @@
         </div>
     </header>
 
+    <!-- Main content section -->
     <main class="container">
         <div class="container">
+            <!-- Section for displaying blog posts -->
             <section id="blog-posts" class="blog-posts">
+                <!-- Loop through posts and display each one -->
                 {{#posts}}
                 <div class="box">
                     <h1>{{title}}</h1>
@@ -39,6 +42,7 @@
                 </div>
                 {{/posts}}
 
+                <!-- Display a message if there are no posts -->
                 {{^posts}}
                 <div class="box">
                     <p>No hay publicaciones todavía.</p>
@@ -48,6 +52,7 @@
         </div>
     </main>
 
+    <!-- Footer section with copyright information -->
     <footer>
         <div class="copyright">© 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>

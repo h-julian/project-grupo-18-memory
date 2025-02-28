@@ -2,43 +2,56 @@
 <html lang="es">
 
 <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page -->
     <title>JobMatcher - Inicio</title>
+    <!-- External CSS files for styling -->
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/mainStyles.css">
+    <!-- Favicon for the website -->
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <!-- Google Fonts for Roboto font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- JavaScript file for dark mode functionality -->
     <script src="/js/darkMode.js" defer></script>
 </head>
 
 <body>
-
+    <!-- Header section with options button, title, and profile button -->
     <header>
-
         <div class="header-left">
+            <!-- Button to navigate to the options page -->
             <button id="options-btn" onclick="location.href='/options'">⚙️ Opciones</button>
         </div>
         <div class="title">
+            <!-- Link to the main page -->
             <a href="/main">JOBMATCHER</a>
         </div>
         <div class="header-right">
+            <!-- Button to navigate to the profile page -->
             <button id="profile-btn" onclick="location.href='/profile'">👤 Perfil</button>
         </div>
-
     </header>
-
+    <!-- Main content section -->
     <main class="container">
+        <!-- Left section with navigation buttons -->
         <section class="left-section">
+            <!-- Button to find a match -->
             <button onclick="location.href='/match'">🔍 Encuentra tu match</button>
+            <!-- Button to consult matches -->
             <button onclick="location.href='/api/match/consultantPage'">🤝 Consulta tus match</button>
+            <!-- Button to visit the blog -->
             <button onclick="location.href='/blog'">📰 Visita nuestro blog</button>
         </section>
+        <!-- Right section with an image -->
         <section class="right-section">
             <img src="img/cropped-telescope.png" alt="Logo">
         </section>
     </main>
 
+    <!-- Footer section with copyright information -->
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
         </div>
@@ -46,12 +59,15 @@
 
 </body>
 
+<!-- JavaScript to handle button clicks -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Add event listener for the options button
         document.getElementById("options-btn").addEventListener("click", function () {
             window.location.href = "/options";
         });
 
+        // Add event listener for the profile button
         document.getElementById("profile-btn").addEventListener("click", function () {
             window.location.href = "/profile";
         });

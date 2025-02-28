@@ -1,5 +1,4 @@
-/* General Styles */
-
+/* General Styles for the entire page */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -13,6 +12,7 @@ body {
     padding-bottom: 50px;
 }
 
+/* Header styles */
 header {
     display: flex;
     justify-content: center;
@@ -28,12 +28,14 @@ header {
     z-index: 1000;
 }
 
+/* Link styles within the header */
 header a {
     color: white;
     text-decoration: none;
     margin: 0 10px;
 }
 
+/* Styles for left and right sections of the header */
 .header-left,
 .header-right {
     flex: 1;
@@ -51,6 +53,7 @@ header a {
     margin-right: 15px;
 }
 
+/* Footer styles */
 footer {
     display: flex;
     justify-content: center;
@@ -65,6 +68,7 @@ footer {
     text-align: center;
 }
 
+/* Container for centering content */
 .container {
     display: flex;
     justify-content: center;
@@ -72,6 +76,7 @@ footer {
     height: 100%;
 }
 
+/* Box styles for content sections */
 .box {
     background: #ffffff;
     padding: 40px;
@@ -81,17 +86,18 @@ footer {
     max-width: 400px;
 }
 
+/* Heading styles */
 h1 {
     margin-bottom: 30px;
     color: #0077b6;
 }
-
 
 h2 {
     margin-bottom: 25px;
     color: #0077b6;
 }
 
+/* Paragraph styles */
 p {
     margin-bottom: 15px;
     color: black;
@@ -99,6 +105,7 @@ p {
     text-decoration: none;
 }
 
+/* Link styles */
 a {
     color: #0077b6;
     text-decoration: none;
@@ -109,6 +116,7 @@ a:hover {
     transform: scale(1.1);
 }
 
+/* Title link styles */
 .title a {
     color: white;
     text-decoration: none;
@@ -117,6 +125,7 @@ a:hover {
     display: inline-block;
 }
 
+/* Button styles */
 button {
     background: #00b4d8;
     border: none;
@@ -132,27 +141,31 @@ button {
     height: auto;
 }
 
+/* Hidden button styles */
 .hidden-button {
     visibility: hidden;
     width: 50px;
 }
 
+/* Header button styles */
 header button {
     padding: 8px 15px;
 }
 
-
+/* Button hover effects */
 button:hover {
     background: #0096c7;
     transform: scale(1.05);
 }
 
+/* Label styles */
 label {
     display: block;
     margin-bottom: 5px;
     color: black;
 }
 
+/* Input, select, and textarea styles */
 input,
 select,
 textarea {
@@ -168,17 +181,19 @@ textarea {
     resize: none;
 }
 
+/* Button group styles */
 .button-group {
     display: flex;
     justify-content: center;
 }
 
+/* Input group styles */
 .input-group {
     margin-bottom: 15px;
     text-align: left;
 }
 
-
+/* Input and select styles */
 input,
 select {
     width: 100%;
@@ -188,8 +203,7 @@ select {
     box-sizing: border-box;
 }
 
-/* Dark Mode */
-
+/* Dark Mode styles */
 .dark-mode {
     background-color: #121212;
     color: #ffffff;

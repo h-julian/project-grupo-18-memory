@@ -13,30 +13,33 @@
 </head>
 
 <body>
-
+    <!-- Header section with back button, title, and a hidden button for layout balance -->
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button> <!-- Back button to return to the main page -->
         </div>
         <div class="title">
-            <a href="/main">JOBMATCHER</a>
+            <a href="/main">JOBMATCHER</a> <!-- Link to the main page -->
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button> <!-- Not to show Profile Button -->
+            <button class="hidden-button"></button> <!-- Hidden button for layout purposes -->
         </div>
     </header>
 
+    <!-- Main container for displaying companies -->
     <div class="container" id="companies-container">
-        <!-- Companies will be loaded here -->
+        <!-- Companies will be dynamically loaded here -->
     </div>
 
+    <!-- Script to handle company loading, liking, and UI updates -->
     <script>
         // Tracks liked companies in session storage
         const likedCompanies = new Set(JSON.parse(sessionStorage.getItem('likedCompanies') || '[]'));
 
+        // Load companies when the page is ready
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Loading companies...');
-            fetch('/match/companies')  // Cambio aquí: usar el nuevo endpoint
+            fetch('/match/companies')  // Fetch companies from the server
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -47,7 +50,7 @@
                     console.log('Companies loaded:', companies);
                     const container = document.getElementById('companies-container');
                     companies.forEach(company => {
-                        const card = createCompanyBox(company);
+                        const card = createCompanyBox(company); // Create a card for each company
                         container.appendChild(card);
                     });
                 })
@@ -58,21 +61,23 @@
                 });
         });
 
+        // Function to create a company card
         function createCompanyBox(company) {
             console.log('Company data:', company);
-            const defaultImage = '/img/default-company.png';
+            const defaultImage = '/img/default-company.png'; // Default image if company image is missing
             const box = document.createElement('div');
             box.className = 'box';
 
-            const isLiked = likedCompanies.has(company.name);
+            const isLiked = likedCompanies.has(company.name); // Check if the company is already liked
 
+            // HTML structure for the company card
             box.innerHTML = `
                 <h1 class="company-name">${company.name || 'Sin nombre'}</h1>
                 <div class="profile-image-container">
                     <img src="${company.imagePath || defaultImage}" 
                         alt="${company.name}"
                         class="profile-photo"
-                        onerror="this.src='${defaultImage}'">
+                        onerror="this.src='${defaultImage}'"> <!-- Fallback to default image on error -->
                 </div>
                 <ul class="company-details">
                     <li><strong>Descripción:</strong> ${company.bio || 'Sin descripción'}</li>
@@ -81,13 +86,14 @@
                 <div class="button-group">
                     <button class="like-btn ${isLiked ? 'liked' : ''}" 
                             onclick="toggleLike('${company.name}', this)">
-                        ${isLiked ? '✓ Interesado' : '❤️ Me interesa'}
+                        ${isLiked ? '✓ Interesado' : '❤️ Me interesa'} <!-- Like button with dynamic text -->
                     </button>
                 </div>
             `;
             return box;
         }
 
+        // Function to handle liking/unliking a company
         function toggleLike(companyName, button) {
             console.log('Sending like to company:', companyName);
 
@@ -112,36 +118,37 @@
                     if (data.success) {
                         console.log('Match saved:', data);
                         if (data.liked) {
-                            likedCompanies.add(companyName);
+                            likedCompanies.add(companyName); // Add company to liked set
                             button.classList.add('liked');
                             button.textContent = '✓ Interesado';
                         } else {
-                            likedCompanies.delete(companyName);
+                            likedCompanies.delete(companyName); // Remove company from liked set
                             button.classList.remove('liked');
                             button.textContent = '❤️ Me interesa';
                         }
-                        sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies]));
+                        sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies])); // Update session storage
                     } else {
                         throw new Error(data.error || 'Unknown error');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert(error.message);
+                    alert(error.message); // Show error message to the user
                 });
         }
     </script>
 
+    <!-- Footer with copyright information -->
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
-        </div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
 
 </body>
 
+<!-- Script to handle the back button functionality -->
 <script>
     function goBack() {
-        window.location.href = "/main";
+        window.location.href = "/main"; // Redirects to the main page
     }
 </script>
 
