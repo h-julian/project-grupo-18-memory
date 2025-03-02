@@ -1,3 +1,5 @@
+// This script is used to enable dark mode on the website. It needs to be attached to every html header that uses it
+
 document.addEventListener('DOMContentLoaded', function () {
     const darkModeSwitch = document.getElementById('darkModeSwitch');
     const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
