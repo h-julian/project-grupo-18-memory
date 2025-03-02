@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="/js/darkMode.js" defer></script>
 </head>
+
 <body>
     <header>
         <div class="header-content">
@@ -18,54 +20,56 @@
     </header>
     <div class="login-container">
         <div class="logo">INICIAR SESIÓN</div>
-        
+
         <form class="login-form" id="loginForm" action="/login" method="post">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
                 <span id="emailError" class="error-message"></span>
             </div>
-            
+
             <div class="form-group">
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" name="password" required>
                 <span id="passwordError" class="error-message"></span>
             </div>
-            
+
             <button type="submit" class="login-btn">Acceder</button>
-            
-            <!-- Mostrar mensajes de error del servidor -->
+
+            <!-- Shows error message in server -->
             <div th:if="${error}" class="error-message" th:text="${error}"></div>
         </form>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
             let isValid = true;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            
-            // Limpiar mensajes de error previos
+
+            // Removes error messages
             document.getElementById('emailError').textContent = '';
             document.getElementById('passwordError').textContent = '';
-            
-            // Validar email
+
+            // Validate email
             if (!email || !email.includes('@')) {
                 document.getElementById('emailError').textContent = 'Por favor, introduce un email válido';
                 isValid = false;
             }
-            
-            // Validar contraseña
+
+            // Validate password
             if (!password || password.length < 6) {
                 document.getElementById('passwordError').textContent = 'La contraseña debe tener al menos 6 caracteres';
                 isValid = false;
             }
-            
-            // Si no es válido, prevenir el envío del formulario
+
+            // If is not valid, prevent form submission
             if (!isValid) {
                 event.preventDefault();
             }
         });
     </script>
+    
 </body>
+
 </html>
