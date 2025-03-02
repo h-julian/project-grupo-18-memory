@@ -1,3 +1,4 @@
+/* Container styles with grid layout, spacing, and alignment */
 .container {
     display: grid;
     align-items: flex-start;
@@ -8,6 +9,7 @@
     align-items: stretch;
 }
 
+/* Box styles with fixed width, flexbox alignment, and centered content */
 .box {
     width: 350px;
     display: flex;
@@ -16,6 +18,7 @@
     justify-content: center;
 }
 
+/* Image styles within the box, including circular shape, border, and background */
 .box img {
     width: 150px;
     height: 150px;
@@ -25,20 +28,24 @@
     background-color: #f0f0f0;
 }
 
+/* List styles within the box, removing default list styling and adding padding */
 .box ul {
     list-style: none;
     padding: 0;
     text-align: justify;
 }
 
+/* List item styles within the box, including spacing */
 .box li {
     margin-bottom: 8px;
 }
 
+/* Strong text styles within list items */
 .box li strong {
     color: #0077b6;
 }
 
+/* Button group styles with top margin for spacing */
 .button-group {
     margin-top: 30px;
 }

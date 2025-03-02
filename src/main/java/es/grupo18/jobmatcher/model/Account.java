@@ -27,7 +27,7 @@ public abstract class Account {
     }
 
     // Getters
-    
+
     public long getAccountId() { return accountId; }
     public String getName() { return name; }
     public String getEmail() { return email; }
@@ -58,7 +58,7 @@ public abstract class Account {
         return (long) (Math.random() * 1000);
     }
 
-    // Nuevos métodos para gestionar posts
+    // Methods to manage posts
     public void addPost(Post post){
         posts.add(post);
     }
@@ -77,9 +77,9 @@ public abstract class Account {
     public String toString() {
         return "Account{" +
                 "accountId=" + accountId +
-                ", name='" + name + 
-                ", email='" + email + 
-                ", password='" + password + 
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -13,45 +13,50 @@
 
 <body>
 
+    <!-- Header section with back button, title, and a hidden button for layout balance -->
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="location.href='/blog'">⬅️ Atrás</button>
+            <button class="back-btn" onclick="location.href='/blog'">⬅️ Atrás</button> <!-- Back button to return to the blog page -->
         </div>
         <div class="title">
-            <a href="/main">JOBMATCHER</a>
+            <a href="/main">JOBMATCHER</a> <!-- Link to the main page -->
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button> <!-- Not to show Profile Button -->
+            <button class="hidden-button"></button> <!-- Hidden button for layout purposes -->
         </div>
     </header>
 
+    <!-- Main content: Form for creating a new post -->
     <main class="container">
         <div class="box">
-            <h1>Nueva Noticia</h1>
+            <h1>Nueva Noticia</h1> <!-- Form title -->
             <form id="newPostForm" method="post" action="/blog/newpost">
+                <!-- Input group for the post title -->
                 <div class="input-group">
                     <label for="title">Título:</label>
-                    <input type="text" id="title" name="title" required>
+                    <input type="text" id="title" name="title" required> <!-- Title input (required) -->
                 </div>
+                <!-- Input group for the post content -->
                 <div class="input-group">
                     <label for="content">Contenido:</label>
-                    <textarea type:text id="content" name="content" rows="10" required maxlength="500"></textarea>
+                    <textarea id="content" name="content" rows="10" required maxlength="500"></textarea> <!-- Content textarea (required, max 500 characters) -->
                 </div>
+                <!-- Input group for the post image URL -->
                 <div class="input-group">
                     <label for="imagePath">Imagen (URL):</label>
-                    <input type="text" id="imagePath" name="imagePath">
+                    <input type="text" id="imagePath" name="imagePath"> <!-- Image URL input (optional) -->
                 </div>
-
+                <!-- Button to submit the form -->
                 <div class="button-group">
-                    <button type="submit">Publicar</button>
+                    <button type="submit">Publicar</button> <!-- Submit button -->
                 </div>
             </form>
         </div>
     </main>
 
+    <!-- Footer with copyright information -->
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
-        </div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
 
 </body>

@@ -1,11 +1,13 @@
+/* Body styles with padding at the top and minimum height */
 body {
     padding-top: 100px;
     min-height: 100vh;
 }
 
+/* Container styles with grid layout, padding, and spacing */
 .container {
     max-width: 1200px;
-    display: grid; 
+    display: grid;
     padding: 20px;
     flex-wrap: wrap;
     gap: 20px;
@@ -13,10 +15,11 @@ body {
     align-items: stretch;
 }
 
+/* Box styles with fixed width, grid alignment, and hover effects */
 .box {
     width: 350px;
     max-height: 400px;
-    display: grid; 
+    display: grid;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
@@ -26,6 +29,7 @@ body {
     transform: translateY(-5px);
 }
 
+/* Image styles within the box, including circular shape and spacing */
 .box img {
     width: 150px;
     height: 150px;
@@ -35,13 +39,13 @@ body {
     margin-bottom: 10px;
 }
 
+/* List styles within the box, removing default list styling */
 .box ul {
     list-style: none;
     text-align: justify;
 }
 
-/* No matches */
-
+/* No matches section styles with centered layout, padding, and shadow */
 .no-matches {
     display: flex;
     flex-direction: column;
@@ -56,12 +60,14 @@ body {
     margin: 100px auto;
 }
 
+/* Paragraph styles within the no matches section */
 .no-matches p {
     font-size: 1.5rem;
     color: #0077b6;
-    margin-bottom: 30px; /* Aumentada separación entre el texto y el botón */
+    margin-bottom: 30px;
 }
 
+/* Button styles within the no matches section, including hover effects */
 .no-matches a.btn {
     background: #00b4d8;
     border: none;

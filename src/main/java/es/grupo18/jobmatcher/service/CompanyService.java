@@ -1,19 +1,37 @@
 package es.grupo18.jobmatcher.service;
 
 import es.grupo18.jobmatcher.model.Company;
+import es.grupo18.jobmatcher.model.User;
+import jakarta.annotation.PostConstruct;
+
 import org.springframework.stereotype.Service;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CompanyService {
 
-    private final Company c1;
-    private final Company c2;
-    private final Company c3;
-    private Map<Integer, Company> companyMap;
+    private List<Company> companies;
+    private final UserService userService;
 
-    public CompanyService() {
+    public CompanyService(UserService userService) {
+        this.userService = userService;
+        this.companies = new ArrayList<>();
+        loadInitialCompanies();
+    }
+
+    @PostConstruct
+    private void loadInitialCompanies() {
+        final Company c1;
+        final Company c2;
+        final Company c3;
+        List<User> favouriteUsersList_c1 = new ArrayList<>();
+        List<User> favouriteUsersList_c2 = new ArrayList<>();
+        List<User> favouriteUsersList_c3 = new ArrayList<>();
+
+        favouriteUsersList_c1.add(userService.getUser());
+        favouriteUsersList_c2.add(userService.getUser());
+        favouriteUsersList_c3.add(userService.getUser());
 
         c1 = new Company(
                 02,
@@ -22,7 +40,8 @@ public class CompanyService {
                 "password123",
                 "Buscamos programadores experimentados, ofrecemos un ambiente de trabajo flexible y beneficios de bienestar.",
                 "California",
-                "https://static.vecteezy.com/system/resources/previews/022/100/816/non_2x/microsoft-logo-transparent-free-png.png");
+                "https://static.vecteezy.com/system/resources/previews/022/100/816/non_2x/microsoft-logo-transparent-free-png.png",
+                favouriteUsersList_c1);
 
         c2 = new Company(
                 12,
@@ -31,7 +50,8 @@ public class CompanyService {
                 "asdfg12345",
                 "California",
                 "Innovamos en tecnología y buscamos talento apasionado por la inteligencia artificial y la computación en la nube.",
-                "https://freelogopng.com/images/all_img/1657952440google-logo-png-transparent.png");
+                "https://freelogopng.com/images/all_img/1657952440google-logo-png-transparent.png",
+                favouriteUsersList_c2);
 
         c3 = new Company(
                 22,
@@ -40,21 +60,24 @@ public class CompanyService {
                 "qwerty12345",
                 "Silicon Valley",
                 "Creamos experiencias revolucionarias con nuestros productos, buscamos diseñadores y desarrolladores visionarios.",
-                "https://wallpapers.com/images/hd/black-apple-logo-4k-yn7rtft0sl2x3dhe.jpg");
+                "https://wallpapers.com/images/hd/black-apple-logo-4k-yn7rtft0sl2x3dhe.jpg",
+                favouriteUsersList_c3);
 
-        companyMap = new HashMap<>();
-        companyMap.put(1, c1);
-        companyMap.put(2, c2);
-        companyMap.put(3, c3);
+        companies.add(c1);
+        companies.add(c2);
+        companies.add(c3);
 
+        System.out.println("Companies uploaded to memory");
     }
 
-    public Company getCompany(int index) {
-        return companyMap.get(index);
+    public List<Company> getCompaniesList() {
+        return companies;
     }
 
-    public String getCompanyName(int index) {
-        return companyMap.get(index).getName();
+    public Company getCompanyByName(String name) {
+        return companies.stream()
+            .filter(company -> company.getName().equals(name))
+            .findFirst()
+            .orElse(null);
     }
-
 }

@@ -1,5 +1,4 @@
-/* General Styles */
-
+/* General body styles with font, background color, and centered layout */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f9;
@@ -11,8 +10,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
-
+/* Header styles with flexbox alignment, padding, background color, and shadow */
 .header {
     display: flex;
     justify-content: flex-start;
@@ -29,10 +27,12 @@ body {
     left: 0;
 }
 
+/* Heading styles within the header */
 .header h1 {
     margin-left: 20px;
 }
 
+/* Back button styles within the header, including hover effects */
 .back-btn {
     background: none;
     border: none;
@@ -49,6 +49,7 @@ body {
     transform: scale(1.05);
 }
 
+/* Container styles with padding, max-width, and shadow */
 .container {
     padding: 20px;
     max-width: 600px;
@@ -59,16 +60,19 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Form group styles with spacing */
 .form-group {
     margin-bottom: 20px;
 }
 
+/* Label styles within form groups */
 .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
+/* Input and textarea styles within form groups, including padding and border */
 .form-group input,
 .form-group textarea {
     width: calc(100% - 20px);
@@ -79,10 +83,12 @@ body {
     margin-left: 10px;
 }
 
+/* File input styles within form groups */
 .form-group input[type="file"] {
     padding: 3px;
 }
 
+/* Button styles with padding, background color, and hover effects */
 .button {
     background: #00b4d8;
     border: none;

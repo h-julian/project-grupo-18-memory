@@ -1,22 +1,22 @@
-/* Option Styles */
-
+/* Container styles with padding */
 .container {
     padding: 20px;
 }
 
+/* Option styles with flexbox alignment and spacing */
 .option {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
 
+/* Text styles for options, including font size and spacing */
 .option span {
     margin-left: 10px;
     font-size: 16px;
 }
 
-/* Switch styles */
-
+/* Switch styles for toggle elements */
 .switch {
     position: relative;
     display: inline-block;
@@ -24,12 +24,14 @@
     height: 34px;
 }
 
+/* Hide the default checkbox input */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
+/* Slider styles for the switch, including background and transition */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -38,10 +40,11 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 34px;
 }
 
+/* Slider circle styles, including size and transition */
 .slider:before {
     position: absolute;
     content: "";
@@ -50,29 +53,32 @@
     left: 4px;
     bottom: 4px;
     background-color: white;
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 50%;
 }
 
-input:checked+.slider {
+/* Change slider background when the switch is checked */
+input:checked + .slider {
     background-color: #0077b6;
 }
 
-input:checked+.slider:before {
+/* Move the slider circle when the switch is checked */
+input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-/* Dark mode styles */
-
+/* Dark mode styles for the body, including background and text color */
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
 }
 
+/* Dark mode styles for the header */
 body.dark-mode header {
     background: #333333;
 }
 
+/* Dark mode styles for option text */
 body.dark-mode .option span {
     color: #ffffff;
 }

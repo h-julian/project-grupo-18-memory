@@ -1,3 +1,4 @@
+/* General body styles with font, margin, padding, background color, and flexbox layout */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -8,6 +9,7 @@ body {
     flex-direction: column;
 }
 
+/* Header styles with flexbox alignment, padding, background color, and shadow */
 .header {
     display: flex;
     justify-content: space-between;
@@ -20,6 +22,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Logo styles within the header, including uppercase text and spacing */
 .header .logo {
     font-size: 24px;
     text-decoration: none;
@@ -29,6 +32,7 @@ body {
     letter-spacing: 2px;
 }
 
+/* Back button styles within the header */
 .header .back-btn {
     background: none;
     border: none;
@@ -37,6 +41,7 @@ body {
     cursor: pointer;
 }
 
+/* Container styles with centered layout, padding, and shadow */
 .container {
     width: 100%;
     max-width: 800px;
@@ -47,23 +52,27 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading styles with color and centered alignment */
 h2 {
     margin-bottom: 20px;
     color: #0077b6;
     text-align: center;
 }
 
+/* Input group styles with spacing and left-aligned text */
 .input-group {
     margin-bottom: 15px;
     text-align: left;
 }
 
+/* Label styles for input fields */
 label {
     display: block;
     margin-bottom: 5px;
     color: #333333;
 }
 
+/* Input and textarea styles with padding, border, and box sizing */
 input,
 textarea {
     width: 100%;
@@ -73,10 +82,12 @@ textarea {
     box-sizing: border-box;
 }
 
+/* Textarea styles with vertical resizing */
 textarea {
     resize: vertical;
 }
 
+/* Button styles with padding, background color, and hover effects */
 .btn {
     padding: 10px 20px;
     border: none;

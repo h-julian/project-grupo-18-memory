@@ -13,36 +13,37 @@
 
 <body>
 
+    <!-- Header with the app title and link to the main page -->
     <header class="title">
         <a href="/main" class="logo">
             <div>JOBMATCHER</div>
         </a>
     </header>
 
+    <!-- Main content: Error message box -->
     <div class="container">
         <div class="box">
-            <h1 style="color: #d9534f;">¡UwU! Algo salió mal</h1>
-            <p>{{error}}</p>
-            <p>Error {{status}}</p>
-            <button onclick="location.href='/main'">Volver al inicio</button>
+            <h1 style="color: #d9534f;">¡UwU! Something went wrong</h1>
+            <p>{{error}}</p> <!-- Dynamic error message -->
+            <p>Error {{status}}</p> <!-- Error status code -->
+            <button onclick="location.href='/main'">Return to home</button> <!-- Button to go back to the main page -->
         </div>
     </div>
 
+    <!-- Footer with copyright information -->
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
-        </div>
+        <div class="copyright">&copy; 2025 Developed by Cibercatalejo team. All rights reserved.</div>
     </footer>
 
-</body>
-
-<script>
-    function goBack() {
-        if (document.referrer) {
-            window.history.back(); // Goes back to previous page
-        } else {
-            window.location.href = "/main"; // Else goes to main page
+    <!-- Script to handle going back to the previous page or to the main page -->
+    <script>
+        function goBack() {
+            if (document.referrer) {
+                window.history.back(); // Goes back to the previous page
+            } else {
+                window.location.href = "/main"; // Redirects to the main page
+            }
         }
-    }
-</script>
+    </script>
 
-</html>
+</body>

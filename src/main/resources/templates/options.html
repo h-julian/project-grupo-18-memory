@@ -12,39 +12,42 @@
 </head>
 
 <body>
-
+    <!-- Header section with back button, title, and a hidden button for layout balance -->
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button> <!-- Back button to return to the main page -->
         </div>
         <div class="title">
-            <a href="/main">JOBMATCHER</a>
+            <a href="/main">JOBMATCHER</a> <!-- Link to the main page -->
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button> <!-- Not to show Profile Button -->
+            <button class="hidden-button"></button> <!-- Hidden button for layout purposes -->
         </div>
     </header>
 
+    <!-- Main content: Dark mode toggle switch -->
     <main class="container">
         <section class="option">
+            <!-- Toggle switch for dark mode -->
             <label class="switch">
-                <input type="checkbox" id="darkModeSwitch">
-                <span class="slider round"></span>
+                <input type="checkbox" id="darkModeSwitch"> <!-- Checkbox for the toggle -->
+                <span class="slider round"></span> <!-- Slider element -->
             </label>
-            <span>Activar/Desactivar Modo Oscuro</span>
+            <span>Activar/Desactivar Modo Oscuro</span> <!-- Label for the toggle -->
         </section>
     </main>
 
+    <!-- Footer with copyright information -->
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
-        </div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
     </footer>
 
 </body>
 
+<!-- Script to handle the back button functionality -->
 <script>
     function goBack() {
-        window.location.href = "/main"; // Else goes to main page
+        window.location.href = "/main"; // Redirects to the main page
     }
 </script>
 

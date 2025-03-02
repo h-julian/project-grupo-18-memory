@@ -52,5 +52,4 @@ public class UserService {
         user.setSkills(Arrays.asList(skills.split(",\\s*")));
         user.setExperience(experience);
     }
-    
 }
