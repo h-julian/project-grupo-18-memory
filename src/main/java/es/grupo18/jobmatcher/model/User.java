@@ -2,9 +2,7 @@ package es.grupo18.jobmatcher.model;
 
 import java.util.List;
 import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(value = { "favouriteCompanies" })
 public class User extends Account {
 
     private String phone;
@@ -19,8 +17,7 @@ public class User extends Account {
     public User() {
     }
 
-    public User(Long accountId, String name, String email, String password, String phone, String location, String bio,
-            Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
         super(accountId, name, email, password);
         this.phone = phone;
         this.bio = bio;
@@ -29,9 +26,8 @@ public class User extends Account {
         this.degreesList = degreesList;
         this.skillsList = skillsList;
         this.imagePath = imagePath;
-        this.favouriteCompaniesList = new ArrayList<>();
     }
-
+ 
     public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
         super(accountId, name, email, password);
         this.bio = bio;
@@ -44,67 +40,25 @@ public class User extends Account {
 
     // Getters
 
-    public String getPhone() {
-        return phone;
-    }
+    public String getPhone() {return phone;}
+    public String getLocation() {return location;}
+    public String getBio() {return bio;}
+    public Integer getExperience() {return experience;}
+    public List<String> getDegrees() {return degreesList;}
+    public List<String> getSkills() {return skillsList;}
+    public String getImagePath() {return imagePath;}
+    public List<User> getfavouriteCompaniesList() { return getfavouriteCompaniesList(); }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public Integer getExperience() {
-        return experience;
-    }
-
-    public List<String> getDegrees() {
-        return degreesList;
-    }
-
-    public List<String> getSkills() {
-        return skillsList;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public List<Company> getFavouriteCompaniesList() {
-        return favouriteCompaniesList;
-    }
 
     // Setters
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public void setExperience(Integer experience) {
-        this.experience = experience;
-    }
-
-    public void setDegrees(List<String> degreesList) {
-        this.degreesList = degreesList;
-    }
-
-    public void setSkills(List<String> skillsList) {
-        this.skillsList = skillsList;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
+    public void setPhone(String phone) { this.phone = phone; }
+    public void setLocation(String location) { this.location = location; }
+    public void setBio(String bio) { this.bio = bio; }
+    public void setExperience(Integer experience) { this.experience = experience; }
+    public void setDegrees(List<String> degreesList) { this.degreesList = degreesList; }
+    public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
     // Update methods
 
@@ -146,12 +100,14 @@ public class User extends Account {
         this.imagePath = null;
     }
 
-    public void addFavouriteCompany(Company company) {
-        this.favouriteCompaniesList.add(company);
-    }
-
-    public void removeFavouriteCompany(Company company) {
+    public void removeFavoriteUser(Company company){
         this.favouriteCompaniesList.remove(company);
+    }
+   
+    public void addFavouriteCompany(Company company) {
+        if (company != null) {
+            this.favouriteCompaniesList.add(company);
+        }
     }
 
 }

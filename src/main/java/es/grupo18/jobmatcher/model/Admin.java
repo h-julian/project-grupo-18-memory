@@ -1,7 +1,5 @@
 package es.grupo18.jobmatcher.model;
 
-// This class doesn't have any uses right now, but it will in the future
-
 public class Admin extends Account {
     
     private Role role;
@@ -41,5 +39,4 @@ public class Admin extends Account {
                 ", role='" + role + 
                 '}';
     }
-
 }

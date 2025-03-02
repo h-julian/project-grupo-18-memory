@@ -1,46 +1,32 @@
 package es.grupo18.jobmatcher.model;
 
 public class Match {
-
-    private User user;
-    private Company company;
+    private Long id;
+    private Long userId;
+    private Long accountId;
     private String timestamp;
 
     public Match() {
     }
 
-    public Match(User user, Company company) {
-        this.user = user;
-        this.company = company;
+    public Match(Long userId, Long accountId) {
+        this.userId = userId;
+        this.accountId = accountId;
         this.timestamp = java.time.LocalDateTime.now().toString();
     }
 
     // Getters
 
-    public User getUser() {
-        return user;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
+    public Long getId() { return id; }
+    public Long getAccountId() { return userId; }
+    public Long getCompanyId() { return accountId; }
+    public String getTimestamp() { return timestamp; }
 
     // Setters
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+    public void setId(Long id) { this.id = id; }
+    public void setAccountId(Long userId) { this.userId = userId; }
+    public void setCompanyId(Long accountId) { this.accountId = accountId; }
+    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
 
 }
