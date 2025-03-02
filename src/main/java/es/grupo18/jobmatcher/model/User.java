@@ -77,7 +77,7 @@ public class User extends Account {
     }
 
     // Setters
-    
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -153,4 +153,5 @@ public class User extends Account {
     public void removeFavouriteCompany(Company company) {
         this.favouriteCompaniesList.remove(company);
     }
+
 }

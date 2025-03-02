@@ -41,7 +41,7 @@ public class PostService {
 
         Post post3 = new Post(3L, "Diseñador UI/UX - Apple",
                 "Únete al equipo de diseño en Cupertino.",
-                LocalDateTime.now().minusDays(1).format(dtf), "/img/uiux.jpg", apple);
+                LocalDateTime.now().minusDays(1).format(dtf), "/img/cloud_engineer.jpg", apple);
 
         // Adds all posts to the list
         posts.addAll(List.of(post1, post2, post3));

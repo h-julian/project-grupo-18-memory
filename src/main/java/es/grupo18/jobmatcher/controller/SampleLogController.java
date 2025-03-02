@@ -29,7 +29,6 @@ public class SampleLogController {
     log.info("Spring Boot is working");
 
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // Answers with 204 No Content
-
   }
   
 }

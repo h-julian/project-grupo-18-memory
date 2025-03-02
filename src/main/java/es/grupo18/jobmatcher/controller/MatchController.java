@@ -1,7 +1,6 @@
 package es.grupo18.jobmatcher.controller;
 
 import es.grupo18.jobmatcher.model.Company;
-import es.grupo18.jobmatcher.model.User;
 import org.springframework.ui.Model;
 import es.grupo18.jobmatcher.service.CompanyService;
 import es.grupo18.jobmatcher.service.UserService;
@@ -47,8 +46,4 @@ public class MatchController {
         return ResponseEntity.badRequest().body("Empresa no encontrada");
     }
 
-
-
-
-    
 }
