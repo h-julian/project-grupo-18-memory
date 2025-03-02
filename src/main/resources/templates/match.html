@@ -39,115 +39,6 @@
             {{/companies}}
     </div>
 
-<<<<<<< HEAD
-=======
-    <!-- Script to handle company loading, liking, and UI updates -->
-    <script>
-        // Tracks liked companies in session storage
-        const likedCompanies = new Set(JSON.parse(sessionStorage.getItem('likedCompanies') || '[]'));
-
-        // Load companies when the page is ready
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('Loading companies...');
-            fetch('/match/companies')  // Fetch companies from the server
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(companies => {
-                    console.log('Companies loaded:', companies);
-                    const container = document.getElementById('companies-container');
-                    companies.forEach(company => {
-                        const card = createCompanyBox(company); // Create a card for each company
-                        container.appendChild(card);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error loading companies:', error);
-                    const container = document.getElementById('companies-container');
-                    container.innerHTML = '<p class="error-message">No hay compaías disponibles</p>';
-                });
-        });
-
-        // Function to create a company card
-        function createCompanyBox(company) {
-            console.log('Company data:', company);
-            const defaultImage = '/img/default-company.png'; // Default image if company image is missing
-            const box = document.createElement('div');
-            box.className = 'box';
-
-            const isLiked = likedCompanies.has(company.name); // Check if the company is already liked
-
-            // HTML structure for the company card
-            box.innerHTML = `
-                <h1 class="company-name">${company.name || 'Sin nombre'}</h1>
-                <div class="profile-image-container">
-                    <img src="${company.imagePath || defaultImage}" 
-                        alt="${company.name}"
-                        class="profile-photo"
-                        onerror="this.src='${defaultImage}'">
-                </div>
-                <ul class="company-details">
-                    <li><strong>Descripción:</strong> ${company.bio || 'Sin descripción'}</li>
-                    <li><strong>Ubicación:</strong> 📍 ${company.location || 'Ubicación no especificada'}</li>
-                </ul>
-                <div class="button-group">
-                    <button class="like-btn ${isLiked ? 'liked' : ''}" 
-                            onclick="toggleLike('${company.name}', this)">
-                        ${isLiked ? '✓ Interesado' : '❤️ Me interesa'}
-                    </button>
-                </div>
-            `;
-            return box;
-        }
-
-        // Function to handle liking/unliking a company
-        function toggleLike(companyName, button) {
-            console.log('Sending like to company:', companyName);
-
-            fetch(`/match/like?companyName=${companyName}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                credentials: 'same-origin'
-            })
-                .then(response => {
-                    console.log('Response status:', response.status);
-                    if (!response.ok) {
-                        return response.json().then(data => {
-                            throw new Error(data.error || 'Error saving the match');
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        console.log('Match saved:', data);
-                        if (data.liked) {
-                            likedCompanies.add(companyName); // Add company to liked set
-                            button.classList.add('liked');
-                            button.textContent = '✓ Interesado';
-                        } else {
-                            likedCompanies.delete(companyName); // Remove company from liked set
-                            button.classList.remove('liked');
-                            button.textContent = '❤️ Me interesa';
-                        }
-                        sessionStorage.setItem('likedCompanies', JSON.stringify([...likedCompanies])); // Update session storage
-                    } else {
-                        throw new Error(data.error || 'Unknown error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert(error.message); // Show error message to the user
-                });
-        }
-    </script>
->>>>>>> c4038811fb8d35e938b29fe4b286e9efbba34ff7
 
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
@@ -156,7 +47,6 @@
 
 </body>
 
-<<<<<<< HEAD
 
 <script>
     function toggleFavourite(button, companyName) {
@@ -176,11 +66,6 @@
             }
         })
         .catch(error => console.error('Error:', error));
-=======
-<script>
-    function goBack() {
-        window.location.href = "/main";
->>>>>>> c4038811fb8d35e938b29fe4b286e9efbba34ff7
     }
 </script>
 
