@@ -13,11 +13,11 @@ public class BlogService {
         this.postService = postService;
     }
 
-    public List<Post> getAllPosts() {
+    public List<Post> getAllPosts() { // Returns all posts
         return postService.getAllPosts();
     }
 
-    public void addPost(Post post) {
+    public void addPost(Post post) { // Adds a new post
         postService.addPost(post);
     }
 

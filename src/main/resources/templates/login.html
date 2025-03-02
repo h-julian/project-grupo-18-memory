@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="/js/darkMode.js" defer></script>
 </head>
+
 <body>
 
     <!-- Header section with back button, title, and a hidden button for layout balance -->
@@ -45,7 +47,7 @@
                     <button type="submit">Iniciar sesión</button>
                 </div>
                 
-                <!-- Mostrar mensajes de error del servidor -->
+                <!-- Shows error messages from server -->
                 <div th:if="${error}" class="error-message" th:text="${error}"></div>
             </form>
         </div>
@@ -58,32 +60,34 @@
     </footer>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
             let isValid = true;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            
-            // Limpiar mensajes de error previos
+
+            // Removes error messages
             document.getElementById('emailError').textContent = '';
             document.getElementById('passwordError').textContent = '';
-            
-            // Validar email
+
+            // Validate email
             if (!email || !email.includes('@')) {
                 document.getElementById('emailError').textContent = 'Por favor, introduce un email válido';
                 isValid = false;
             }
-            
-            // Validar contraseña
+
+            // Validate password
             if (!password || password.length < 6) {
                 document.getElementById('passwordError').textContent = 'La contraseña debe tener al menos 6 caracteres';
                 isValid = false;
             }
-            
-            // Si no es válido, prevenir el envío del formulario
+
+            // If is not valid, prevent form submission
             if (!isValid) {
                 event.preventDefault();
             }
         });
     </script>
+
 </body>
+
 </html>

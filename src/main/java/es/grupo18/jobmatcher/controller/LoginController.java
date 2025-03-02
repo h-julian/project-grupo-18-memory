@@ -1,7 +1,6 @@
 package es.grupo18.jobmatcher.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,13 +18,13 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/login") // Shows the login page
     public String showLoginPage() {
         return "login";
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("/login") // Processes the login form
     public String processLogin(@RequestParam String email, 
                              @RequestParam String password,
                              RedirectAttributes redirectAttributes) {
@@ -33,12 +32,13 @@ public class LoginController {
         User user = userService.getUser();
         
         if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-            // Login exitoso, redirigir a la página principal
+            // Correct login, redirect to main page
             return "redirect:/main";
         } else {
-            // Login fallido, mostrar mensaje de error
+            // Login failed, redirect to login page with error message
             redirectAttributes.addFlashAttribute("error", "Email o contraseña incorrectos");
             return "redirect:/login";
         }
     }
+
 }

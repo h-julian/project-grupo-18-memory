@@ -22,16 +22,16 @@ public class MatchService {
         this.companyService = companyService;
     }
 
-    public List<Match> getMatches() {
+    public List<Match> getMatches() { // Returns all matches
         return matches;
     }
 
-    public void addMatch(User user, Company company) {
+    public void addMatch(User user, Company company) { // Adds a new match
         Match match = new Match(user, company);
         matches.add(match);
     }
 
-    public boolean toggleMatch(User user, Company company) {
+    public boolean toggleMatch(User user, Company company) { // Adds or removes a match
         boolean matchExists = matches.removeIf(match -> match.getUser().equals(user) && match.getCompany().equals(company));
 
         if (!matchExists) {
@@ -41,7 +41,7 @@ public class MatchService {
         return !matchExists;
     }
 
-    public List<Company> getMatchedCompanies(){
+    public List<Company> getMatchedCompanies(){ // Returns all companies that have been matched
         List<Company> companies = new ArrayList<>();
         for (Match match : matches){
             companies.add(match.getCompany());
@@ -49,7 +49,7 @@ public class MatchService {
         return companies;
     }
 
-    public void loadMatches() {
+    public void loadMatches() { // Loads all matches
         for (Company company : companyService.getCompaniesList()) {
             if (company.getFavoriteUsers().contains(userService.getUser())) {
                 Match match = new Match(userService.getUser(), company);

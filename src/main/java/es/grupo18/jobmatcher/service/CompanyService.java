@@ -79,7 +79,7 @@ public class CompanyService {
         return new ArrayList<>(new HashSet<>(companies));
     }
 
-    public Company getCompanyByName(String name) {
+    public Company getCompanyByName(String name) { // Returns the company with the given name
         return companies.stream()
             .filter(company -> company.getName().equals(name))
             .findFirst()

@@ -12,20 +12,19 @@
 
 <body>
 
-    <!-- Header section with back button, title, and a hidden button for layout balance -->
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button> <!-- Back button to return to the profile page -->
+            <button class="back-btn" onclick="goBack()">⬅️ Atrás</button>
         </div>
         <div class="title">
-            <a href="/main">JOBMATCHER</a> <!-- Link to the main page -->
+            <a href="/main">JOBMATCHER</a>
         </div>
         <div class="header-right">
-            <button class="hidden-button"></button> <!-- Hidden button for layout purposes -->
+            <button class="hidden-button"></button> 
         </div>
     </header>
 
-    <!-- Main content: CV editing form -->
+    <!-- CV editing form -->
     <div class="container">
         <div class="box">
             <h1>Editar CV</h1> <!-- Form title -->
@@ -43,7 +42,8 @@
                 <!-- Input group for experience -->
                 <div class="input-group">
                     <label for="experience">Experiencia (en años):</label>
-                    <input type="number" id="experience" name="experience" value="{{experience}}" min="0" max="100" required>
+                    <input type="number" id="experience" name="experience" value="{{experience}}" min="0" max="100"
+                        required>
                 </div>
                 <!-- Button to submit the form -->
                 <div class="button-group">
@@ -53,17 +53,17 @@
         </div>
     </div>
 
-    <!-- Footer with copyright information -->
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
+        </div>
     </footer>
 
 </body>
 
-<!-- Script to handle the back button functionality -->
 <script>
     function goBack() {
-        window.location.href = "/profile"; // Redirects to the profile page
+        window.location.href = "/profile";
     }
 </script>
+
 </html>
