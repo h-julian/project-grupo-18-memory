@@ -26,6 +26,7 @@ public class User extends Account {
         this.degreesList = degreesList;
         this.skillsList = skillsList;
         this.imagePath = imagePath;
+        this.favouriteCompaniesList = new ArrayList<>();
     }
  
     public User(Long accountId, String name, String email, String password, String bio, String imagePath) {

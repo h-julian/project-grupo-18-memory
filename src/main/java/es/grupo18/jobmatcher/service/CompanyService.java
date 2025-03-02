@@ -1,6 +1,8 @@
 package es.grupo18.jobmatcher.service;
 
 import es.grupo18.jobmatcher.model.Company;
+import es.grupo18.jobmatcher.model.User;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,8 +15,11 @@ public class CompanyService {
     private final Company c2;
     private final Company c3;
     private List<Company> companiesList;
+    private UserService userService;
 
     public CompanyService() {
+
+        User user = userService.getUser();
 
         c1 = new Company(
                 02,
@@ -43,10 +48,17 @@ public class CompanyService {
                 "Creamos experiencias revolucionarias con nuestros productos, buscamos diseñadores y desarrolladores visionarios.",
                 "https://wallpapers.com/images/hd/black-apple-logo-4k-yn7rtft0sl2x3dhe.jpg");
 
+        c1.addFavouriteUser(user);
+        c2.addFavouriteUser(user);
+        c3.addFavouriteUser(user);
+
         companiesList = new ArrayList<>();
         companiesList.add(c1);
         companiesList.add(c2);
         companiesList.add(c3);
+
+        System.out.println("Companies uploaded to memory");
+
     }
 
     public Company getCompanyById(Long id) {

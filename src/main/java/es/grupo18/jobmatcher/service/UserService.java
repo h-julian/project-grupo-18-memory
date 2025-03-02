@@ -1,6 +1,8 @@
 package es.grupo18.jobmatcher.service;
 
 import es.grupo18.jobmatcher.model.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Arrays;
@@ -9,7 +11,9 @@ import java.util.Arrays;
 public class UserService {
 
     private final User user;
-    private final CompanyService companyService;
+
+    @Autowired
+    private CompanyService companyService;
 
     public UserService() {
         // Simulated user
@@ -26,7 +30,6 @@ public class UserService {
             List.of("Java", "Spring Boot", "SQL", "Pentesting"),
             "/img/profile.jpg"
         );
-        this.companyService = new CompanyService();
     }
 
     public User getUser() {

@@ -20,7 +20,6 @@ public class Company extends Account {
         this.bio = bio;
         this.imagePath = imagePath;
         this.favouriteUsersList = new ArrayList<>();
-
     }
 
     // Getters
