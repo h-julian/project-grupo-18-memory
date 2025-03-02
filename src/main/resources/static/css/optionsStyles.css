@@ -24,12 +24,6 @@
     height: 34px;
 }
 
-/* Hide the default checkbox input */
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
 
 /* Slider styles for the switch, including background and transition */
 .slider {
