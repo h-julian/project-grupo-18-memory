@@ -21,7 +21,7 @@ public class CompanyService {
     }
 
     @PostConstruct
-    private void loadInitialCompanies() {
+    private void loadInitialCompanies() { // Uploads companies to memory
         final Company c1;
         final Company c2;
         final Company c3;
@@ -70,11 +70,11 @@ public class CompanyService {
         System.out.println("Companies uploaded to memory");
     }
 
-    public List<Company> getCompaniesList() {
+    public List<Company> getCompaniesList() { // Returns all companies
         return companies;
     }
 
-    public Company getCompanyByName(String name) {
+    public Company getCompanyByName(String name) { // Returns the company with the given name
         return companies.stream()
             .filter(company -> company.getName().equals(name))
             .findFirst()

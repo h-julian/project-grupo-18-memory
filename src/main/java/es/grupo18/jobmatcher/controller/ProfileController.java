@@ -24,9 +24,9 @@ public class ProfileController {
         this.userService = userService;
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/profile") // Shows the user profile
     public String showProfile(Model model) {
-        User user = userService.getUser(); // Ahora obtenemos el usuario en memoria desde UserService
+        User user = userService.getUser(); // Obtains the only user for simplicity
         model.addAttribute("user", user);
         model.addAttribute("studies", user.getDegrees());
         model.addAttribute("skills", user.getSkills());
@@ -34,7 +34,7 @@ public class ProfileController {
         return "profile";
     }
 
-    @PostMapping("/profile/upload_image")
+    @PostMapping("/profile/upload_image") // Uploads a new image for the user
     public String uploadImage(@RequestParam("image") MultipartFile image) throws IOException {
         User user = userService.getUser();
         if (!image.isEmpty()) {
@@ -43,14 +43,14 @@ public class ProfileController {
             Path imagePath = IMAGES_FOLDER.resolve("profile_" + user.getAccountId() + ".jpg");
             image.transferTo(imagePath);
 
-            // Actualizar el usuario en memoria con la nueva imagen
+            // Update the current user's image in memory
             userService.updateUserImage("/img/profile_" + user.getAccountId() + ".jpg");
         }
 
         return "redirect:/profile";
     }
 
-    @GetMapping("/profile/edit")
+    @GetMapping("/profile/edit") // Shows the profile editor
     public String editProfile(Model model) {
         User user = userService.getUser();
         model.addAttribute("name", user.getName());
@@ -61,14 +61,14 @@ public class ProfileController {
         return "profileEditor";
     }
 
-    @PostMapping("/profile/edit")
+    @PostMapping("/profile/edit") // Saves the profile changes
     public String saveProfile(@RequestParam String name, @RequestParam String email, @RequestParam String phone,
                               @RequestParam String location, @RequestParam String bio) {
         userService.updateUserProfile(name, email, phone, location, bio);
         return "redirect:/profile";
     }
 
-    @GetMapping("/profile/form")
+    @GetMapping("/profile/form") // Shows the form to edit the user's profile (CV, skills and experiences)
     public String editProfileInfo(Model model) {
         User user = userService.getUser();
         model.addAttribute("user", user);
@@ -78,7 +78,7 @@ public class ProfileController {
         return "form";
     }
 
-    @PostMapping("/profile/form")
+    @PostMapping("/profile/form") // Saves the profile info changes
     public String saveProfileInfo(@RequestParam String studies, @RequestParam String skills,
                                   @RequestParam Integer experience) {
         userService.updateUserDetails(studies, skills, experience);

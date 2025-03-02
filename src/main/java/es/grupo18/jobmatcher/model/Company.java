@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(value = {"favouriteUsers"})
+@JsonIgnoreProperties(value = { "favouriteUsers" })
 
-public class Company extends Account {  
+public class Company extends Account {
     private String bio;
     private String location;
     private String imagePath;
@@ -14,9 +14,11 @@ public class Company extends Account {
 
     // Constructors
 
-    public Company() {}
+    public Company() {
+    }
 
-    public Company(long accountId, String name, String email, String password, String location, String bio, String imagePath, List<User> favouriteUsersList) {
+    public Company(long accountId, String name, String email, String password, String location, String bio,
+            String imagePath, List<User> favouriteUsersList) {
         super(accountId, name, email, password);
         this.location = location;
         this.bio = bio;
@@ -26,41 +28,61 @@ public class Company extends Account {
 
     // Getters
 
-    public String getBio() { return bio; }
-    public String getImagePath() { return imagePath; }
-    public String getLocation() { return location; }
-    public List<User> getFavoriteUsers() { return favouriteUsersList; }
+    public String getBio() {
+        return bio;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public List<User> getFavoriteUsers() {
+        return favouriteUsersList;
+    }
 
     // Setters
 
-    public void setBio(String bio) { this.bio = bio; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
-    public void setLocation(String location) { this.location = location; }
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public void setFavoriteUsers(List<User> favouriteUsersList) {
         this.favouriteUsersList = new ArrayList<>(favouriteUsersList);
     }
 
     // Update methods
 
-    public void updateLocation(String newLocation){
+    public void updateLocation(String newLocation) {
         this.location = newLocation;
     }
 
-    public void updateBio(String newBio){
+    public void updateBio(String newBio) {
         this.bio = newBio;
     }
 
-    public void updateImagePath(String newImagePath){
+    public void updateImagePath(String newImagePath) {
         this.imagePath = newImagePath;
     }
 
     // Add & Remove methods
 
-    public void addFavouriteUser(User user){
+    public void addFavouriteUser(User user) {
         this.favouriteUsersList.add(user);
     }
 
-    public void removeFavoriteUser(User user){
+    public void removeFavoriteUser(User user) {
         this.favouriteUsersList.remove(user);
     }
 
@@ -77,10 +99,11 @@ public class Company extends Account {
     @Override
     public String toString() {
         return "Company{" + super.toString() +
-                "bio='" + bio  +
-                ", location='" + location + 
-                ", imagePath='" + imagePath + 
+                "bio='" + bio +
+                ", location='" + location +
+                ", imagePath='" + imagePath +
                 ", favouriteUsersList=" + favouriteUsersList +
                 '}';
     }
+
 }

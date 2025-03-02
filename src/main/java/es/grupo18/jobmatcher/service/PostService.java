@@ -22,7 +22,7 @@ public class PostService {
     }
 
     @PostConstruct
-    public void loadInitialPosts() {
+    public void loadInitialPosts() { // Loads initial posts
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
         // Obtains accounts from AccountService
@@ -54,13 +54,13 @@ public class PostService {
         System.out.println("Posts uploaded to memory");
     }
 
-    public List<Post> getAllPosts() {
+    public List<Post> getAllPosts() { // Returns all posts
         List<Post> reversedPosts = new ArrayList<>(posts);
         Collections.reverse(reversedPosts);
         return reversedPosts;
     }
 
-    public void addPost(Post post) {
+    public void addPost(Post post) { // Adds a new post
         posts.add(post);
     }
 

@@ -27,15 +27,15 @@ public class UserService {
         );
     }
 
-    public User getUser() {
+    public User getUser() { // Returns the only user in memory
         return user;
     }
 
-    public String getCurrentUserName() {
+    public String getCurrentUserName() { // Returns the name of the only user in memory
         return user.getName();
     }
 
-    public void updateUserProfile(String name, String email, String phone, String location, String about) {
+    public void updateUserProfile(String name, String email, String phone, String location, String about) { // Updates the user's profile
         user.setName(name);
         user.setEmail(email);
         user.setPhone(phone);
@@ -43,11 +43,11 @@ public class UserService {
         user.setBio(about);
     }
 
-    public void updateUserImage(String imagePath) {
+    public void updateUserImage(String imagePath) { // Updates the user's image
         user.setImagePath(imagePath);
     }
 
-    public void updateUserDetails(String studies, String skills, Integer experience) {
+    public void updateUserDetails(String studies, String skills, Integer experience) { // Updates the user's details
         user.setDegrees(Arrays.asList(studies.split(",\\s*")));
         user.setSkills(Arrays.asList(skills.split(",\\s*")));
         user.setExperience(experience);

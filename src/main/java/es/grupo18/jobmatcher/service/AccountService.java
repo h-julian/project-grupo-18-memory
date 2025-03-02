@@ -23,13 +23,13 @@ public class AccountService {
     }
 
     @PostConstruct
-    public void initAccounts() {
+    public void initAccounts() { // Uploads users and companies to memory
         // Obtains existant users from AccountService
         Account user = userService.getUser();
         accounts.add(user);
 
-        // Obtains existant companues from CompanyService
-        List <Company> companies = companyService.getCompaniesList();
+        // Obtains existant companies from CompanyService
+        List<Company> companies = companyService.getCompaniesList();
         for (Company company : companies) {
             accounts.add(company);
         }
@@ -37,18 +37,18 @@ public class AccountService {
         System.out.println("Accounts (users and companies) uploaded to memory");
     }
 
-    public Account findAccountById(long id) {
+    public Account findAccountById(long id) { // Returns the account with the given id
         return accounts.stream()
-            .filter(account -> account.getAccountId() == id)
-            .findFirst()
-            .orElse(null);
+                .filter(account -> account.getAccountId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
-    public List<Account> getAccounts() {
+    public List<Account> getAccounts() { // Returns all accounts
         return accounts;
     }
 
-    public List<Account> getUsers() {
+    public List<Account> getUsers() { // Returns all users
         List<Account> users = new ArrayList<>();
         for (Account account : accounts) {
             if (account instanceof User) {
@@ -58,7 +58,7 @@ public class AccountService {
         return users;
     }
 
-    public List<Account> getCompanies() {
+    public List<Account> getCompanies() { // Returns all companies
         List<Account> companies = new ArrayList<>();
         for (Account account : accounts) {
             if (account instanceof Company) {

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(value = {"favouriteCompanies"})
+@JsonIgnoreProperties(value = { "favouriteCompanies" })
 public class User extends Account {
 
     private String phone;
@@ -19,7 +19,8 @@ public class User extends Account {
     public User() {
     }
 
-    public User(Long accountId, String name, String email, String password, String phone, String location, String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
+    public User(Long accountId, String name, String email, String password, String phone, String location, String bio,
+            Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
         super(accountId, name, email, password);
         this.phone = phone;
         this.bio = bio;
@@ -42,36 +43,114 @@ public class User extends Account {
     }
 
     // Getters
-    public String getPhone() { return phone; }
-    public String getLocation() { return location; }
-    public String getBio() { return bio; }
-    public Integer getExperience() { return experience; }
-    public List<String> getDegrees() { return degreesList; }
-    public List<String> getSkills() { return skillsList; }
-    public String getImagePath() { return imagePath; }
-    public List<Company> getFavouriteCompaniesList() { return favouriteCompaniesList; }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public List<String> getDegrees() {
+        return degreesList;
+    }
+
+    public List<String> getSkills() {
+        return skillsList;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public List<Company> getFavouriteCompaniesList() {
+        return favouriteCompaniesList;
+    }
 
     // Setters
-    public void setPhone(String phone) { this.phone = phone; }
-    public void setLocation(String location) { this.location = location; }
-    public void setBio(String bio) { this.bio = bio; }
-    public void setExperience(Integer experience) { this.experience = experience; }
-    public void setDegrees(List<String> degreesList) { this.degreesList = degreesList; }
-    public void setSkills(List<String> skillsList) { this.skillsList = skillsList; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public void setDegrees(List<String> degreesList) {
+        this.degreesList = degreesList;
+    }
+
+    public void setSkills(List<String> skillsList) {
+        this.skillsList = skillsList;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     // Update methods
-    public void updatePhone(String newPhone) { this.phone = newPhone; }
-    public void updateLocation(String newLocation) { this.location = newLocation; }
-    public void updateBio(String newBio) { this.bio = newBio; }
-    public void updateExperience(Integer newExperience) { this.experience = newExperience; }
-    public void updateDegrees(List<String> newDegrees) { this.degreesList = newDegrees; }
-    public void updateSkills(List<String> newSkills) { this.skillsList = newSkills; }
-    public void updateImagePath(String newImagePath) { this.imagePath = newImagePath; }
+
+    public void updatePhone(String newPhone) {
+        this.phone = newPhone;
+    }
+
+    public void updateLocation(String newLocation) {
+        this.location = newLocation;
+    }
+
+    public void updateBio(String newBio) {
+        this.bio = newBio;
+    }
+
+    public void updateExperience(Integer newExperience) {
+        this.experience = newExperience;
+    }
+
+    public void updateDegrees(List<String> newDegrees) {
+        this.degreesList = newDegrees;
+    }
+
+    public void updateSkills(List<String> newSkills) {
+        this.skillsList = newSkills;
+    }
+
+    public void updateImagePath(String newImagePath) {
+        this.imagePath = newImagePath;
+    }
 
     // Add and remove methods
-    public void addImage(String imagePath) { this.imagePath = imagePath; }
-    public void removeImage() { this.imagePath = null; }
-    public void addFavouriteCompany(Company company) { this.favouriteCompaniesList.add(company); }
-    public void removeFavouriteCompany(Company company) { this.favouriteCompaniesList.remove(company); }
+
+    public void addImage(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public void removeImage() {
+        this.imagePath = null;
+    }
+
+    public void addFavouriteCompany(Company company) {
+        this.favouriteCompaniesList.add(company);
+    }
+
+    public void removeFavouriteCompany(Company company) {
+        this.favouriteCompaniesList.remove(company);
+    }
 }

@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class CustomErrorController implements ErrorController {
 
-    @GetMapping("/error")
+    @GetMapping("/error") // Error page
     public String handleError(HttpServletRequest request, Model model) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
@@ -23,15 +23,15 @@ public class CustomErrorController implements ErrorController {
 
         model.addAttribute("status", statusCode);
 
-        if (statusCode == HttpStatus.NOT_FOUND.value()) {
+        if (statusCode == HttpStatus.NOT_FOUND.value()) { // 404
             model.addAttribute("error", "Página no encontrada");
-        } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+        } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) { // 500
             model.addAttribute("error", "Error interno del servidor");
-        } else {
+        } else { // Other errors
             model.addAttribute("error", "Error inesperado");
         }
 
         return "error";
     }
-    
+
 }

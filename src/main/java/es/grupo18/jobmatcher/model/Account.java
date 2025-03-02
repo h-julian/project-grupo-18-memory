@@ -59,6 +59,7 @@ public abstract class Account {
     }
 
     // Methods to manage posts
+
     public void addPost(Post post){
         posts.add(post);
     }
@@ -82,4 +83,5 @@ public abstract class Account {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }
