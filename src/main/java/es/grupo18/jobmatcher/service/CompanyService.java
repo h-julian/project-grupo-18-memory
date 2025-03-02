@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -22,6 +23,10 @@ public class CompanyService {
 
     @PostConstruct
     private void loadInitialCompanies() {
+        if (!companies.isEmpty()){
+            return; // Evita cargar empresas si ya están en memoria
+        }
+
         final Company c1;
         final Company c2;
         final Company c3;
@@ -71,7 +76,7 @@ public class CompanyService {
     }
 
     public List<Company> getCompaniesList() {
-        return companies;
+        return new ArrayList<>(new HashSet<>(companies));
     }
 
     public Company getCompanyByName(String name) {

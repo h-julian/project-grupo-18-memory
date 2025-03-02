@@ -1,5 +1,6 @@
 package es.grupo18.jobmatcher.service;
 
+import es.grupo18.jobmatcher.model.Company;
 import es.grupo18.jobmatcher.model.User;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -52,4 +53,16 @@ public class UserService {
         user.setSkills(Arrays.asList(skills.split(",\\s*")));
         user.setExperience(experience);
     }
+
+    public boolean toggleFavouriteCompany(Company company) {
+        if (user.getFavouriteCompaniesList().contains(company)) {
+            user.getFavouriteCompaniesList().remove(company);
+            return false; // Se eliminó de favoritos
+        } else {
+            user.getFavouriteCompaniesList().add(company);
+            return true; // Se añadió a favoritos
+        }
+    }
+    
+
 }
