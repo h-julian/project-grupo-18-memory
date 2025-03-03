@@ -84,5 +84,4 @@ public class ProfileController {
         userService.updateUserDetails(studies, skills, experience);
         return "redirect:/profile";
     }
-    
 }
