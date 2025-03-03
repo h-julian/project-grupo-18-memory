@@ -32,9 +32,7 @@ public class UserService {
         return user;
     }
 
-    public String getCurrentUserName() { // Returns the name of the only user in memory
-        return user.getName();
-    }
+
 
     public void updateUserProfile(String name, String email, String phone, String location, String about) { // Updates the user's profile
         user.setName(name);

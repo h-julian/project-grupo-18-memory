@@ -37,9 +37,9 @@ public class BlogController {
         return "blog";
     }
 
-    @GetMapping("/newpost") // Muestra el formulario para crear un nuevo post
-    public String showNewPostForm() {
-        return "newpost";
+    @GetMapping("/myposts") // Muestra el formulario para crear un nuevo post
+    public String showMyPostsPage() {
+        return "/newposts";
     }
 
     @PostMapping("/newpost") // Crea un nuevo post
@@ -53,7 +53,8 @@ public class BlogController {
             throw new IllegalStateException("No se encontró la cuenta con ID 1L. Asegúrate de que exista.");
         }
 
-        Post newPost = new Post(title, content, LocalDateTime.now(), imagePath, currentUser);
+        Post newPost = new Post(title, content, LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
+        imagePath, currentUser);
 
         currentUser.addPost(newPost);
         postService.addPost(newPost);

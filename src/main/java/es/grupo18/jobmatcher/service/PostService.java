@@ -5,6 +5,7 @@ import es.grupo18.jobmatcher.model.Post;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,17 +29,19 @@ public class PostService {
         Account apple = accountService.findAccountById(22L);
 
         // Creación de posts directamente en memoria
-        Post post1 = new Post("Programador - Microsoft",
-                "Buscamos programadores experimentados en .NET para un ambiente flexible en California.",
-                LocalDateTime.now().minusDays(3), "/img/coder.jpg", microsoft);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-        Post post2 = new Post("Ingeniero IA - Google",
-                "Oportunidad para trabajar en inteligencia artificial en California.",
-                LocalDateTime.now().minusDays(2), "/img/ai.jpg", google);
+        Post post1 = new Post(1L, "Programador - Microsoft",
+        "Buscamos programadores experimentados en .NET para un ambiente flexible en California.",
+        LocalDateTime.now().minusMonths(1).minusDays(1).minusHours(4).minusMinutes(12).format(dtf), "/img/coder.jpg", microsoft);
 
-        Post post3 = new Post("Diseñador UI/UX - Apple",
-                "Únete al equipo de diseño en Cupertino.",
-                LocalDateTime.now().minusDays(1), "/img/uiux.jpg", apple);
+        Post post2 = new Post(2L, "Ingeniero IA - Google",
+        "Oportunidad para trabajar en inteligencia artificial en California.",
+        LocalDateTime.now().minusMonths(0).minusDays(3).minusHours(6).minusMinutes(45).format(dtf), "/img/ai.jpg", google);
+
+        Post post3 = new Post(3L, "Diseñador UI/UX - Apple",
+        "Únete al equipo de diseño en Cupertino.",
+        LocalDateTime.now().minusMonths(0).minusDays(2).minusHours(1).minusMinutes(1).format(dtf), "/img/cloud_engineer.jpg", apple);
 
         // Añadir posts a la lista
         posts.addAll(List.of(post1, post2, post3));
