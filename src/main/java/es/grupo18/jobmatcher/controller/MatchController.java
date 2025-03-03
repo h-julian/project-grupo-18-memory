@@ -24,15 +24,16 @@ public class MatchController {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping("") // Show the match page
     public String showMatchPage(Model model) {
         List<Company> companies = companyService.getCompaniesList();
         User currentUser = userService.getUser();
 
-        // Crear listas separadas
+        // Creates two separated lists of companies: favourite and non-favourite
         List<Company> favouriteCompanies = currentUser.getFavouriteCompanies();
         List<Company> nonFavouriteCompanies = new ArrayList<>();
 
+        // Evaluates which companies are not in the favourite list
         for (Company company : companies) {
             if (!favouriteCompanies.contains(company)) {
                 nonFavouriteCompanies.add(company);
@@ -45,8 +46,7 @@ public class MatchController {
         return "match";
     }
 
-
-    @PostMapping("/addFavourite")
+    @PostMapping("/addFavourite") // Add a company to the user's favourite list
     public String addFavourite(@RequestParam String companyName) {
         User currentUser = userService.getUser();
         Company company = companyService.getCompanyByName(companyName);
@@ -55,10 +55,10 @@ public class MatchController {
             currentUser.addFavouriteCompany(company);
         }
 
-        return "redirect:/match"; // Recargar la vista para reflejar cambios
+        return "redirect:/match"; // Recharges the match page to show updates
     }
 
-    @PostMapping("/removeFavourite")
+    @PostMapping("/removeFavourite") // Remove a company from the user's favourite list
     public String removeFavourite(@RequestParam String companyName, @RequestParam String origin) {
         User currentUser = userService.getUser();
         Company company = companyService.getCompanyByName(companyName);
@@ -67,24 +67,25 @@ public class MatchController {
             currentUser.removeFavouriteCompany(company);
         }
 
-        return "redirect:" + origin;    }
+        return "redirect:" + origin;
+    }
 
-    @GetMapping("/consultant")
+    @GetMapping("/consultant") // Show the consultant match page
     public String showConsultantMatchPage(Model model) {
         User currentUser = userService.getUser();
         List<Company> favouriteCompanies = currentUser.getFavouriteCompanies();
         List<Company> mutualMatchCompanies = new ArrayList<>();
-    
-        // Filtrar empresas que también tengan al usuario en su lista de favoritos
+
+        // Filters companies that have the user in their favourite list
         for (Company company : favouriteCompanies) {
             if (company.getFavouriteUsers().contains(currentUser)) {
                 mutualMatchCompanies.add(company);
             }
         }
-    
+
         model.addAttribute("mutualMatchCompanies", mutualMatchCompanies);
-    
+
         return "matchConsultant";
     }
-    
+
 }

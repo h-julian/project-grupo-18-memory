@@ -45,6 +45,8 @@ public class CompanyService {
         List<User> favouriteUsersList_c7 = new ArrayList<>();
         List<User> favouriteUsersList_c8 = new ArrayList<>();
 
+        // Not all comapnies have the user added to their favourite list
+
         favouriteUsersList_c1.add(userService.getUser());
         favouriteUsersList_c2.add(userService.getUser());
         favouriteUsersList_c5.add(userService.getUser());
@@ -143,7 +145,7 @@ public class CompanyService {
         System.out.println("Companies uploaded to memory");
     }
 
-    public List<Company> getCompaniesList() {
+    public List<Company> getCompaniesList() { // Returns the list of companies
         return new ArrayList<>(new HashSet<>(companies));
     }
 

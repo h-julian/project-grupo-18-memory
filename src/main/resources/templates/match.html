@@ -16,7 +16,7 @@
 
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button> <!-- Back button to return to the main page -->
+            <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
         </div>
         <div class="title">
             <a href="/main">JOBMATCHER</a>
@@ -25,45 +25,41 @@
             <button class="hidden-button"></button>
         </div>
     </header>
-    
+
     <div class="container">
         {{#nonFavouriteCompanies}}
-            <div class="box">
-                <h1>{{name}}</h1>
-                <img src="{{imagePath}}" alt="Logo de {{name}}" width="100">
-                <p>{{location}}</p>
-                <p>{{bio}}</p>
+        <div class="box">
+            <h1>{{name}}</h1>
+            <img src="{{imagePath}}" alt="Logo de {{name}}" width="100">
+            <p>{{location}}</p>
+            <p>{{bio}}</p>
 
-                <!-- Botón para añadir a favoritos -->
-                <form action="/match/addFavourite" method="post">
-                    <input type="hidden" name="companyName" value="{{name}}">
-                    <input type="hidden" name="origin" value="/match">
-                    <button type="submit">Añadir a Favoritos</button>
-                </form>
-            </div>
+            <!-- Button for adding to favourites -->
+            <form action="/match/addFavourite" method="post">
+                <input type="hidden" name="companyName" value="{{name}}">
+                <input type="hidden" name="origin" value="/match">
+                <button type="submit">Añadir a Favoritos</button>
+            </form>
+        </div>
         {{/nonFavouriteCompanies}}
 
         {{#favouriteCompanies}}
-            <div class="box">
-                <h1>{{name}}</h1>
-                <img src="{{imagePath}}" alt="Logo de {{name}}" width="100">
-                <p>{{location}}</p>
-                <p>{{bio}}</p>
+        <div class="box">
+            <h1>{{name}}</h1>
+            <img src="{{imagePath}}" alt="Logo de {{name}}" width="100">
+            <p>{{location}}</p>
+            <p>{{bio}}</p>
 
-                <!-- Botón para eliminar de favoritos -->
-                <form action="/match/removeFavourite" method="post">
-                    <input type="hidden" name="companyName" value="{{name}}">
-                    <input type="hidden" name="origin" value="/match">
-                    <button type="submit">Eliminar de Favoritos</button>
-                </form>
-            </div>
+            <!-- Button for removing from favourites -->
+            <form action="/match/removeFavourite" method="post">
+                <input type="hidden" name="companyName" value="{{name}}">
+                <input type="hidden" name="origin" value="/match">
+                <button type="submit">Eliminar de Favoritos</button>
+            </form>
+        </div>
         {{/favouriteCompanies}}
 
-
-
-
     </div>
-
 
     <footer>
         <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
@@ -71,9 +67,5 @@
     </footer>
 
 </body>
-
-
-
-
 
 </html>

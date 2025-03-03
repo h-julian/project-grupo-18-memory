@@ -37,20 +37,19 @@ public class BlogController {
         return "blog";
     }
 
-    @GetMapping("/newpost") // Muestra el formulario para crear un nuevo post
+    @GetMapping("/newpost") // Shows the form to create a new post
     public String showNewPostForm() {
         return "newpost";
     }
 
-    @PostMapping("/newpost") // Crea un nuevo post
+    @PostMapping("/newpost") // Creates a new post
     public String createNewPost(@RequestParam String title,
-                                @RequestParam String content,
-                                @RequestParam(required = false) String imagePath) {
+            @RequestParam String content,
+            @RequestParam(required = false) String imagePath) {
 
-        Account currentUser = accountService.findAccountById(1L); // Usuario actual en fase 1
-
+        Account currentUser = accountService.findAccountById(1L); // Only user in phase 1
         if (currentUser == null) {
-            throw new IllegalStateException("No se encontró la cuenta con ID 1L. Asegúrate de que exista.");
+            throw new IllegalStateException("No user with ID 1L found");
         }
 
         Post newPost = new Post(title, content, LocalDateTime.now(), imagePath, currentUser);
@@ -60,4 +59,5 @@ public class BlogController {
 
         return "redirect:/blog";
     }
+
 }

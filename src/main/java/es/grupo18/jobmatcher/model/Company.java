@@ -9,7 +9,7 @@ public class Company extends Account {
     private String imagePath;
     private List<User> favouriteUsersList;
 
-    // Constructor vacío (inicializa lista)
+    // Empty constructor
     public Company() {
         this.favouriteUsersList = new ArrayList<>();
     }
@@ -23,7 +23,6 @@ public class Company extends Account {
         this.favouriteUsersList = new ArrayList<>();
     }
 
-
     // Constructor completo
     public Company(long accountId, String name, String email, String password, String bio, String location, String imagePath, List<User> favouriteUsersList) {
         super(accountId, name, email, password);
@@ -34,16 +33,19 @@ public class Company extends Account {
     }
 
     // Getters
+
     public String getBio() { return bio; }
     public String getImagePath() { return imagePath; }
     public String getLocation() { return location; }
 
     // Setters
+
     public void setBio(String bio) { this.bio = bio; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setLocation(String location) { this.location = location; }
 
-    // Métodos para manejar usuarios favoritos
+    // Methods to manage favourite users
+
     public void addFavouriteUser(User user) {
         if (user != null && !favouriteUsersList.contains(user)) {
             favouriteUsersList.add(user);
@@ -58,7 +60,8 @@ public class Company extends Account {
     
     public List<User> getFavouriteUsers(){return new ArrayList<>(favouriteUsersList);}
 
-    // Métodos de imagen
+    // Image methods
+
     public void removeImage() {
         this.imagePath = null;
     }
