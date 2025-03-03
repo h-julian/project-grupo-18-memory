@@ -1,7 +1,5 @@
 package es.grupo18.jobmatcher.model;
 
-import java.time.LocalDateTime;
-
 public class Post {
 
     private static long idCounter = 1; // ID counter to generate unique IDs
@@ -59,5 +57,5 @@ public class Post {
     // Image method
 
     public void removeImage() { this.imagePath = null; }
-    
+
 }
