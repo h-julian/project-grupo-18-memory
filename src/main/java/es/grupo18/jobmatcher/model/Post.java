@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Post {
 
-    private static long idCounter = 1; // Contador de IDs para generar IDs únicos
+    private static long idCounter = 1; // ID counter to generate unique IDs
     private long postId;
     private String title;
     private String content;
@@ -12,7 +12,8 @@ public class Post {
     private String imagePath;
     private Account owner;
 
-    // Constructor vacío con valores predeterminados
+    // Empty constructor
+
     public Post() {
         this.postId = generateNewPostId();
     }
@@ -32,12 +33,14 @@ public class Post {
         this.owner = owner;
     }
 
-    // Generación automática de IDs
+    // Automathic ID generator
+
     private static synchronized long generateNewPostId() {
         return idCounter++;
     }
 
     // Getters
+
     public long getPostId() { return postId; }
     public String getTitle() { return title; }
     public String getContent() { return content; }
@@ -46,12 +49,15 @@ public class Post {
     public Account getOwner() { return owner; }
 
     // Setters
+
     public void setTitle(String title) { this.title = title; }
     public void setContent(String content) { this.content = content; }
     public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
     public void setOwner(Account owner) { this.owner = owner; }
 
-    // Métodos de imagen
+    // Image method
+
     public void removeImage() { this.imagePath = null; }
+    
 }

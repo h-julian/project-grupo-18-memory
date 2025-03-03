@@ -21,9 +21,10 @@ public class PostService {
     }
 
     @PostConstruct
-    public void loadInitialPosts() { // Cargar publicaciones iniciales
+    public void loadInitialPosts() { // Uploads initial posts
 
-        // Obtiene cuentas desde AccountService
+        // Obtains accounts from the account service
+
         Account microsoft = accountService.findAccountById(2L);
         Account google = accountService.findAccountById(12L);
         Account apple = accountService.findAccountById(22L);
@@ -43,10 +44,12 @@ public class PostService {
         "Únete al equipo de diseño en Cupertino.",
         LocalDateTime.now().minusMonths(0).minusDays(2).minusHours(1).minusMinutes(1).format(dtf), "/img/cloud_engineer.jpg", apple);
 
-        // Añadir posts a la lista
+        // Adds posts to the list
+
         posts.addAll(List.of(post1, post2, post3));
 
-        // Asignar posts a sus respectivas cuentas
+        // Sets posts to their respective accounts
+
         if (microsoft != null) microsoft.addPost(post1);
         if (google != null) google.addPost(post2);
         if (apple != null) apple.addPost(post3);
@@ -54,15 +57,16 @@ public class PostService {
         System.out.println("Posts cargados en memoria");
     }
 
-    public List<Post> getAllPosts() { // Retorna la lista de posts en orden inverso
+    public List<Post> getAllPosts() { // Returns the posts list in reverse order
         List<Post> reversedPosts = new ArrayList<>(posts);
         Collections.reverse(reversedPosts);
         return Collections.unmodifiableList(reversedPosts);
     }
 
-    public void addPost(Post post) { // Agrega un nuevo post
+    public void addPost(Post post) { // Adds a new post
         if (post != null) {
             posts.add(post);
         }
     }
+    
 }

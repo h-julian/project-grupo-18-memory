@@ -14,7 +14,8 @@ public class User extends Account {
     private String imagePath;
     private List<Company> favouriteCompaniesList;
 
-    // Constructor vacío (inicializa listas)
+    // Empty constructor for initializations
+
     public User() {
         this.degreesList = new ArrayList<>();
         this.skillsList = new ArrayList<>();
@@ -22,7 +23,8 @@ public class User extends Account {
         this.experience = 0;
     }
 
-    // Constructor sin lista de favoritos
+    // Constructor without favourite companies
+    
     public User(Long accountId, String name, String email, String password, String phone, String location, 
                 String bio, Integer experience, List<String> degreesList, List<String> skillsList, String imagePath) {
         super(accountId, name, email, password);
@@ -36,7 +38,8 @@ public class User extends Account {
         this.favouriteCompaniesList = new ArrayList<>();
     }
 
-    // Constructor con solo bio e imagen
+    // Constructor with only bio and image
+
     public User(Long accountId, String name, String email, String password, String bio, String imagePath) {
         super(accountId, name, email, password);
         this.bio = bio;
@@ -48,24 +51,28 @@ public class User extends Account {
     }
 
     // Getters
+
     public String getPhone() { return phone; }
     public String getLocation() { return location; }
     public String getBio() { return bio; }
     public Integer getExperience() { return experience; }
     public String getImagePath() { return imagePath; }
 
-    // Devuelve copias de listas para evitar modificaciones externas
+    // Return copies of the lists to avoid modifications
+
     public List<String> getDegrees() { return new ArrayList<>(degreesList); }
     public List<String> getSkills() { return new ArrayList<>(skillsList); }
 
     // Setters
+
     public void setPhone(String phone) { this.phone = phone; }
     public void setLocation(String location) { this.location = location; }
     public void setBio(String bio) { this.bio = bio; }
     public void setExperience(Integer experience) { this.experience = experience; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
-    // Métodos seguros para modificar listas
+    // Secure methods to modify lists
+
     public void setDegrees(List<String> degreesList) {
         this.degreesList = (degreesList != null) ? new ArrayList<>(degreesList) : new ArrayList<>();
     }
@@ -78,7 +85,8 @@ public class User extends Account {
         this.favouriteCompaniesList = (favouriteCompaniesList != null) ? new ArrayList<>(favouriteCompaniesList) : new ArrayList<>();
     }
 
-    // Métodos para manejar empresas favoritas con validaciones
+    // Methods to manage favourite companies
+
     public void addFavouriteCompany(Company company) {
         if (company != null && !favouriteCompaniesList.contains(company)) {
             favouriteCompaniesList.add(company);
@@ -93,9 +101,10 @@ public class User extends Account {
 
     public List<Company> getFavouriteCompanies() { return new ArrayList<>(favouriteCompaniesList); }
 
+    // Image methods
 
-    // Métodos de imagen
     public void removeImage() {
         this.imagePath = null;
     }
+    
 }

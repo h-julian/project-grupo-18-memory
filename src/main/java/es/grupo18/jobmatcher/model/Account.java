@@ -44,8 +44,6 @@ public abstract class Account {
         this.postsList = (postsList != null) ? new ArrayList<>(postsList) : new ArrayList<>();
     }
 
-
-
     // Getters
 
     public long getAccountId() { return accountId; }
@@ -66,7 +64,6 @@ public abstract class Account {
     public void updateEmail(String newEmail){this.email = newEmail;}
     public void updatePassword(String newPassword){this.password = newPassword;}
     
-
     // Methods to manage posts
     public void addPost(Post post) {
         if (post != null && !postsList.contains(post)) {

@@ -55,12 +55,11 @@ public class UserService {
     public boolean toggleFavouriteCompany(Company company) {
         if (user.getFavouriteCompanies().contains(company)) {
             user.getFavouriteCompanies().remove(company);
-            return false; // Se eliminó de favoritos
+            return false; // Removed from favourites
         } else {
             user.getFavouriteCompanies().add(company);
-            return true; // Se añadió a favoritos
+            return true; // Added to favourites
         }
     }
     
-
 }

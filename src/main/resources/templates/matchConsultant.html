@@ -16,7 +16,7 @@
 
     <header>
         <div class="header-left">
-            <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button> <!-- Back button to return to the main page -->
+            <button class="back-btn" onclick="location.href='/main'">⬅️ Atrás</button>
         </div>
         <div class="title">
             <a href="/main">JOBMATCHER</a>
@@ -29,37 +29,35 @@
     <div class="container">
 
         {{#mutualMatchCompanies}}
-            <div class="box">
-                <h1>{{name}}</h1>
-                <img src="{{imagePath}}" alt="Logo de {{name}}" width="100">
-                <p>{{location}}</p>
-                <p>{{bio}}</p>
+        <div class="box">
+            <h1>{{name}}</h1>
+            <img src="{{imagePath}}" alt="Logo de {{name}}" width="100">
+            <p>{{location}}</p>
+            <p>{{bio}}</p>
 
-                <!-- Botón para eliminar de favoritos -->
-                <form action="/match/removeFavourite" method="post">
-                    <input type="hidden" name="companyName" value="{{name}}">
-                    <input type="hidden" name="origin" value="/match/consultant">
+            <!-- Button for removing from favourites -->
+            <form action="/match/removeFavourite" method="post">
+                <input type="hidden" name="companyName" value="{{name}}">
+                <input type="hidden" name="origin" value="/match/consultant">
 
-                    <button type="submit">Eliminar de Favoritos</button>
-                </form>
-            </div>
+                <button type="submit">Eliminar de Favoritos</button>
+            </form>
+        </div>
         {{/mutualMatchCompanies}}
 
         {{^mutualMatchCompanies}}
-            <div class="box">
-                <h1>Lo sentimos.</h1>
-                <p>No has hecho match con ninguna empresa.</p>
-                <p>Ten paciencia</p>
-                <button onclick="location.href='/main'">Volver a main</button> <!-- Button to go back to the main page -->
-            </div>
+        <div class="box">
+            <h1>Lo sentimos.</h1>
+            <p>No has hecho match con ninguna empresa.</p>
+            <p>Ten paciencia</p>
+            <button onclick="location.href='/main'">Volver a main</button> <!-- Button to go back to the main page -->
+        </div>
         {{/mutualMatchCompanies}}
-
     </div>
 
-    
-
     <footer>
-        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.</div>
+        <div class="copyright">&copy; 2025 Desarrollado por el equipo de Cibercatalejo. Todos los derechos reservados.
+        </div>
     </footer>
 
 </body>
